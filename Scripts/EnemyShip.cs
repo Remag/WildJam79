@@ -61,10 +61,15 @@ public partial class EnemyShip : Node2D {
 
     public bool IsDead = false;
 
+    private Node2D offscreenIndicator = null;
+
     public override void _Ready()
     {
         _targetRotation = Rotation;
         _currentHp = _maxHp;
+        offscreenIndicator = (Node2D)FindChild( "OffscreenIndicator" );
+        RemoveChild( offscreenIndicator );
+        GetParent().AddChild( offscreenIndicator );
     }
 
     public override void _Process( double delta )
@@ -73,6 +78,7 @@ public partial class EnemyShip : Node2D {
         handleAttackAi( delta );
         turnEnemy( delta );
         calcPosition( delta );
+        handleIndicator();
     }
 
     private void handleAttackAi( double delta )
@@ -137,7 +143,7 @@ public partial class EnemyShip : Node2D {
         var bulletDir = playerPos - Position;
         bullet.Rotation = bulletDir.Angle();
         bullet.Position = Position;
-        bullet.SetCollisionParams( Game.EnemyBulletLayer, Game.PlayerLayer );
+        bullet.SetCollisionParams( Game.PlayerLayer );
         GetParent().AddChild( bullet );
     }
 
@@ -214,33 +220,22 @@ public partial class EnemyShip : Node2D {
         var velValue = Math.Min( _maxVelocityPxSec, _currentVelocity.Length() );
         _currentVelocity = velValue * _currentVelocity.Normalized();
         Position += deltaF * _currentVelocity;
-
-        limitPosition();
     }
 
-    private void limitPosition()
+    private void handleIndicator()
     {
-        var rect = GetViewport().GetVisibleRect();
-        if( GlobalPosition.X < rect.Position.X ) {
-            GlobalPosition = new Vector2( rect.Position.X, GlobalPosition.Y );
-            _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
-            resetMoving();
+        if( offscreenIndicator == null ) {
+            return;
         }
-        if( GlobalPosition.X > rect.End.X ) {
-            GlobalPosition = new Vector2( rect.End.X, GlobalPosition.Y );
-            _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
-            resetMoving();
-        }
-        if( GlobalPosition.Y < rect.Position.Y ) {
-            GlobalPosition = new Vector2( GlobalPosition.X, rect.Position.Y );
-            _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
-            resetMoving();
-        }
-        if( GlobalPosition.Y > rect.End.Y ) {
-
-            GlobalPosition = new Vector2( GlobalPosition.X, rect.End.Y );
-            _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
-            resetMoving();
+        var cameraRect = Game.Camera.GetCanvasTransform().AffineInverse() * GetViewportRect();
+        var position = GlobalPosition;
+        if( !cameraRect.HasPoint( position ) ) {
+            offscreenIndicator.Show();
+            offscreenIndicator.Rotation = ( position - cameraRect.GetCenter() ).Angle();
+            var newPosition = position.Clamp( cameraRect.Position, cameraRect.End );
+            offscreenIndicator.GlobalPosition = newPosition;
+        } else {
+            offscreenIndicator.Hide();
         }
     }
 
@@ -251,23 +246,48 @@ public partial class EnemyShip : Node2D {
         _currentMoveState = MoveState.Moving;
         _moveStateDuration = 0.0f;
     }
+    
+    public void OnScreenWrap(Rect2 screenWrapRect )
+    {
+        var player = Game.Player;
+        if( player == null ) {
+            return;
+        }
 
-    public void OnBulletCollision( Area2D bullet )
+        var screenSize = screenWrapRect.Size;
+        var diff = GlobalPosition - player.GlobalPosition;
+        if( diff.X > screenSize.X / 2 ) {
+            Position -= new Vector2( screenSize.X, 0 );
+        }
+        if( diff.X < -screenSize.X / 2 ) {
+            Position += new Vector2( screenSize.X, 0 );
+        }
+        if( diff.Y > screenSize.Y / 2 ) {
+            Position -= new Vector2( 0, screenSize.Y );
+        }
+        if( diff.Y < -screenSize.Y / 2 ) {
+            Position += new Vector2( 0, screenSize.Y );
+        }
+    }
+
+    public void OnBulletCollision()
     {
         _currentHp--;
         if( _currentHp == 0 ) {
             IsDead = true;
             Game.Map.RemoveExistingShip();
             QueueFree();
+            offscreenIndicator.QueueFree();
         }
         Modulate = Colors.White.Lerp( Colors.Red, (float)_currentHp / _maxHp );
     }
 
-    public void OnTentacleCollision( Area2D tentacle )
+    public void OnTentacleCollision()
     {
         Game.Player?.Assimilate( this );
         IsDead = true;
         Game.Map.RemoveExistingShip();
         QueueFree();
+        offscreenIndicator.QueueFree();
     }
 }

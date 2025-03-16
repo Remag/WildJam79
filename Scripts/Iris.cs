@@ -15,7 +15,7 @@ public partial class Iris : Node2D {
 
     public override void _Process( double delta )
     {
-        var deltaPos = GetViewport().GetMousePosition() - GlobalPosition;
+        var deltaPos = GetViewport().GetMousePosition() - Game.Camera.GetCanvasTransform() * GlobalPosition;
         var len = Math.Min( _maxOffsetPx, deltaPos.Length() );
         var deltaVec = deltaPos.Normalized();
         var resultVec = len * deltaVec;

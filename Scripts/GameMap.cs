@@ -35,7 +35,8 @@ public partial class GameMap : Node {
         foreach( var shipPrefab in wave ) {
             var ship = shipPrefab.Instantiate<EnemyShip>();
             AddChild( ship );
-            ship.GlobalPosition = new Vector2( Rng.RandomRange( 10, 800 ), Rng.RandomRange( 10, 50 ) );
+            ship.GlobalPosition = Game.Player.GlobalPosition +
+                                  Vector2.FromAngle( Rng.RandomRange( 0, 2 * Mathf.Pi ) ) * 700;
             _existingShips++;
         }
         _currentWave++;
@@ -68,7 +69,7 @@ public partial class GameMap : Node {
         _currentWave = 0;
         AddChild( player );
 
-        foreach( var node in GetTree().GetNodesInGroup( "Enemy" ) ) {
+        foreach( var node in GetTree().GetNodesInGroup( "ClearOnRestart" ) ) {
             node.QueueFree();
         }
     }

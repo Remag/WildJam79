@@ -1,29 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=7 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameMap.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
+[ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
+[ext_resource type="Texture2D" uid="uid://db4ye3ibfh1l8" path="res://TempAssets/TempBackground.png" id="5_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="6_a814b"]
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_tutorialNode", "_restartButton", "_spawnButton")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rf2cd"]
+size = Vector2(1600, 1600)
+
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_tutorialNode", "_restartButton", "_spawnButton")]
 script = ExtResource("1_torvr")
-_tutorialNode = NodePath("Label")
+_tutorialNode = NodePath("HUD/Label")
 _playerPrefab = ExtResource("3_rpqi1")
-_restartButton = NodePath("Button2")
+_restartButton = NodePath("HUD/Button2")
 _wave1 = Array[PackedScene]([ExtResource("6_a814b")])
 _wave2 = Array[PackedScene]([ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b")])
 _wave3 = Array[PackedScene]([ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b")])
-_spawnButton = NodePath("Button")
+_spawnButton = NodePath("HUD/Button")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="HUD"]
+offset_right = 319.0
+offset_bottom = 145.0
 theme_override_font_sizes/font_size = 24
 text = "WASD/Arrows to Accelerate
 Hold Left Click to Shoot
 Hold Right Click to Tentacle
 "
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="HUD"]
 offset_left = 342.0
 offset_top = 30.0
 offset_right = 757.0
@@ -31,7 +38,7 @@ offset_bottom = 127.0
 theme_override_font_sizes/font_size = 54
 text = "Next Wave"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Button2" type="Button" parent="HUD"]
 visible = false
 offset_left = 347.0
 offset_top = 249.0
@@ -43,5 +50,32 @@ text = "Restart"
 [node name="Player" parent="." instance=ExtResource("3_rpqi1")]
 position = Vector2(556, 400)
 
-[connection signal="pressed" from="Button" to="." method="SpawnWave"]
-[connection signal="pressed" from="Button2" to="." method="RestartGame"]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ScreenWrapArea")]
+position = Vector2(556, 400)
+position_smoothing_enabled = true
+script = ExtResource("4_rf2cd")
+ScreenWrapArea = NodePath("GameZone/CollisionShape2D")
+
+[node name="GameZone" type="Area2D" parent="Camera2D"]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/GameZone"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_rf2cd")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1024, 1024)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_right = 2119.0
+offset_bottom = 1634.0
+texture = ExtResource("5_rf2cd")
+stretch_mode = 1
+
+[connection signal="pressed" from="HUD/Button" to="." method="SpawnWave"]
+[connection signal="pressed" from="HUD/Button2" to="." method="RestartGame"]
+[connection signal="area_exited" from="Camera2D/GameZone" to="Camera2D" method="OnBulletLeaveArea"]
+[connection signal="body_exited" from="Camera2D/GameZone" to="Camera2D" method="OnEnemyLeaveArea"]

@@ -13,12 +13,14 @@ public partial class Tentacle : Node2D {
     public override void _Process( double delta )
     {
         var mousePos = GetViewport().GetMousePosition();
-        var dirDelta = mousePos - Game.Player.GlobalPosition;
+        var dirDelta = mousePos - Game.Camera.GetCanvasTransform() * Game.Player.GlobalPosition;
         Rotation = dirDelta.Angle();
     }
 
-    private void OnCollision( Area2D enemyShip )
+    public void OnBodyCollision( Node2D body )
     {
-
+        if( body is EnemyShip enemyShip ) {
+            enemyShip.OnTentacleCollision();
+        }
     }
 }

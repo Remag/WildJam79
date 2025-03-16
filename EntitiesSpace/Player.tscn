@@ -11,12 +11,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
 radius = 29.865
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_blobs")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_blobs")]
+center_of_mass_mode = 1
+linear_damp = 1.0
+angular_damp = 1.0
 script = ExtResource("2_5ncpa")
 _mainNode = NodePath("Node2D")
 _eyeball = NodePath("Node2D/Eye")
-_maxVelocityPxSec = 1000.0
-_maxAccelPxSec = 1000.0
 _tentaclePrefab = ExtResource("3_wi0c6")
 _blobs = [NodePath("Node2D/PlayerBlob"), NodePath("Node2D/PlayerBlob2"), NodePath("Node2D/PlayerBlob3"), NodePath("Node2D/PlayerBlob4"), NodePath("Node2D/PlayerBlob6"), NodePath("Node2D/PlayerBlob7"), NodePath("Node2D/PlayerBlob8"), NodePath("Node2D/PlayerBlob9"), NodePath("Node2D/PlayerBlob10"), NodePath("Node2D/PlayerBlob11"), NodePath("Node2D/PlayerBlob12"), NodePath("Node2D/PlayerBlob13")]
 
@@ -34,10 +35,7 @@ texture = ExtResource("5_3tkgg")
 script = ExtResource("6_l6ohk")
 
 [node name="Area2D" type="Area2D" parent="Node2D/Eye/Iris"]
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Eye/Iris/Area2D"]
-shape = SubResource("CircleShape2D_a814b")
+collision_mask = 0
 
 [node name="PlayerBlob" parent="Node2D" instance=ExtResource("7_oudfo")]
 visible = false
@@ -74,21 +72,22 @@ position = Vector2(-80, 120)
 [node name="PlayerBlob10" parent="Node2D" instance=ExtResource("7_oudfo")]
 visible = false
 position = Vector2(-145, 215)
-scale = Vector2(1, 1)
 
 [node name="PlayerBlob11" parent="Node2D" instance=ExtResource("7_oudfo")]
 visible = false
 position = Vector2(-247.5, -95)
-scale = Vector2(1, 1)
 
 [node name="PlayerBlob12" parent="Node2D" instance=ExtResource("7_oudfo")]
 visible = false
 position = Vector2(102.5, -215)
-scale = Vector2(1, 1)
 
 [node name="PlayerBlob13" parent="Node2D" instance=ExtResource("7_oudfo")]
 visible = false
 position = Vector2(242.5, 87.5)
-scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.74844, 1.18704)
+scale = Vector2(0.476988, 0.476988)
+shape = SubResource("CircleShape2D_a814b")
 
 [connection signal="area_entered" from="Node2D/Eye/Iris/Area2D" to="." method="OnBulletCollision"]

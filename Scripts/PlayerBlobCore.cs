@@ -37,10 +37,10 @@ public partial class PlayerBlobCore : Node2D {
     {
         var bullet = _bulletPrefab.Instantiate<BasicBullet>();
         var mousePos = GetViewport().GetMousePosition();
-        var bulletDir = mousePos - GlobalPosition;
+        var bulletDir = mousePos - Game.Camera.GetCanvasTransform() * GlobalPosition;
         bullet.Rotation = bulletDir.Angle();
         bullet.GlobalPosition = GlobalPosition;
-        bullet.SetCollisionParams( Game.PlayerBulletLayer, Game.EnemyShipLayer );
+        bullet.SetCollisionParams( Game.EnemyShipLayer );
         Game.Map.AddChild( bullet );
     }
 }

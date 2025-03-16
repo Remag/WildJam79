@@ -16,14 +16,19 @@ public partial class BasicBullet : Node2D
         Position += (float)delta * dir;
     }
 
-    public void SetCollisionParams( int layerValue, int maskValue )
+    public void SetCollisionParams( int maskValue )
     {
-        _collisionArea.CollisionLayer = (uint)1 << ( layerValue - 1 );
-        _collisionArea.CollisionMask = (uint)1 << ( maskValue - 1 );
+        _collisionArea.CollisionMask = (uint) 1 << ( maskValue - 1 );
     }
 
-    public void OnCollide( Area2D area )
+    public void OnBodyCollision( Node2D body )
     {
+        GD.Print( "OnBodyCollision " + body.Name );
+        if( body is EnemyShip enemyShip ) {
+            enemyShip.OnBulletCollision();
+        } else if( body is Player player ) {
+            player.OnBulletCollision();
+        }
         QueueFree();
     }
 }

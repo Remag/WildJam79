@@ -2,16 +2,16 @@ using Godot;
 using System;
 using System.Linq.Expressions;
 
-public partial class Player : Node2D {
+public partial class Player : RigidBody2D {
 
     [Export]
     private Node2D _mainNode;
     [Export]
     private Node2D _eyeball;
     [Export]
-    private float _maxVelocityPxSec = 10;
+    private float _maxVelocityPxSec = 500;
     [Export]
-    private float _maxAccelPxSec = 10;
+    private float _maxAccelPxSec = 100000;
     [Export]
     private int _maxHp = 3;
 
@@ -26,11 +26,9 @@ public partial class Player : Node2D {
     private bool _isShooting = false;
 
     private int _currentHp = 5;
+    private float _currentImpulseCountdown = 0;
 
     private Tentacle _activeTentacle;
-
-    private Vector2 _currentAccel = new();
-    private Vector2 _currentVelocity = new();
 
     public override void _Ready()
     {
@@ -45,7 +43,7 @@ public partial class Player : Node2D {
         }
     }
 
-    public void OnBulletCollision( Area2D bullet )
+    public void OnBulletCollision()
     {
         _currentHp--;
         if( _currentHp == 0 ) {
@@ -86,8 +84,6 @@ public partial class Player : Node2D {
                     destroyTentacle();
                 }
             }
-        } else if( e is InputEventKey keyE ) {
-            handleMovement( keyE );
         }
     }
 
@@ -116,38 +112,36 @@ public partial class Player : Node2D {
         _activeTentacle = null;
     }
 
-    private void handleMovement( InputEventKey keyE )
+    public override void _PhysicsProcess( double delta )
     {
-        var accelValue = keyE.Pressed ? _maxAccelPxSec : 0;
-        applyAccel( accelValue, keyE.Keycode );
-    }
-
-    private void applyAccel( float value, Key key )
-    {
-        switch( key ) {
-            case Key.W:
-            case Key.Up:
-                _currentAccel = new Vector2( _currentAccel.X, -value );
-                break;
-            case Key.A:
-            case Key.Left:
-                _currentAccel = new Vector2( -value, _currentAccel.Y );
-                break;
-            case Key.S:
-            case Key.Down:
-                _currentAccel = new Vector2( _currentAccel.X, value );
-                break;
-            case Key.D:
-            case Key.Right:
-                _currentAccel = new Vector2( value, _currentAccel.Y );
-                break;
+        var deltaF = (float)delta;
+        var accelVector = new Vector2();
+        
+        if( Input.IsActionPressed( "CharacterUp" ) ) {
+            accelVector += new Vector2( 0, -1 );
         }
+        if( Input.IsActionPressed( "CharacterDown" ) ) {
+            accelVector += new Vector2( 0, 1 );
+        }
+        if( Input.IsActionPressed( "CharacterLeft" ) ) {
+            accelVector += new Vector2( -1, 0 );
+        }
+        if( Input.IsActionPressed( "CharacterRight" ) ) {
+            accelVector += new Vector2( 1, 0 );
+        }
+        
+        var accelValue = _maxAccelPxSec * accelVector.Normalized();
+        ApplyForce( accelValue * deltaF );
+        updateShooting( delta );
+        // updatePosition( delta );
     }
 
-    public override void _Process( double delta )
+    public override void _IntegrateForces( PhysicsDirectBodyState2D state )
     {
-        updateShooting( delta );
-        updatePosition( delta );
+        base._IntegrateForces( state );
+        if( state.LinearVelocity.Length() > _maxVelocityPxSec ) {
+            state.LinearVelocity = state.LinearVelocity.Normalized() * _maxVelocityPxSec;
+        }
     }
 
     private void updateShooting( double delta )
@@ -162,36 +156,36 @@ public partial class Player : Node2D {
 
     private void updatePosition( double delta )
     {
-        var deltaF = (float)delta;
-        var accelValue = _maxAccelPxSec * _currentAccel.Normalized();
-        _currentVelocity += deltaF * accelValue;
-        var velValue = Math.Min( _maxVelocityPxSec, _currentVelocity.Length() );
-        _currentVelocity = velValue * _currentVelocity.Normalized();
-        Position += deltaF * _currentVelocity;
+        // var deltaF = (float)delta;
+        // var accelValue = _maxAccelPxSec * _currentAccel.Normalized();
+        // _currentVelocity += deltaF * accelValue;
+        // var velValue = Math.Min( _maxVelocityPxSec, _currentVelocity.Length() );
+        // _currentVelocity = velValue * _currentVelocity.Normalized();
+        // Position += deltaF * _currentVelocity;
 
         limitPosition();
     }
 
     private void limitPosition()
     {
-        var rect = GetViewport().GetVisibleRect();
-        if( GlobalPosition.X < rect.Position.X ) {
-            GlobalPosition = new Vector2( rect.Position.X, GlobalPosition.Y );
-            _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
-        }
-        if( GlobalPosition.X > rect.End.X ) {
-            GlobalPosition = new Vector2( rect.End.X, GlobalPosition.Y );
-            _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
-        }
-        if( GlobalPosition.Y < rect.Position.Y ) {
-            GlobalPosition = new Vector2( GlobalPosition.X, rect.Position.Y );
-            _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
-        }
-        if( GlobalPosition.Y > rect.End.Y ) {
-
-            GlobalPosition = new Vector2( GlobalPosition.X, rect.End.Y );
-            _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
-        }
+        // var rect = GetViewport().GetVisibleRect();
+        // if( GlobalPosition.X < rect.Position.X ) {
+        //     GlobalPosition = new Vector2( rect.Position.X, GlobalPosition.Y );
+        //     _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
+        // }
+        // if( GlobalPosition.X > rect.End.X ) {
+        //     GlobalPosition = new Vector2( rect.End.X, GlobalPosition.Y );
+        //     _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
+        // }
+        // if( GlobalPosition.Y < rect.Position.Y ) {
+        //     GlobalPosition = new Vector2( GlobalPosition.X, rect.Position.Y );
+        //     _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
+        // }
+        // if( GlobalPosition.Y > rect.End.Y ) {
+        //
+        //     GlobalPosition = new Vector2( GlobalPosition.X, rect.End.Y );
+        //     _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
+        // }
     }
 }
 
