@@ -52,6 +52,7 @@ position = Vector2(556, 400)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ScreenWrapArea")]
 position = Vector2(556, 400)
+process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("4_rf2cd")
 ScreenWrapArea = NodePath("GameZone/CollisionShape2D")
