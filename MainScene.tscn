@@ -1,3 +1,47 @@
-[gd_scene format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=4 format=3 uid="uid://dfh1jxxgde0rm"]
 
-[node name="MainScene" type="Node2D"]
+[ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameMap.cs" id="1_torvr"]
+[ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="6_a814b"]
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_tutorialNode", "_restartButton", "_spawnButton")]
+script = ExtResource("1_torvr")
+_tutorialNode = NodePath("Label")
+_playerPrefab = ExtResource("3_rpqi1")
+_restartButton = NodePath("Button2")
+_wave1 = Array[PackedScene]([ExtResource("6_a814b")])
+_wave2 = Array[PackedScene]([ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b")])
+_wave3 = Array[PackedScene]([ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b")])
+_spawnButton = NodePath("Button")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "WASD/Arrows to Accelerate
+Hold Left Click to Shoot
+Hold Right Click to Tentacle
+"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 342.0
+offset_top = 30.0
+offset_right = 757.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 54
+text = "Next Wave"
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+offset_left = 347.0
+offset_top = 249.0
+offset_right = 762.0
+offset_bottom = 346.0
+theme_override_font_sizes/font_size = 54
+text = "Restart"
+
+[node name="Player" parent="." instance=ExtResource("3_rpqi1")]
+position = Vector2(556, 400)
+
+[connection signal="pressed" from="Button" to="." method="SpawnWave"]
+[connection signal="pressed" from="Button2" to="." method="RestartGame"]

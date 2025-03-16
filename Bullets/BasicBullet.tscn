@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://u2wshe5a8fvk"]
+
+[ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="1_1qb4d"]
+[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_c26t0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c26t0"]
+radius = 6.0
+
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea")]
+light_mask = 4
+script = ExtResource("1_c26t0")
+_collisionArea = NodePath("Area2D")
+_speed = 1000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.25, 0)
+scale = Vector2(0.985714, 1)
+texture = ExtResource("1_1qb4d")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_c26t0")
+
+[connection signal="area_entered" from="Area2D" to="." method="OnCollide"]

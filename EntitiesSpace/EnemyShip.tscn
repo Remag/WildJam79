@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://nh1c0ycvlv14"]
+
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
+[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_dcnlj"]
+[ext_resource type="Texture2D" uid="uid://4uk6m0otqkgu" path="res://TempAssets/Ship/Wings.png" id="2_eupht"]
+[ext_resource type="Texture2D" uid="uid://dnnurv5vxd2at" path="res://TempAssets/Ship/Ship.png" id="3_8v1sf"]
+[ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="3_13jfi"]
+
+[node name="EnemyShip" type="Node2D" groups=["Enemy"]]
+script = ExtResource("1_mykhl")
+_maxVelocityPxSec = 300.0
+_maxAccelPxSec = 2000.0
+_rotationSpeedRadSec = 2.0
+_aiAccelDuration = 5.0
+_aiMoveDuration = 3.0
+_aiAttackShootDuration = 0.8
+_bulletPrefab = ExtResource("2_dcnlj")
+CorePrefab = ExtResource("3_13jfi")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.25, 0.25)
+
+[node name="Wings" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("2_eupht")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_8v1sf")
+
+[node name="TentacleArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TentacleArea"]
+position = Vector2(0.499998, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-11.6164, 12.3871, 11.6164, 12.9032, -0.219177, -10.3226)
+
+[node name="BulletArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BulletArea"]
+position = Vector2(0.499998, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-11.6164, 12.3871, 11.6164, 12.9032, -0.219177, -10.3226)
+
+[connection signal="area_entered" from="TentacleArea" to="." method="OnTentacleCollision"]
+[connection signal="area_entered" from="BulletArea" to="." method="OnBulletCollision"]

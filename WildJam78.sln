@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildJam78", "WildJam78.csproj", "{B8ADA339-3AFE-4429-832E-0035F4994A8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8ADA339-3AFE-4429-832E-0035F4994A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8ADA339-3AFE-4429-832E-0035F4994A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8ADA339-3AFE-4429-832E-0035F4994A8B}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{B8ADA339-3AFE-4429-832E-0035F4994A8B}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{B8ADA339-3AFE-4429-832E-0035F4994A8B}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{B8ADA339-3AFE-4429-832E-0035F4994A8B}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

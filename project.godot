@@ -12,9 +12,21 @@ config_version=5
 
 config/name="WildJam78"
 run/main_scene="uid://dfh1jxxgde0rm"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="WildJam78"
+
+[file_customization]
+
+folder_colors={
+"res://Bullets/": "pink",
+"res://EntitiesSpace/": "purple",
+"res://Scripts/": "blue"
+}
+
+[global_group]
+
+Enemy=""

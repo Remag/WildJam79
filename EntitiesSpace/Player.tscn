@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcxydx2svymhn"]
+
+[ext_resource type="Texture2D" uid="uid://hugok17krry8" path="res://TempAssets/Hero/Body.png" id="1_dtqjt"]
+[ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
+[ext_resource type="PackedScene" uid="uid://b74mshutj3hsf" path="res://Bullets/Tentacle.tscn" id="3_wi0c6"]
+[ext_resource type="Texture2D" uid="uid://cyedku2inlu3g" path="res://TempAssets/Hero/Eyeball.png" id="4_hp6x6"]
+[ext_resource type="Texture2D" uid="uid://ct5ykbus2lykm" path="res://TempAssets/Hero/Eye.png" id="5_3tkgg"]
+[ext_resource type="Script" uid="uid://f7rvj2fdt1uh" path="res://Scripts/Iris.cs" id="6_l6ohk"]
+[ext_resource type="PackedScene" uid="uid://legxaf8ejute" path="res://EntitiesSpace/PlayerBlob.tscn" id="7_oudfo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
+radius = 29.865
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_blobs")]
+script = ExtResource("2_5ncpa")
+_mainNode = NodePath("Node2D")
+_eyeball = NodePath("Node2D/Eye")
+_maxVelocityPxSec = 1000.0
+_maxAccelPxSec = 1000.0
+_tentaclePrefab = ExtResource("3_wi0c6")
+_blobs = [NodePath("Node2D/PlayerBlob"), NodePath("Node2D/PlayerBlob2"), NodePath("Node2D/PlayerBlob3"), NodePath("Node2D/PlayerBlob4"), NodePath("Node2D/PlayerBlob6"), NodePath("Node2D/PlayerBlob7"), NodePath("Node2D/PlayerBlob8"), NodePath("Node2D/PlayerBlob9"), NodePath("Node2D/PlayerBlob10"), NodePath("Node2D/PlayerBlob11"), NodePath("Node2D/PlayerBlob12"), NodePath("Node2D/PlayerBlob13")]
+
+[node name="Node2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_dtqjt")
+
+[node name="Eye" type="Sprite2D" parent="Node2D"]
+position = Vector2(-11.8711, 2.96761)
+scale = Vector2(1.19247, 1.19247)
+texture = ExtResource("4_hp6x6")
+
+[node name="Iris" type="Sprite2D" parent="Node2D/Eye"]
+texture = ExtResource("5_3tkgg")
+script = ExtResource("6_l6ohk")
+
+[node name="Area2D" type="Area2D" parent="Node2D/Eye/Iris"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Eye/Iris/Area2D"]
+shape = SubResource("CircleShape2D_a814b")
+
+[node name="PlayerBlob" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(100.903, -20.7742)
+
+[node name="PlayerBlob2" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-118.71, 20.7742)
+
+[node name="PlayerBlob3" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-26.7096, -100.903)
+
+[node name="PlayerBlob4" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(32.6451, 100.903)
+
+[node name="PlayerBlob6" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(130, 40)
+
+[node name="PlayerBlob7" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-130, -40)
+
+[node name="PlayerBlob8" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(87.5, -100)
+
+[node name="PlayerBlob9" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-80, 120)
+
+[node name="PlayerBlob10" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-145, 215)
+scale = Vector2(1, 1)
+
+[node name="PlayerBlob11" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-247.5, -95)
+scale = Vector2(1, 1)
+
+[node name="PlayerBlob12" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(102.5, -215)
+scale = Vector2(1, 1)
+
+[node name="PlayerBlob13" parent="Node2D" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(242.5, 87.5)
+scale = Vector2(1, 1)
+
+[connection signal="area_entered" from="Node2D/Eye/Iris/Area2D" to="." method="OnBulletCollision"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0rri7xjcdjyd"]
+
+[ext_resource type="Texture2D" uid="uid://4uk6m0otqkgu" path="res://TempAssets/Ship/Wings.png" id="1_k6m0d"]
+[ext_resource type="Script" uid="uid://bst7cgfygvc5n" path="res://Scripts/PlayerBlobCore.cs" id="1_q1ts7"]
+[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_ipayf"]
+[ext_resource type="Texture2D" uid="uid://dnnurv5vxd2at" path="res://TempAssets/Ship/Ship.png" id="2_pgvwl"]
+
+[node name="BlobBasicCore" type="Node2D"]
+script = ExtResource("1_q1ts7")
+_bulletPrefab = ExtResource("2_ipayf")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="Wings" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("1_k6m0d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_pgvwl")
