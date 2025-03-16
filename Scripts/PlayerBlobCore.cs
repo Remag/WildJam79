@@ -12,7 +12,7 @@ public partial class PlayerBlobCore : Node2D {
     private double _weaponHeat = 0;
     private double _currentDelay = 0;
 
-    public override void _Process( double delta )
+    public override void _PhysicsProcess( double delta )
     {
         _weaponHeat -= 30 * delta;
         _weaponHeat = Math.Max( _weaponHeat, 0 );

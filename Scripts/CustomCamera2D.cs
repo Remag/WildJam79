@@ -10,9 +10,9 @@ public partial class CustomCamera2D : Camera2D {
         Game.Camera = this;
     }
 
-    public override void _Process( double delta )
+    public override void _PhysicsProcess( double delta )
     {
-        base._Process( delta );
+        base._PhysicsProcess( delta );
         if( Game.Player != null ) {
             Position = Game.Player.Position;
         }

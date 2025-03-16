@@ -10,7 +10,7 @@ public partial class Tentacle : Node2D {
         _animation.Play( "Extend" );
     }
 
-    public override void _Process( double delta )
+    public override void _PhysicsProcess( double delta )
     {
         var mousePos = GetViewport().GetMousePosition();
         var dirDelta = mousePos - Game.Camera.GetCanvasTransform() * Game.Player.GlobalPosition;

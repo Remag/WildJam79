@@ -72,7 +72,7 @@ public partial class EnemyShip : Node2D {
         GetParent().AddChild( offscreenIndicator );
     }
 
-    public override void _Process( double delta )
+    public override void _PhysicsProcess( double delta )
     {
         handleMoveAi( delta );
         handleAttackAi( delta );
@@ -279,7 +279,7 @@ public partial class EnemyShip : Node2D {
             QueueFree();
             offscreenIndicator.QueueFree();
         }
-        Modulate = Colors.White.Lerp( Colors.Red, (float)_currentHp / _maxHp );
+        Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
     }
 
     public void OnTentacleCollision()

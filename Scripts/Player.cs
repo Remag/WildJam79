@@ -51,7 +51,7 @@ public partial class Player : RigidBody2D {
             Game.Map.EndGame();
         }
 
-        _eyeball.Modulate = Colors.White.Lerp( Colors.Red, (float)_currentHp / _maxHp );
+        _eyeball.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
     }
 
     public void Assimilate( EnemyShip ship )

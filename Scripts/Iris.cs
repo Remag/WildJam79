@@ -13,7 +13,7 @@ public partial class Iris : Node2D {
         _startPos = Position;
     }
 
-    public override void _Process( double delta )
+    public override void _PhysicsProcess( double delta )
     {
         var deltaPos = GetViewport().GetMousePosition() - Game.Camera.GetCanvasTransform() * GlobalPosition;
         var len = Math.Min( _maxOffsetPx, deltaPos.Length() );
