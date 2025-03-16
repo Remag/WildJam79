@@ -18,6 +18,8 @@ angular_damp = 1.0
 script = ExtResource("2_5ncpa")
 _mainNode = NodePath("Node2D")
 _eyeball = NodePath("Node2D/Eye")
+_maxVelocityPxSec = 350.0
+_maxHp = 10
 _tentaclePrefab = ExtResource("3_wi0c6")
 _blobs = [NodePath("Node2D/PlayerBlob"), NodePath("Node2D/PlayerBlob2"), NodePath("Node2D/PlayerBlob3"), NodePath("Node2D/PlayerBlob4"), NodePath("Node2D/PlayerBlob6"), NodePath("Node2D/PlayerBlob7"), NodePath("Node2D/PlayerBlob8"), NodePath("Node2D/PlayerBlob9"), NodePath("Node2D/PlayerBlob10"), NodePath("Node2D/PlayerBlob11"), NodePath("Node2D/PlayerBlob12"), NodePath("Node2D/PlayerBlob13")]
 
@@ -33,9 +35,6 @@ texture = ExtResource("4_hp6x6")
 [node name="Iris" type="Sprite2D" parent="Node2D/Eye"]
 texture = ExtResource("5_3tkgg")
 script = ExtResource("6_l6ohk")
-
-[node name="Area2D" type="Area2D" parent="Node2D/Eye/Iris"]
-collision_mask = 0
 
 [node name="PlayerBlob" parent="Node2D" instance=ExtResource("7_oudfo")]
 visible = false
@@ -89,5 +88,3 @@ position = Vector2(242.5, 87.5)
 position = Vector2(-4.74844, 1.18704)
 scale = Vector2(0.476988, 0.476988)
 shape = SubResource("CircleShape2D_a814b")
-
-[connection signal="area_entered" from="Node2D/Eye/Iris/Area2D" to="." method="OnBulletCollision"]

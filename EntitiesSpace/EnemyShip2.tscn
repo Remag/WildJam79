@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://0ikuy4wnc65u"]
+
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
+[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/Bullet2.tscn" id="2_um61q"]
+[ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="3_i2eit"]
+[ext_resource type="Texture2D" uid="uid://4uk6m0otqkgu" path="res://TempAssets/Ship/Wings.png" id="4_flhrm"]
+[ext_resource type="Texture2D" uid="uid://dnnurv5vxd2at" path="res://TempAssets/Ship/Ship.png" id="5_sdw74"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_txwvw"]
+
+[node name="EnemyShip" type="RigidBody2D" groups=["ClearOnRestart", "Enemy"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_um61q")
+_maxHp = 5
+_maxVelocityPxSec = 250.0
+_maxAccelPxSec = 500.0
+_rotationSpeedRadSec = 0.5
+_aiTurnDuration = 0.5
+_aiAccelDuration = 2.0
+_aiMoveDuration = 2.0
+_aiTurnVarianceRad = 0.2
+_aiAttackShootDelay = 0.1
+_aiAttackShootDuration = 1.0
+_aiAttackShootPause = 2.5
+_bulletPrefab = ExtResource("2_um61q")
+CorePrefab = ExtResource("3_i2eit")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.25, 0.25)
+
+[node name="Wings" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.47062, 0.206897, 1, 1)
+position = Vector2(0, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("4_flhrm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_sdw74")
+
+[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+visible = false
+position = Vector2(0, 4.5)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("6_txwvw")
+centered = false
+offset = Vector2(-310, -110)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.499998, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-11.6164, 12.3871, 11.6164, 12.9032, -0.219177, -10.3226)
