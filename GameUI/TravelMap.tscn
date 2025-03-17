@@ -87,93 +87,205 @@ offset_bottom = 253.0
 
 [node name="MapNode" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 137.0
-offset_right = 64.0
-offset_bottom = 153.0
+offset_left = 0.0
+offset_top = 20.0
+offset_right = 17.0
+offset_bottom = 36.0
 _next = [NodePath("../MapNode2")]
 
 [node name="MapNode2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 137.0
-offset_right = 122.0
-offset_bottom = 153.0
+offset_left = 0.0
+offset_top = 80.0
+offset_right = 17.0
+offset_bottom = 96.0
 _enemies = Array[Object]([SubResource("Resource_03qm0")])
-_next = [NodePath("../MapNode3"), NodePath("../MapNode4")]
+_next = [NodePath("../MapNode3"), NodePath("../MapNode14")]
 
 [node name="MapNode3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 167.0
-offset_top = 106.0
-offset_right = 184.0
-offset_bottom = 122.0
+offset_left = 30.0
+offset_top = 110.0
+offset_right = 47.0
+offset_bottom = 126.0
 _enemies = Array[Object]([SubResource("Resource_hxb48"), SubResource("Resource_5st36")])
-_next = [NodePath("../MapNode5"), NodePath("../MapNode6")]
+_next = [NodePath("../MapNode4")]
 
 [node name="MapNode4" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 167.0
-offset_top = 166.0
-offset_right = 184.0
-offset_bottom = 182.0
+offset_left = 90.0
+offset_top = 50.0
+offset_right = 107.0
+offset_bottom = 66.0
 _enemies = Array[Object]([SubResource("Resource_liq8u")])
-_next = [NodePath("../MapNode6"), NodePath("../MapNode7")]
+_next = [NodePath("../MapNode5"), NodePath("../MapNode6")]
 
 [node name="MapNode5" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 231.0
-offset_top = 71.0
-offset_right = 248.0
-offset_bottom = 87.0
-_next = [NodePath("../MapNode8")]
+offset_left = 180.0
+offset_top = 20.0
+offset_right = 197.0
+offset_bottom = 36.0
+_next = [NodePath("../MapNode7")]
 
 [node name="MapNode6" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 231.0
-offset_top = 136.0
-offset_right = 248.0
-offset_bottom = 152.0
-_next = [NodePath("../MapNode8")]
+offset_left = 180.0
+offset_top = 80.0
+offset_right = 197.0
+offset_bottom = 96.0
+_next = [NodePath("../MapNode7")]
 
 [node name="MapNode7" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 230.0
-offset_top = 200.0
-offset_right = 247.0
-offset_bottom = 216.0
+offset_left = 240.0
+offset_top = 80.0
+offset_right = 257.0
+offset_bottom = 96.0
 _next = [NodePath("../MapNode8")]
 
 [node name="MapNode8" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 135.0
-offset_right = 316.0
-offset_bottom = 151.0
+offset_left = 270.0
+offset_top = 50.0
+offset_right = 287.0
+offset_bottom = 66.0
 _next = [NodePath("../MapNode9"), NodePath("../MapNode10")]
 
 [node name="MapNode9" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 364.0
-offset_top = 91.0
-offset_right = 381.0
-offset_bottom = 107.0
+offset_left = 360.0
+offset_top = 20.0
+offset_right = 377.0
+offset_bottom = 36.0
 _next = [NodePath("../MapNode11")]
 
 [node name="MapNode10" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 364.0
-offset_top = 174.0
-offset_right = 381.0
-offset_bottom = 190.0
-_next = [NodePath("../MapNode11")]
+offset_left = 330.0
+offset_top = 110.0
+offset_right = 347.0
+offset_bottom = 126.0
+_next = [NodePath("../MapNode12"), NodePath("../MapNode24")]
 
-[node name="MapNode11" parent="Control" instance=ExtResource("1_2emn1")]
+[node name="MapNode11" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 435.0
-offset_top = 134.0
-offset_right = 452.0
-offset_bottom = 150.0
+offset_left = 420.0
+offset_top = 20.0
+offset_right = 437.0
+offset_bottom = 36.0
+_next = [NodePath("../MapNode13")]
+
+[node name="MapNode12" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 80.0
+offset_right = 437.0
+offset_bottom = 96.0
+_next = [NodePath("../MapNode13")]
+
+[node name="MapNode13" parent="Control" instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 140.0
+offset_right = 497.0
+offset_bottom = 156.0
+
+[node name="MapNode14" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 170.0
+offset_right = 47.0
+offset_bottom = 186.0
+_next = [NodePath("../MapNode15"), NodePath("../MapNode16")]
+
+[node name="MapNode15" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 140.0
+offset_right = 137.0
+offset_bottom = 156.0
+_next = [NodePath("../MapNode18")]
+
+[node name="MapNode16" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 230.0
+offset_right = 107.0
+offset_bottom = 246.0
+_next = [NodePath("../MapNode17")]
+
+[node name="MapNode17" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 230.0
+offset_right = 167.0
+offset_bottom = 246.0
+_next = [NodePath("../MapNode18"), NodePath("../MapNode19")]
+
+[node name="MapNode18" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 170.0
+offset_right = 227.0
+offset_bottom = 186.0
+_next = [NodePath("../MapNode20")]
+
+[node name="MapNode19" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 230.0
+offset_right = 227.0
+offset_bottom = 246.0
+_next = [NodePath("../MapNode21")]
+
+[node name="MapNode20" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 170.0
+offset_right = 287.0
+offset_bottom = 186.0
+_next = [NodePath("../MapNode22")]
+
+[node name="MapNode21" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 260.0
+offset_right = 317.0
+offset_bottom = 276.0
+_next = [NodePath("../MapNode23")]
+
+[node name="MapNode22" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 200.0
+offset_right = 377.0
+offset_bottom = 216.0
+_next = [NodePath("../MapNode24")]
+
+[node name="MapNode23" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 260.0
+offset_right = 377.0
+offset_bottom = 276.0
+_next = [NodePath("../MapNode25")]
+
+[node name="MapNode24" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 140.0
+offset_right = 377.0
+offset_bottom = 156.0
+_next = [NodePath("../MapNode13")]
+
+[node name="MapNode25" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 230.0
+offset_right = 467.0
+offset_bottom = 246.0
+_next = [NodePath("../MapNode13")]
 
 [node name="Margin" type="MarginContainer" parent="."]
 visible = false
