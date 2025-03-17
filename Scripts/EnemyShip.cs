@@ -1,27 +1,14 @@
 using Godot;
 using System;
 using System.ComponentModel;
+using WildJam78.Scripts.EnemyMove;
 
 public partial class EnemyShip : Node2D {
 	[Export]
 	private int _maxHp = 3;
 	private int _currentHp = 3;
-	[Export]
-	private float _maxVelocityPxSec = 4;
-	[Export]
-	private float _maxAccelPxSec = 5;
-	[Export]
-	private float _rotationSpeedRadSec = 0.1F;
-
-	[Export]
-	private float _aiTurnDuration = 1;
-	[Export]
-	private float _aiAccelDuration = 3;
-	[Export]
-	private float _aiMoveDuration = 5;
-
-	[Export]
-	private float _aiTurnVarianceRad = 0.5F;
+	[Export] 
+	private EnemyMoveConfig _config = new();
 
 	[Export]
 	private float _aiAttackShootDelay = 0.2F;
@@ -46,16 +33,7 @@ public partial class EnemyShip : Node2D {
 	[Export]
 	public Node2D VisualNode { get; set; }
 
-	private Vector2 _currentAccel = new();
-	private Vector2 _currentVelocity = new();
-
-	public enum MoveState {
-		Turning,
-		Accelerating,
-		Moving
-	}
-	private MoveState _currentMoveState = MoveState.Moving;
-	private double _moveStateDuration = 0;
+	private EnemyMoveHandler _moveHandler = null; 
 
 	public enum AttackState {
 		Shooting,
@@ -66,17 +44,14 @@ public partial class EnemyShip : Node2D {
 	private bool _isShooting = false;
 	private double _currentShootDelay = 0;
 
-	private bool _isAccelerating = false;
-	private float _targetRotation = 0;
-	private float _baseRotation = (float)Math.PI / 2;
-
 	public bool IsDead = false;
 
 	private Node2D offscreenIndicator = null;
 
 	public override void _Ready()
 	{
-		_targetRotation = Rotation;
+		_moveHandler = new EnemyMoveHandler(config:_config, targetRotation: Rotation, enemyShip:this );
+		
 		_currentHp = _maxHp;
 
 		if( _isAiEnabled ) {
@@ -89,10 +64,8 @@ public partial class EnemyShip : Node2D {
 	public override void _PhysicsProcess( double delta )
 	{
 		if( _isAiEnabled ) {
-			handleMoveAi( delta );
+			_moveHandler.OnPhysicsProcess( delta );
 			handleAttackAi( delta );
-			turnEnemy( delta );
-			calcPosition( delta );
 			handleIndicator();
 		}
 	}
@@ -190,80 +163,6 @@ public partial class EnemyShip : Node2D {
 		bullet.SetCollisionParams( Game.PlayerLayer );
 		GetParent().AddChild( bullet );
 	}
-	private void handleMoveAi( double delta )
-	{
-		_moveStateDuration -= delta;
-		if( _moveStateDuration <= 0 ) {
-			findNewMoveState();
-		}
-	}
-
-	private void findNewMoveState()
-	{
-		switch( _currentMoveState ) {
-			case MoveState.Turning:
-				_currentMoveState = MoveState.Accelerating;
-				initAccelState();
-				break;
-			case MoveState.Accelerating:
-				_currentMoveState = MoveState.Moving;
-				initMoveState();
-				break;
-			case MoveState.Moving:
-				_currentMoveState = MoveState.Turning;
-				initTurnState();
-				break;
-		}
-	}
-
-	private void initAccelState()
-	{
-		_moveStateDuration = _aiAccelDuration;
-		_isAccelerating = true;
-		updateAccel();
-	}
-
-	private void initMoveState()
-	{
-		_moveStateDuration = _aiMoveDuration;
-		_isAccelerating = false;
-		updateAccel();
-	}
-
-	private void initTurnState()
-	{
-		if( Game.Player == null ) {
-			return;
-		}
-		_moveStateDuration = _aiTurnDuration;
-		var playerPos = Game.Player.GlobalPosition;
-		var dirToPlayer = playerPos - GlobalPosition;
-		_targetRotation = dirToPlayer.Angle() + Rng.RandomRange( -_aiTurnVarianceRad, _aiTurnVarianceRad );
-	}
-
-	private void turnEnemy( double delta )
-	{
-		var rotationDir = Math.Sign( Rotation - _baseRotation - _targetRotation );
-		var rotationDelta = delta * _rotationSpeedRadSec * rotationDir;
-		Rotation -= (float)rotationDelta;
-
-		updateAccel();
-	}
-
-	private void updateAccel()
-	{
-		_currentAccel = _isAccelerating ? new Vector2( _maxAccelPxSec, 0 ).Rotated( Rotation - _baseRotation ) : Vector2.Zero;
-	}
-
-	private void calcPosition( double delta )
-	{
-		var deltaF = (float)delta;
-		var accelValue = _maxAccelPxSec * _currentAccel.Normalized();
-		_currentVelocity += deltaF * accelValue;
-		var velValue = Math.Min( _maxVelocityPxSec, _currentVelocity.Length() );
-		_currentVelocity = velValue * _currentVelocity.Normalized();
-		Position += deltaF * _currentVelocity;
-	}
 
 	private void handleIndicator()
 	{
@@ -280,14 +179,6 @@ public partial class EnemyShip : Node2D {
 		} else {
 			offscreenIndicator.Hide();
 		}
-	}
-
-	private void resetMoving()
-	{
-		_isAccelerating = false;
-		_currentAccel = Vector2.Zero;
-		_currentMoveState = MoveState.Moving;
-		_moveStateDuration = 0.0f;
 	}
 
 	public void OnScreenWrap( Rect2 screenWrapRect )

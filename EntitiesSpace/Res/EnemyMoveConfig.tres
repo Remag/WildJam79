@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyMoveConfig" load_steps=2 format=3 uid="uid://csqy8du76uqip"]
+
+[ext_resource type="Script" uid="uid://dmjdxi653r2or" path="res://Scripts/EnemyMove/EnemyMoveConfig.cs" id="1_wg5mg"]
+
+[resource]
+script = ExtResource("1_wg5mg")
+aiTurnDuration = 1.0
+aiAccelDuration = 5.0
+aiMoveDuration = 3.0
+maxVelocityPxSec = 300.0
+maxAccelPxSec = 2000.0
+rotationSpeedRadSec = 2.0
+aiTurnVarianceRad = 0.5
+metadata/_custom_type_script = "uid://dmjdxi653r2or"

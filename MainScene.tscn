@@ -131,7 +131,6 @@ BgmPlayer = NodePath("BgmPlayer")
 stream = SubResource("AudioStreamInteractive_torvr")
 volume_db = -12.18
 autoplay = true
-bus = &"music"
 
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]

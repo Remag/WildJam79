@@ -153,7 +153,6 @@ public partial class Player : RigidBody2D {
         var accelValue = _maxAccelPxSec * accelVector.Normalized();
         ApplyForce( accelValue * deltaF );
         updateShooting( delta );
-        // updatePosition( delta );
     }
 
     public override void _IntegrateForces( PhysicsDirectBodyState2D state )
@@ -172,39 +171,5 @@ public partial class Player : RigidBody2D {
         foreach( var core in _cores ) {
             core.UpdateShooting( delta );
         }
-    }
-
-    private void updatePosition( double delta )
-    {
-        // var deltaF = (float)delta;
-        // var accelValue = _maxAccelPxSec * _currentAccel.Normalized();
-        // _currentVelocity += deltaF * accelValue;
-        // var velValue = Math.Min( _maxVelocityPxSec, _currentVelocity.Length() );
-        // _currentVelocity = velValue * _currentVelocity.Normalized();
-        // Position += deltaF * _currentVelocity;
-
-        limitPosition();
-    }
-
-    private void limitPosition()
-    {
-        // var rect = GetViewport().GetVisibleRect();
-        // if( GlobalPosition.X < rect.Position.X ) {
-        //     GlobalPosition = new Vector2( rect.Position.X, GlobalPosition.Y );
-        //     _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
-        // }
-        // if( GlobalPosition.X > rect.End.X ) {
-        //     GlobalPosition = new Vector2( rect.End.X, GlobalPosition.Y );
-        //     _currentVelocity = new Vector2( -_currentVelocity.X, _currentVelocity.Y );
-        // }
-        // if( GlobalPosition.Y < rect.Position.Y ) {
-        //     GlobalPosition = new Vector2( GlobalPosition.X, rect.Position.Y );
-        //     _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
-        // }
-        // if( GlobalPosition.Y > rect.End.Y ) {
-        //
-        //     GlobalPosition = new Vector2( GlobalPosition.X, rect.End.Y );
-        //     _currentVelocity = new Vector2( _currentVelocity.X, -_currentVelocity.Y );
-        // }
     }
 }
