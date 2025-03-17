@@ -11,4 +11,5 @@ public static class Game
     public static CustomCamera2D Camera;
     public static GameField Field;
     public static TravelMap TravelMap;
+    public static string StageName;
 }

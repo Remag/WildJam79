@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=13 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="3_a814b"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="4_5crlr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Texture2D" uid="uid://db4ye3ibfh1l8" path="res://TempAssets/TempBackground.png" id="5_rf2cd"]
+[ext_resource type="AudioStream" uid="uid://dmljy2bt73tbh" path="res://Music/TestWaveBgm.mp3" id="8_hbc2u"]
+[ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
 
 [sub_resource type="Resource" id="Resource_hbc2u"]
 script = ExtResource("4_5crlr")
@@ -16,6 +18,20 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf2cd"]
 size = Vector2(1600, 1600)
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_torvr"]
+clip_count = 1
+clip_0/name = &"TestWaveBgm"
+clip_0/stream = ExtResource("8_hbc2u")
+clip_0/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [node name="MainScene" type="Node" node_paths=PackedStringArray("_mapControl", "_bgRect", "_tutorialNode", "_restartButton", "_idleUiControl")]
 script = ExtResource("1_torvr")
@@ -106,6 +122,16 @@ offset_right = 2119.0
 offset_bottom = 1634.0
 texture = ExtResource("5_rf2cd")
 stretch_mode = 1
+
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer")]
+script = ExtResource("8_torvr")
+BgmPlayer = NodePath("BgmPlayer")
+
+[node name="BgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = SubResource("AudioStreamInteractive_torvr")
+volume_db = -12.18
+autoplay = true
+bus = &"music"
 
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]

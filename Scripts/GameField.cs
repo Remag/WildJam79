@@ -23,7 +23,6 @@ public partial class GameField : Node {
     {
         GD.Randomize();
         Game.Field = this;
-
         _mapControl.Visible = false;
     }
 
@@ -64,6 +63,7 @@ public partial class GameField : Node {
                 spawnEnemy( enemy.Prefab );
             }
         }
+        Game.StageName = "TestWave";
     }
 
     private void spawnEnemy( PackedScene shipPrefab )
@@ -99,5 +99,6 @@ public partial class GameField : Node {
         foreach( var node in GetTree().GetNodesInGroup( "ClearOnRestart" ) ) {
             node.QueueFree();
         }
+
     }
 }
