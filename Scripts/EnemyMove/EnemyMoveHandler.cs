@@ -22,9 +22,9 @@ public class EnemyMoveHandler {
     private Vector2 _currentAccel = new();
     private Vector2 _currentVelocity = new();
 
-    private Node2D _enemyShip = null;
+    private EnemyShip _enemyShip = null;
     
-    public EnemyMoveHandler( EnemyMoveConfig config, float targetRotation, Node2D enemyShip )
+    public EnemyMoveHandler( EnemyMoveConfig config, float targetRotation, EnemyShip enemyShip )
     {
         _config = config;
         _targetRotation = targetRotation;
@@ -68,6 +68,7 @@ public class EnemyMoveHandler {
     {
         _moveStateDuration = _config.aiAccelDuration;
         _isAccelerating = true;
+        _enemyShip.SetTrail( true );
         updateAccel();
     }
 
@@ -75,6 +76,7 @@ public class EnemyMoveHandler {
     {
         _moveStateDuration = _config.aiMoveDuration;
         _isAccelerating = false;
+        _enemyShip.SetTrail( false );
         updateAccel();
     }
 

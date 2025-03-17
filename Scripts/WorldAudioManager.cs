@@ -9,14 +9,22 @@ public partial class WorldAudioManager : Node {
     public override void _Ready()
     {
         _stageName = Game.StageName;
+
+        setAllMuted( true );
     }
 
     public override void _Input( InputEvent inputEvent )
     {
         if( inputEvent.IsActionPressed( "Mute" ) ) {
             var busIndex = AudioServer.GetBusIndex( "Master" );
-            AudioServer.SetBusMute( busIndex, !AudioServer.IsBusMute( busIndex ) );
+            setAllMuted( !AudioServer.IsBusMute( busIndex ) );
         }
+    }
+
+    private void setAllMuted( bool isMuted )
+    {
+        var busIndex = AudioServer.GetBusIndex( "Master" );
+        AudioServer.SetBusMute( busIndex, isMuted );
     }
 
     public override void _Process( double delta )

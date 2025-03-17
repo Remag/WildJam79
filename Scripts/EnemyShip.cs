@@ -32,6 +32,8 @@ public partial class EnemyShip : Node2D {
 	public PackedScene CorePrefab;
 	[Export]
 	public Node2D VisualNode { get; set; }
+	[Export]
+	private ShipTrail _trail;
 
 	private EnemyMoveHandler _moveHandler = null; 
 
@@ -228,5 +230,14 @@ public partial class EnemyShip : Node2D {
 	public void DisableAllBehavior()
 	{
 		_isAiEnabled = false;
+	}
+
+	public void SetTrail( bool isSet )
+	{
+		if( isSet ) {
+			_trail.ShowTrail();
+		} else {
+			_trail.HideTrail();
+		}
 	}
 }

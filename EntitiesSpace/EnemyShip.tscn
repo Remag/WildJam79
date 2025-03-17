@@ -1,18 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=9 format=3 uid="uid://nh1c0ycvlv14"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
+[ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_caaev"]
 [ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_dcnlj"]
 [ext_resource type="Texture2D" uid="uid://4uk6m0otqkgu" path="res://TempAssets/Ship/Wings.png" id="2_eupht"]
-[ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_mmokd"]
 [ext_resource type="Texture2D" uid="uid://dnnurv5vxd2at" path="res://TempAssets/Ship/Ship.png" id="3_8v1sf"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="3_13jfi"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
+[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
 
 [node name="EnemyShip" type="RigidBody2D" groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_mykhl")
-_config = ExtResource("2_mmokd")
+_config = ExtResource("2_caaev")
 _aiAttackShootDuration = 0.8
 _bulletPrefab = ExtResource("2_dcnlj")
 CorePrefab = ExtResource("3_13jfi")
@@ -41,3 +42,6 @@ offset = Vector2(-310, -110)
 position = Vector2(0.499998, -12)
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-11.6164, 12.3871, 11.6164, 12.9032, -0.219177, -10.3226)
+
+[node name="ShipTrail" parent="." instance=ExtResource("7_mmokd")]
+position = Vector2(0, 23)
