@@ -9,5 +9,6 @@ public static class Game
 
     public static Player Player;
     public static CustomCamera2D Camera;
-    public static GameMap Map;
+    public static GameField Field;
+    public static TravelMap TravelMap;
 }

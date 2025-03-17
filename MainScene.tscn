@@ -1,26 +1,40 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=10 format=3 uid="uid://dfh1jxxgde0rm"]
 
-[ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameMap.cs" id="1_torvr"]
+[ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="3_a814b"]
+[ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
+[ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="4_5crlr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Texture2D" uid="uid://db4ye3ibfh1l8" path="res://TempAssets/TempBackground.png" id="5_rf2cd"]
-[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="6_a814b"]
+
+[sub_resource type="Resource" id="Resource_hbc2u"]
+script = ExtResource("4_5crlr")
+Prefab = ExtResource("3_a814b")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf2cd"]
 size = Vector2(1600, 1600)
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("_tutorialNode", "_restartButton", "_spawnButton")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_mapControl", "_bgRect", "_tutorialNode", "_restartButton", "_idleUiControl")]
 script = ExtResource("1_torvr")
+_mapControl = NodePath("HUD/TravelMap")
+_bgRect = NodePath("ParallaxBackground/ParallaxLayer/TextureRect")
 _tutorialNode = NodePath("HUD/Label")
 _playerPrefab = ExtResource("3_rpqi1")
-_restartButton = NodePath("HUD/Button2")
-_wave1 = Array[PackedScene]([ExtResource("3_a814b")])
-_wave2 = Array[PackedScene]([ExtResource("3_a814b"), ExtResource("3_a814b"), ExtResource("3_a814b")])
-_wave3 = Array[PackedScene]([ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b"), ExtResource("6_a814b")])
-_spawnButton = NodePath("HUD/Button")
+_restartButton = NodePath("HUD/RestartButton")
+_testWave = Array[Object]([SubResource("Resource_hbc2u")])
+_idleUiControl = NodePath("HUD/IdleUi")
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TravelMap" parent="HUD" instance=ExtResource("3_rf2cd")]
+visible = false
+offset_left = 278.0
+offset_top = 194.0
+offset_right = -270.0
+offset_bottom = -158.0
 
 [node name="Label" type="Label" parent="HUD"]
 offset_right = 319.0
@@ -31,15 +45,7 @@ Hold Left Click to Shoot
 Hold Right Click to Tentacle
 "
 
-[node name="Button" type="Button" parent="HUD"]
-offset_left = 342.0
-offset_top = 30.0
-offset_right = 757.0
-offset_bottom = 127.0
-theme_override_font_sizes/font_size = 54
-text = "Next Wave"
-
-[node name="Button2" type="Button" parent="HUD"]
+[node name="RestartButton" type="Button" parent="HUD"]
 visible = false
 offset_left = 347.0
 offset_top = 249.0
@@ -47,6 +53,30 @@ offset_right = 762.0
 offset_bottom = 346.0
 theme_override_font_sizes/font_size = 54
 text = "Restart"
+
+[node name="IdleUi" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MapButton" type="Button" parent="HUD/IdleUi"]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 30.0
+offset_right = 757.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 54
+text = "Warp"
+
+[node name="TestWave" type="Button" parent="HUD/IdleUi"]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 31.0
+offset_right = 1141.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 54
+text = "Test wave"
 
 [node name="Player" parent="." instance=ExtResource("3_rpqi1")]
 position = Vector2(556, 400)
@@ -77,7 +107,8 @@ offset_bottom = 1634.0
 texture = ExtResource("5_rf2cd")
 stretch_mode = 1
 
-[connection signal="pressed" from="HUD/Button" to="." method="SpawnWave"]
-[connection signal="pressed" from="HUD/Button2" to="." method="RestartGame"]
+[connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
+[connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]
+[connection signal="pressed" from="HUD/IdleUi/TestWave" to="." method="SpawnTestWave"]
 [connection signal="area_exited" from="Camera2D/GameZone" to="Camera2D" method="OnBulletLeaveArea"]
 [connection signal="body_exited" from="Camera2D/GameZone" to="Camera2D" method="OnEnemyLeaveArea"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bci4xrgkmsk37"]
+
+[ext_resource type="Texture2D" uid="uid://cwx3bslpr62d4" path="res://Assets/DottedLine.png" id="1_1tj6g"]
+
+[node name="Line2D" type="Line2D"]
+texture_filter = 1
+texture_repeat = 2
+points = PackedVector2Array(4, 0, 56, 0)
+width = 2.0
+texture = ExtResource("1_1tj6g")
+texture_mode = 1

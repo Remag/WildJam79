@@ -1,0 +1,196 @@
+[gd_scene load_steps=17 format=3 uid="uid://cek8px8d5iiw8"]
+
+[ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
+[ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
+[ext_resource type="StyleBox" uid="uid://bdryog8pu65rf" path="res://GameUI/MapNodeNormalStyle.tres" id="2_k8374"]
+[ext_resource type="PackedScene" uid="uid://bchrtaxng7su0" path="res://GameUI/ShipInfoHint.tscn" id="2_xrfvj"]
+[ext_resource type="StyleBox" uid="uid://bx70hubj1enkt" path="res://GameUI/MapModeActiveStyle.tres" id="3_xrfvj"]
+[ext_resource type="StyleBox" uid="uid://d2ojcbi804co1" path="res://GameUI/MapNodeCompletedStyle.tres" id="4_agtnh"]
+[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="7_xlnef"]
+[ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="8_35f8b"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="9_sv05a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k420c"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 0.886275)
+
+[sub_resource type="InputEventKey" id="InputEventKey_k420c"]
+pressed = true
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_qk8cv"]
+events = [SubResource("InputEventKey_k420c")]
+
+[sub_resource type="Resource" id="Resource_03qm0"]
+script = ExtResource("8_35f8b")
+Prefab = ExtResource("7_xlnef")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_hxb48"]
+script = ExtResource("8_35f8b")
+Prefab = ExtResource("7_xlnef")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_5st36"]
+script = ExtResource("8_35f8b")
+Prefab = ExtResource("9_sv05a")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_liq8u"]
+script = ExtResource("8_35f8b")
+Prefab = ExtResource("9_sv05a")
+Count = 3
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[node name="TravelMap" type="Control" node_paths=PackedStringArray("_startNode", "_hintMarginContainer", "_hintContainer", "NodeContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -548.0
+offset_bottom = -352.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k420c")
+_startNode = NodePath("Control/MapNode")
+_hintMarginContainer = NodePath("Margin")
+_hintContainer = NodePath("Margin/MarginContainer/Panel2")
+_hintPrefab = ExtResource("2_xrfvj")
+NodeContainer = NodePath("Control")
+_normalStyle = ExtResource("2_k8374")
+_activeStyle = ExtResource("3_xrfvj")
+_completedStyle = ExtResource("4_agtnh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 604.0
+offset_bottom = 295.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k420c")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 255.0
+offset_right = 73.0
+offset_bottom = 286.0
+shortcut = SubResource("Shortcut_qk8cv")
+text = "Cancel"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 34.0
+offset_top = -2.0
+offset_right = 581.0
+offset_bottom = 253.0
+
+[node name="MapNode" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 137.0
+offset_right = 64.0
+offset_bottom = 153.0
+_next = [NodePath("../MapNode2")]
+
+[node name="MapNode2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 153.0
+_enemies = Array[Object]([SubResource("Resource_03qm0")])
+_next = [NodePath("../MapNode3"), NodePath("../MapNode4")]
+
+[node name="MapNode3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 106.0
+offset_right = 184.0
+offset_bottom = 122.0
+_enemies = Array[Object]([SubResource("Resource_hxb48"), SubResource("Resource_5st36")])
+_next = [NodePath("../MapNode5"), NodePath("../MapNode6")]
+
+[node name="MapNode4" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 166.0
+offset_right = 184.0
+offset_bottom = 182.0
+_enemies = Array[Object]([SubResource("Resource_liq8u")])
+_next = [NodePath("../MapNode6"), NodePath("../MapNode7")]
+
+[node name="MapNode5" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 71.0
+offset_right = 248.0
+offset_bottom = 87.0
+_next = [NodePath("../MapNode8")]
+
+[node name="MapNode6" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 136.0
+offset_right = 248.0
+offset_bottom = 152.0
+_next = [NodePath("../MapNode8")]
+
+[node name="MapNode7" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 200.0
+offset_right = 247.0
+offset_bottom = 216.0
+_next = [NodePath("../MapNode8")]
+
+[node name="MapNode8" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 135.0
+offset_right = 316.0
+offset_bottom = 151.0
+_next = [NodePath("../MapNode9"), NodePath("../MapNode10")]
+
+[node name="MapNode9" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 91.0
+offset_right = 381.0
+offset_bottom = 107.0
+_next = [NodePath("../MapNode11")]
+
+[node name="MapNode10" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 174.0
+offset_right = 381.0
+offset_bottom = 190.0
+_next = [NodePath("../MapNode11")]
+
+[node name="MapNode11" parent="Control" instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 134.0
+offset_right = 452.0
+offset_bottom = 150.0
+
+[node name="Margin" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_bottom = 46.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+
+[node name="Panel" type="Panel" parent="Margin"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="Panel2" type="HBoxContainer" parent="Margin/MarginContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Panel/Button" to="." method="CloseMap"]

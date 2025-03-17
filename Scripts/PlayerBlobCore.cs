@@ -41,6 +41,6 @@ public partial class PlayerBlobCore : Node2D {
         bullet.Rotation = bulletDir.Angle();
         bullet.GlobalPosition = GlobalPosition;
         bullet.SetCollisionParams( Game.EnemyShipLayer );
-        Game.Map.AddChild( bullet );
+        Game.Field.AddChild( bullet );
     }
 }

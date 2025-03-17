@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bchrtaxng7su0"]
+
+[ext_resource type="Script" uid="uid://huxrkj53ote5" path="res://Scripts/UI/ShipInfoHint.cs" id="1_1o2sl"]
+
+[node name="Control" type="HBoxContainer" node_paths=PackedStringArray("_label", "_shipAnchor")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1078.0
+offset_bottom = -606.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1o2sl")
+_label = NodePath("Label")
+_shipAnchor = NodePath("Control/Anchor")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Anchor" type="Node2D" parent="Control"]
+position = Vector2(18, 21)
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "123"

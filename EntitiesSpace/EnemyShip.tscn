@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="3_13jfi"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
 
-[node name="EnemyShip" type="RigidBody2D" groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_mykhl")
@@ -19,16 +19,17 @@ _aiMoveDuration = 3.0
 _aiAttackShootDuration = 0.8
 _bulletPrefab = ExtResource("2_dcnlj")
 CorePrefab = ExtResource("3_13jfi")
+VisualNode = NodePath("Visuals")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
 scale = Vector2(0.25, 0.25)
 
-[node name="Wings" type="Sprite2D" parent="Node2D"]
+[node name="Wings" type="Sprite2D" parent="Visuals"]
 position = Vector2(0, 10)
 scale = Vector2(2, 2)
 texture = ExtResource("2_eupht")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 scale = Vector2(2, 2)
 texture = ExtResource("3_8v1sf")
 

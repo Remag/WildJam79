@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnnurv5vxd2at" path="res://TempAssets/Ship/Ship.png" id="5_sdw74"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_txwvw"]
 
-[node name="EnemyShip" type="RigidBody2D" groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_um61q")
@@ -24,6 +24,7 @@ _aiAttackShootDuration = 1.0
 _aiAttackShootPause = 2.5
 _bulletPrefab = ExtResource("2_um61q")
 CorePrefab = ExtResource("3_i2eit")
+VisualNode = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2(0.25, 0.25)

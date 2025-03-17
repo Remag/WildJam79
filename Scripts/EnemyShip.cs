@@ -30,12 +30,16 @@ public partial class EnemyShip : Node2D {
 	[Export]
 	private float _aiAttackShootPause = 1.2F;
 
+	private bool _isAiEnabled = true;
+
 	[Export]
 	private PackedScene _bulletPrefab;
 	[Export]
 	private float _angle = 0.3F;
 	[Export]
 	public PackedScene CorePrefab;
+	[Export]
+	public Node2D VisualNode { get; set; }
 
 	private Vector2 _currentAccel = new();
 	private Vector2 _currentVelocity = new();
@@ -69,18 +73,23 @@ public partial class EnemyShip : Node2D {
 	{
 		_targetRotation = Rotation;
 		_currentHp = _maxHp;
-		offscreenIndicator = (Node2D)FindChild( "OffscreenIndicator" );
-		RemoveChild( offscreenIndicator );
-		GetParent().AddChild( offscreenIndicator );
+
+		if( _isAiEnabled ) {
+			offscreenIndicator = (Node2D)FindChild( "OffscreenIndicator" );
+			RemoveChild( offscreenIndicator );
+			GetParent().AddChild( offscreenIndicator );
+		}
 	}
 
 	public override void _PhysicsProcess( double delta )
 	{
-		handleMoveAi( delta );
-		handleAttackAi( delta );
-		turnEnemy( delta );
-		calcPosition( delta );
-		handleIndicator();
+		if( _isAiEnabled ) {
+			handleMoveAi( delta );
+			handleAttackAi( delta );
+			turnEnemy( delta );
+			calcPosition( delta );
+			handleIndicator();
+		}
 	}
 
 	private void handleAttackAi( double delta )
@@ -139,11 +148,11 @@ public partial class EnemyShip : Node2D {
 		if( Game.Player == null ) {
 			return;
 		}
-		
+
 		var bullet = _bulletPrefab.Instantiate<BasicBullet>();
 		var playerPos = Game.Player.Position;
 		var bulletDir = playerPos - Position;
-		bullet.Rotation = bulletDir.Angle() + Rng.RandomRange(-_angle, _angle);
+		bullet.Rotation = bulletDir.Angle() + Rng.RandomRange( -_angle, _angle );
 		bullet.Position = Position;
 		bullet.SetCollisionParams( Game.PlayerLayer );
 		GetParent().AddChild( bullet );
@@ -248,8 +257,8 @@ public partial class EnemyShip : Node2D {
 		_currentMoveState = MoveState.Moving;
 		_moveStateDuration = 0.0f;
 	}
-	
-	public void OnScreenWrap(Rect2 screenWrapRect )
+
+	public void OnScreenWrap( Rect2 screenWrapRect )
 	{
 		var player = Game.Player;
 		if( player == null ) {
@@ -277,7 +286,7 @@ public partial class EnemyShip : Node2D {
 		_currentHp--;
 		if( _currentHp == 0 ) {
 			IsDead = true;
-			Game.Map.RemoveExistingShip();
+			Game.Field.RemoveExistingShip();
 			QueueFree();
 			offscreenIndicator.QueueFree();
 		}
@@ -288,8 +297,13 @@ public partial class EnemyShip : Node2D {
 	{
 		Game.Player?.Assimilate( this );
 		IsDead = true;
-		Game.Map.RemoveExistingShip();
+		Game.Field.RemoveExistingShip();
 		QueueFree();
 		offscreenIndicator.QueueFree();
+	}
+
+	public void DisableAllBehavior()
+	{
+		_isAiEnabled = false;
 	}
 }

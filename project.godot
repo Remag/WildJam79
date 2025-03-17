@@ -24,6 +24,7 @@ project/assembly_name="WildJam78"
 folder_colors={
 "res://Bullets/": "pink",
 "res://EntitiesSpace/": "purple",
+"res://GameUI/": "green",
 "res://Scripts/": "blue"
 }
 
