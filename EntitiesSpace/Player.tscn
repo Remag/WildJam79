@@ -19,7 +19,7 @@ script = ExtResource("2_5ncpa")
 _mainNode = NodePath("Node2D")
 _eyeball = NodePath("Node2D/Eye")
 _maxVelocityPxSec = 350.0
-_maxHp = 10
+_maxHp = 99999
 _tentaclePrefab = ExtResource("3_wi0c6")
 _blobs = [NodePath("Node2D/PlayerBlob"), NodePath("Node2D/PlayerBlob2"), NodePath("Node2D/PlayerBlob3"), NodePath("Node2D/PlayerBlob4"), NodePath("Node2D/PlayerBlob6"), NodePath("Node2D/PlayerBlob7"), NodePath("Node2D/PlayerBlob8"), NodePath("Node2D/PlayerBlob9"), NodePath("Node2D/PlayerBlob10"), NodePath("Node2D/PlayerBlob11"), NodePath("Node2D/PlayerBlob12"), NodePath("Node2D/PlayerBlob13")]
 

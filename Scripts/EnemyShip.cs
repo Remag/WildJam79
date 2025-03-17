@@ -34,6 +34,11 @@ public partial class EnemyShip : Node2D {
 
 	[Export]
 	private PackedScene _bulletPrefab;
+	public enum AttackType {
+		Aim, Burst, CirclePattern, Pattern2
+	}
+	[Export]
+	private AttackType _attackType = AttackType.Aim;
 	[Export]
 	private float _angle = 0.3F;
 	[Export]
@@ -137,27 +142,54 @@ public partial class EnemyShip : Node2D {
 		}
 		_currentShootDelay -= delta;
 		if( _currentShootDelay < 0 ) {
-			spawnBullet();
+			spawnBullet(_attackType);
 			_currentShootDelay = _aiAttackShootDelay;
 		}
 
 	}
 
-	private void spawnBullet()
+	private void spawnBullet( AttackType attackType )
 	{
 		if( Game.Player == null ) {
 			return;
 		}
-
+		if( attackType == AttackType.Aim ) {
+			var playerPos = Game.Player.Position;
+			var bulletDir = playerPos - Position;
+			instantiateBullet(bulletDir.Angle());
+		}
+		if( attackType == AttackType.Burst ) {
+			
+			var playerPos = Game.Player.Position;
+			var bulletDir = playerPos - Position;
+			instantiateBullet(bulletDir.Angle() + Rng.RandomRange( -_angle, _angle ));
+		}
+		if( attackType == AttackType.CirclePattern ) {
+			var playerPos = Game.Player.Position;
+			var bulletDir = playerPos - Position;
+			var Count = 12;
+			for( var i = 0f; i < 2*Mathf.Pi; i += 2*Mathf.Pi/Count ) {
+				instantiateBullet(bulletDir.Angle() + i);
+			}
+		}
+		if( attackType == AttackType.Pattern2 ) {
+			var playerPos = Game.Player.Position;
+			var bulletDir = playerPos - Position;
+			var Count = 3;
+			instantiateBullet(bulletDir.Angle());
+			for( var i = 1; i <= Count/2; i += 1 ) {
+				instantiateBullet(bulletDir.Angle() + i *_angle);
+				instantiateBullet(bulletDir.Angle() - i *_angle);
+			}
+		}
+	}
+	private void instantiateBullet( float angle ){
 		var bullet = _bulletPrefab.Instantiate<BasicBullet>();
-		var playerPos = Game.Player.Position;
-		var bulletDir = playerPos - Position;
-		bullet.Rotation = bulletDir.Angle() + Rng.RandomRange( -_angle, _angle );
+		bullet.Rotation = angle;
 		bullet.Position = Position;
 		bullet.SetCollisionParams( Game.PlayerLayer );
 		GetParent().AddChild( bullet );
 	}
-
 	private void handleMoveAi( double delta )
 	{
 		_moveStateDuration -= delta;

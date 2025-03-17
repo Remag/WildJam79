@@ -11,7 +11,7 @@ height = 28.0
 light_mask = 4
 script = ExtResource("1_a1jof")
 _collisionArea = NodePath("Area2D")
-_speed = 400.0
+_speed = 550.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(4.42803e-06, 0.776993, 0.72994, 1)
