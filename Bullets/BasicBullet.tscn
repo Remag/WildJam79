@@ -25,4 +25,4 @@ collision_mask = 0
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_c26t0")
 
-[connection signal="body_entered" from="Area2D" to="." method="OnBodyCollision"]
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaCollision"]

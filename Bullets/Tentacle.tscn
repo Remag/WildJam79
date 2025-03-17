@@ -71,4 +71,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_yijuj")
 }
 
-[connection signal="body_entered" from="Node2D/Area2D" to="." method="OnBodyCollision"]
+[connection signal="area_entered" from="Node2D/Area2D" to="." method="OnAreaCollision"]

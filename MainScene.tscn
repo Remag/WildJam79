@@ -154,5 +154,4 @@ autoplay = true
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="." method="SpawnTestWave"]
-[connection signal="area_exited" from="Camera2D/GameZone" to="Camera2D" method="OnBulletLeaveArea"]
-[connection signal="body_exited" from="Camera2D/GameZone" to="Camera2D" method="OnEnemyLeaveArea"]
+[connection signal="area_exited" from="Camera2D/GameZone" to="Camera2D" method="OnAreaLeave"]

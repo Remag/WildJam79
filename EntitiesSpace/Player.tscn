@@ -88,3 +88,12 @@ position = Vector2(242.5, 87.5)
 position = Vector2(-4.74844, 1.18704)
 scale = Vector2(0.476988, 0.476988)
 shape = SubResource("CircleShape2D_a814b")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-4.74844, 1.18704)
+scale = Vector2(0.476988, 0.476988)
+shape = SubResource("CircleShape2D_a814b")
