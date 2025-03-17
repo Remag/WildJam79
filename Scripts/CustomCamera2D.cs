@@ -18,15 +18,13 @@ public partial class CustomCamera2D : Camera2D {
         }
     }
 
-    public void OnEnemyLeaveArea( Node2D body )
+    public void OnAreaLeave( Area2D area2D )
     {
-        if( body is EnemyShip enemyShip ) {
+        if( area2D.GetParent() is BasicBullet bullet ) {
+            bullet.QueueFree();
+        } else if( area2D.GetParent() is EnemyShip enemyShip ) {
             enemyShip.OnScreenWrap(ScreenWrapArea.Shape.GetRect());
         }
-    }
 
-    public void OnBulletLeaveArea( Area2D bullet )
-    {
-        bullet.GetParent().QueueFree();        
     }
 }

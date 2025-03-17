@@ -24,14 +24,16 @@ public partial class BasicBullet : Node2D
 		_collisionArea.CollisionMask = (uint) 1 << ( maskValue - 1 );
 	}
 
-	public void OnBodyCollision( Node2D body )
+	public void OnAreaCollision( Area2D area2D )
 	{
-		GD.Print( "OnBodyCollision " + body.Name );
-		if( body is EnemyShip enemyShip ) {
-			enemyShip.OnBulletCollision();
-		} else if( body is Player player ) {
+		if( area2D is Shield enemyShield ) {
+			enemyShield.OnBulletCollision(_bulletDamage);
+		} else if( area2D.GetParent() is EnemyShip enemyShip ) {
+			enemyShip.OnBulletCollision(_bulletDamage);
+		} else if( area2D.GetParent() is Player player ) {
 			player.OnBulletCollision(_bulletDamage);
 		}
 		QueueFree();
 	}
+	
 }

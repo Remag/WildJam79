@@ -52,7 +52,7 @@ public partial class Player : RigidBody2D {
         }
 
         _currentHp -= damage;
-        if( _currentHp == 0 ) {
+        if( _currentHp <= 0 ) {
             QueueFree();
             Game.Field.EndGame();
         }

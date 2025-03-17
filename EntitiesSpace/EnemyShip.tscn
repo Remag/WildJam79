@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=12 format=3 uid="uid://nh1c0ycvlv14"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_caaev"]
@@ -8,8 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="3_13jfi"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
+[ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="8_7jj5h"]
+[ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="8_caaev"]
 
-[node name="EnemyShip" type="RigidBody2D" groups=["ClearOnRestart", "Enemy"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_caaev"]
+radius = 56.0357
+
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_mykhl")
@@ -17,6 +22,11 @@ _config = ExtResource("2_caaev")
 _aiAttackShootDuration = 0.8
 _bulletPrefab = ExtResource("2_dcnlj")
 CorePrefab = ExtResource("3_13jfi")
+VisualNode = NodePath("Visuals")
+_trail = NodePath("ShipTrail")
+_offscreenIndicator = NodePath("OffscreenIndicator")
+_hitbox = NodePath("Hitbox")
+_shield = NodePath("Shield")
 
 [node name="Visuals" type="Node2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -45,3 +55,24 @@ polygon = PackedVector2Array(-11.6164, 12.3871, 11.6164, 12.9032, -0.219177, -10
 
 [node name="ShipTrail" parent="." instance=ExtResource("7_mmokd")]
 position = Vector2(0, 23)
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(0.499998, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-11.6164, 12.3871, 11.6164, 12.9032, -0.219177, -10.3226)
+
+[node name="Shield" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_7jj5h")
+
+[node name="ShieldSprite" type="Sprite2D" parent="Shield"]
+texture = ExtResource("8_caaev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
+shape = SubResource("CircleShape2D_caaev")

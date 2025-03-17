@@ -48,18 +48,28 @@ public partial class EnemyShip : Node2D {
 
 	public bool IsDead = false;
 
-	private Node2D offscreenIndicator = null;
+	[Export]
+	private Node2D _offscreenIndicator = null;
+	[Export]
+	private Area2D _hitbox = null;
+	[Export]
+	private Shield _shield = null;
 
 	public override void _Ready()
 	{
 		_moveHandler = new EnemyMoveHandler(config:_config, targetRotation: Rotation, enemyShip:this );
 		
 		_currentHp = _maxHp;
+		
+		if( _shield != null ) {
+			_shield.ShieldRegenerate += OnShieldRegenerate;
+			_shield.ShieldDestroy += OnShieldDestroy;
+			_hitbox.Monitorable = false;
+		}
 
-		if( _isAiEnabled ) {
-			offscreenIndicator = (Node2D)FindChild( "OffscreenIndicator" );
-			RemoveChild( offscreenIndicator );
-			GetParent().AddChild( offscreenIndicator );
+		if( _isAiEnabled && _offscreenIndicator != null) {
+			RemoveChild( _offscreenIndicator );
+			GetParent().AddChild( _offscreenIndicator );
 		}
 	}
 
@@ -168,18 +178,18 @@ public partial class EnemyShip : Node2D {
 
 	private void handleIndicator()
 	{
-		if( offscreenIndicator == null ) {
+		if( _offscreenIndicator == null ) {
 			return;
 		}
 		var cameraRect = Game.Camera.GetCanvasTransform().AffineInverse() * GetViewportRect();
 		var position = GlobalPosition;
 		if( !cameraRect.HasPoint( position ) ) {
-			offscreenIndicator.Show();
-			offscreenIndicator.Rotation = ( position - cameraRect.GetCenter() ).Angle();
+			_offscreenIndicator.Show();
+			_offscreenIndicator.Rotation = ( position - cameraRect.GetCenter() ).Angle();
 			var newPosition = position.Clamp( cameraRect.Position, cameraRect.End );
-			offscreenIndicator.GlobalPosition = newPosition;
+			_offscreenIndicator.GlobalPosition = newPosition;
 		} else {
-			offscreenIndicator.Hide();
+			_offscreenIndicator.Hide();
 		}
 	}
 
@@ -206,16 +216,16 @@ public partial class EnemyShip : Node2D {
 		}
 	}
 
-	public void OnBulletCollision()
+	public void OnBulletCollision(int damage)
 	{
-		_currentHp--;
-		if( _currentHp == 0 ) {
+		_currentHp -= damage;
+		if( _currentHp <= 0 ) {
 			IsDead = true;
 			Game.Field.RemoveExistingShip();
 			QueueFree();
-			offscreenIndicator.QueueFree();
+			_offscreenIndicator.QueueFree();
 		}
-		Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
+		VisualNode.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
 	}
 
 	public void OnTentacleCollision()
@@ -224,13 +234,14 @@ public partial class EnemyShip : Node2D {
 		IsDead = true;
 		Game.Field.RemoveExistingShip();
 		QueueFree();
-		offscreenIndicator.QueueFree();
+		_offscreenIndicator.QueueFree();
 	}
 
 	public void DisableAllBehavior()
 	{
 		_isAiEnabled = false;
 	}
+
 
 	public void SetTrail( bool isSet )
 	{
@@ -239,5 +250,15 @@ public partial class EnemyShip : Node2D {
 		} else {
 			_trail.HideTrail();
 		}
+	}
+
+	public void OnShieldRegenerate()
+	{
+		_hitbox.SetDeferred( Area2D.PropertyName.Monitorable, false );
+	}
+	
+	public void OnShieldDestroy()
+	{
+		_hitbox.SetDeferred( Area2D.PropertyName.Monitorable, true );
 	}
 }

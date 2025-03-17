@@ -16,10 +16,12 @@ public partial class Tentacle : Node2D {
         var dirDelta = mousePos - Game.Camera.GetCanvasTransform() * Game.Player.GlobalPosition;
         Rotation = dirDelta.Angle();
     }
-
-    public void OnBodyCollision( Node2D body )
+    
+    public void OnAreaCollision( Area2D area2D )
     {
-        if( body is EnemyShip enemyShip ) {
+        if( area2D is Shield enemyShield ) {
+            
+        } else if( area2D.GetParent() is EnemyShip enemyShip ) {
             enemyShip.OnTentacleCollision();
         }
     }
