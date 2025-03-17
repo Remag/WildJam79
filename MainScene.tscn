@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=16 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="3_a814b"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="4_5crlr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
-[ext_resource type="Texture2D" uid="uid://db4ye3ibfh1l8" path="res://TempAssets/TempBackground.png" id="5_rf2cd"]
+[ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
+[ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
 [ext_resource type="AudioStream" uid="uid://dmljy2bt73tbh" path="res://Music/TestWaveBgm.mp3" id="8_hbc2u"]
+[ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
 
 [sub_resource type="Resource" id="Resource_hbc2u"]
@@ -18,6 +20,9 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf2cd"]
 size = Vector2(1600, 1600)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8xkvn"]
+blend_mode = 1
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_torvr"]
 clip_count = 1
@@ -33,15 +38,17 @@ Vector2i(-1, -1): {
 }
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("_mapControl", "_bgRect", "_tutorialNode", "_restartButton", "_idleUiControl")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_mapControl", "_starRect", "_nebulaRect", "_tutorialNode", "_restartButton", "_idleUiControl")]
 script = ExtResource("1_torvr")
 _mapControl = NodePath("HUD/TravelMap")
-_bgRect = NodePath("ParallaxBackground/ParallaxLayer/TextureRect")
+_starRect = NodePath("ParallaxBackground/StarLayer/TextureRect")
+_nebulaRect = NodePath("ParallaxBackground/NebulaLayer/TextureRect")
 _tutorialNode = NodePath("HUD/Label")
 _playerPrefab = ExtResource("3_rpqi1")
 _restartButton = NodePath("HUD/RestartButton")
 _testWave = Array[Object]([SubResource("Resource_hbc2u")])
 _idleUiControl = NodePath("HUD/IdleUi")
+_bgSelection = ExtResource("5_p5x2j")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -114,13 +121,25 @@ shape = SubResource("RectangleShape2D_rf2cd")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1024, 1024)
+[node name="NebulaLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(2048, 2048)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-offset_right = 2119.0
-offset_bottom = 1634.0
-texture = ExtResource("5_rf2cd")
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/NebulaLayer"]
+offset_right = 2048.0
+offset_bottom = 2048.0
+texture = ExtResource("7_8xkvn")
+stretch_mode = 1
+
+[node name="StarLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2048, 2048)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/StarLayer"]
+material = SubResource("CanvasItemMaterial_8xkvn")
+offset_right = 2048.0
+offset_bottom = 2048.0
+texture = ExtResource("8_p5x2j")
 stretch_mode = 1
 
 [node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer")]

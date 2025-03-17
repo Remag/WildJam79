@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1mx01o44ckm7"]
+[gd_scene load_steps=6 format=3 uid="uid://b1mx01o44ckm7"]
 
 [ext_resource type="Script" uid="uid://d17x76h6yms0s" path="res://Scripts/UI/MapNode.cs" id="1_1nc5i"]
 [ext_resource type="StyleBox" uid="uid://bdryog8pu65rf" path="res://GameUI/MapNodeNormalStyle.tres" id="1_jnycp"]
-[ext_resource type="Texture2D" uid="uid://db4ye3ibfh1l8" path="res://TempAssets/TempBackground.png" id="2_jnycp"]
 [ext_resource type="PackedScene" uid="uid://bci4xrgkmsk37" path="res://GameUI/MapLine.tscn" id="3_dn05m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r064c"]
@@ -23,7 +22,6 @@ offset_right = 54.0
 offset_bottom = 142.0
 theme_override_styles/panel = ExtResource("1_jnycp")
 script = ExtResource("1_1nc5i")
-_locationBg = ExtResource("2_jnycp")
 _enemies = Array[Object]([])
 _next = Array[Object]([])
 _linePrefab = ExtResource("3_dn05m")

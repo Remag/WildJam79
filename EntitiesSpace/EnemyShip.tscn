@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
 
-[node name="EnemyShip" type="RigidBody2D" groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_mykhl")
@@ -17,6 +17,8 @@ _config = ExtResource("2_caaev")
 _aiAttackShootDuration = 0.8
 _bulletPrefab = ExtResource("2_dcnlj")
 CorePrefab = ExtResource("3_13jfi")
+VisualNode = NodePath("Visuals")
+_trail = NodePath("ShipTrail")
 
 [node name="Visuals" type="Node2D" parent="."]
 scale = Vector2(0.25, 0.25)

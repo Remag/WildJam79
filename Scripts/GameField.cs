@@ -5,7 +5,9 @@ public partial class GameField : Node {
     [Export]
     private Control _mapControl;
     [Export]
-    private TextureRect _bgRect;
+    private TextureRect _starRect;
+    [Export]
+    private TextureRect _nebulaRect;
     [Export]
     private Control _tutorialNode;
     [Export]
@@ -16,6 +18,8 @@ public partial class GameField : Node {
     private Godot.Collections.Array<EnemyInfo> _testWave;
     [Export]
     private Control _idleUiControl;
+    [Export]
+    private BackgroundSelection _bgSelection;
 
     private int _existingShips = 0;
 
@@ -24,6 +28,18 @@ public partial class GameField : Node {
         GD.Randomize();
         Game.Field = this;
         _mapControl.Visible = false;
+        randomizeStars();
+        randomizeNebula();
+    }
+
+    private void randomizeStars()
+    {
+        _starRect.Texture = Rng.Choose( _bgSelection.Stars );
+    }
+
+    private void randomizeNebula()
+    {
+        _nebulaRect.Texture = Rng.Choose( _bgSelection.Nebulae );
     }
 
     public void OpenMap()
@@ -44,7 +60,11 @@ public partial class GameField : Node {
     public void Travel( Texture2D locationBg, Godot.Collections.Array<EnemyInfo> enemies )
     {
         _idleUiControl.Visible = enemies.Count == 0;
-        _bgRect.Texture = locationBg;
+        if( locationBg == null ) {
+            randomizeNebula();
+        } else {
+            _nebulaRect.Texture = locationBg;
+        }
 
         foreach( var enemy in enemies ) {
             for( int i = 0; i < enemy.Count; i++ ) {

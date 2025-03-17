@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BackgroundSelection" load_steps=18 format=3 uid="uid://vty01vyd4p7g"]
+
+[ext_resource type="Script" uid="uid://ce3ugoarftrq2" path="res://Scripts/UI/BackgroundSelection.cs" id="1_k0d0e"]
+[ext_resource type="Texture2D" uid="uid://c31g3mjtatmad" path="res://Assets/Background/NebulaBright1.png" id="1_n2bgl"]
+[ext_resource type="Texture2D" uid="uid://cyhytkhwbbw4r" path="res://Assets/Background/NebulaBright2.png" id="2_6cjf4"]
+[ext_resource type="Texture2D" uid="uid://bgywpvk7y60b8" path="res://Assets/Background/NebulaBright3.png" id="3_1c6tm"]
+[ext_resource type="Texture2D" uid="uid://7lq87p3gc76q" path="res://Assets/Background/NebulaBright4.png" id="4_a23lp"]
+[ext_resource type="Texture2D" uid="uid://dw38xk5tiyw0b" path="res://Assets/Background/NebulaDense1.png" id="5_oi3tx"]
+[ext_resource type="Texture2D" uid="uid://rhepx00uqjbq" path="res://Assets/Background/NebulaDense2.png" id="6_8hj4m"]
+[ext_resource type="Texture2D" uid="uid://burauxw6f3n1x" path="res://Assets/Background/NebulaDense3.png" id="7_4nwqu"]
+[ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="8_rqya3"]
+[ext_resource type="Texture2D" uid="uid://c6hs2mhjoqjsf" path="res://Assets/Background/NebulaSimple2.png" id="9_1fv7c"]
+[ext_resource type="Texture2D" uid="uid://cndj48hoh7ncl" path="res://Assets/Background/NebulaSimple3.png" id="10_c6642"]
+[ext_resource type="Texture2D" uid="uid://dgl7orupbo83v" path="res://Assets/Background/Stars1.png" id="11_71e7f"]
+[ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="12_xnk2o"]
+[ext_resource type="Texture2D" uid="uid://5cc8xrt4cmab" path="res://Assets/Background/Stars3.png" id="13_akv13"]
+[ext_resource type="Texture2D" uid="uid://che7mbxvpn5dy" path="res://Assets/Background/Stars4.png" id="14_uqxo5"]
+[ext_resource type="Texture2D" uid="uid://fnckqajhhbhp" path="res://Assets/Background/Stars5.png" id="15_eov6l"]
+[ext_resource type="Texture2D" uid="uid://de76lycs4e056" path="res://Assets/Background/Stars6.png" id="16_bajb2"]
+
+[resource]
+script = ExtResource("1_k0d0e")
+Stars = Array[Texture2D]([ExtResource("11_71e7f"), ExtResource("12_xnk2o"), ExtResource("13_akv13"), ExtResource("14_uqxo5"), ExtResource("15_eov6l"), ExtResource("16_bajb2")])
+Nebulae = Array[Texture2D]([ExtResource("1_n2bgl"), ExtResource("2_6cjf4"), ExtResource("3_1c6tm"), ExtResource("4_a23lp"), ExtResource("5_oi3tx"), ExtResource("6_8hj4m"), ExtResource("7_4nwqu"), ExtResource("8_rqya3"), ExtResource("9_1fv7c"), ExtResource("10_c6642")])
+metadata/_custom_type_script = "uid://ce3ugoarftrq2"
