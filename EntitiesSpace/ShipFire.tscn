@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs5unqyo88o3o"]
+
+[ext_resource type="Shader" uid="uid://cket55ysapc8g" path="res://Assets/Vfx/VfxFire.gdshader" id="1_cw37c"]
+[ext_resource type="Texture2D" uid="uid://cjx1lm5wkk18d" path="res://Assets/Vfx/VfxFire.png" id="2_5jcvl"]
+[ext_resource type="Texture2D" uid="uid://bnkunr2cnkuxv" path="res://Assets/Vfx/VfxPixel.png" id="2_66gcr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_66gcr"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5jcvl"]
+noise = SubResource("FastNoiseLite_66gcr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5jcvl"]
+shader = ExtResource("1_cw37c")
+shader_parameter/dissolveTex = SubResource("NoiseTexture2D_5jcvl")
+shader_parameter/mainTex = ExtResource("2_5jcvl")
+
+[sub_resource type="Curve" id="Curve_cw37c"]
+_data = [Vector2(0.004, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_66gcr"]
+curve = SubResource("Curve_cw37c")
+
+[sub_resource type="Gradient" id="Gradient_66gcr"]
+offsets = PackedFloat32Array(0, 0.223214, 0.227679, 0.508929, 0.964286)
+colors = PackedColorArray(1, 1, 0.576471, 1, 0.982096, 0.543892, 0.219058, 1, 0.905882, 0.478431, 0.027451, 1, 1, 0.25098, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5jcvl"]
+gradient = SubResource("Gradient_66gcr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8gi7u"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 90.0
+inherit_velocity_ratio = 0.75
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 20.0
+scale_max = 20.0
+color_ramp = SubResource("GradientTexture1D_5jcvl")
+alpha_curve = SubResource("CurveTexture_66gcr")
+
+[node name="ShipFire" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_5jcvl")
+position = Vector2(1, -1)
+amount = 64
+texture = ExtResource("2_66gcr")
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8gi7u")
