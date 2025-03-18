@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dcxydx2svymhn"]
 
-[ext_resource type="Texture2D" uid="uid://hugok17krry8" path="res://TempAssets/Hero/Body.png" id="1_dtqjt"]
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
+[ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/MainBody.webp" id="3_hpvjx"]
 [ext_resource type="PackedScene" uid="uid://b74mshutj3hsf" path="res://Bullets/Tentacle.tscn" id="3_wi0c6"]
-[ext_resource type="Texture2D" uid="uid://cyedku2inlu3g" path="res://TempAssets/Hero/Eyeball.png" id="4_hp6x6"]
-[ext_resource type="Texture2D" uid="uid://ct5ykbus2lykm" path="res://TempAssets/Hero/Eye.png" id="5_3tkgg"]
+[ext_resource type="Texture2D" uid="uid://bi7s1y3w2ngp3" path="res://Assets/MainHero/EyeBall.webp" id="4_7eort"]
+[ext_resource type="Texture2D" uid="uid://kf16sjsvwd6h" path="res://Assets/MainHero/Eye.webp" id="5_4ta28"]
 [ext_resource type="Script" uid="uid://f7rvj2fdt1uh" path="res://Scripts/Iris.cs" id="6_l6ohk"]
 [ext_resource type="PackedScene" uid="uid://legxaf8ejute" path="res://EntitiesSpace/PlayerBlob.tscn" id="7_oudfo"]
 
@@ -25,15 +25,16 @@ _blobs = [NodePath("Node2D/PlayerBlob"), NodePath("Node2D/PlayerBlob2"), NodePat
 
 [node name="Node2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_dtqjt")
+texture = ExtResource("3_hpvjx")
 
 [node name="Eye" type="Sprite2D" parent="Node2D"]
+clip_children = 2
 position = Vector2(-11.8711, 2.96761)
 scale = Vector2(1.19247, 1.19247)
-texture = ExtResource("4_hp6x6")
+texture = ExtResource("4_7eort")
 
 [node name="Iris" type="Sprite2D" parent="Node2D/Eye"]
-texture = ExtResource("5_3tkgg")
+texture = ExtResource("5_4ta28")
 script = ExtResource("6_l6ohk")
 
 [node name="PlayerBlob" parent="Node2D" instance=ExtResource("7_oudfo")]
