@@ -12,6 +12,7 @@
 [node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
+angular_damp = 1.0
 script = ExtResource("1_um61q")
 _maxHp = 5
 _config = ExtResource("2_i2eit")
@@ -27,12 +28,13 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 
 [node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]
-visible = false
-position = Vector2(0.499998, -12)
+position = Vector2(12, 1)
+rotation = 1.5708
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-17.7534, 17.0323, -18.6301, 11.871, -0.219177, -12.3871, 18.1918, 11.3548, 17.7534, 17.0323)
 
 [node name="Visuals" type="Node2D" parent="."]
+rotation = 1.5708
 scale = Vector2(0.25, 0.25)
 
 [node name="Main" type="Sprite2D" parent="Visuals"]
@@ -56,15 +58,16 @@ centered = false
 offset = Vector2(-310, -110)
 
 [node name="ShipTrail" parent="." instance=ExtResource("7_nlicg")]
-position = Vector2(0, 23)
+position = Vector2(-23, 0)
+rotation = 1.5708
 
 [node name="Hitbox" type="Area2D" parent="."]
+rotation = 1.5708
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 
 [node name="HitboxPolygon" type="CollisionPolygon2D" parent="Hitbox"]
-visible = false
 position = Vector2(0.499998, -12)
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-17.7534, 17.0323, -18.6301, 11.871, -0.219177, -12.3871, 18.1918, 11.3548, 17.7534, 17.0323)

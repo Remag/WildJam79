@@ -12,4 +12,5 @@ public static class Game
     public static GameField Field;
     public static TravelMap TravelMap;
     public static string StageName;
+    public static Node2D TestSprite;
 }

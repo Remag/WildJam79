@@ -3,12 +3,14 @@ using System;
 using System.ComponentModel;
 using WildJam78.Scripts.EnemyMove;
 
-public partial class EnemyShip : Node2D {
+public partial class EnemyShip : RigidBody2D {
 	[Export]
 	private int _maxHp = 3;
 	private int _currentHp = 3;
 	[Export] 
 	private EnemyMoveConfig _config = new();
+	[Export] 
+	private EnemyMoveConfigRigid _configRigid = new();
 
 	[Export]
 	private float _aiAttackShootDelay = 0.2F;
@@ -35,7 +37,8 @@ public partial class EnemyShip : Node2D {
 	[Export]
 	private ShipTrail _trail;
 
-	private EnemyMoveHandler _moveHandler = null; 
+	private EnemyMoveHandler _moveHandler = null;
+	private EnemyMoveHandlerRigid _moveHandlerRigid = null; 
 
 	public enum AttackState {
 		Shooting,
@@ -58,6 +61,7 @@ public partial class EnemyShip : Node2D {
 	public override void _Ready()
 	{
 		_moveHandler = new EnemyMoveHandler(config:_config, targetRotation: Rotation, enemyShip:this );
+		_moveHandlerRigid = new EnemyMoveHandlerRigid( config:_configRigid, enemyShip: this );
 		
 		_currentHp = _maxHp;
 		
@@ -72,11 +76,17 @@ public partial class EnemyShip : Node2D {
 			GetParent().AddChild( _offscreenIndicator );
 		}
 	}
+	
+	public override void _IntegrateForces( PhysicsDirectBodyState2D state )
+	{
+		base._IntegrateForces( state );
+		_moveHandlerRigid?.OnShipIntegrateForces( state );
+	}
 
 	public override void _PhysicsProcess( double delta )
 	{
 		if( _isAiEnabled ) {
-			_moveHandler.OnPhysicsProcess( delta );
+			//_moveHandler.OnPhysicsProcess( delta );
 			handleAttackAi( delta );
 			handleIndicator();
 		}

@@ -25,6 +25,7 @@ public partial class GameField : Node {
 
     public override void _Ready()
     {
+        Game.TestSprite = (Node2D)FindChild( "TestSprite" );
         GD.Randomize();
         Game.Field = this;
         _mapControl.Visible = false;

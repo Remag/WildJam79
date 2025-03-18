@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=17 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="3_a814b"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dmljy2bt73tbh" path="res://Music/TestWaveBgm.mp3" id="8_hbc2u"]
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
+[ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="12_yvb8b"]
 
 [sub_resource type="Resource" id="Resource_hbc2u"]
 script = ExtResource("4_5crlr")
@@ -150,6 +151,10 @@ BgmPlayer = NodePath("BgmPlayer")
 stream = SubResource("AudioStreamInteractive_torvr")
 volume_db = -12.18
 autoplay = true
+
+[node name="TestSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("12_yvb8b")
 
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]

@@ -16,6 +16,8 @@ radius = 56.0357
 [node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
+can_sleep = false
+angular_damp = 1.0
 script = ExtResource("1_mykhl")
 _config = ExtResource("2_caaev")
 _aiAttackShootDuration = 0.8
@@ -27,17 +29,17 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 
-[node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]
-position = Vector2(0.499998, -12)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(12, 0)
+rotation = 1.5708
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-12.9315, 7.22581, -0.219177, -13.4194, 12.4932, 7.22581, -0.219177, 22.1935)
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(0, 10)
+rotation = 1.5708
 scale = Vector2(0.25, 0.25)
 
 [node name="Main" type="Sprite2D" parent="Visuals"]
-position = Vector2(0, -48)
 scale = Vector2(2, 2)
 texture = ExtResource("5_7jj5h")
 
@@ -50,9 +52,11 @@ centered = false
 offset = Vector2(-310, -110)
 
 [node name="ShipTrail" parent="." instance=ExtResource("7_mmokd")]
-position = Vector2(0, 23)
+position = Vector2(-24, 0)
+rotation = 1.5708
 
 [node name="Hitbox" type="Area2D" parent="."]
+rotation = 1.5708
 collision_layer = 2
 collision_mask = 0
 monitoring = false

@@ -1,31 +1,31 @@
 using Godot;
 using System;
+using WildJam78.Scripts.Shield;
 
 public partial class Shield : Area2D {
-    [Export] private int _maxHp = 5;
-    [Export] private float _shieldRegenTime = 10;
+    [Export] 
+    private ShieldConfig _config = new();
     
     [Signal]
     public delegate void ShieldDestroyEventHandler();
     
     [Signal]
     public delegate void ShieldRegenerateEventHandler();
-    
-    
+
     private int _currentHp;
     private float _currentHpRegenTime;
     public override void _Ready()
     {
-        _currentHp = _maxHp;
+        _currentHp = _config.maxHp;
     }
 
     public override void _PhysicsProcess( double delta )
     {
-        if( _currentHp == 0 ) {
+        if( _currentHp == 0 && _config.shieldRegenHp > 0 ) {
             _currentHpRegenTime += (float)delta;
-            if( _currentHpRegenTime > _shieldRegenTime ) {
+            if( _currentHpRegenTime > _config.shieldRegenTime ) {
                 _currentHpRegenTime = 0;
-                _currentHp = _maxHp;
+                _currentHp = _config.shieldRegenHp;
                 Monitorable = true;
                 SetDeferred( Area2D.PropertyName.Monitorable, true );
                 Visible = true;
@@ -44,6 +44,6 @@ public partial class Shield : Area2D {
             Visible = false;
             EmitSignal( SignalName.ShieldDestroy );
         }
-        Modulate = Colors.Transparent.Lerp( Colors.White, (float)_currentHp / _maxHp );
+        Modulate = Colors.Transparent.Lerp( Colors.White, (float)_currentHp / _config.maxHp );
     }
 }
