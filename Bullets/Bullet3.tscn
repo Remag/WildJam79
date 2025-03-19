@@ -1,24 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqu7mb0ib3ocp"]
+[gd_scene load_steps=4 format=3 uid="uid://d16rl6xqrhsqr"]
 
-[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_a1jof"]
-[ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="2_spixe"]
+[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_exbaq"]
+[ext_resource type="Texture2D" uid="uid://qm036ucedfws" path="res://TempAssets/Missile.png" id="2_exbaq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
-radius = 1.0
-height = 28.0
+radius = 4.0
+height = 24.0
 
 [node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
 light_mask = 4
-script = ExtResource("1_a1jof")
+script = ExtResource("1_exbaq")
 _collisionArea = NodePath("Area2D")
-_speed = 800.0
-_speedRNG = 100.0
+_speed = 350.0
+_bulletDamage = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(4.42803e-06, 0.776993, 0.72994, 1)
-position = Vector2(1.5, 0.250001)
-scale = Vector2(2.14286, 0.175676)
-texture = ExtResource("2_spixe")
+modulate = Color(0.835718, 1.73271e-06, 4.81307e-07, 1)
+position = Vector2(0, 2.98023e-08)
+rotation = 1.5708
+scale = Vector2(0.609582, 0.577086)
+texture = ExtResource("2_exbaq")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

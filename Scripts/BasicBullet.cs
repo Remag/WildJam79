@@ -9,13 +9,16 @@ public partial class BasicBullet : Node2D
 
 	[Export]
 	private float _speed = 10;
+	[Export]
+	private float _speedRNG = 0;
 	
 	[Export]
 	private int _bulletDamage = 1;
 
 	public override void _PhysicsProcess( double delta )
 	{
-		var dir = new Vector2( _speed, 0 ).Rotated( Rotation );
+		var spd = _speed + Rng.RandomRange( -_speedRNG, _speedRNG );
+		var dir = new Vector2( spd, 0 ).Rotated( Rotation );
 		Position += (float)delta * dir;
 	}
 

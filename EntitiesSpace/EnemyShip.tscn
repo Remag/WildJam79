@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_caaev"]
-[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_dcnlj"]
+[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/Bullet2.tscn" id="3_mmokd"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_7jj5h"]
 [ext_resource type="Texture2D" uid="uid://dh5vfxtkx4mwr" path="res://Assets/SpaceShip/ShipBody/SmallRed.webp" id="5_7jj5h"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
@@ -12,23 +12,23 @@
 [ext_resource type="AudioStream" uid="uid://c3umdaoxchtra" path="res://Sounds/ShieldDrop.mp3" id="10_4rxrc"]
 [ext_resource type="AudioStream" uid="uid://dr8ymu1knhgrp" path="res://Sounds/ShieldReflect.wav" id="11_18j1i"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_caaev"]
-radius = 56.0357
-
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 can_sleep = false
 angular_damp = 1.0
 script = ExtResource("1_mykhl")
+_maxHp = 7
 _config = ExtResource("2_caaev")
-_aiAttackShootDuration = 0.8
-_bulletPrefab = ExtResource("2_dcnlj")
+_aiAttackShootDuration = 1.2
+_aiAttackShootPause = 2.0
+_bulletPrefab = ExtResource("3_mmokd")
+_attackType = 1
+_angle = 0.262
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
-_shield = NodePath("Shield")
 GeneralExp = 100
 CorePrefab = ExtResource("4_7jj5h")
 IsWeaponSource = true

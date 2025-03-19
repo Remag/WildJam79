@@ -10,7 +10,8 @@ radius = 6.0
 light_mask = 4
 script = ExtResource("1_c26t0")
 _collisionArea = NodePath("Area2D")
-_speed = 1000.0
+_speed = 1200.0
+_bulletDamage = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.25, 0)
