@@ -1,22 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://u2wshe5a8fvk"]
+[gd_scene load_steps=7 format=3 uid="uid://u2wshe5a8fvk"]
 
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="1_1qb4d"]
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_c26t0"]
-[ext_resource type="Script" uid="uid://c1m4v0ibdsq2e" path="res://Scripts/Bullets/MoveLogic/LinearBulletMoveLogic.cs" id="2_h7k3a"]
-[ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_6i060"]
+[ext_resource type="Resource" uid="uid://bl4t4vq7iavu2" path="res://EntitiesSpace/Res/Bullets/Bullet1_MoveLogic.tres" id="2_h7k3a"]
+[ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_h7k3a"]
 
-[sub_resource type="Resource" id="Resource_aua6p"]
-script = ExtResource("2_h7k3a")
-startMinVelocity = 300.0
-startMaxVelocity = 300.0
-maxVelocity = 300.0
-acceleration = 0.0
-metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"
-
-[sub_resource type="Resource" id="Resource_hh6ai"]
-script = ExtResource("3_6i060")
-_maxLifeTime = 10.0
-metadata/_custom_type_script = "uid://b66fo1ud8763f"
+[sub_resource type="Resource" id="Resource_6i060"]
+script = ExtResource("3_h7k3a")
+metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c26t0"]
 radius = 6.0
@@ -25,8 +16,8 @@ radius = 6.0
 light_mask = 4
 script = ExtResource("1_c26t0")
 _collisionArea = NodePath("Area2D")
-_moveLogic = SubResource("Resource_aua6p")
-_lifespanLogic = SubResource("Resource_hh6ai")
+_moveLogic = ExtResource("2_h7k3a")
+_lifespanLogic = SubResource("Resource_6i060")
 _bulletDamage = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

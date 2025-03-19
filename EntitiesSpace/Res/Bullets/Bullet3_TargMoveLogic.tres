@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TargetedBulletMoveLogic" load_steps=2 format=3 uid="uid://cctx5lynt2f0r"]
+
+[ext_resource type="Script" uid="uid://bmqtgdfo6tysn" path="res://Scripts/Bullets/MoveLogic/TargetedBulletMoveLogic.cs" id="1_as5qj"]
+
+[resource]
+script = ExtResource("1_as5qj")
+startMinVelocity = 200.0
+startMaxVelocity = 200.0
+maxVelocity = 500.0
+angularVelocity = 2.1
+acceleration = 100.0
+activeTime = 10.0
+inactiveFriction = 200.0
+metadata/_custom_type_script = "uid://bmqtgdfo6tysn"

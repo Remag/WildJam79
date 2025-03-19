@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://du2c5try3ydx5"]
+[gd_scene load_steps=10 format=3 uid="uid://du2c5try3ydx5"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_tvijw"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_ralwe"]
 [ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/Bullet3.tscn" id="3_0gvqq"]
+[ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/EnemyShip3MoveConfig.tres" id="3_07nkk"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_v6u2j"]
 [ext_resource type="Texture2D" uid="uid://didraosdcyllq" path="res://Assets/SpaceShip/ShipBody/SmallGreen.webp" id="5_tvijw"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_fo27b"]
@@ -16,6 +17,7 @@ angular_damp = 1.0
 script = ExtResource("1_tvijw")
 _maxHp = 10
 _config = ExtResource("2_ralwe")
+_configRigid = ExtResource("3_07nkk")
 _aiAttackShootDelay = 1.0
 _aiAttackShootDuration = 1.0
 _aiAttackShootPause = 3.0

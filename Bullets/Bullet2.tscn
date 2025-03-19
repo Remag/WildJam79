@@ -1,17 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqu7mb0ib3ocp"]
+[gd_scene load_steps=7 format=3 uid="uid://bqu7mb0ib3ocp"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_a1jof"]
-[ext_resource type="Script" uid="uid://c1m4v0ibdsq2e" path="res://Scripts/Bullets/MoveLogic/LinearBulletMoveLogic.cs" id="2_1fycg"]
+[ext_resource type="Resource" uid="uid://dykswp1wubb6t" path="res://EntitiesSpace/Res/Bullets/Bullet2_MoveLogic.tres" id="2_1fycg"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="2_spixe"]
 [ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_887uv"]
-
-[sub_resource type="Resource" id="Resource_dqe05"]
-script = ExtResource("2_1fycg")
-startMinVelocity = 300.0
-startMaxVelocity = 300.0
-maxVelocity = 300.0
-acceleration = 0.0
-metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"
 
 [sub_resource type="Resource" id="Resource_qq402"]
 script = ExtResource("3_887uv")
@@ -26,7 +18,7 @@ height = 28.0
 light_mask = 4
 script = ExtResource("1_a1jof")
 _collisionArea = NodePath("Area2D")
-_moveLogic = SubResource("Resource_dqe05")
+_moveLogic = ExtResource("2_1fycg")
 _lifespanLogic = SubResource("Resource_qq402")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

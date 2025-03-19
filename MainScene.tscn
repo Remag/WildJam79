@@ -150,6 +150,7 @@ text = "Weapon Preset"
 [node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("3_rpqi1")]
 position = Vector2(556, 400)
 Camera = NodePath("../Camera2D")
+_maxHp = 99999
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ScreenWrapArea")]
 position = Vector2(556, 400)

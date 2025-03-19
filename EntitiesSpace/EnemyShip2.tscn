@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=15 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_i2eit"]
+[ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="3_ja242"]
 [ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="3_sdw74"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_i2eit"]
 [ext_resource type="Texture2D" uid="uid://bkurvmjdon55s" path="res://Assets/SpaceShip/ShipBody/SmallPurple.webp" id="5_i2eit"]
@@ -23,6 +24,7 @@ angular_damp = 1.0
 script = ExtResource("1_um61q")
 _maxHp = 10
 _config = ExtResource("2_i2eit")
+_configRigid = ExtResource("3_ja242")
 _aiAttackShootDelay = 1.0
 _aiAttackShootDuration = 3.2
 _aiAttackShootPause = 2.25
