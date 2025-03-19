@@ -4,15 +4,13 @@ using System;
 public partial class WorldAudioManager : Node {
     [Export]
     public AudioStreamPlayer BgmPlayer { get; set; }
-    [Export]
-    private AudioStreamPlayer _buttonClickPlayer { get; set; }
     string _stageName;
 
     public override void _Ready()
     {
         _stageName = Game.StageName;
 
-        //setAllMuted( true );
+        setAllMuted( true );
     }
 
     public override void _Input( InputEvent inputEvent )
@@ -42,10 +40,5 @@ public partial class WorldAudioManager : Node {
         var currentBgm = _stageName + "Bgm";
         var interactive = BgmPlayer.GetStreamPlayback() as AudioStreamPlaybackInteractive;
         interactive.SwitchToClipByName( currentBgm );
-    }
-
-    public void ButtonClickPlay()
-    {
-        _buttonClickPlayer.Play();
     }
 }

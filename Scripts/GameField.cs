@@ -22,8 +22,6 @@ public partial class GameField : Node {
     private Control _idleUiControl;
     [Export]
     private BackgroundSelection _bgSelection;
-    [Export]
-    public WorldAudioManager WorldAudioManager { get; set; }
 
     private int _existingShips = 0;
 
@@ -53,7 +51,6 @@ public partial class GameField : Node {
         Game.Player.SetControl( false );
         _mapControl.Visible = true;
         _idleUiControl.Visible = false;
-        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
     public void CloseMap()
@@ -90,7 +87,6 @@ public partial class GameField : Node {
             }
         }
         Game.StageName = "TestWave";
-        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
     private void spawnEnemy( PackedScene shipPrefab )
@@ -123,7 +119,6 @@ public partial class GameField : Node {
 
     public void RestartGame()
     {
-        Game.Field.WorldAudioManager.ButtonClickPlay();
         _camera.Zoom = new Vector2( 1, 1 );
         _restartButton.Visible = false;
         _idleUiControl.Visible = true;
@@ -135,5 +130,6 @@ public partial class GameField : Node {
         foreach( var node in GetTree().GetNodesInGroup( "ClearOnRestart" ) ) {
             node.QueueFree();
         }
+
     }
 }

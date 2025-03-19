@@ -30,13 +30,6 @@ public partial class Player : RigidBody2D {
     [Export]
     private Godot.Collections.Array<PlayerBlob> _blobs;
 
-    [Export]
-    private AudioStreamPlayer _shootSoundPlayer;
-    [Export]
-    private AudioStreamPlayer _chompSoundPlayer;
-    [Export]
-    private AudioStreamPlayer _deathSoundPlayer;
-
     public int CurrentGrowthLevel { get; private set; }
     private int _currentGrowthXp = 0;
     private List<HeroWeaponCore> _activeWeapons = new();
@@ -68,205 +61,199 @@ public partial class Player : RigidBody2D {
     }
 
     public void OnBulletCollision( int damage )
-    {
-        if( !_isPlayerControlled ) {
-            return;
-        }
-
-        _currentHp -= damage;
-        if( _currentHp <= 0 ) {
-            QueueFree();
-            Game.Field.EndGame();
-            _deathSoundPlayer.Play();
-        }
-
-        _eyeball.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
+{
+    if( !_isPlayerControlled ) {
+        return;
     }
 
-    public void SetControl( bool isSet )
-    {
-        _isPlayerControlled = isSet;
-        if( !_isPlayerControlled ) {
-            stopAttacking();
-            DestroyTentacle();
-        }
+    _currentHp -= damage;
+    if( _currentHp <= 0 ) {
+        QueueFree();
+        Game.Field.EndGame();
     }
 
-    public void Assimilate( FoodSource food )
-    {
-        if( _currentBlobIndex >= _blobs.Count ) {
-            return;
-        }
+    _eyeball.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
+}
+
+public void SetControl( bool isSet )
+{
+    _isPlayerControlled = isSet;
+    if( !_isPlayerControlled ) {
+        stopAttacking();
         DestroyTentacle();
+    }
+}
 
-        gainGeneralExp( food );
-        if( food.IsWeaponSource ) {
-            AssimilateWeapon( food );
-        }
-        _chompSoundPlayer.Play();
+public void Assimilate( FoodSource food )
+{
+    if( _currentBlobIndex >= _blobs.Count ) {
+        return;
+    }
+    DestroyTentacle();
+
+    gainGeneralExp( food );
+    if( food.IsWeaponSource ) {
+        AssimilateWeapon( food );
     }
 
-    public void GainExp( int value )
-    {
-        _currentGrowthXp += value;
+}
+
+public void GainExp( int value )
+{
+    _currentGrowthXp += value;
+}
+
+public void TryGrow()
+{
+    if( CurrentGrowthLevel >= GrowthXpByLvl.Count ) {
+        return;
+    }
+    var targetXp = GrowthXpByLvl[CurrentGrowthLevel];
+    if( _currentGrowthXp < targetXp ) {
+        return;
     }
 
-    public void TryGrow()
-    {
-        if( CurrentGrowthLevel >= GrowthXpByLvl.Count ) {
-            return;
-        }
-        var targetXp = GrowthXpByLvl[CurrentGrowthLevel];
-        if( _currentGrowthXp < targetXp ) {
-            return;
-        }
+    _currentGrowthXp -= targetXp;
+    CurrentGrowthLevel++;
+    var animName = "Growth" + CurrentGrowthLevel.ToString();
+    _animations.Play( animName );
+}
 
-        _currentGrowthXp -= targetXp;
-        CurrentGrowthLevel++;
-        var animName = "Growth" + CurrentGrowthLevel.ToString();
-        _animations.Play( animName );
+public void ResetExp()
+{
+    _currentGrowthXp = 0;
+    CurrentGrowthLevel = 0;
+    _animations.Play( "RESET" );
+    UpdateCameraZoom( 1 );
+}
+
+public void UpdateCameraZoom( float zoomValue )
+{
+    var zTween = Camera.CreateTween();
+    zTween.TweenProperty( Camera, "zoom", new Vector2( zoomValue, zoomValue ), 0.5 ).SetEase( Tween.EaseType.InOut );
+    var sTween = Camera.CreateTween();
+    sTween.TweenProperty( Camera, "scale", new Vector2( 1/zoomValue, 1/zoomValue ), 0.5 ).SetEase( Tween.EaseType.InOut );
+}
+
+private void gainGeneralExp( FoodSource food )
+{
+    GainExp( food.GeneralExp );
+    _decalXpLeft -= food.GeneralExp;
+
+    if( _decalXpLeft <= 0 && !food.IsWeaponSource ) {
+        _decalXpLeft = _requiredDecalXp;
+        attachBlob( food.CorePrefab );
     }
+}
 
-    public void ResetExp()
-    {
-        _currentGrowthXp = 0;
-        CurrentGrowthLevel = 0;
-        _animations.Play( "RESET" );
-        UpdateCameraZoom( 1 );
+private Node2D attachBlob( PackedScene blobPrefab )
+{
+    var newBlob = _blobs[_currentBlobIndex];
+    var newCore = newBlob.Initialize( blobPrefab );
+    _currentBlobIndex++;
+    return newCore;
+}
+
+public void AssimilateWeapon( FoodSource weapon )
+{
+    var existingWeapon = _activeWeapons.Find( ( target ) => target.SrcCore == weapon.CorePrefab );
+    if( existingWeapon != null ) {
+        existingWeapon.GainExp( weapon.WeaponXp );
+    } else {
+        var newWeapon = (HeroWeaponCore)attachBlob( weapon.CorePrefab );
+        newWeapon.Initialize( weapon.CorePrefab );
+        _activeWeapons.Add( newWeapon );
     }
+}
 
-    public void UpdateCameraZoom( float zoomValue )
-    {
-        var zTween = Camera.CreateTween();
-        zTween.TweenProperty( Camera, "zoom", new Vector2( zoomValue, zoomValue ), 0.5 ).SetEase( Tween.EaseType.InOut );
-        var sTween = Camera.CreateTween();
-        sTween.TweenProperty( Camera, "scale", new Vector2( 1 / zoomValue, 1 / zoomValue ), 0.5 ).SetEase( Tween.EaseType.InOut );
+public override void _Input( InputEvent e )
+{
+    if( !_isPlayerControlled ) {
+        return;
     }
-
-    private void gainGeneralExp( FoodSource food )
-    {
-        GainExp( food.GeneralExp );
-        _decalXpLeft -= food.GeneralExp;
-
-        if( _decalXpLeft <= 0 && !food.IsWeaponSource ) {
-            _decalXpLeft = _requiredDecalXp;
-            attachBlob( food.CorePrefab );
-        }
-    }
-
-    private Node2D attachBlob( PackedScene blobPrefab )
-    {
-        var newBlob = _blobs[_currentBlobIndex];
-        var newCore = newBlob.Initialize( blobPrefab );
-        _currentBlobIndex++;
-        return newCore;
-    }
-
-    public void AssimilateWeapon( FoodSource weapon )
-    {
-        var existingWeapon = _activeWeapons.Find( ( target ) => target.SrcCore == weapon.CorePrefab );
-        if( existingWeapon != null ) {
-            existingWeapon.GainExp( weapon.WeaponXp );
-        } else {
-            var newWeapon = (HeroWeaponCore)attachBlob( weapon.CorePrefab );
-            newWeapon.Initialize( weapon.CorePrefab );
-            _activeWeapons.Add( newWeapon );
-        }
-    }
-
-    public override void _Input( InputEvent e )
-    {
-        if( !_isPlayerControlled ) {
-            return;
-        }
-        if( e is InputEventMouseButton mouseE ) {
-            if( mouseE.ButtonIndex == MouseButton.Left ) {
-                if( mouseE.Pressed ) {
-                    startAttacking();
-                } else {
-                    stopAttacking();
-                }
-            }
-            if( mouseE.ButtonIndex == MouseButton.Right ) {
-                if( mouseE.Pressed ) {
-                    spawnTentacle();
-                } else {
-                    DestroyTentacle();
-                }
-            }
-        }
-    }
-
-    private void startAttacking()
-    {
-        _isShooting = true;
-    }
-
-    private void stopAttacking()
-    {
-        _isShooting = false;
-
-    }
-
-    private void spawnTentacle()
-    {
-        _activeTentacle?.QueueFree();
-        _activeTentacle = _tentaclePrefab.Instantiate<Tentacle>();
-        _mainNode.AddChild( _activeTentacle );
-        _activeTentacle.Initialize( this );
-    }
-
-    public void DestroyTentacle()
-    {
-        _activeTentacle?.QueueFree();
-        _activeTentacle = null;
-    }
-
-    public override void _PhysicsProcess( double delta )
-    {
-        var deltaF = (float)delta;
-        var accelVector = new Vector2();
-
-        if( _isPlayerControlled ) {
-            if( Input.IsActionPressed( "CharacterUp" ) ) {
-                accelVector += new Vector2( 0, -1 );
-            }
-            if( Input.IsActionPressed( "CharacterDown" ) ) {
-                accelVector += new Vector2( 0, 1 );
-            }
-            if( Input.IsActionPressed( "CharacterLeft" ) ) {
-                accelVector += new Vector2( -1, 0 );
-            }
-            if( Input.IsActionPressed( "CharacterRight" ) ) {
-                accelVector += new Vector2( 1, 0 );
+    if( e is InputEventMouseButton mouseE ) {
+        if( mouseE.ButtonIndex == MouseButton.Left ) {
+            if( mouseE.Pressed ) {
+                startAttacking();
+            } else {
+                stopAttacking();
             }
         }
-
-        var accelValue = _maxAccelPxSec * accelVector.Normalized();
-        ApplyForce( accelValue * deltaF );
-        updateShooting( delta );
+        if( mouseE.ButtonIndex == MouseButton.Right ) {
+            if( mouseE.Pressed ) {
+                spawnTentacle();
+            } else {
+                DestroyTentacle();
+            }
+        }
     }
+}
 
-    public override void _IntegrateForces( PhysicsDirectBodyState2D state )
-    {
-        base._IntegrateForces( state );
-        if( state.LinearVelocity.Length() > _maxVelocityPxSec ) {
-            state.LinearVelocity = state.LinearVelocity.Normalized() * _maxVelocityPxSec;
+private void startAttacking()
+{
+    _isShooting = true;
+}
+
+private void stopAttacking()
+{
+    _isShooting = false;
+
+}
+
+private void spawnTentacle()
+{
+    _activeTentacle?.QueueFree();
+    _activeTentacle = _tentaclePrefab.Instantiate<Tentacle>();
+    _mainNode.AddChild( _activeTentacle );
+    _activeTentacle.Initialize( this );
+}
+
+public void DestroyTentacle()
+{
+    _activeTentacle?.QueueFree();
+    _activeTentacle = null;
+}
+
+public override void _PhysicsProcess( double delta )
+{
+    var deltaF = (float)delta;
+    var accelVector = new Vector2();
+
+    if( _isPlayerControlled ) {
+        if( Input.IsActionPressed( "CharacterUp" ) ) {
+            accelVector += new Vector2( 0, -1 );
+        }
+        if( Input.IsActionPressed( "CharacterDown" ) ) {
+            accelVector += new Vector2( 0, 1 );
+        }
+        if( Input.IsActionPressed( "CharacterLeft" ) ) {
+            accelVector += new Vector2( -1, 0 );
+        }
+        if( Input.IsActionPressed( "CharacterRight" ) ) {
+            accelVector += new Vector2( 1, 0 );
         }
     }
 
-    private void updateShooting( double delta )
-    {
-        if( !_isShooting ) {
-            return;
-        }
-        foreach( var weapon in _activeWeapons ) {
-            weapon.UpdateShooting( delta );
-        }
-    }
+    var accelValue = _maxAccelPxSec * accelVector.Normalized();
+    ApplyForce( accelValue * deltaF );
+    updateShooting( delta );
+}
 
-    internal void ShootSoundPlay()
-    {
-        _shootSoundPlayer.Play();
+public override void _IntegrateForces( PhysicsDirectBodyState2D state )
+{
+    base._IntegrateForces( state );
+    if( state.LinearVelocity.Length() > _maxVelocityPxSec ) {
+        state.LinearVelocity = state.LinearVelocity.Normalized() * _maxVelocityPxSec;
     }
+}
+
+private void updateShooting( double delta )
+{
+    if( !_isShooting ) {
+        return;
+    }
+    foreach( var weapon in _activeWeapons ) {
+        weapon.UpdateShooting( delta );
+    }
+}
 }
