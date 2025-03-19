@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://du2c5try3ydx5"]
+
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_tvijw"]
+[ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_ralwe"]
+[ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/Bullet3.tscn" id="3_0gvqq"]
+[ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_v6u2j"]
+[ext_resource type="Texture2D" uid="uid://didraosdcyllq" path="res://Assets/SpaceShip/ShipBody/SmallGreen.webp" id="5_tvijw"]
+[ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_fo27b"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="7_2q1eg"]
+[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="8_h1pid"]
+
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+collision_layer = 2
+collision_mask = 0
+angular_damp = 1.0
+script = ExtResource("1_tvijw")
+_maxHp = 10
+_config = ExtResource("2_ralwe")
+_aiAttackShootDelay = 1.0
+_aiAttackShootDuration = 1.0
+_aiAttackShootPause = 3.0
+_bulletPrefab = ExtResource("3_0gvqq")
+_angle = 0.0
+VisualNode = NodePath("Visuals")
+_trail = NodePath("ShipTrail")
+_offscreenIndicator = NodePath("OffscreenIndicator")
+_hitbox = NodePath("Hitbox")
+GeneralExp = 100
+CorePrefab = ExtResource("4_v6u2j")
+IsWeaponSource = true
+
+[node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]
+position = Vector2(12, 1)
+rotation = 1.5708
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-14.4657, 6.19361, -0.438393, -11.871, 13.5891, 6.19349, -0.438302, 17.5484)
+
+[node name="Visuals" type="Node2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="Main" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -24)
+scale = Vector2(2, 2)
+texture = ExtResource("5_tvijw")
+
+[node name="Decal" type="Sprite2D" parent="Visuals"]
+modulate = Color(0.833986, 0.000714068, 0.862334, 0.564706)
+position = Vector2(-39.9999, 16.0001)
+rotation = 0.431096
+scale = Vector2(0.404437, 0.287938)
+texture = ExtResource("6_fo27b")
+
+[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+visible = false
+position = Vector2(0, 4.5)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("7_2q1eg")
+centered = false
+offset = Vector2(-310, -110)
+
+[node name="ShipTrail" parent="." instance=ExtResource("8_h1pid")]
+position = Vector2(-23, 0)
+rotation = 1.5708
+
+[node name="Hitbox" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="HitboxPolygon" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(-4.34399e-05, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-14.0274, 6.19361, -3.64974e-05, -11.871, 14.0274, 6.19349, 5.39527e-05, 17.5484)
