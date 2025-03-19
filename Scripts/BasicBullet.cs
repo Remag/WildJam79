@@ -1,25 +1,57 @@
-using Godot;
 using System;
-using System.Collections;
+using Godot;
+using WildJam78.Scripts.Bullets;
 
 public partial class BasicBullet : Node2D
 {
 	[Export]
-	private Area2D _collisionArea; 
+	private Area2D _collisionArea;
 
-	[Export]
-	private float _speed = 10;
-	[Export]
-	private float _speedRNG = 0;
+	[Export] 
+	private BulletMoveLogic _moveLogic;
+	[Export] 
+	private BulletLifespanLogic _lifespanLogic;
+	[Export] 
+	private BulletDeathLogic _deathLogic;
 	
 	[Export]
 	private int _bulletDamage = 1;
 
+	private float _velocity = 0;
+	private float _currentLifetime = 0;
+	
+	private bool _isDestroyed = false;
+
+	public override void _Ready()
+	{
+		_velocity = _moveLogic switch {
+			LinearBulletMoveLogic linearBulletMoveLogic => linearBulletMoveLogic.GetStartVelocity(),
+			TargetedBulletMoveLogic targetedBulletMoveLogic => targetedBulletMoveLogic.GetStartVelocity(),
+			_ => _velocity
+		};
+	}
+
 	public override void _PhysicsProcess( double delta )
 	{
-		var spd = _speed + Rng.RandomRange( -_speedRNG, _speedRNG );
-		var dir = new Vector2( spd, 0 ).Rotated( Rotation );
-		Position += (float)delta * dir;
+		var deltaF = (float)delta;
+		_currentLifetime += deltaF;
+		switch (_moveLogic)
+		{
+			case LinearBulletMoveLogic linearBulletMoveLogic:
+			{
+				HandleLinearBulletMoveLogic( linearBulletMoveLogic, deltaF );
+				break;
+			}
+			case TargetedBulletMoveLogic targetedBulletMoveLogic: {
+				HandleTargetedBulletMoveLogic( targetedBulletMoveLogic, deltaF );
+				break;
+			}
+		}
+		
+		
+		if( _lifespanLogic.IsDestroyed( _currentLifetime, deltaF ) ) {
+			QueueFree();
+		}
 	}
 
 	public void SetCollisionParams( int maskValue )
@@ -31,12 +63,76 @@ public partial class BasicBullet : Node2D
 	{
 		if( area2D is Shield enemyShield ) {
 			enemyShield.OnBulletCollision(_bulletDamage);
+			HandleDestroy();
 		} else if( area2D.GetParent() is EnemyShip enemyShip ) {
 			enemyShip.OnBulletCollision(_bulletDamage);
+			HandleDestroy();
 		} else if( area2D.GetParent() is Player player ) {
 			player.OnBulletCollision(_bulletDamage);
+			HandleDestroy();
+		} else if( area2D.GetParent() is BasicBullet bullet ) {
+			bullet.HandleDestroy(useDeathLogic: true);
+			HandleDestroy(useDeathLogic: true);
 		}
+		
+	}
+
+	private void HandleDestroy(bool useDeathLogic = false)
+	{
+		if( _isDestroyed ) return;
+		
+		_isDestroyed = true;
+
+		if( useDeathLogic && _deathLogic != null ) {
+			var count = _deathLogic.Count;
+			for( var i = 0f; i < 2 * Mathf.Pi; i += 2 * Mathf.Pi / count ) {
+				CallDeferred( MethodName.InstantiateBullet, _deathLogic.BulletPrefab, i, Position );
+			}
+		}
+
 		QueueFree();
+	}
+	
+	private void InstantiateBullet( PackedScene bulletPrefab, float angle, Vector2 position )
+	{
+		var bullet = bulletPrefab.Instantiate<BasicBullet>();
+		bullet.Rotation = angle;
+		bullet.Position = position;
+		bullet.SetCollisionParams( Game.PlayerLayer );
+		GetParent().AddChild( bullet );
+	}
+
+	private void HandleLinearBulletMoveLogic( LinearBulletMoveLogic linearBulletMoveLogic, float delta )
+	{
+		_velocity = Math.Min(linearBulletMoveLogic.maxVelocity, _velocity + linearBulletMoveLogic.acceleration * delta);
+		var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
+		Position += delta * dir;
+	}
+	
+	private void HandleTargetedBulletMoveLogic( TargetedBulletMoveLogic targetedBulletMoveLogic, float delta )
+	{
+		if( _currentLifetime > targetedBulletMoveLogic.activeTime ) {
+			_velocity = Math.Max( 0, _velocity - targetedBulletMoveLogic.inactiveFriction * delta );
+			var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
+			Position += delta * dir;
+		} else {
+			_velocity = Math.Min(targetedBulletMoveLogic.maxVelocity, _velocity + targetedBulletMoveLogic.acceleration * delta);
+
+			var target = Game.Player;
+			if( target != null ) {
+				var targetAngle = ( target.GlobalPosition - GlobalPosition ).Angle();
+				var targetAngleDiff = targetAngle - Rotation;
+				while( targetAngleDiff > float.Pi ) {
+					targetAngleDiff -= 2 * float.Pi;
+				}
+				while( targetAngleDiff < -float.Pi ) {
+					targetAngleDiff += 2 * float.Pi;
+				}
+				Rotation += Math.Sign( targetAngleDiff ) * Math.Min( targetedBulletMoveLogic.angularVelocity * delta, Math.Abs( targetAngleDiff ) );		
+			}
+			var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
+			Position += delta * dir;
+		}
 	}
 	
 }

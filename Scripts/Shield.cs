@@ -30,7 +30,6 @@ public partial class Shield : Area2D {
             if( _currentHpRegenTime > _config.shieldRegenTime ) {
                 _currentHpRegenTime = 0;
                 _currentHp = _config.shieldRegenHp;
-                Monitorable = true;
                 SetDeferred( Area2D.PropertyName.Monitorable, true );
                 Visible = true;
                 Modulate = Colors.White;

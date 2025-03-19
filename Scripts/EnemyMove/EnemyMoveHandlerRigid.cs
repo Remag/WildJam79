@@ -43,6 +43,12 @@ public class EnemyMoveHandlerRigid {
         if( !_isTargetReached ) {
             var targetAngle = ( _currentTarget - shipGlobalPosition ).Angle();
             var targetAngleDiff = targetAngle - state.Transform.Rotation;
+            while( targetAngleDiff > float.Pi ) {
+                targetAngleDiff -= 2 * float.Pi;
+            }
+            while( targetAngleDiff < -float.Pi ) {
+                targetAngleDiff += 2 * float.Pi;
+            }
             state.AngularVelocity = Math.Sign( targetAngleDiff ) *
                                     Math.Min( _config.maxAngularVelocity, Math.Abs( targetAngleDiff / state.Step ) );
         }
