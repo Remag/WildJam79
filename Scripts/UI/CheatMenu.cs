@@ -9,6 +9,7 @@ public partial class CheatMenu : Node {
     public void ResetGrowth()
     {
         Game.Player.ResetExp();
+        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
     public void Grow()
@@ -17,6 +18,7 @@ public partial class CheatMenu : Node {
         var maxLevel = Game.Player.GrowthXpByLvl.Count - 1;
         Game.Player.GainExp( Game.Player.GrowthXpByLvl[Math.Min( level, maxLevel )] );
         Game.Player.TryGrow();
+        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
     public void EatWeapons()
@@ -26,5 +28,6 @@ public partial class CheatMenu : Node {
             Game.Player.AssimilateWeapon( obj );
             obj.QueueFree();
         }
+        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 }

@@ -44,6 +44,8 @@ public partial class TravelMap : Control {
         foreach( var nextNode in _availableNodes ) {
             nextNode.SetStyle( _activeStyle );
         }
+        if( Game.Field != null )
+            Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
     public void SetEnemyHint( Godot.Collections.Array<EnemyInfo> enemies )
@@ -59,7 +61,7 @@ public partial class TravelMap : Control {
 
     public void ClearAllHints()
     {
-        foreach( var child in _hintContainer.GetChildren() ){
+        foreach( var child in _hintContainer.GetChildren() ) {
             child.QueueFree();
         }
         _hintContainer.Visible = false;

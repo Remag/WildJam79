@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=20 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="3_a814b"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="3_mctxq"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="4_5crlr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
+[ext_resource type="AudioStream" uid="uid://d4fm122a7ybs1" path="res://Sounds/ButtonClick_ZapSplat.mp3" id="6_4mcbk"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="7_3hf6u"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
 [ext_resource type="AudioStream" uid="uid://dmljy2bt73tbh" path="res://Music/TestWaveBgm.mp3" id="8_hbc2u"]
@@ -16,7 +18,7 @@
 
 [sub_resource type="Resource" id="Resource_hbc2u"]
 script = ExtResource("4_5crlr")
-Prefab = ExtResource("3_a814b")
+Prefab = ExtResource("3_mctxq")
 Count = 1
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
@@ -40,7 +42,7 @@ Vector2i(-1, -1): {
 }
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_tutorialNode", "_restartButton", "_idleUiControl")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_tutorialNode", "_restartButton", "_idleUiControl", "WorldAudioManager")]
 script = ExtResource("1_torvr")
 _camera = NodePath("Camera2D")
 _mapControl = NodePath("HUD/TravelMap")
@@ -52,6 +54,7 @@ _restartButton = NodePath("HUD/RestartButton")
 _testWave = Array[Object]([SubResource("Resource_hbc2u")])
 _idleUiControl = NodePath("HUD/IdleUi")
 _bgSelection = ExtResource("5_p5x2j")
+WorldAudioManager = NodePath("WorldAudioManager")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -173,9 +176,14 @@ offset_bottom = 2048.0
 texture = ExtResource("8_p5x2j")
 stretch_mode = 1
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer", "_buttonClickPlayer")]
 script = ExtResource("8_torvr")
 BgmPlayer = NodePath("BgmPlayer")
+_buttonClickPlayer = NodePath("ButtonClick")
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("6_4mcbk")
+bus = &"sfx"
 
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = SubResource("AudioStreamInteractive_torvr")

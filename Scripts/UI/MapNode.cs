@@ -54,6 +54,7 @@ public partial class MapNode : Control {
             Game.TravelMap.SetCurrentNode( this );
             Game.Field.CloseMap();
             Game.Field.Travel( _locationBg, _enemies );
+            //Game.Field.WorldAudioManager.ButtonClickPlay();
         }
     }
 }

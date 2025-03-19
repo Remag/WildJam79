@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcxydx2svymhn"]
+[gd_scene load_steps=18 format=3 uid="uid://dcxydx2svymhn"]
 
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/MainBody.webp" id="3_hpvjx"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://kf16sjsvwd6h" path="res://Assets/MainHero/Eye.webp" id="5_4ta28"]
 [ext_resource type="Script" uid="uid://f7rvj2fdt1uh" path="res://Scripts/Iris.cs" id="6_l6ohk"]
 [ext_resource type="PackedScene" uid="uid://legxaf8ejute" path="res://EntitiesSpace/PlayerBlob.tscn" id="7_oudfo"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="8_7eort"]
+[ext_resource type="AudioStream" uid="uid://cv333aussdlps" path="res://Sounds/ChompShort.mp3" id="9_4ta28"]
+[ext_resource type="AudioStream" uid="uid://cq7blko855kh1" path="res://Sounds/GameOver_ZapSplat.mp3" id="10_upmy3"]
+[ext_resource type="AudioStream" uid="uid://bokpcjar27rar" path="res://Sounds/WarpIn_ZapSplat.mp3" id="11_jhnwa"]
+[ext_resource type="AudioStream" uid="uid://bh0ivdn4ny73t" path="res://Sounds/WarpOut.mp3" id="12_231b2"]
 
 [sub_resource type="Animation" id="Animation_hpvjx"]
 resource_name = "Growth1"
@@ -163,7 +168,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
 radius = 29.865
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_blobs")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_blobs", "_shootSoundPlayer", "_chompSoundPlayer", "_deathSoundPlayer")]
 center_of_mass_mode = 1
 linear_damp = 1.0
 angular_damp = 1.0
@@ -176,6 +181,9 @@ _maxHp = 99999
 _tentaclePrefab = ExtResource("3_wi0c6")
 GrowthXpByLvl = Array[int]([100, 200])
 _blobs = [NodePath("Visual/PlayerBlob"), NodePath("Visual/PlayerBlob2"), NodePath("Visual/PlayerBlob3"), NodePath("Visual/PlayerBlob4"), NodePath("Visual/PlayerBlob6"), NodePath("Visual/PlayerBlob7"), NodePath("Visual/PlayerBlob8"), NodePath("Visual/PlayerBlob9"), NodePath("Visual/PlayerBlob10"), NodePath("Visual/PlayerBlob11"), NodePath("Visual/PlayerBlob12"), NodePath("Visual/PlayerBlob13")]
+_shootSoundPlayer = NodePath("Shoot")
+_chompSoundPlayer = NodePath("Chomp")
+_deathSoundPlayer = NodePath("Death")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -271,3 +279,24 @@ monitoring = false
 position = Vector2(-1, 0)
 scale = Vector2(0.476988, 0.476988)
 shape = SubResource("CircleShape2D_a814b")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7eort")
+bus = &"sfx"
+
+[node name="Chomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4ta28")
+volume_db = 10.307
+bus = &"sfx"
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_upmy3")
+bus = &"sfx"
+
+[node name="WarpIn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_jhnwa")
+bus = &"sfx"
+
+[node name="WarpOut" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_231b2")
+bus = &"sfx"
