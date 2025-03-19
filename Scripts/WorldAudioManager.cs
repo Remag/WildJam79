@@ -6,6 +6,9 @@ public partial class WorldAudioManager : Node {
     public AudioStreamPlayer BgmPlayer { get; set; }
     [Export]
     private AudioStreamPlayer _buttonClickPlayer { get; set; }
+    [Export]
+    private AudioStreamPlayer _deathSoundPlayer;
+
     string _stageName;
 
     public override void _Ready()
@@ -47,5 +50,10 @@ public partial class WorldAudioManager : Node {
     public void ButtonClickPlay()
     {
         _buttonClickPlayer.Play();
+    }
+
+    public void DeathSoundPlay()
+    {
+        _deathSoundPlayer.Play();
     }
 }

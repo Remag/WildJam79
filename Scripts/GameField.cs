@@ -118,6 +118,7 @@ public partial class GameField : Node {
 
     public void EndGame()
     {
+        WorldAudioManager.DeathSoundPlay();
         _restartButton.Visible = true;
     }
 

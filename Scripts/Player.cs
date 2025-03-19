@@ -33,8 +33,6 @@ public partial class Player : RigidBody2D {
     private AudioStreamPlayer _shootSoundPlayer;
     [Export]
     private AudioStreamPlayer _chompSoundPlayer;
-    [Export]
-    private AudioStreamPlayer _deathSoundPlayer;
 
     public int CurrentGrowthLevel { get; private set; }
     private int _currentGrowthXp = 0;
@@ -76,7 +74,6 @@ public partial class Player : RigidBody2D {
         if( _currentHp <= 0 ) {
             QueueFree();
             Game.Field.EndGame();
-            _deathSoundPlayer.Play();
         }
 
         _eyeball.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
