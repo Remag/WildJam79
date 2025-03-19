@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=14 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_i2eit"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_nlicg"]
 [ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="9_sdw74"]
 [ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="10_txwvw"]
+[ext_resource type="AudioStream" uid="uid://dr8ymu1knhgrp" path="res://Sounds/ShieldReflect.wav" id="11_oyjk0"]
+[ext_resource type="AudioStream" uid="uid://c3umdaoxchtra" path="res://Sounds/ShieldDrop.mp3" id="12_ja242"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyjk0"]
 radius = 56.0357
@@ -78,13 +80,23 @@ position = Vector2(0.499998, -12)
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-17.7534, 17.0323, -18.6301, 11.871, -0.219177, -12.3871, 18.1918, 11.3548, 17.7534, 17.0323)
 
-[node name="Shield" type="Area2D" parent="."]
+[node name="Shield" type="Area2D" parent="." node_paths=PackedStringArray("_shieldDropSoundPlayer", "_shieldReflectSoundPlayer")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("9_sdw74")
+_shieldDropSoundPlayer = NodePath("Drop")
+_shieldReflectSoundPlayer = NodePath("Reflect")
 
 [node name="ShieldSprite" type="Sprite2D" parent="Shield"]
 texture = ExtResource("10_txwvw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
 shape = SubResource("CircleShape2D_oyjk0")
+
+[node name="Reflect" type="AudioStreamPlayer" parent="Shield"]
+stream = ExtResource("11_oyjk0")
+bus = &"sfx"
+
+[node name="Drop" type="AudioStreamPlayer" parent="Shield"]
+stream = ExtResource("12_ja242")
+bus = &"sfx"

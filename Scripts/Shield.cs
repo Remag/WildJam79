@@ -3,12 +3,16 @@ using System;
 using WildJam78.Scripts.Shield;
 
 public partial class Shield : Area2D {
-    [Export] 
+    [Export]
     private ShieldConfig _config = new();
-    
+    [Export]
+    private AudioStreamPlayer _shieldDropSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _shieldReflectSoundPlayer;
+
     [Signal]
     public delegate void ShieldDestroyEventHandler();
-    
+
     [Signal]
     public delegate void ShieldRegenerateEventHandler();
 
@@ -35,7 +39,7 @@ public partial class Shield : Area2D {
         }
     }
 
-    public void OnBulletCollision(int damage)
+    public void OnBulletCollision( int damage )
     {
         _currentHp -= damage;
         if( _currentHp <= 0 ) {
@@ -43,6 +47,9 @@ public partial class Shield : Area2D {
             SetDeferred( Area2D.PropertyName.Monitorable, false );
             Visible = false;
             EmitSignal( SignalName.ShieldDestroy );
+            _shieldDropSoundPlayer.Play();
+        } else {
+            _shieldReflectSoundPlayer.Play();
         }
         Modulate = Colors.Transparent.Lerp( Colors.White, (float)_currentHp / _config.maxHp );
     }

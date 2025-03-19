@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=23 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="3_4mcbk"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="12_yvb8b"]
+[ext_resource type="AudioStream" uid="uid://d4fm122a7ybs1" path="res://Sounds/ButtonClick_ZapSplat.mp3" id="15_nm5af"]
 
 [sub_resource type="Resource" id="Resource_hbc2u"]
 script = ExtResource("4_5crlr")
@@ -54,7 +55,7 @@ Vector2i(-1, -1): {
 }
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_tutorialNode", "_restartButton", "_idleUiControl")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_tutorialNode", "_restartButton", "_idleUiControl", "WorldAudioManager")]
 script = ExtResource("1_torvr")
 _camera = NodePath("Camera2D")
 _mapControl = NodePath("HUD/TravelMap")
@@ -66,6 +67,7 @@ _restartButton = NodePath("HUD/RestartButton")
 _testWave = Array[Object]([SubResource("Resource_hbc2u"), SubResource("Resource_nm5af"), SubResource("Resource_x0cd2")])
 _idleUiControl = NodePath("HUD/IdleUi")
 _bgSelection = ExtResource("5_p5x2j")
+WorldAudioManager = NodePath("WorldAudioManager")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -187,14 +189,19 @@ offset_bottom = 2048.0
 texture = ExtResource("8_p5x2j")
 stretch_mode = 1
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer", "_buttonClickPlayer")]
 script = ExtResource("8_torvr")
 BgmPlayer = NodePath("BgmPlayer")
+_buttonClickPlayer = NodePath("ButtonClick")
 
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = SubResource("AudioStreamInteractive_torvr")
 volume_db = -12.18
 autoplay = true
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("15_nm5af")
+bus = &"sfx"
 
 [node name="TestSprite" type="Sprite2D" parent="."]
 visible = false

@@ -19,6 +19,6 @@ public partial class ShipInfoHint : Node {
         shipHint.DisableAllBehavior();
         shipHint.QueueFree();
         _label.Text = shipCount.ToString();
-
+        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 }
