@@ -117,6 +117,10 @@ grow_vertical = 0
 script = ExtResource("7_3hf6u")
 _weaponsToEat = Array[PackedScene]([ExtResource("3_a814b"), ExtResource("3_a814b"), ExtResource("3_a814b")])
 
+[node name="ResetGrowth" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Reset Growth"
+
 [node name="Grow" type="Button" parent="HUD/IdleUi/CheatMenu"]
 layout_mode = 2
 text = "Grow
@@ -185,6 +189,7 @@ texture = ExtResource("12_yvb8b")
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="." method="SpawnTestWave"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/ResetGrowth" to="HUD/IdleUi/CheatMenu" method="ResetGrowth"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Grow" to="HUD/IdleUi/CheatMenu" method="Grow"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons" to="HUD/IdleUi/CheatMenu" method="EatWeapons"]
 [connection signal="area_exited" from="Camera2D/GameZone" to="Camera2D" method="OnAreaLeave"]

@@ -80,7 +80,7 @@ public void SetControl( bool isSet )
     _isPlayerControlled = isSet;
     if( !_isPlayerControlled ) {
         stopAttacking();
-        destroyTentacle();
+        DestroyTentacle();
     }
 }
 
@@ -89,7 +89,7 @@ public void Assimilate( FoodSource food )
     if( _currentBlobIndex >= _blobs.Count ) {
         return;
     }
-    destroyTentacle();
+    DestroyTentacle();
 
     gainGeneralExp( food );
     if( food.IsWeaponSource ) {
@@ -117,6 +117,14 @@ public void TryGrow()
     CurrentGrowthLevel++;
     var animName = "Growth" + CurrentGrowthLevel.ToString();
     _animations.Play( animName );
+}
+
+public void ResetExp()
+{
+    _currentGrowthXp = 0;
+    CurrentGrowthLevel = 0;
+    _animations.Play( "RESET" );
+    UpdateCameraZoom( 1 );
 }
 
 public void UpdateCameraZoom( float zoomValue )
@@ -175,7 +183,7 @@ public override void _Input( InputEvent e )
             if( mouseE.Pressed ) {
                 spawnTentacle();
             } else {
-                destroyTentacle();
+                DestroyTentacle();
             }
         }
     }
@@ -200,7 +208,7 @@ private void spawnTentacle()
     _activeTentacle.Initialize( this );
 }
 
-private void destroyTentacle()
+public void DestroyTentacle()
 {
     _activeTentacle?.QueueFree();
     _activeTentacle = null;

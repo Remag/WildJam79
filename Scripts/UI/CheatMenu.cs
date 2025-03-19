@@ -6,6 +6,11 @@ public partial class CheatMenu : Node {
     [Export]
     private Godot.Collections.Array<PackedScene> _weaponsToEat;
 
+    public void ResetGrowth()
+    {
+        Game.Player.ResetExp();
+    }
+
     public void Grow()
     {
         var level = Game.Player.CurrentGrowthLevel;

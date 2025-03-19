@@ -1,27 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://b74mshutj3hsf"]
+[gd_scene load_steps=10 format=3 uid="uid://b74mshutj3hsf"]
 
 [ext_resource type="Script" uid="uid://dfgmu7ie4gbwo" path="res://Scripts/Tentacle.cs" id="1_7g8t2"]
 [ext_resource type="Texture2D" uid="uid://dvxiahewq3pvo" path="res://Assets/MainHero/Tentacle1.webp" id="2_yijuj"]
 [ext_resource type="Texture2D" uid="uid://b6i8fug36ip6a" path="res://Assets/MainHero/tentacle3.webp" id="3_vysq2"]
 [ext_resource type="Texture2D" uid="uid://d1e6ywdqy2bbk" path="res://Assets/MainHero/Tentacle2.webp" id="4_p3421"]
+[ext_resource type="Script" uid="uid://bckuu1wnhechy" path="res://Scripts/Player/TentacleLine.cs" id="5_vysq2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g8t2"]
-size = Vector2(72.396, 49)
+size = Vector2(2.7907, 14.2636)
 
 [sub_resource type="Animation" id="Animation_7g8t2"]
 resource_name = "Extend"
-length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Anchor:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.1, 2.4),
+"times": PackedFloat32Array(0, 0.3, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 1), Vector2(1.5, 1), Vector2(0, 1)]
+"values": [Vector2(0, 0), Vector2(258, -2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(250, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5c227"]
@@ -29,14 +41,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Anchor:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yijuj"]
@@ -50,38 +74,54 @@ z_index = -1
 script = ExtResource("1_7g8t2")
 _animation = NodePath("AnimationPlayer")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Scaler" type="Node2D" parent="."]
+scale = Vector2(3, 3)
 
-[node name="Transformer" type="Node2D" parent="Node2D"]
-rotation = -1.93906
+[node name="Transformer" type="Node2D" parent="Scaler"]
 
-[node name="Mid" type="Sprite2D" parent="Node2D/Transformer"]
+[node name="Mid" type="Sprite2D" parent="Scaler/Transformer"]
+visible = false
 modulate = Color(1, 1, 1, 0.415686)
 texture = ExtResource("2_yijuj")
 offset = Vector2(-43.3748, 115.568)
 
-[node name="Top" type="Sprite2D" parent="Node2D/Transformer"]
+[node name="Top" type="Sprite2D" parent="Scaler/Transformer"]
+visible = false
+position = Vector2(161.739, -126.957)
 texture = ExtResource("3_vysq2")
 offset = Vector2(-40.3811, 114.709)
 
-[node name="Bottom" type="Sprite2D" parent="Node2D/Transformer"]
+[node name="Bottom" type="Sprite2D" parent="Scaler/Transformer"]
+visible = false
 position = Vector2(-6.80883, 0.687748)
 rotation = 0.0698132
 texture = ExtResource("4_p3421")
 offset = Vector2(-34.9875, 110.789)
 
-[node name="Area2D" type="Area2D" parent="Node2D"]
+[node name="Area2D" type="Area2D" parent="Scaler"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(220.865, -7)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scaler/Area2D"]
+scale = Vector2(1.075, 1.075)
 shape = SubResource("RectangleShape2D_7g8t2")
 
+[node name="Anchor" type="Node2D" parent="Scaler"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Node2D")
+root_node = NodePath("../Scaler")
 libraries = {
 &"": SubResource("AnimationLibrary_yijuj")
 }
 
-[connection signal="area_entered" from="Node2D/Area2D" to="." method="OnAreaCollision"]
+[node name="TopTentacle" type="Line2D" parent="." node_paths=PackedStringArray("_tentacleScaler", "_tentacleAnchor")]
+texture_repeat = 1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 58.86
+texture = ExtResource("3_vysq2")
+texture_mode = 1
+script = ExtResource("5_vysq2")
+_tentacleScaler = NodePath("../Scaler")
+_tentacleAnchor = NodePath("../Scaler/Anchor")
+
+[connection signal="area_entered" from="Scaler/Area2D" to="." method="OnAreaCollision"]

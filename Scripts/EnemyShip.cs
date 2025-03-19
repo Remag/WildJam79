@@ -7,9 +7,11 @@ public partial class EnemyShip : FoodSource {
 	[Export]
 	private int _maxHp = 3;
 	private int _currentHp = 3;
-	[Export] 
+	[Export]
+	private int SizeLevel = 0;
+	[Export]
 	private EnemyMoveConfig _config = new();
-	[Export] 
+	[Export]
 	private EnemyMoveConfigRigid _configRigid = new();
 
 	[Export]
@@ -36,7 +38,7 @@ public partial class EnemyShip : FoodSource {
 	private ShipTrail _trail;
 
 	private EnemyMoveHandler _moveHandler = null;
-	private EnemyMoveHandlerRigid _moveHandlerRigid = null; 
+	private EnemyMoveHandlerRigid _moveHandlerRigid = null;
 
 	public enum AttackState {
 		Shooting,
@@ -58,23 +60,23 @@ public partial class EnemyShip : FoodSource {
 
 	public override void _Ready()
 	{
-		_moveHandler = new EnemyMoveHandler(config:_config, targetRotation: Rotation, enemyShip:this );
-		_moveHandlerRigid = new EnemyMoveHandlerRigid( config:_configRigid, enemyShip: this );
-		
+		_moveHandler = new EnemyMoveHandler( config: _config, targetRotation: Rotation, enemyShip: this );
+		_moveHandlerRigid = new EnemyMoveHandlerRigid( config: _configRigid, enemyShip: this );
+
 		_currentHp = _maxHp;
-		
+
 		if( _shield != null ) {
 			_shield.ShieldRegenerate += OnShieldRegenerate;
 			_shield.ShieldDestroy += OnShieldDestroy;
 			_hitbox.Monitorable = false;
 		}
 
-		if( _isAiEnabled && _offscreenIndicator != null) {
+		if( _isAiEnabled && _offscreenIndicator != null ) {
 			RemoveChild( _offscreenIndicator );
 			GetParent().AddChild( _offscreenIndicator );
 		}
 	}
-	
+
 	public override void _IntegrateForces( PhysicsDirectBodyState2D state )
 	{
 		base._IntegrateForces( state );
@@ -135,7 +137,7 @@ public partial class EnemyShip : FoodSource {
 		}
 		_currentShootDelay -= delta;
 		if( _currentShootDelay < 0 ) {
-			spawnBullet(_attackType);
+			spawnBullet( _attackType );
 			_currentShootDelay = _aiAttackShootDelay;
 		}
 
@@ -149,34 +151,35 @@ public partial class EnemyShip : FoodSource {
 		if( attackType == AttackType.Aim ) {
 			var playerPos = Game.Player.Position;
 			var bulletDir = playerPos - Position;
-			instantiateBullet(bulletDir.Angle());
+			instantiateBullet( bulletDir.Angle() );
 		}
 		if( attackType == AttackType.Burst ) {
-			
+
 			var playerPos = Game.Player.Position;
 			var bulletDir = playerPos - Position;
-			instantiateBullet(bulletDir.Angle() + Rng.RandomRange( -_angle, _angle ));
+			instantiateBullet( bulletDir.Angle() + Rng.RandomRange( -_angle, _angle ) );
 		}
 		if( attackType == AttackType.CirclePattern ) {
 			var playerPos = Game.Player.Position;
 			var bulletDir = playerPos - Position;
 			var Count = 12;
-			for( var i = 0f; i < 2*Mathf.Pi; i += 2*Mathf.Pi/Count ) {
-				instantiateBullet(bulletDir.Angle() + i);
+			for( var i = 0f; i < 2 * Mathf.Pi; i += 2 * Mathf.Pi / Count ) {
+				instantiateBullet( bulletDir.Angle() + i );
 			}
 		}
 		if( attackType == AttackType.Pattern2 ) {
 			var playerPos = Game.Player.Position;
 			var bulletDir = playerPos - Position;
 			var Count = 3;
-			instantiateBullet(bulletDir.Angle());
-			for( var i = 1; i <= Count/2; i += 1 ) {
-				instantiateBullet(bulletDir.Angle() + i *_angle);
-				instantiateBullet(bulletDir.Angle() - i *_angle);
+			instantiateBullet( bulletDir.Angle() );
+			for( var i = 1; i <= Count / 2; i += 1 ) {
+				instantiateBullet( bulletDir.Angle() + i * _angle );
+				instantiateBullet( bulletDir.Angle() - i * _angle );
 			}
 		}
 	}
-	private void instantiateBullet( float angle ){
+	private void instantiateBullet( float angle )
+	{
 		var bullet = _bulletPrefab.Instantiate<BasicBullet>();
 		bullet.Rotation = angle;
 		bullet.Position = Position;
@@ -224,7 +227,7 @@ public partial class EnemyShip : FoodSource {
 		}
 	}
 
-	public void OnBulletCollision(int damage)
+	public void OnBulletCollision( int damage )
 	{
 		_currentHp -= damage;
 		if( _currentHp <= 0 ) {
@@ -238,11 +241,21 @@ public partial class EnemyShip : FoodSource {
 
 	public void OnTentacleCollision()
 	{
-		Game.Player?.Assimilate( this );
-		IsDead = true;
-		Game.Field.RemoveExistingShip();
-		QueueFree();
-		_offscreenIndicator.QueueFree();
+		var playerSize = Game.Player.CurrentGrowthLevel;
+		if( playerSize > SizeLevel ) {
+			_currentHp = 0;
+		} else {
+			_currentHp -= _maxHp / 2 + 1;
+		}
+
+    	Game.Player.DestroyTentacle();
+		if( _currentHp <= 0 ) {
+			Game.Player?.Assimilate( this );
+			IsDead = true;
+			Game.Field.RemoveExistingShip();
+			QueueFree();
+			_offscreenIndicator.QueueFree();
+		}
 	}
 
 	public void DisableAllBehavior()
@@ -264,7 +277,7 @@ public partial class EnemyShip : FoodSource {
 	{
 		_hitbox.SetDeferred( Area2D.PropertyName.Monitorable, false );
 	}
-	
+
 	public void OnShieldDestroy()
 	{
 		_hitbox.SetDeferred( Area2D.PropertyName.Monitorable, true );
