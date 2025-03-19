@@ -1,11 +1,12 @@
 using Godot;
 using System;
+using WildJam78.Scripts.UI;
 
 public partial class MapNode : Control {
     [Export]
     private Texture2D _locationBg;
     [Export]
-    private Godot.Collections.Array<EnemyInfo> _enemies;
+    private EnemyNodeInfo _nodeInfo;
     [Export]
     private Godot.Collections.Array<MapNode> _next;
 
@@ -40,7 +41,14 @@ public partial class MapNode : Control {
 
     public void OnNodeEntered()
     {
-        Game.TravelMap.SetEnemyHint( _enemies );
+        var hintEnemies = new Godot.Collections.Array<EnemyInfo>();
+        foreach (var enemyWaveInfo in _nodeInfo.WavesInfo) {
+            foreach (var enemyInfo in enemyWaveInfo.EnemiesInfo)
+            {
+                hintEnemies.Add( enemyInfo );                
+            }
+        }
+        Game.TravelMap.SetEnemyHint( hintEnemies );
     }
 
     public void OnNodeLeft()
@@ -53,7 +61,7 @@ public partial class MapNode : Control {
         if( Game.TravelMap.IsAvailable( this ) ) {
             Game.TravelMap.SetCurrentNode( this );
             Game.Field.CloseMap();
-            Game.Field.Travel( _locationBg, _enemies );
+            Game.Field.Travel( _locationBg, _nodeInfo );
         }
     }
 }

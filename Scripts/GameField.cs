@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using WildJam78.Scripts.UI;
 
 public partial class GameField : Node {
     [Export]
@@ -24,8 +25,12 @@ public partial class GameField : Node {
     private BackgroundSelection _bgSelection;
     [Export]
     public WorldAudioManager WorldAudioManager { get; set; }
-
+    
     private int _existingShips = 0;
+    
+    private EnemyNodeInfo _currentNodeInfo;
+    private float _currentLevelTimer = 0;
+    private int _nextWaveIndex = 0;
 
     public override void _Ready()
     {
@@ -35,6 +40,18 @@ public partial class GameField : Node {
         _mapControl.Visible = false;
         randomizeStars();
         randomizeNebula();
+    }
+
+    public override void _PhysicsProcess( double delta )
+    {
+        _currentLevelTimer += (float)delta;
+        if( _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count ) {
+            var waveInfo = _currentNodeInfo.WavesInfo[_nextWaveIndex];
+            if( _currentLevelTimer >= waveInfo.SpawnTimePoint ) {
+                SpawnWave( waveInfo );
+                _nextWaveIndex++;
+            }
+        }
     }
 
     private void randomizeStars()
@@ -63,19 +80,19 @@ public partial class GameField : Node {
         _idleUiControl.Visible = true;
     }
 
-    public void Travel( Texture2D locationBg, Godot.Collections.Array<EnemyInfo> enemies )
+    public void Travel( Texture2D locationBg, EnemyNodeInfo nodeInfo )
     {
-        _idleUiControl.Visible = enemies.Count == 0;
+        _currentNodeInfo = nodeInfo;
+        _idleUiControl.Visible = nodeInfo.WavesInfo.Count == 0;
         if( locationBg == null ) {
             randomizeNebula();
         } else {
             _nebulaRect.Texture = locationBg;
         }
 
-        foreach( var enemy in enemies ) {
-            for( int i = 0; i < enemy.Count; i++ ) {
-                spawnEnemy( enemy.Prefab );
-            }
+        if( nodeInfo.WavesInfo.Count > 0 ) {
+            SpawnWave( nodeInfo.WavesInfo[0] );
+            _nextWaveIndex = 1;
         }
     }
 
@@ -105,6 +122,9 @@ public partial class GameField : Node {
     public void RemoveExistingShip()
     {
         _existingShips--;
+        if( _currentNodeInfo != null && _existingShips == _currentNodeInfo.MinShipsAliveForNextWave ) {
+            SpawnNextWave();
+        }
         if( _existingShips == 0 ) {
             onLevelClear();
         }
@@ -137,5 +157,25 @@ public partial class GameField : Node {
             node.QueueFree();
         }
 
+    }
+
+    private void SpawnNextWave()
+    {
+        if( _nextWaveIndex < _currentNodeInfo.WavesInfo.Count ) {
+            var waveInfo = _currentNodeInfo.WavesInfo[_nextWaveIndex];
+            SpawnWave( waveInfo );
+            _nextWaveIndex++;
+        }
+    }
+
+    private void SpawnWave( EnemyWaveInfo waveInfo )
+    {
+        foreach( var enemy in waveInfo.EnemiesInfo ) {
+            for( int i = 0; i < enemy.Count; i++ ) {
+                CallDeferred( MethodName.spawnEnemy, enemy.Prefab );
+            }
+        }
+
+        _currentLevelTimer = waveInfo.SpawnTimePoint;
     }
 }
