@@ -23,7 +23,9 @@ public partial class CustomCamera2D : Camera2D {
         if( area2D.GetParent() is BasicBullet bullet ) {
             bullet.QueueFree();
         } else if( area2D.GetParent() is EnemyShip enemyShip ) {
-            enemyShip.OnScreenWrap(ScreenWrapArea.Shape.GetRect());
+            var rect = ScreenWrapArea.Shape.GetRect();
+            rect.Size *= Scale;
+            enemyShip.OnScreenWrap( rect );
         }
 
     }

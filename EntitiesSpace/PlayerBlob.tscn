@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://dspvqpbnknyin" path="res://Scripts/PlayerBlob.cs" id="1_sucu1"]
 [ext_resource type="Texture2D" uid="uid://hikfclss8pqy" path="res://Assets/MainHero/ExtraBlob.webp" id="2_sucu1"]
 
-[node name="PlayerBlob" type="Node2D"]
+[node name="PlayerBlob" type="Node2D" node_paths=PackedStringArray("_enemyAnchor")]
 script = ExtResource("1_sucu1")
+_enemyAnchor = NodePath("EnemyAnchor")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sucu1")
 
 [node name="EnemyAnchor" type="Node2D" parent="."]
+position = Vector2(8, 17)

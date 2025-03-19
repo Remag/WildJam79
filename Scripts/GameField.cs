@@ -3,6 +3,8 @@ using System;
 
 public partial class GameField : Node {
     [Export]
+    private Camera2D _camera;
+    [Export]
     private Control _mapControl;
     [Export]
     private TextureRect _starRect;
@@ -100,8 +102,14 @@ public partial class GameField : Node {
     {
         _existingShips--;
         if( _existingShips == 0 ) {
-            _idleUiControl.Visible = true;
+            onLevelClear();
         }
+    }
+
+    private void onLevelClear()
+    {
+        Game.Player.TryGrow();
+        _idleUiControl.Visible = true;
     }
 
     public void EndGame()
@@ -111,9 +119,11 @@ public partial class GameField : Node {
 
     public void RestartGame()
     {
+        _camera.Zoom = new Vector2( 1, 1 );
         _restartButton.Visible = false;
         _idleUiControl.Visible = true;
         var player = _playerPrefab.Instantiate<Player>();
+        player.Camera = _camera;
         player.Position = new Vector2( 500, 400 );
         AddChild( player );
 

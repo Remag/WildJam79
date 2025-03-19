@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcxydx2svymhn"]
+[gd_scene load_steps=13 format=3 uid="uid://dcxydx2svymhn"]
 
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/MainBody.webp" id="3_hpvjx"]
@@ -8,86 +8,259 @@
 [ext_resource type="Script" uid="uid://f7rvj2fdt1uh" path="res://Scripts/Iris.cs" id="6_l6ohk"]
 [ext_resource type="PackedScene" uid="uid://legxaf8ejute" path="res://EntitiesSpace/PlayerBlob.tscn" id="7_oudfo"]
 
+[sub_resource type="Animation" id="Animation_hpvjx"]
+resource_name = "Growth1"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.8],
+"method": &"UpdateCameraZoom"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.8, 0.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.476988, 0.476988), Vector2(0.954, 0.954)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.476988, 0.476988), Vector2(0.954, 0.954)]
+}
+
+[sub_resource type="Animation" id="Animation_4ta28"]
+resource_name = "Growth2"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.5],
+"method": &"UpdateCameraZoom"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.954, 0.954), Vector2(1.193, 1.193)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.954, 0.954), Vector2(1.193, 1.193)]
+}
+
+[sub_resource type="Animation" id="Animation_7eort"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.476988, 0.476988)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.477, 0.477)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7eort"]
+_data = {
+&"Growth1": SubResource("Animation_hpvjx"),
+&"Growth2": SubResource("Animation_4ta28"),
+&"RESET": SubResource("Animation_7eort")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
 radius = 29.865
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_blobs")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_blobs")]
 center_of_mass_mode = 1
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("2_5ncpa")
-_mainNode = NodePath("Node2D")
-_eyeball = NodePath("Node2D/Eye")
+_mainNode = NodePath("Visual/Body")
+_eyeball = NodePath("Visual/Body/Eye")
+_animations = NodePath("AnimationPlayer")
 _maxVelocityPxSec = 350.0
 _maxHp = 99999
 _tentaclePrefab = ExtResource("3_wi0c6")
-_blobs = [NodePath("Node2D/PlayerBlob"), NodePath("Node2D/PlayerBlob2"), NodePath("Node2D/PlayerBlob3"), NodePath("Node2D/PlayerBlob4"), NodePath("Node2D/PlayerBlob6"), NodePath("Node2D/PlayerBlob7"), NodePath("Node2D/PlayerBlob8"), NodePath("Node2D/PlayerBlob9"), NodePath("Node2D/PlayerBlob10"), NodePath("Node2D/PlayerBlob11"), NodePath("Node2D/PlayerBlob12"), NodePath("Node2D/PlayerBlob13")]
+GrowthXpByLvl = Array[int]([100, 200])
+_blobs = [NodePath("Visual/PlayerBlob"), NodePath("Visual/PlayerBlob2"), NodePath("Visual/PlayerBlob3"), NodePath("Visual/PlayerBlob4"), NodePath("Visual/PlayerBlob6"), NodePath("Visual/PlayerBlob7"), NodePath("Visual/PlayerBlob8"), NodePath("Visual/PlayerBlob9"), NodePath("Visual/PlayerBlob10"), NodePath("Visual/PlayerBlob11"), NodePath("Visual/PlayerBlob12"), NodePath("Visual/PlayerBlob13")]
 
-[node name="Node2D" type="Sprite2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7eort")
+}
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Visual"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_hpvjx")
 
-[node name="Eye" type="Sprite2D" parent="Node2D"]
+[node name="Eye" type="Sprite2D" parent="Visual/Body"]
 clip_children = 2
-position = Vector2(-11.8711, 2.96761)
-scale = Vector2(1.19247, 1.19247)
+position = Vector2(-7.18555, -1.97351)
+scale = Vector2(1.17038, 1.17038)
 texture = ExtResource("4_7eort")
 
-[node name="Iris" type="Sprite2D" parent="Node2D/Eye"]
+[node name="Iris" type="Sprite2D" parent="Visual/Body/Eye"]
 texture = ExtResource("5_4ta28")
 script = ExtResource("6_l6ohk")
 
-[node name="PlayerBlob" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(100.903, -20.7742)
+position = Vector2(40.3612, -8.30968)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob2" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob2" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-118.71, 20.7742)
+position = Vector2(-47.484, 8.30968)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob3" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob3" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-26.7096, -100.903)
+position = Vector2(-10.6838, -40.3612)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob4" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob4" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(32.6451, 100.903)
+position = Vector2(13.058, 40.3612)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob6" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob6" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(130, 40)
+position = Vector2(52, 16)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob7" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob7" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-130, -40)
+position = Vector2(-52, -16)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob8" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob8" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(87.5, -100)
+position = Vector2(35, -40)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob9" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob9" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-80, 120)
+position = Vector2(-32, 48)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob10" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob10" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-145, 215)
+position = Vector2(-58, 86)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob11" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob11" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-247.5, -95)
+position = Vector2(-99, -38)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob12" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob12" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(102.5, -215)
+position = Vector2(41, -86)
+scale = Vector2(0.4, 0.4)
 
-[node name="PlayerBlob13" parent="Node2D" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob13" parent="Visual" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(242.5, 87.5)
+position = Vector2(97, 35)
+scale = Vector2(0.4, 0.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.74844, 1.18704)
-scale = Vector2(0.476988, 0.476988)
+position = Vector2(-1, 0)
+scale = Vector2(0.477, 0.477)
 shape = SubResource("CircleShape2D_a814b")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -95,6 +268,6 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-4.74844, 1.18704)
+position = Vector2(-1, 0)
 scale = Vector2(0.476988, 0.476988)
 shape = SubResource("CircleShape2D_a814b")

@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class PlayerBlobCore : Node2D {
+public partial class PlayerWeapon : Node2D {
     [Export]
     private int _weaponHeatGenSpeed = 100;
     [Export]
     private double _attackDelaySec = 0.2;
     [Export]
-    private PackedScene _bulletPrefab;
+    private BulletSpawner _bulletSpawner;
 
     private double _weaponHeat = 0;
     private double _currentDelay = 0;
@@ -29,18 +29,8 @@ public partial class PlayerBlobCore : Node2D {
         _currentDelay -= delta;
         if( _currentDelay <= 0 ) {
             _currentDelay = _attackDelaySec;
-            spawnBullet();
+            var mousePos = GetViewport().GetMousePosition();
+            _bulletSpawner.SpawnBullets( this, mousePos, Game.EnemyShipLayer );
         }
-    }
-
-    private void spawnBullet()
-    {
-        var bullet = _bulletPrefab.Instantiate<BasicBullet>();
-        var mousePos = GetViewport().GetMousePosition();
-        var bulletDir = mousePos - Game.Camera.GetCanvasTransform() * GlobalPosition;
-        bullet.Rotation = bulletDir.Angle();
-        bullet.GlobalPosition = GlobalPosition;
-        bullet.SetCollisionParams( Game.EnemyShipLayer );
-        Game.Field.AddChild( bullet );
     }
 }

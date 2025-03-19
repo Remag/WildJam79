@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using WildJam78.Scripts.EnemyMove;
 
-public partial class EnemyShip : RigidBody2D {
+public partial class EnemyShip : FoodSource {
 	[Export]
 	private int _maxHp = 3;
 	private int _currentHp = 3;
@@ -30,8 +30,6 @@ public partial class EnemyShip : RigidBody2D {
 	private AttackType _attackType = AttackType.Aim;
 	[Export]
 	private float _angle = 0.3F;
-	[Export]
-	public PackedScene CorePrefab;
 	[Export]
 	public Node2D VisualNode { get; set; }
 	[Export]
