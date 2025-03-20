@@ -41,6 +41,7 @@ _shootSoundPlayer2D = NodePath("Shoot2D")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 GeneralExp = 10
+HealHp = 5
 CorePrefab = ExtResource("6_47y8f")
 IsWeaponSource = true
 

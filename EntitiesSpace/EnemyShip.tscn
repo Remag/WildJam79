@@ -17,7 +17,7 @@ collision_mask = 0
 can_sleep = false
 angular_damp = 1.0
 script = ExtResource("1_mykhl")
-_maxHp = 7
+_maxHp = 5
 _config = ExtResource("2_caaev")
 _configRigid = ExtResource("3_4rxrc")
 _aiAttackShootDuration = 1.2
@@ -33,6 +33,7 @@ _shootSoundPlayer2D = NodePath("Shoot2D")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 GeneralExp = 10
+HealHp = 3
 CorePrefab = ExtResource("5_caaev")
 IsWeaponSource = true
 

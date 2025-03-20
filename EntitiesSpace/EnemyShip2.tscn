@@ -41,6 +41,7 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 GeneralExp = 35
+HealHp = 5
 CorePrefab = ExtResource("4_i2eit")
 IsWeaponSource = true
 

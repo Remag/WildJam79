@@ -1,36 +1,43 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy5tg0dsiv0p8"]
+[gd_scene load_steps=10 format=3 uid="uid://dy5tg0dsiv0p8"]
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_jeb3w"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_tc5lk"]
-[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/PlasmaBullet.tscn" id="3_jeb3w"]
+[ext_resource type="PackedScene" uid="uid://blldfvvl1358o" path="res://Bullets/PlasmaBulletPlayer.tscn" id="3_tc5lk"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_ovmsc"]
 [ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="5_xmu1c"]
+[ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="6_tc5lk"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_ovmsc")
-_bulletPrefab = ExtResource("3_jeb3w")
+_bulletPrefab = ExtResource("3_tc5lk")
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
-[sub_resource type="Resource" id="Resource_ipayf"]
-script = ExtResource("4_ovmsc")
-_bulletPrefab = ExtResource("3_jeb3w")
-metadata/_custom_type_script = "uid://de10ab1n1g1s"
+[sub_resource type="Resource" id="Resource_f3e6y"]
+script = ExtResource("6_tc5lk")
+_bulletPrefab = ExtResource("3_tc5lk")
+_counter = 3
+_fromAngleDeg = -15.0
+_toAngleDeg = 15.0
+metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
-[sub_resource type="Resource" id="Resource_jy6jm"]
-script = ExtResource("4_ovmsc")
-_bulletPrefab = ExtResource("3_jeb3w")
-metadata/_custom_type_script = "uid://de10ab1n1g1s"
+[sub_resource type="Resource" id="Resource_ovmsc"]
+script = ExtResource("6_tc5lk")
+_bulletPrefab = ExtResource("3_tc5lk")
+_counter = 5
+_fromAngleDeg = -30.0
+_toAngleDeg = 30.0
+metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
 script = ExtResource("1_jeb3w")
-_levelReqs = Array[int]([10, 25])
+_levelReqs = Array[int]([1, 1])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 
 [node name="Level1" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_tc5lk")
-_weaponHeatGenSpeed = 40
-_attackDelaySec = 0.15
+_weaponHeatGenSpeed = 0
+_attackDelaySec = 0.25
 _bulletSpawner = SubResource("Resource_i685c")
 
 [node name="Wings" type="Sprite2D" parent="Level1"]
@@ -42,9 +49,9 @@ texture = ExtResource("5_xmu1c")
 [node name="Level2" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_tc5lk")
-_weaponHeatGenSpeed = 50
-_attackDelaySec = 0.1
-_bulletSpawner = SubResource("Resource_ipayf")
+_weaponHeatGenSpeed = 0
+_attackDelaySec = 0.25
+_bulletSpawner = SubResource("Resource_f3e6y")
 
 [node name="Wings" type="Sprite2D" parent="Level2"]
 modulate = Color(0, 0.894118, 0.607843, 1)
@@ -69,9 +76,9 @@ texture = ExtResource("5_xmu1c")
 [node name="Level3" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_tc5lk")
-_weaponHeatGenSpeed = 65
-_attackDelaySec = 0.05
-_bulletSpawner = SubResource("Resource_jy6jm")
+_weaponHeatGenSpeed = 0
+_attackDelaySec = 0.25
+_bulletSpawner = SubResource("Resource_ovmsc")
 
 [node name="Wings" type="Sprite2D" parent="Level3"]
 modulate = Color(0, 0.894118, 0.607843, 1)
