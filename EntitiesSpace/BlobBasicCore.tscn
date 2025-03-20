@@ -1,25 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0rri7xjcdjyd"]
+[gd_scene load_steps=10 format=3 uid="uid://d0rri7xjcdjyd"]
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_k6m0d"]
 [ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_ipayf"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_jy6jm"]
 [ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="2_pgvwl"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_7d47m"]
+[ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="6_jy6jm"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_7d47m")
 _bulletPrefab = ExtResource("2_ipayf")
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
-[sub_resource type="Resource" id="Resource_ipayf"]
-script = ExtResource("4_7d47m")
+[sub_resource type="Resource" id="Resource_7d47m"]
+script = ExtResource("6_jy6jm")
 _bulletPrefab = ExtResource("2_ipayf")
-metadata/_custom_type_script = "uid://de10ab1n1g1s"
+_counter = 3
+_maxAngle = 30.0
+metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [sub_resource type="Resource" id="Resource_jy6jm"]
-script = ExtResource("4_7d47m")
+script = ExtResource("6_jy6jm")
 _bulletPrefab = ExtResource("2_ipayf")
-metadata/_custom_type_script = "uid://de10ab1n1g1s"
+_counter = 5
+_maxAngle = 60.0
+metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
 script = ExtResource("1_k6m0d")
@@ -43,7 +48,7 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("2_jy6jm")
 _weaponHeatGenSpeed = 75
 _attackDelaySec = 0.25
-_bulletSpawner = SubResource("Resource_ipayf")
+_bulletSpawner = SubResource("Resource_7d47m")
 
 [node name="Wings" type="Sprite2D" parent="Level2"]
 position = Vector2(2, -72)
