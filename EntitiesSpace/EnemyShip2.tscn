@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=17 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_i2eit"]
@@ -14,11 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="10_txwvw"]
 [ext_resource type="AudioStream" uid="uid://dr8ymu1knhgrp" path="res://Sounds/ShieldReflect.wav" id="11_oyjk0"]
 [ext_resource type="AudioStream" uid="uid://c3umdaoxchtra" path="res://Sounds/ShieldDrop.mp3" id="12_ja242"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="15_cw16v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyjk0"]
 radius = 56.0357
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_shootSoundPlayer2D", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
@@ -35,6 +36,7 @@ _bulletPrefab = ExtResource("3_sdw74")
 _angle = 0.0
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
+_shootSoundPlayer2D = NodePath("Shoot2D")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
@@ -109,3 +111,8 @@ bus = &"sfx"
 
 [node name="DamageAnchor" type="Node2D" parent="."]
 position = Vector2(-7, -20)
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_cw16v")
+max_distance = 1000.0
+bus = &"sfx"
