@@ -42,6 +42,9 @@ public partial class EnemyShip : FoodSource {
 	[Export]
 	private ShipTrail _trail;
 
+	[Export]
+	private AudioStreamPlayer2D _shootSoundPlayer2D;
+
 	private EnemyMoveHandler _moveHandler = null;
 	private EnemyMoveHandlerRigid _moveHandlerRigid = null;
 
@@ -145,7 +148,9 @@ public partial class EnemyShip : FoodSource {
 		if( _currentShootDelay < 0 ) {
 			spawnBullet( _attackType );
 			_currentShootDelay = _aiAttackShootDelay;
-		}
+			_shootSoundPlayer2D.Play();
+
+        }
 
 	}
 
