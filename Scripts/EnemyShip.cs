@@ -54,8 +54,6 @@ public partial class EnemyShip : FoodSource {
 	private bool _isShooting = false;
 	private double _currentShootDelay = 0;
 
-	public bool IsDead = false;
-
 	[Export]
 	private Node2D _offscreenIndicator = null;
 	[Export]
