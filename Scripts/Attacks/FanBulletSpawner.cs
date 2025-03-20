@@ -11,7 +11,7 @@ public partial class FanBulletSpawner : BulletSpawner {
     private float _maxAngle = 30;
     
 
-    public override void SpawnBullets( Node2D shootAnchor, Vector2 targetCanvasPos, int bulletTargetLayer )
+    public override void SpawnBullets( Node2D shootAnchor, Vector2 targetCanvasPos, bool isEnemyBullet )
     {
         for(var i = 0; i < _counter; i++ ){
         var bullet = _bulletPrefab.Instantiate<BasicBullet>();
@@ -19,7 +19,7 @@ public partial class FanBulletSpawner : BulletSpawner {
         var ang = _maxAngle*Mathf.Pi/180;
         bullet.Rotation = bulletDir.Angle() - ang + ang / i;
         bullet.GlobalPosition = shootAnchor.GlobalPosition;
-        bullet.SetCollisionParams( bulletTargetLayer );
+        bullet.SetIsEnemyBullet( isEnemyBullet );
         Game.Field.AddChild( bullet );
         }
     }
