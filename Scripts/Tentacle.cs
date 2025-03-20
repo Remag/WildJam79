@@ -29,6 +29,10 @@ public partial class Tentacle : Node2D {
 
     [Export]
     private TentacleLine _tentacleLine;
+    [Export]
+    private AudioStreamPlayer _tentacleSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _catchSoundPlayer;
     public FoodSource AttachedEntity { get; private set; }
 
     private Vector2 _currentVelocity;
@@ -60,6 +64,7 @@ public partial class Tentacle : Node2D {
     {
         AttachedEntity = entity;
         _currentMode = TentacleMode.Keep;
+        _catchSoundPlayer.Play();
     }
 
     public override void _Ready()
@@ -71,6 +76,7 @@ public partial class Tentacle : Node2D {
 
         _currentVelocity = new Vector2( _tentacleExtendSpeed, 0 ).Rotated( dirDelta.Angle() );
         updateEndRotation( _tentacleLine.Points );
+        _tentacleSoundPlayer.Play();
     }
 
     public override void _PhysicsProcess( double delta )

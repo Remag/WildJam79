@@ -207,6 +207,7 @@ bus = &"sfx"
 
 [node name="GameOver" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("16_x0cd2")
+bus = &"sfx"
 
 [node name="TestSprite" type="Sprite2D" parent="."]
 visible = false
