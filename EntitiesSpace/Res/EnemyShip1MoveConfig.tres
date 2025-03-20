@@ -12,4 +12,4 @@ targetReachRadius = 50.0
 targetReachDelay = 2.5
 maxVelocity = 375.0
 maxAngularVelocity = 2.8
-acceleration = 375.0
+acceleration = 200.0

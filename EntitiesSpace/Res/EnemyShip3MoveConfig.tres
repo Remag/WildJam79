@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_mncfp")
-minRadius = 100.0
+minRadius = 150.0
 maxRadius = 200.0
 rngAngle = 1.5708
 newTargetChooseTime = 5.0
-targetReachRadius = 150.0
+targetReachRadius = 100.0
 targetReachDelay = 3.0
-maxVelocity = 250.0
-maxAngularVelocity = 3.14159
-acceleration = 250.0
+maxVelocity = 210.0
+maxAngularVelocity = 1.83
+acceleration = 140.0
 metadata/_custom_type_script = "uid://bvixcm5fb4rto"
