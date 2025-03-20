@@ -15,6 +15,9 @@ public partial class BasicBullet : Node2D
 	private BulletDeathLogic _deathLogic;
 	
 	[Export]
+	private bool _isEnemyBullet = false;
+	
+	[Export]
 	private int _bulletDamage = 1;
 
 	private float _velocity = 0;
@@ -54,7 +57,13 @@ public partial class BasicBullet : Node2D
 		}
 	}
 
-	public void SetCollisionParams( int maskValue )
+	public void SetIsEnemyBullet( bool isEnemyBullet )
+	{
+		_isEnemyBullet = isEnemyBullet;
+		SetCollisionParams( isEnemyBullet ? Game.PlayerLayer : Game.EnemyShipLayer );
+	}
+
+	private void SetCollisionParams( int maskValue )
 	{
 		_collisionArea.CollisionMask = (uint) 1 << ( maskValue - 1 );
 	}
@@ -118,7 +127,7 @@ public partial class BasicBullet : Node2D
 		} else {
 			_velocity = Math.Min(targetedBulletMoveLogic.maxVelocity, _velocity + targetedBulletMoveLogic.acceleration * delta);
 
-			var target = Game.Player;
+			var target = GetTarget();
 			if( target != null ) {
 				var targetAngle = ( target.GlobalPosition - GlobalPosition ).Angle();
 				var targetAngleDiff = targetAngle - Rotation;
@@ -132,6 +141,31 @@ public partial class BasicBullet : Node2D
 			}
 			var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
 			Position += delta * dir;
+		}
+	}
+
+	private Node2D GetTarget()
+	{
+		if( _isEnemyBullet ) {
+			return Game.Player;
+		} else {
+			var currentPosition = GlobalPosition;
+			var currentDistanceSquared = 0f;
+			Node2D targetNode = null;
+			
+			foreach( var node in GetTree().GetNodesInGroup( "Enemy" ) ) {
+				if( node is not Node2D ) continue;
+				
+				var node2D = (Node2D) node;
+				var distanceSquared = ( node2D.GlobalPosition - currentPosition ).LengthSquared();
+				
+				if( targetNode == null || currentDistanceSquared > distanceSquared ) {
+					targetNode = node2D;
+					currentDistanceSquared = distanceSquared;
+				}
+			}
+
+			return targetNode;
 		}
 	}
 	

@@ -194,7 +194,7 @@ public partial class EnemyShip : FoodSource {
 		var bullet = _bulletPrefab.Instantiate<BasicBullet>();
 		bullet.Rotation = angle;
 		bullet.Position = Position;
-		bullet.SetCollisionParams( Game.PlayerLayer );
+		bullet.SetIsEnemyBullet( true );
 		GetParent().AddChild( bullet );
 	}
 

@@ -30,7 +30,7 @@ public partial class PlayerWeapon : Node2D {
         if( _currentDelay <= 0 ) {
             _currentDelay = _attackDelaySec;
             var mousePos = GetViewport().GetMousePosition();
-            _bulletSpawner.SpawnBullets( this, mousePos, Game.EnemyShipLayer );
+            _bulletSpawner.SpawnBullets( this, mousePos, isEnemyBullet:false );
             Game.Player.ShootSoundPlay();
         }
     }
