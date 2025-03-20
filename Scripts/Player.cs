@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Array = Godot.Collections.Array;
 
 public partial class Player : RigidBody2D {
 
@@ -46,8 +47,6 @@ public partial class Player : RigidBody2D {
     private bool _isPlayerControlled = true;
 
     private int _currentHp = 5;
-    private float _currentImpulseCountdown = 0;
-
 
     private Tentacle _activeTentacle;
 
@@ -268,5 +267,48 @@ public partial class Player : RigidBody2D {
     internal void ShootSoundPlay()
     {
         _shootSoundPlayer.Play();
+    }
+
+    public SavedState SaveState()
+    {
+        var state = new SavedState();
+        state.CurrentGrowthLevel = CurrentGrowthLevel;
+        state._currentGrowthXp = _currentGrowthXp;
+        state._decalXpLeft = _decalXpLeft;
+        state._currentBlobIndex = _currentBlobIndex;
+        state._currentHp = _currentHp;
+        foreach (var playerBlob in _blobs)
+        {
+            if( playerBlob.initCore != null ) {
+                state.blobCores.Add(playerBlob.initCore);
+            }
+        }
+        return state;
+    }
+
+    public void RestoreState( SavedState state )
+    {
+        CurrentGrowthLevel = state.CurrentGrowthLevel;
+        _currentGrowthXp = state._currentGrowthXp;
+        _decalXpLeft = state._decalXpLeft;
+        _currentBlobIndex = state._currentBlobIndex;
+        _currentHp = state._currentHp;
+        
+        foreach (var stateBlobCore in state.blobCores) {
+            attachBlob( stateBlobCore );
+        }
+    }
+    
+    public class SavedState {
+        public int CurrentGrowthLevel = 0;
+        public int _currentGrowthXp = 0;
+
+        public int _decalXpLeft = 0;
+        public int _currentBlobIndex = 0;
+
+        public int _currentHp = 5;
+
+        public Godot.Collections.Array<PackedScene> blobCores = new();
+
     }
 }

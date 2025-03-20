@@ -32,6 +32,8 @@ public partial class GameField : Node {
     private float _currentLevelTimer = 0;
     private int _nextWaveIndex = 0;
 
+    private Player.SavedState _savedPlayerState;
+
     public override void _Ready()
     {
         Game.TestSprite = (Node2D)FindChild( "TestSprite" );
@@ -44,12 +46,14 @@ public partial class GameField : Node {
 
     public override void _PhysicsProcess( double delta )
     {
-        _currentLevelTimer += (float)delta;
-        if( _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count ) {
-            var waveInfo = _currentNodeInfo.WavesInfo[_nextWaveIndex];
-            if( _currentLevelTimer >= waveInfo.SpawnTimePoint ) {
-                SpawnWave( waveInfo );
-                _nextWaveIndex++;
+        if( Game.Player != null ) {
+            _currentLevelTimer += (float)delta;
+            if( _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count ) {
+                var waveInfo = _currentNodeInfo.WavesInfo[_nextWaveIndex];
+                if( _currentLevelTimer >= waveInfo.SpawnTimePoint ) {
+                    SpawnWave( waveInfo );
+                    _nextWaveIndex++;
+                }
             }
         }
     }
@@ -82,6 +86,10 @@ public partial class GameField : Node {
 
     public void Travel( Texture2D locationBg, EnemyNodeInfo nodeInfo )
     {
+        if( Game.Player != null ) {
+            _savedPlayerState = Game.Player.SaveState();
+        }
+
         _currentNodeInfo = nodeInfo;
         _idleUiControl.Visible = nodeInfo.WavesInfo.Count == 0;
         if( locationBg == null ) {
@@ -98,6 +106,10 @@ public partial class GameField : Node {
 
     public void SpawnTestWave()
     {
+        if( Game.Player != null ) {
+            _savedPlayerState = Game.Player.SaveState();
+        }
+        
         _tutorialNode.Visible = false;
         _idleUiControl.Visible = false;
         _existingShips = 0;
@@ -153,6 +165,10 @@ public partial class GameField : Node {
         var player = _playerPrefab.Instantiate<Player>();
         player.Camera = _camera;
         player.Position = new Vector2( 500, 400 );
+        if( _savedPlayerState != null ) {
+            player.RestoreState( _savedPlayerState );
+        }
+
         AddChild( player );
 
         foreach( var node in GetTree().GetNodesInGroup( "ClearOnRestart" ) ) {
