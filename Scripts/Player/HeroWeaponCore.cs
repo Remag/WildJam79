@@ -9,7 +9,7 @@ public partial class HeroWeaponCore : Node2D {
 
     public PackedScene SrcCore { get; private set; }
 
-    private int _currentExp = 0;
+    public int _currentExp = 0;
     public int _currentLevel = 0;
 
     public void Initialize( PackedScene src )
@@ -22,7 +22,8 @@ public partial class HeroWeaponCore : Node2D {
         foreach( var node in _levelNodes ) {
             node.Visible = false;
         }
-        _levelNodes[0].Visible = true;
+
+        _levelNodes[_currentLevel].Visible = true;
     }
 
     public void GainExp( int exp )
@@ -49,5 +50,25 @@ public partial class HeroWeaponCore : Node2D {
     public void UpdateShooting( double delta )
     {
         _levelNodes[_currentLevel].UpdateShooting( delta );
+    }
+    
+    public SavedState SaveState()
+    {
+        var state = new SavedState();
+        state._currentExp = _currentExp;
+        state._currentLevel = _currentLevel;
+        return state;
+    }
+
+    public void RestoreState( SavedState state )
+    {
+        _currentExp = state._currentExp;
+        _currentLevel = state._currentLevel;
+    }
+    
+    public class SavedState {
+        public int _currentExp = 0;
+        public int _currentLevel = 0;
+
     }
 }

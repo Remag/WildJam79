@@ -26,8 +26,6 @@ public partial class GameField : Node {
     [Export]
     public WorldAudioManager WorldAudioManager { get; set; }
     
-    private int _existingShips = 0;
-    
     private EnemyNodeInfo _currentNodeInfo;
     private float _currentLevelTimer = 0;
     private int _nextWaveIndex = 0;
@@ -112,7 +110,7 @@ public partial class GameField : Node {
         
         _tutorialNode.Visible = false;
         _idleUiControl.Visible = false;
-        _existingShips = 0;
+        
         foreach( var enemy in _testWave ) {
             for( int i = 0; i < enemy.Count; i++ ) {
                 spawnEnemy( enemy.Prefab );
@@ -128,16 +126,16 @@ public partial class GameField : Node {
         AddChild( ship );
         ship.GlobalPosition = Game.Player.GlobalPosition +
                               Vector2.FromAngle( Rng.RandomRange( 0, 2 * Mathf.Pi ) ) * 700;
-        _existingShips++;
     }
 
     public void RemoveExistingShip()
     {
-        _existingShips--;
-        if( _currentNodeInfo != null && _existingShips == _currentNodeInfo.MinShipsAliveForNextWave ) {
+        var existingShips = GetTree().GetNodesInGroup( "Enemy" ).Count - 1;
+        GD.Print( "existingShips " + existingShips );
+        if( _currentNodeInfo != null && existingShips == _currentNodeInfo.MinShipsAliveForNextWave ) {
             SpawnNextWave();
         }
-        if( _existingShips == 0 ) {
+        if( existingShips == 0 ) {
             onLevelClear();
         }
     }
@@ -175,7 +173,11 @@ public partial class GameField : Node {
             node.QueueFree();
         }
 
-        SpawnNextWave();
+        if( _currentNodeInfo != null ) {
+            SpawnNextWave();
+        } else {
+            onLevelClear();
+        }
     }
 
     private void SpawnNextWave()

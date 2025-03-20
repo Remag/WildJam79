@@ -283,20 +283,31 @@ public partial class Player : RigidBody2D {
                 state.blobCores.Add(playerBlob.initCore);
             }
         }
+        foreach (var heroWeaponCore in _activeWeapons)
+        {
+            state.weaponCoreStates.Add( heroWeaponCore.SaveState() );
+        }
         return state;
     }
 
     public void RestoreState( SavedState state )
     {
+        int weaponCoreIndex = 0;
+        foreach (var stateBlobCore in state.blobCores) {
+            var newWeapon = attachBlob( stateBlobCore );
+            if( newWeapon is HeroWeaponCore weaponCore ) {
+                weaponCore.Initialize( stateBlobCore );
+                weaponCore.RestoreState( state.weaponCoreStates[weaponCoreIndex] );
+                _activeWeapons.Add( weaponCore );
+                weaponCoreIndex++;
+            }
+        }
+        
         CurrentGrowthLevel = state.CurrentGrowthLevel;
         _currentGrowthXp = state._currentGrowthXp;
         _decalXpLeft = state._decalXpLeft;
         _currentBlobIndex = state._currentBlobIndex;
         _currentHp = state._currentHp;
-        
-        foreach (var stateBlobCore in state.blobCores) {
-            attachBlob( stateBlobCore );
-        }
     }
     
     public class SavedState {
@@ -309,6 +320,7 @@ public partial class Player : RigidBody2D {
         public int _currentHp = 5;
 
         public Godot.Collections.Array<PackedScene> blobCores = new();
+        public List<HeroWeaponCore.SavedState> weaponCoreStates = new();
 
     }
 }
