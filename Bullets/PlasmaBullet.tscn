@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_a1jof"]
 [ext_resource type="Resource" uid="uid://dykswp1wubb6t" path="res://EntitiesSpace/Res/Bullets/Bullet2_MoveLogic.tres" id="2_1fycg"]
-[ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="2_spixe"]
 [ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_887uv"]
+[ext_resource type="Texture2D" uid="uid://dyx5maco2tka2" path="res://Assets/SpaceShip/Bullets/Bullet.webp" id="4_1fycg"]
 
 [sub_resource type="Resource" id="Resource_qq402"]
 script = ExtResource("3_887uv")
@@ -11,8 +11,8 @@ _maxLifeTime = 10.0
 metadata/_custom_type_script = "uid://b66fo1ud8763f"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
-radius = 1.0
-height = 28.0
+radius = 5.0
+height = 16.0
 
 [node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
 light_mask = 4
@@ -23,9 +23,9 @@ _lifespanLogic = SubResource("Resource_qq402")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(4.42803e-06, 0.776993, 0.72994, 1)
-position = Vector2(1.5, 0.250001)
-scale = Vector2(2.14286, 0.175676)
-texture = ExtResource("2_spixe")
+position = Vector2(0, -1)
+rotation = 1.5708
+texture = ExtResource("4_1fycg")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

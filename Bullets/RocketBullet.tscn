@@ -1,20 +1,20 @@
 [gd_scene load_steps=10 format=3 uid="uid://d16rl6xqrhsqr"]
 
-[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_exbaq"]
-[ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Bullet3_TargMoveLogic.tres" id="2_dj7m5"]
-[ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_7g3db"]
-[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/Bullet2.tscn" id="4_dj7m5"]
-[ext_resource type="Script" uid="uid://6x0jwm35cobd" path="res://Scripts/Bullets/BulletDeathLogic.cs" id="5_sft0l"]
-[ext_resource type="Texture2D" uid="uid://cskkeicya56ek" path="res://Assets/SpaceShip/Bullets/Rocket.webp" id="6_dj7m5"]
+[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_ehwys"]
+[ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Bullet3_TargMoveLogic.tres" id="2_umbhw"]
+[ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_oxh10"]
+[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/PlasmaBullet.tscn" id="4_cy7xo"]
+[ext_resource type="Script" uid="uid://6x0jwm35cobd" path="res://Scripts/Bullets/BulletDeathLogic.cs" id="5_nhfgg"]
+[ext_resource type="Texture2D" uid="uid://cskkeicya56ek" path="res://Assets/SpaceShip/Bullets/Rocket.webp" id="6_f8l8k"]
 
 [sub_resource type="Resource" id="Resource_dddoj"]
-script = ExtResource("3_7g3db")
+script = ExtResource("3_oxh10")
 metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="Resource" id="Resource_8m4er"]
-script = ExtResource("5_sft0l")
+script = ExtResource("5_nhfgg")
 Count = 5
-BulletPrefab = ExtResource("4_dj7m5")
+BulletPrefab = ExtResource("4_cy7xo")
 metadata/_custom_type_script = "uid://6x0jwm35cobd"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
@@ -23,9 +23,9 @@ height = 75.7182
 
 [node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
 light_mask = 4
-script = ExtResource("1_exbaq")
+script = ExtResource("1_ehwys")
 _collisionArea = NodePath("Area2D")
-_moveLogic = ExtResource("2_dj7m5")
+_moveLogic = ExtResource("2_umbhw")
 _lifespanLogic = SubResource("Resource_dddoj")
 _deathLogic = SubResource("Resource_8m4er")
 _bulletDamage = 5
@@ -36,7 +36,7 @@ rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("6_dj7m5")
+texture = ExtResource("6_f8l8k")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(2.39297e-18, 1.10313e-12)
