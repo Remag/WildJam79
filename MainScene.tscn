@@ -150,7 +150,6 @@ text = "Weapon Preset"
 [node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("3_rpqi1")]
 position = Vector2(556, 400)
 Camera = NodePath("../Camera2D")
-_maxHp = 99999
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ScreenWrapArea")]
 position = Vector2(556, 400)
@@ -191,10 +190,11 @@ offset_bottom = 2048.0
 texture = ExtResource("8_p5x2j")
 stretch_mode = 1
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer", "_buttonClickPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer")]
 script = ExtResource("8_torvr")
 BgmPlayer = NodePath("BgmPlayer")
 _buttonClickPlayer = NodePath("ButtonClick")
+_deathSoundPlayer = NodePath("GameOver")
 
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = SubResource("AudioStreamInteractive_torvr")
