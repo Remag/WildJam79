@@ -134,9 +134,17 @@ public partial class Tentacle : Node2D {
         if( _currentKeepTime >= _tentacleAttachDelay ) {
             _currentMode = TentacleMode.Shrink;
             if( !AttachedEntity.TryTentaclePull( this ) ) {
+                var endDir = getTentacleEndDir();
+                AttachedEntity.ApplyCentralImpulse( -endDir.Normalized() * 500 );
                 AttachedEntity = null;
             }
         }
+    }
+
+    private Vector2 getTentacleEndDir()
+    {
+        var points = _tentacleLine.Points;
+        return points[0] - points[1];
     }
 
     private void updateShrink( float delta )
@@ -144,7 +152,7 @@ public partial class Tentacle : Node2D {
         var shrinkDistance = _tentacleShrinkSpeed * delta;
         var points = _tentacleLine.Points;
         Debug.Assert( points.Length >= 2 );
-        
+
         if( AttachedEntity != null && IsInstanceValid( AttachedEntity ) ) {
             AttachedEntity.GlobalPosition = _tentacleLine.EndAnchor.GlobalPosition;
         }
