@@ -1,26 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://du2c5try3ydx5"]
+[gd_scene load_steps=11 format=3 uid="uid://du2c5try3ydx5"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_tvijw"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_ralwe"]
 [ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/Bullet3.tscn" id="3_0gvqq"]
 [ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/EnemyShip3MoveConfig.tres" id="3_07nkk"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_tvijw"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_v6u2j"]
 [ext_resource type="Texture2D" uid="uid://didraosdcyllq" path="res://Assets/SpaceShip/ShipBody/SmallGreen.webp" id="5_tvijw"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_fo27b"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="7_2q1eg"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="8_h1pid"]
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
 script = ExtResource("1_tvijw")
 _maxHp = 10
+SizeLevel = 1
 _config = ExtResource("2_ralwe")
 _configRigid = ExtResource("3_07nkk")
 _aiAttackShootDelay = 1.0
 _aiAttackShootDuration = 1.0
 _aiAttackShootPause = 3.0
+_damageEffect = ExtResource("4_tvijw")
+_damageEffectAnchor = NodePath("DamageAnchor")
 _bulletPrefab = ExtResource("3_0gvqq")
 _angle = 0.0
 VisualNode = NodePath("Visuals")
@@ -75,3 +79,6 @@ monitoring = false
 position = Vector2(-4.34399e-05, -12)
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-14.0274, 6.19361, -3.64974e-05, -11.871, 14.0274, 6.19349, 5.39527e-05, 17.5484)
+
+[node name="DamageAnchor" type="Node2D" parent="."]
+position = Vector2(-1, -12)

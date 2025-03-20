@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=9 format=3 uid="uid://nh1c0ycvlv14"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_caaev"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_caaev"]
 [ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/Bullet2.tscn" id="3_mmokd"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_7jj5h"]
 [ext_resource type="Texture2D" uid="uid://dh5vfxtkx4mwr" path="res://Assets/SpaceShip/ShipBody/SmallRed.webp" id="5_7jj5h"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 can_sleep = false
@@ -18,6 +19,8 @@ _maxHp = 7
 _config = ExtResource("2_caaev")
 _aiAttackShootDuration = 1.2
 _aiAttackShootPause = 2.0
+_damageEffect = ExtResource("3_caaev")
+_damageEffectAnchor = NodePath("DamageAnchor")
 _bulletPrefab = ExtResource("3_mmokd")
 _attackType = 1
 _angle = 0.262
@@ -65,3 +68,6 @@ monitoring = false
 position = Vector2(0.499998, -12)
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-12.9315, 7.22581, -0.219177, -13.4194, 12.4932, 7.22581, -0.219177, 22.1935)
+
+[node name="DamageAnchor" type="Node2D" parent="."]
+position = Vector2(1, 9)

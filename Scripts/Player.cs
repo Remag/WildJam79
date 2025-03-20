@@ -187,7 +187,7 @@ public partial class Player : RigidBody2D {
                 if( mouseE.Pressed ) {
                     spawnTentacle();
                 } else {
-                    DestroyTentacle();
+                    _activeTentacle?.AbortExtend();
                 }
             }
         }
@@ -206,10 +206,12 @@ public partial class Player : RigidBody2D {
 
     private void spawnTentacle()
     {
-        _activeTentacle?.QueueFree();
-        _activeTentacle = _tentaclePrefab.Instantiate<Tentacle>();
-        _mainNode.AddChild( _activeTentacle );
-        _activeTentacle.Initialize( this );
+        if( _activeTentacle == null ) {
+            _activeTentacle?.QueueFree();
+            _activeTentacle = _tentaclePrefab.Instantiate<Tentacle>();
+            _activeTentacle.Initialize( this );
+            Game.Field.AddChild( _activeTentacle );
+        }
     }
 
     public void DestroyTentacle()

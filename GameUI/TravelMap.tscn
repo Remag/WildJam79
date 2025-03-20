@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cek8px8d5iiw8"]
+[gd_scene load_steps=10 format=3 uid="uid://cek8px8d5iiw8"]
 
 [ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
 [ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bchrtaxng7su0" path="res://GameUI/ShipInfoHint.tscn" id="2_xrfvj"]
 [ext_resource type="StyleBox" uid="uid://bx70hubj1enkt" path="res://GameUI/MapModeActiveStyle.tres" id="3_xrfvj"]
 [ext_resource type="StyleBox" uid="uid://d2ojcbi804co1" path="res://GameUI/MapNodeCompletedStyle.tres" id="4_agtnh"]
-[ext_resource type="Resource" uid="uid://rw1yh88a1fh" path="res://Map/Node2EnemyInfo.tres" id="7_agtnh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k420c"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 0.886275)
@@ -73,7 +72,6 @@ offset_left = 0.0
 offset_top = 80.0
 offset_right = 17.0
 offset_bottom = 96.0
-_nodeInfo = ExtResource("7_agtnh")
 _next = [NodePath("../MapNode3"), NodePath("../MapNode14")]
 
 [node name="MapNode3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]

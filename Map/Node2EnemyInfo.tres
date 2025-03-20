@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=10 format=3 uid="uid://rw1yh88a1fh"]
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://rw1yh88a1fh"]
 
 [ext_resource type="PackedScene" uid="uid://du2c5try3ydx5" path="res://EntitiesSpace/EnemyShip3.tscn" id="1_y153j"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_vgou6"]

@@ -22,8 +22,7 @@ offset_right = 54.0
 offset_bottom = 142.0
 theme_override_styles/panel = ExtResource("1_jnycp")
 script = ExtResource("1_1nc5i")
-_enemies = Array[Object]([])
-_next = Array[Object]([])
+_next = []
 _linePrefab = ExtResource("3_dn05m")
 
 [node name="Button" type="Button" parent="."]

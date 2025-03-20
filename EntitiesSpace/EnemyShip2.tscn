@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=16 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_i2eit"]
 [ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="3_ja242"]
 [ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="3_sdw74"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_3lius"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_i2eit"]
 [ext_resource type="Texture2D" uid="uid://bkurvmjdon55s" path="res://Assets/SpaceShip/ShipBody/SmallPurple.webp" id="5_i2eit"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_flhrm"]
@@ -17,7 +18,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyjk0"]
 radius = 56.0357
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
@@ -28,12 +29,15 @@ _configRigid = ExtResource("3_ja242")
 _aiAttackShootDelay = 1.0
 _aiAttackShootDuration = 3.2
 _aiAttackShootPause = 2.25
+_damageEffect = ExtResource("4_3lius")
+_damageEffectAnchor = NodePath("DamageAnchor")
 _bulletPrefab = ExtResource("3_sdw74")
 _angle = 0.0
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
+_shield = NodePath("Shield")
 GeneralExp = 100
 CorePrefab = ExtResource("4_i2eit")
 IsWeaponSource = true
@@ -102,3 +106,6 @@ bus = &"sfx"
 [node name="Drop" type="AudioStreamPlayer" parent="Shield"]
 stream = ExtResource("12_ja242")
 bus = &"sfx"
+
+[node name="DamageAnchor" type="Node2D" parent="."]
+position = Vector2(-7, -20)

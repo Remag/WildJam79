@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using WildJam78.Scripts.EnemyMove;
 
 public partial class EnemyShip : FoodSource {
@@ -23,6 +24,10 @@ public partial class EnemyShip : FoodSource {
 
 	private bool _isAiEnabled = true;
 
+	[Export]
+	private PackedScene _damageEffect;
+	[Export]
+	private Node2D _damageEffectAnchor;
 	[Export]
 	private PackedScene _bulletPrefab;
 	public enum AttackType {
@@ -60,6 +65,9 @@ public partial class EnemyShip : FoodSource {
 
 	public override void _Ready()
 	{
+		Debug.Assert( _damageEffect != null, "Damage effect not set in the enemy ship prefab." );
+		Debug.Assert( _damageEffectAnchor != null, "Damage effect anchor not set in the enemy ship prefab." );
+
 		_moveHandler = new EnemyMoveHandler( config: _config, targetRotation: Rotation, enemyShip: this );
 		_moveHandlerRigid = new EnemyMoveHandlerRigid( config: _configRigid, enemyShip: this );
 
@@ -229,40 +237,81 @@ public partial class EnemyShip : FoodSource {
 
 	public void OnBulletCollision( int damage )
 	{
-		_currentHp -= damage;
+		doDamage( damage, null );
+	}
+
+	public override Node2D GetTentacleAnchor()
+	{
+		return _damageEffectAnchor;
+	}
+
+	public override void OnTentacleCollision()
+	{
+	}
+
+	public override bool TryTentaclePull( Tentacle tentacle )
+	{
+		var playerSize = Game.Player.CurrentGrowthLevel;
+		if( playerSize > SizeLevel || isWeak() ) {
+			prepareTentacleAttach();
+			return true;
+		} else {
+			doDamage( _maxHp / 2 + 1, tentacle.GetEndAnchor() );
+			return false;
+		}
+	}
+
+	private void doDamage( int dmg, Node2D dmgPositionSrc )
+	{
+		var prevWeak = isWeak();
+		_currentHp -= dmg;
+
 		if( _currentHp <= 0 ) {
 			IsDead = true;
 			Game.Field.RemoveExistingShip();
 			QueueFree();
 			_offscreenIndicator.QueueFree();
+		} else if( !prevWeak && isWeak() ) {
+			onMajorDamage( dmgPositionSrc );
 		}
 		VisualNode.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
 	}
 
-	public void OnTentacleCollision()
+	private void onMajorDamage( Node2D dmgPositionSource )
 	{
-		var playerSize = Game.Player.CurrentGrowthLevel;
-		if( playerSize > SizeLevel ) {
-			_currentHp = 0;
-		} else {
-			_currentHp -= _maxHp / 2 + 1;
+		if( _damageEffect != null ) {
+			var dmgEffect = _damageEffect.Instantiate<Node2D>();
+			_damageEffectAnchor.AddChild( dmgEffect );
+			if( dmgPositionSource != null ) {
+				dmgEffect.GlobalPosition = dmgPositionSource.GlobalPosition;
+			}
 		}
+	}
 
-    	Game.Player.DestroyTentacle();
-		if( _currentHp <= 0 ) {
-			Game.Player?.Assimilate( this );
-			IsDead = true;
-			Game.Field.RemoveExistingShip();
-			QueueFree();
-			_offscreenIndicator.QueueFree();
-		}
+	private bool isWeak()
+	{
+		return _currentHp < _maxHp / 2.0;
+	}
+
+	private void prepareTentacleAttach()
+	{
+		Freeze = true;
+		_isAiEnabled = false;
+	}
+
+	public override void OnBroughtToPlayer()
+	{
+		Game.Player?.Assimilate( this );
+		IsDead = true;
+		Game.Field.RemoveExistingShip();
+		QueueFree();
+		_offscreenIndicator.QueueFree();
 	}
 
 	public void DisableAllBehavior()
 	{
 		_isAiEnabled = false;
 	}
-
 
 	public void SetTrail( bool isSet )
 	{

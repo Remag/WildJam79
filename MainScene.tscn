@@ -21,7 +21,7 @@
 [sub_resource type="Resource" id="Resource_hbc2u"]
 script = ExtResource("4_5crlr")
 Prefab = ExtResource("3_4mcbk")
-Count = 3
+Count = 2
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="Resource" id="Resource_nm5af"]
@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 [sub_resource type="Resource" id="Resource_x0cd2"]
 script = ExtResource("4_5crlr")
 Prefab = ExtResource("6_mctxq")
-Count = 1
+Count = 3
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf2cd"]
@@ -191,11 +191,10 @@ offset_bottom = 2048.0
 texture = ExtResource("8_p5x2j")
 stretch_mode = 1
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("BgmPlayer", "_buttonClickPlayer")]
 script = ExtResource("8_torvr")
 BgmPlayer = NodePath("BgmPlayer")
 _buttonClickPlayer = NodePath("ButtonClick")
-_deathSoundPlayer = NodePath("GameOver")
 
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = SubResource("AudioStreamInteractive_torvr")

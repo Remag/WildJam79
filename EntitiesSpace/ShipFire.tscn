@@ -46,6 +46,7 @@ alpha_curve = SubResource("CurveTexture_66gcr")
 [node name="ShipFire" type="Node2D"]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_5jcvl")
 position = Vector2(1, -1)
 amount = 64
