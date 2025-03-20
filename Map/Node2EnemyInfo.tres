@@ -1,37 +1,74 @@
-[gd_resource type="Resource" load_steps=10 format=3 uid="uid://rw1yh88a1fh"]
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=17 format=3 uid="uid://rw1yh88a1fh"]
 
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="1_p8dmq"]
 [ext_resource type="PackedScene" uid="uid://du2c5try3ydx5" path="res://EntitiesSpace/EnemyShip3.tscn" id="1_y153j"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_vgou6"]
 [ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="3_p8dmq"]
 [ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="4_es8in"]
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="4_vgou6"]
 
-[sub_resource type="Resource" id="Resource_hxb48"]
+[sub_resource type="Resource" id="Resource_es8in"]
 script = ExtResource("2_vgou6")
-Prefab = ExtResource("1_y153j")
-Count = 1
+Prefab = ExtResource("1_p8dmq")
+Count = 2
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
-[sub_resource type="Resource" id="Resource_5st36"]
+[sub_resource type="Resource" id="Resource_mphxu"]
 script = ExtResource("3_p8dmq")
-EnemiesInfo = Array[Object]([SubResource("Resource_hxb48")])
+EnemiesInfo = Array[Object]([SubResource("Resource_es8in")])
 SpawnTimePoint = 0.0
 metadata/_custom_type_script = "uid://djvcagko6b25v"
 
-[sub_resource type="Resource" id="Resource_p8dmq"]
+[sub_resource type="Resource" id="Resource_67aog"]
 script = ExtResource("2_vgou6")
 Prefab = ExtResource("4_vgou6")
 Count = 1
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
-[sub_resource type="Resource" id="Resource_es8in"]
+[sub_resource type="Resource" id="Resource_eg6v4"]
+script = ExtResource("2_vgou6")
+Prefab = ExtResource("1_p8dmq")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_1xuag"]
 script = ExtResource("3_p8dmq")
-EnemiesInfo = Array[Object]([SubResource("Resource_p8dmq")])
-SpawnTimePoint = 2.0
+EnemiesInfo = Array[Object]([SubResource("Resource_67aog"), SubResource("Resource_eg6v4")])
+SpawnTimePoint = 3.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_kduj3"]
+script = ExtResource("2_vgou6")
+Prefab = ExtResource("1_y153j")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_skyop"]
+script = ExtResource("3_p8dmq")
+EnemiesInfo = Array[Object]([SubResource("Resource_kduj3")])
+SpawnTimePoint = 8.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_m5cp2"]
+script = ExtResource("2_vgou6")
+Prefab = ExtResource("1_p8dmq")
+Count = 3
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_p8dmq"]
+script = ExtResource("2_vgou6")
+Prefab = ExtResource("4_vgou6")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_6qajo"]
+script = ExtResource("3_p8dmq")
+EnemiesInfo = Array[Object]([SubResource("Resource_m5cp2"), SubResource("Resource_p8dmq")])
+SpawnTimePoint = 15.0
 metadata/_custom_type_script = "uid://djvcagko6b25v"
 
 [resource]
 script = ExtResource("4_es8in")
-WavesInfo = Array[Object]([SubResource("Resource_5st36"), SubResource("Resource_es8in")])
+WavesInfo = Array[Object]([SubResource("Resource_mphxu"), SubResource("Resource_1xuag"), SubResource("Resource_skyop"), SubResource("Resource_6qajo")])
 MinShipsAliveForNextWave = 1
 metadata/_custom_type_script = "uid://3et64xg5xbi4"
