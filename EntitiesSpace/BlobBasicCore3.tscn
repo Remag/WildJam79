@@ -1,99 +1,108 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0rri7xjcdjyd"]
+[gd_scene load_steps=9 format=3 uid="uid://dy5tg0dsiv0p8"]
 
-[ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_k6m0d"]
-[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_ipayf"]
-[ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_jy6jm"]
-[ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="2_pgvwl"]
-[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_7d47m"]
+[ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_jeb3w"]
+[ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_tc5lk"]
+[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/Bullet2.tscn" id="3_jeb3w"]
+[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_ovmsc"]
+[ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="5_xmu1c"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
-script = ExtResource("4_7d47m")
-_bulletPrefab = ExtResource("2_ipayf")
+script = ExtResource("4_ovmsc")
+_bulletPrefab = ExtResource("3_jeb3w")
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_ipayf"]
-script = ExtResource("4_7d47m")
-_bulletPrefab = ExtResource("2_ipayf")
+script = ExtResource("4_ovmsc")
+_bulletPrefab = ExtResource("3_jeb3w")
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_jy6jm"]
-script = ExtResource("4_7d47m")
-_bulletPrefab = ExtResource("2_ipayf")
+script = ExtResource("4_ovmsc")
+_bulletPrefab = ExtResource("3_jeb3w")
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
-script = ExtResource("1_k6m0d")
-_levelReqs = Array[int]([5, 10])
+script = ExtResource("1_jeb3w")
+_levelReqs = Array[int]([10, 25])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 
 [node name="Level1" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("2_jy6jm")
-_weaponHeatGenSpeed = 50
-_attackDelaySec = 0.5
+script = ExtResource("2_tc5lk")
+_weaponHeatGenSpeed = 40
+_attackDelaySec = 0.15
 _bulletSpawner = SubResource("Resource_i685c")
 
 [node name="Wings" type="Sprite2D" parent="Level1"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Level2" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("2_jy6jm")
-_weaponHeatGenSpeed = 75
-_attackDelaySec = 0.25
+script = ExtResource("2_tc5lk")
+_weaponHeatGenSpeed = 50
+_attackDelaySec = 0.1
 _bulletSpawner = SubResource("Resource_ipayf")
 
 [node name="Wings" type="Sprite2D" parent="Level2"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Wings3" type="Sprite2D" parent="Level2"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(-30, -68)
 rotation = -0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Wings2" type="Sprite2D" parent="Level2"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(42, -68)
 rotation = 0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Level3" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("2_jy6jm")
-_weaponHeatGenSpeed = 120
-_attackDelaySec = 0.15
+script = ExtResource("2_tc5lk")
+_weaponHeatGenSpeed = 65
+_attackDelaySec = 0.05
 _bulletSpawner = SubResource("Resource_jy6jm")
 
 [node name="Wings" type="Sprite2D" parent="Level3"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Wings4" type="Sprite2D" parent="Level3"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(-12, -72)
 rotation = -0.191986
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Wings5" type="Sprite2D" parent="Level3"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(20, -72)
 rotation = 0.191986
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Wings3" type="Sprite2D" parent="Level3"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(-30, -68)
 rotation = -0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")
 
 [node name="Wings2" type="Sprite2D" parent="Level3"]
+modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(42, -68)
 rotation = 0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
+texture = ExtResource("5_xmu1c")

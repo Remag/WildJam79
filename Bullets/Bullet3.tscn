@@ -18,8 +18,8 @@ BulletPrefab = ExtResource("4_dj7m5")
 metadata/_custom_type_script = "uid://6x0jwm35cobd"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
-radius = 4.0
-height = 24.0
+radius = 7.0
+height = 58.0
 
 [node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
 light_mask = 4
@@ -32,9 +32,9 @@ _bulletDamage = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.835718, 1.73271e-06, 4.81307e-07, 1)
-position = Vector2(0, 2.98023e-08)
+position = Vector2(0, 3.63798e-12)
 rotation = 1.5708
-scale = Vector2(0.609582, 0.577086)
+scale = Vector2(1.07639, 1.45612)
 texture = ExtResource("2_exbaq")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -42,6 +42,7 @@ collision_layer = 6
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a1jof")
 

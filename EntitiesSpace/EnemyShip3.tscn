@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/Bullet3.tscn" id="3_0gvqq"]
 [ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/EnemyShip3MoveConfig.tres" id="3_07nkk"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_tvijw"]
-[ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_v6u2j"]
 [ext_resource type="Texture2D" uid="uid://didraosdcyllq" path="res://Assets/SpaceShip/ShipBody/SmallGreen.webp" id="5_tvijw"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_fo27b"]
+[ext_resource type="PackedScene" uid="uid://tdcj5t5ppshr" path="res://EntitiesSpace/BlobBasicCore2.tscn" id="6_tvijw"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="7_2q1eg"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="8_h1pid"]
 
@@ -31,8 +31,8 @@ VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
-GeneralExp = 100
-CorePrefab = ExtResource("4_v6u2j")
+GeneralExp = 60
+CorePrefab = ExtResource("6_tvijw")
 IsWeaponSource = true
 
 [node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]

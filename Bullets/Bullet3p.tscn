@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://breswxh40svgb"]
+
+[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_lsiip"]
+[ext_resource type="Script" uid="uid://c1m4v0ibdsq2e" path="res://Scripts/Bullets/MoveLogic/LinearBulletMoveLogic.cs" id="2_xa50i"]
+[ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_6mct8"]
+[ext_resource type="Texture2D" uid="uid://qm036ucedfws" path="res://TempAssets/Missile.png" id="6_03g2t"]
+
+[sub_resource type="Resource" id="Resource_i3lyg"]
+script = ExtResource("2_xa50i")
+startMinVelocity = 100.0
+startMaxVelocity = 100.0
+maxVelocity = 450.0
+acceleration = 75.0
+metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"
+
+[sub_resource type="Resource" id="Resource_dddoj"]
+script = ExtResource("3_6mct8")
+metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
+radius = 7.0
+height = 58.0
+
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
+light_mask = 4
+script = ExtResource("1_lsiip")
+_collisionArea = NodePath("Area2D")
+_moveLogic = SubResource("Resource_i3lyg")
+_lifespanLogic = SubResource("Resource_dddoj")
+_bulletDamage = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.72755, 0.634781, 3.85046e-07, 1)
+position = Vector2(0, 3.63798e-12)
+rotation = 1.5708
+scale = Vector2(1.07639, 1.45612)
+texture = ExtResource("6_03g2t")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_a1jof")
+
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaCollision"]

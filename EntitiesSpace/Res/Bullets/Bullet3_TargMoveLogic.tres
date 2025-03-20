@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource("1_as5qj")
-startMinVelocity = 200.0
-startMaxVelocity = 200.0
-maxVelocity = 500.0
+startMinVelocity = 100.0
+startMaxVelocity = 100.0
+maxVelocity = 450.0
 angularVelocity = 2.1
-acceleration = 100.0
+acceleration = 75.0
 activeTime = 10.0
 inactiveFriction = 200.0
 metadata/_custom_type_script = "uid://bmqtgdfo6tysn"
