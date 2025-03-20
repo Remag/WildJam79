@@ -72,6 +72,7 @@ public partial class Player : RigidBody2D {
 
         _currentHp -= damage;
         if( _currentHp <= 0 ) {
+            DestroyTentacle();
             QueueFree();
             Game.Field.EndGame();
         }
