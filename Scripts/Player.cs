@@ -100,6 +100,7 @@ public partial class Player : RigidBody2D {
         if( food.IsWeaponSource ) {
             AssimilateWeapon( food );
         }
+        _currentHp = Math.Min( _currentHp + food.HealHp, _maxHp );
         _chompSoundPlayer.Play();
     }
 

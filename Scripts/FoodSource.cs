@@ -7,6 +7,8 @@ public abstract partial class FoodSource : RigidBody2D {
     [Export]
     public int WeaponXp = 1;
     [Export]
+    public int HealHp = 1;
+    [Export]
     public PackedScene CorePrefab;
     [Export]
     public bool IsWeaponSource;
