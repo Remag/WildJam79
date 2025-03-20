@@ -122,6 +122,11 @@ public partial class Tentacle : Node2D {
     private void updateKeep( float delta )
     {
         Debug.Assert( AttachedEntity != null );
+        if( !IsInstanceValid( AttachedEntity ) ) {
+            _currentMode = TentacleMode.Shrink;
+            return;
+        }
+
         _tentacleLine.EndAnchor.GlobalPosition = AttachedEntity.GetTentacleAnchor().GlobalPosition;
         updateLineSave( delta );
 
@@ -140,7 +145,7 @@ public partial class Tentacle : Node2D {
         var points = _tentacleLine.Points;
         Debug.Assert( points.Length >= 2 );
         
-        if( AttachedEntity != null ) {
+        if( AttachedEntity != null && IsInstanceValid( AttachedEntity ) ) {
             AttachedEntity.GlobalPosition = _tentacleLine.EndAnchor.GlobalPosition;
         }
 
@@ -161,7 +166,7 @@ public partial class Tentacle : Node2D {
             }
         }
 
-        if( AttachedEntity != null ) {
+        if( AttachedEntity != null && IsInstanceValid( AttachedEntity ) ) {
             AttachedEntity.OnBroughtToPlayer();
         }
         Game.Player.DestroyTentacle();
