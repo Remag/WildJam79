@@ -16,14 +16,16 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 script = ExtResource("6_jy6jm")
 _bulletPrefab = ExtResource("2_ipayf")
 _counter = 3
-_maxAngle = 30.0
+_fromAngleDeg = -30.0
+_toAngleDeg = 30.0
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [sub_resource type="Resource" id="Resource_jy6jm"]
 script = ExtResource("6_jy6jm")
 _bulletPrefab = ExtResource("2_ipayf")
 _counter = 5
-_maxAngle = 60.0
+_fromAngleDeg = -30.0
+_toAngleDeg = 30.0
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
