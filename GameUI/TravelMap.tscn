@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cek8px8d5iiw8"]
+[gd_scene load_steps=30 format=3 uid="uid://cek8px8d5iiw8"]
 
 [ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
 [ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bchrtaxng7su0" path="res://GameUI/ShipInfoHint.tscn" id="2_xrfvj"]
 [ext_resource type="StyleBox" uid="uid://bx70hubj1enkt" path="res://GameUI/MapModeActiveStyle.tres" id="3_xrfvj"]
 [ext_resource type="StyleBox" uid="uid://d2ojcbi804co1" path="res://GameUI/MapNodeCompletedStyle.tres" id="4_agtnh"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="7_03qm0"]
+[ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="8_hxb48"]
+[ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="9_5st36"]
+[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="10_liq8u"]
+[ext_resource type="PackedScene" uid="uid://du2c5try3ydx5" path="res://EntitiesSpace/EnemyShip3.tscn" id="11_qs51v"]
+[ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="12_s18lq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k420c"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 0.886275)
@@ -16,6 +22,90 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_qk8cv"]
 events = [SubResource("InputEventKey_k420c")]
+
+[sub_resource type="Resource" id="Resource_xmqkv"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("7_03qm0")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_qpfd0"]
+script = ExtResource("9_5st36")
+EnemiesInfo = Array[Object]([SubResource("Resource_xmqkv")])
+SpawnTimePoint = 0.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_b783a"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("10_liq8u")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_g1d0w"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("7_03qm0")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_t8u7x"]
+script = ExtResource("9_5st36")
+EnemiesInfo = Array[Object]([SubResource("Resource_b783a"), SubResource("Resource_g1d0w")])
+SpawnTimePoint = 6.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_bh7x0"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("11_qs51v")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_74msd"]
+script = ExtResource("9_5st36")
+EnemiesInfo = Array[Object]([SubResource("Resource_bh7x0")])
+SpawnTimePoint = 16.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_rh1lp"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("10_liq8u")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_q2yjy"]
+script = ExtResource("9_5st36")
+EnemiesInfo = Array[Object]([SubResource("Resource_rh1lp")])
+SpawnTimePoint = 24.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_os0sj"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("10_liq8u")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_jdl5w"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("11_qs51v")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_tux2v"]
+script = ExtResource("8_hxb48")
+Prefab = ExtResource("7_03qm0")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_4uiuo"]
+script = ExtResource("9_5st36")
+EnemiesInfo = Array[Object]([SubResource("Resource_os0sj"), SubResource("Resource_jdl5w"), SubResource("Resource_tux2v")])
+SpawnTimePoint = 40.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_3bb5o"]
+script = ExtResource("12_s18lq")
+WavesInfo = Array[Object]([SubResource("Resource_qpfd0"), SubResource("Resource_t8u7x"), SubResource("Resource_74msd"), SubResource("Resource_q2yjy"), SubResource("Resource_4uiuo")])
+MinShipsAliveForNextWave = 1
+metadata/_custom_type_script = "uid://3et64xg5xbi4"
 
 [node name="TravelMap" type="Control" node_paths=PackedStringArray("_startNode", "_hintMarginContainer", "_hintContainer", "NodeContainer")]
 layout_mode = 3
@@ -72,6 +162,7 @@ offset_left = 0.0
 offset_top = 80.0
 offset_right = 17.0
 offset_bottom = 96.0
+_nodeInfo = SubResource("Resource_3bb5o")
 _next = [NodePath("../MapNode3"), NodePath("../MapNode14")]
 
 [node name="MapNode3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]

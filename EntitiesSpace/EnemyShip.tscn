@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=11 format=3 uid="uid://nh1c0ycvlv14"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
 [ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_caaev"]
-[ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_caaev"]
-[ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_caaev"]
+[ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_4rxrc"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_caaev"]
 [ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/Bullet2.tscn" id="3_mmokd"]
 [ext_resource type="Texture2D" uid="uid://dh5vfxtkx4mwr" path="res://Assets/SpaceShip/ShipBody/SmallRed.webp" id="5_7jj5h"]
@@ -20,9 +19,9 @@ angular_damp = 1.0
 script = ExtResource("1_mykhl")
 _maxHp = 7
 _config = ExtResource("2_caaev")
-_configRigid = ExtResource("3_caaev")
+_configRigid = ExtResource("3_4rxrc")
 _aiAttackShootDuration = 1.2
-_aiAttackShootPause = 2.0
+_aiAttackShootPause = 2.5
 _damageEffect = ExtResource("3_caaev")
 _damageEffectAnchor = NodePath("DamageAnchor")
 _bulletPrefab = ExtResource("3_mmokd")
