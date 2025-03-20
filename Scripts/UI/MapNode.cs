@@ -42,12 +42,14 @@ public partial class MapNode : Control {
     public void OnNodeEntered()
     {
         var hintEnemies = new Godot.Collections.Array<EnemyInfo>();
-        foreach (var enemyWaveInfo in _nodeInfo.WavesInfo) {
-            foreach (var enemyInfo in enemyWaveInfo.EnemiesInfo)
-            {
-                hintEnemies.Add( enemyInfo );                
+        if( _nodeInfo != null ) {
+            foreach( var enemyWaveInfo in _nodeInfo.WavesInfo ) {
+                foreach( var enemyInfo in enemyWaveInfo.EnemiesInfo ) {
+                    hintEnemies.Add( enemyInfo );
+                }
             }
         }
+
         Game.TravelMap.SetEnemyHint( hintEnemies );
     }
 

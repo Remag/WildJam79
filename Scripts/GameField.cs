@@ -144,10 +144,12 @@ public partial class GameField : Node {
 
     public void RestartGame()
     {
+        _nextWaveIndex = 0;
+        
         Game.Field.WorldAudioManager.ButtonClickPlay();
-        _camera.Zoom = new Vector2( 1, 1 );
+        
         _restartButton.Visible = false;
-        _idleUiControl.Visible = true;
+        _idleUiControl.Visible = false;
         var player = _playerPrefab.Instantiate<Player>();
         player.Camera = _camera;
         player.Position = new Vector2( 500, 400 );
@@ -157,6 +159,7 @@ public partial class GameField : Node {
             node.QueueFree();
         }
 
+        SpawnNextWave();
     }
 
     private void SpawnNextWave()
