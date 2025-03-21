@@ -19,6 +19,8 @@ public partial class EnemyShip : FoodSource {
 	[Export]
 	private PackedScene _damageEffect;
 	[Export]
+	private Godot.Collections.Array<PackedScene> _partDecals = new();
+	[Export]
 	private Node2D _damageEffectAnchor;
 
 	[Export]
@@ -57,16 +59,19 @@ public partial class EnemyShip : FoodSource {
 
 	public override void _IntegrateForces( PhysicsDirectBodyState2D state )
 	{
-		if( MoveDelay <= 0 ) {
+		if( MoveDelay <= 0 && !IsDead ) {
 			base._IntegrateForces( state );
 			_moveHandlerRigid?.OnShipIntegrateForces( state );
+		}
+		if( IsDead ) {
+
 		}
 	}
 
 	public override void _PhysicsProcess( double delta )
 	{
 		MoveDelay -= delta;
-		if( MoveDelay <= 0 && IsShootingEnabled ) {
+		if( MoveDelay <= 0 && IsShootingEnabled && !IsDead ) {
 			handleIndicator();
 		}
 	}
@@ -145,17 +150,30 @@ public partial class EnemyShip : FoodSource {
 
 		if( _currentHp <= 0 ) {
 			IsDead = true;
+			IsShootingEnabled = false;
 			Game.Field.RemoveExistingShip();
-			QueueFree();
-			_offscreenIndicator.QueueFree();
+			resetColor();
+			onMajorDamage( dmgPositionSrc );
+			_trail.HideTrail();
+			if( IsInstanceValid( _offscreenIndicator ) ) {
+				_offscreenIndicator.QueueFree();
+			}
+
 		} else if( !prevWeak && isWeak() ) {
 			onMajorDamage( dmgPositionSrc );
 		}
 		VisualNode.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / _maxHp );
 	}
 
+	private void resetColor()
+	{
+		var tween = CreateTween();
+		tween.TweenProperty( VisualNode, "modulate", Colors.DarkGray, 0.5 );
+	}
+
 	private void onMajorDamage( Node2D dmgPositionSource )
 	{
+		spawnParts( dmgPositionSource );
 		if( _damageEffect != null ) {
 			var dmgEffect = _damageEffect.Instantiate<Node2D>();
 			_damageEffectAnchor.AddChild( dmgEffect );
@@ -163,6 +181,18 @@ public partial class EnemyShip : FoodSource {
 				dmgEffect.GlobalPosition = dmgPositionSource.GlobalPosition;
 			}
 		}
+	}
+
+	private void spawnParts( Node2D dmgPositionSource )
+	{
+		if( _partDecals.Count == 0 ) {
+			return;
+		}
+		var partPrefab = Rng.Choose( _partDecals );
+		var part = partPrefab.Instantiate<Node2D>();
+		var posSource = dmgPositionSource ?? this;
+		part.GlobalPosition = posSource.GlobalPosition;
+		Game.Field.AddChild( part );
 	}
 
 	private bool isWeak()
@@ -182,7 +212,9 @@ public partial class EnemyShip : FoodSource {
 		IsDead = true;
 		Game.Field.RemoveExistingShip();
 		QueueFree();
-		_offscreenIndicator.QueueFree();
+		if( IsInstanceValid( _offscreenIndicator ) ) {
+			_offscreenIndicator.QueueFree();
+		}
 	}
 
 	public void DisableAllBehavior()

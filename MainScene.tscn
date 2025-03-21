@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=22 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
-[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="3_a814b"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_x0cd2"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="4_3slyh"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="4_5crlr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
@@ -21,20 +21,8 @@
 
 [sub_resource type="Resource" id="Resource_hbc2u"]
 script = ExtResource("4_5crlr")
-Prefab = ExtResource("3_a814b")
+Prefab = ExtResource("4_3slyh")
 Count = 2
-metadata/_custom_type_script = "uid://i8f3bi4mcsst"
-
-[sub_resource type="Resource" id="Resource_nm5af"]
-script = ExtResource("4_5crlr")
-Prefab = ExtResource("3_a814b")
-Count = 1
-metadata/_custom_type_script = "uid://i8f3bi4mcsst"
-
-[sub_resource type="Resource" id="Resource_x0cd2"]
-script = ExtResource("4_5crlr")
-Prefab = ExtResource("3_a814b")
-Count = 3
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf2cd"]
@@ -53,7 +41,7 @@ _tutorialNode = NodePath("HUD/Label")
 _playerPrefab = ExtResource("3_rpqi1")
 _warpEffect = ExtResource("3_x0cd2")
 _restartButton = NodePath("HUD/RestartButton")
-_testWave = Array[Object]([SubResource("Resource_hbc2u"), SubResource("Resource_nm5af"), SubResource("Resource_x0cd2")])
+_testWave = Array[Object]([SubResource("Resource_hbc2u")])
 _idleUiControl = NodePath("HUD/IdleUi")
 _bgSelection = ExtResource("5_p5x2j")
 WorldAudioManager = NodePath("WorldAudioManager")
@@ -120,7 +108,7 @@ offset_right = 136.0
 offset_bottom = -13.0
 grow_vertical = 0
 script = ExtResource("7_3hf6u")
-_weaponsToEat = Array[PackedScene]([ExtResource("3_a814b"), ExtResource("3_a814b"), ExtResource("3_a814b")])
+_weaponsToEat = Array[PackedScene]([ExtResource("4_3slyh"), ExtResource("4_3slyh"), ExtResource("4_3slyh")])
 _trashPrefab = ExtResource("10_8s4c3")
 
 [node name="Eat" type="Button" parent="HUD/IdleUi/CheatMenu"]

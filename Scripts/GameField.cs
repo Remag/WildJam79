@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using WildJam78.Scripts.UI;
 
 public partial class GameField : Node {
@@ -157,13 +158,27 @@ public partial class GameField : Node {
 
     public void RemoveExistingShip()
     {
-        var existingShips = GetTree().GetNodesInGroup( "Enemy" ).Count - 1;
-        if( _currentNodeInfo != null && existingShips == _currentNodeInfo.MinShipsAliveForNextWave ) {
+        var existingShips = GetTree().GetNodesInGroup( "Enemy" );
+        var aliveCount = getAliveCount( existingShips );
+        if( _currentNodeInfo != null && aliveCount == _currentNodeInfo.MinShipsAliveForNextWave ) {
             SpawnNextWave();
         }
-        if( existingShips == 0 ) {
+
+        var hasNewWaves = _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count;
+        if( aliveCount == 0 && !hasNewWaves ) {
             onLevelClear();
         }
+    }
+
+    private int getAliveCount( Godot.Collections.Array<Node> shipNodes )
+    {
+        var count = 0;
+        foreach( EnemyShip ship in shipNodes ) {
+            if( !ship.IsDead ) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private void onLevelClear()
@@ -171,7 +186,7 @@ public partial class GameField : Node {
         Game.Player.TryGrow();
         Game.Player.FullHeal();
         _idleUiControl.Visible = true;
-        
+
         foreach( var node in GetTree().GetNodesInGroup( "ClearOnLevelClear" ) ) {
             node.QueueFree();
         }
