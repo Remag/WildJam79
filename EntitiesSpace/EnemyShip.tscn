@@ -53,7 +53,7 @@ scale = Vector2(0.25, 0.25)
 scale = Vector2(2, 2)
 texture = ExtResource("5_7jj5h")
 
-[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip") groups=["ClearOnRestart", "Enemy"]]
+[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip")]
 script = ExtResource("8_i01dv")
 _aiAttackShootDuration = 1.2
 _aiAttackShootPauseMin = 2.5

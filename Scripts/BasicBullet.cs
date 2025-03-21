@@ -3,27 +3,26 @@ using Godot;
 using WildJam78.Scripts;
 using WildJam78.Scripts.Bullets;
 
-public partial class BasicBullet : Node2D
-{
+public partial class BasicBullet : Node2D {
 	[Export]
 	private Area2D _collisionArea;
 
-	[Export] 
+	[Export]
 	private BulletMoveLogic _moveLogic;
-	[Export] 
+	[Export]
 	private BulletLifespanLogic _lifespanLogic;
-	[Export] 
+	[Export]
 	private BulletDeathLogic _deathLogic;
-	
+
 	[Export]
 	private bool _isEnemyBullet = false;
-	
+
 	[Export]
 	private int _bulletDamage = 1;
 
 	private float _velocity = 0;
 	private float _currentLifetime = 0;
-	
+
 	private bool _isDestroyed = false;
 
 	public override void _Ready()
@@ -39,20 +38,18 @@ public partial class BasicBullet : Node2D
 	{
 		var deltaF = (float)delta;
 		_currentLifetime += deltaF;
-		switch (_moveLogic)
-		{
-			case LinearBulletMoveLogic linearBulletMoveLogic:
-			{
-				HandleLinearBulletMoveLogic( linearBulletMoveLogic, deltaF );
-				break;
-			}
+		switch( _moveLogic ) {
+			case LinearBulletMoveLogic linearBulletMoveLogic: {
+					HandleLinearBulletMoveLogic( linearBulletMoveLogic, deltaF );
+					break;
+				}
 			case TargetedBulletMoveLogic targetedBulletMoveLogic: {
-				HandleTargetedBulletMoveLogic( targetedBulletMoveLogic, deltaF );
-				break;
-			}
+					HandleTargetedBulletMoveLogic( targetedBulletMoveLogic, deltaF );
+					break;
+				}
 		}
-		
-		
+
+
 		if( _lifespanLogic.IsDestroyed( _currentLifetime, deltaF ) ) {
 			QueueFree();
 		}
@@ -66,37 +63,38 @@ public partial class BasicBullet : Node2D
 
 	private void SetCollisionParams( int maskValue )
 	{
-		_collisionArea.CollisionMask = (uint) 1 << ( maskValue - 1 );
+		_collisionArea.CollisionMask = (uint)1 << ( maskValue - 1 );
 	}
 
 	public void OnAreaCollision( Node node )
 	{
 		GD.Print( "node = " + node );
-		switch (node)
-		{
+		switch( node ) {
 			case Shield enemyShield:
-				enemyShield.OnBulletCollision(_bulletDamage);
+				enemyShield.OnBulletCollision( _bulletDamage );
 				HandleDestroy();
 				break;
 			case EnemyShip enemyShip:
-				enemyShip.OnBulletCollision(_bulletDamage);
-				HandleDestroy();
+				if( !enemyShip.IsDead ) {
+					enemyShip.OnBulletCollision( _bulletDamage );
+					HandleDestroy();
+				}
 				break;
 			case Player player:
-				player.OnBulletCollision(_bulletDamage);
+				player.OnBulletCollision( _bulletDamage );
 				HandleDestroy();
 				break;
 			case BasicBullet bullet:
-				bullet.HandleDestroy(useDeathLogic: true);
-				HandleDestroy(useDeathLogic: true);
+				bullet.HandleDestroy( useDeathLogic: true );
+				HandleDestroy( useDeathLogic: true );
 				break;
 		}
 	}
 
-	public void HandleDestroy(bool useDeathLogic = false)
+	public void HandleDestroy( bool useDeathLogic = false )
 	{
 		if( _isDestroyed ) return;
-		
+
 		_isDestroyed = true;
 
 		if( useDeathLogic && _deathLogic != null ) {
@@ -108,7 +106,7 @@ public partial class BasicBullet : Node2D
 
 		QueueFree();
 	}
-	
+
 	private void InstantiateBullet( PackedScene bulletPrefab, float angle, Vector2 position )
 	{
 		var bullet = bulletPrefab.Instantiate<BasicBullet>();
@@ -120,11 +118,11 @@ public partial class BasicBullet : Node2D
 
 	private void HandleLinearBulletMoveLogic( LinearBulletMoveLogic linearBulletMoveLogic, float delta )
 	{
-		_velocity = Math.Min(linearBulletMoveLogic.maxVelocity, _velocity + linearBulletMoveLogic.acceleration * delta);
+		_velocity = Math.Min( linearBulletMoveLogic.maxVelocity, _velocity + linearBulletMoveLogic.acceleration * delta );
 		var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
 		Position += delta * dir;
 	}
-	
+
 	private void HandleTargetedBulletMoveLogic( TargetedBulletMoveLogic targetedBulletMoveLogic, float delta )
 	{
 		if( _currentLifetime > targetedBulletMoveLogic.activeTime ) {
@@ -132,7 +130,7 @@ public partial class BasicBullet : Node2D
 			var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
 			Position += delta * dir;
 		} else {
-			_velocity = Math.Min(targetedBulletMoveLogic.maxVelocity, _velocity + targetedBulletMoveLogic.acceleration * delta);
+			_velocity = Math.Min( targetedBulletMoveLogic.maxVelocity, _velocity + targetedBulletMoveLogic.acceleration * delta );
 
 			var target = GetTarget();
 			if( target != null ) {
@@ -144,7 +142,7 @@ public partial class BasicBullet : Node2D
 				while( targetAngleDiff < -float.Pi ) {
 					targetAngleDiff += 2 * float.Pi;
 				}
-				Rotation += Math.Sign( targetAngleDiff ) * Math.Min( targetedBulletMoveLogic.angularVelocity * delta, Math.Abs( targetAngleDiff ) );		
+				Rotation += Math.Sign( targetAngleDiff ) * Math.Min( targetedBulletMoveLogic.angularVelocity * delta, Math.Abs( targetAngleDiff ) );
 			}
 			var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
 			Position += delta * dir;
@@ -159,13 +157,13 @@ public partial class BasicBullet : Node2D
 			var currentPosition = GlobalPosition;
 			var currentDistanceSquared = 0f;
 			Node2D targetNode = null;
-			
+
 			foreach( var node in GetTree().GetNodesInGroup( "Enemy" ) ) {
 				if( node is not Node2D ) continue;
-				
-				var node2D = (Node2D) node;
+
+				var node2D = (Node2D)node;
 				var distanceSquared = ( node2D.GlobalPosition - currentPosition ).LengthSquared();
-				
+
 				if( targetNode == null || currentDistanceSquared > distanceSquared ) {
 					targetNode = node2D;
 					currentDistanceSquared = distanceSquared;
@@ -175,5 +173,5 @@ public partial class BasicBullet : Node2D
 			return targetNode;
 		}
 	}
-	
+
 }
