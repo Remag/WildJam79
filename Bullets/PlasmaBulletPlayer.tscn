@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://blldfvvl1358o"]
+[gd_scene load_steps=8 format=3 uid="uid://blldfvvl1358o"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_rksko"]
 [ext_resource type="Resource" uid="uid://bwov42g2mn8wi" path="res://EntitiesSpace/Res/Bullets/PlasmaBulletPlayer_MoveLogic.tres" id="2_rksko"]
 [ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_1cseu"]
 [ext_resource type="Texture2D" uid="uid://dyx5maco2tka2" path="res://Assets/SpaceShip/Bullets/Bullet.webp" id="4_ptbqx"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="5_wxqyp"]
 
 [sub_resource type="Resource" id="Resource_qq402"]
 script = ExtResource("3_1cseu")
@@ -27,12 +28,15 @@ position = Vector2(0, -1)
 rotation = 1.5708
 texture = ExtResource("4_ptbqx")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("5_wxqyp")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a1jof")
 
-[connection signal="area_entered" from="Area2D" to="." method="OnAreaCollision"]
+[connection signal="AreaCollision" from="Area2D" to="." method="OnAreaCollision"]

@@ -1,8 +1,9 @@
 using Godot;
 using System;
+using WildJam78.Scripts;
 using WildJam78.Scripts.Shield;
 
-public partial class Shield : Area2D {
+public partial class Shield : ParentArea2D {
     [Export]
     private ShieldConfig _config = new();
     [Export]
