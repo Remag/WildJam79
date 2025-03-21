@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d16rl6xqrhsqr"]
+[gd_scene load_steps=12 format=3 uid="uid://d16rl6xqrhsqr"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_ehwys"]
 [ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Bullet3_TargMoveLogic.tres" id="2_umbhw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://6x0jwm35cobd" path="res://Scripts/Bullets/BulletDeathLogic.cs" id="5_nhfgg"]
 [ext_resource type="Texture2D" uid="uid://cskkeicya56ek" path="res://Assets/SpaceShip/Bullets/Rocket.webp" id="6_f8l8k"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="7_bkl5f"]
+[ext_resource type="PackedScene" uid="uid://dauqnw48oydox" path="res://EntitiesSpace/MissileTrail.tscn" id="8_buir4"]
 
 [sub_resource type="Resource" id="Resource_dddoj"]
 script = ExtResource("3_oxh10")
@@ -52,5 +53,9 @@ metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 position = Vector2(-6.79523, -6.41488e-06)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a1jof")
+
+[node name="ShipTrail" parent="." instance=ExtResource("8_buir4")]
+position = Vector2(-25, 0)
+rotation = 1.57079
 
 [connection signal="AreaCollision" from="Area2D" to="." method="OnAreaCollision"]

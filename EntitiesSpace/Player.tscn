@@ -508,21 +508,18 @@ texture = ExtResource("3_hpvjx")
 
 [node name="Blob1" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
 visible = false
-z_index = 3
 position = Vector2(44, -98)
 rotation = 0.261799
 scale = Vector2(0.81, 0.81)
 
 [node name="Blob2" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
 visible = false
-z_index = 3
 position = Vector2(60, 82)
 rotation = 2.35619
 scale = Vector2(0.81, 0.81)
 
 [node name="Blob3" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
 visible = false
-z_index = 3
 position = Vector2(-100, 12)
 rotation = 4.71238
 scale = Vector2(0.81, 0.81)
