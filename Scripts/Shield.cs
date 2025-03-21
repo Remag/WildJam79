@@ -19,6 +19,7 @@ public partial class Shield : ParentArea2D {
     public override void _Ready()
     {
         _currentHp = _config.maxHp;
+        RealParent = this;
     }
 
     public void OnBulletCollision( int damage )
