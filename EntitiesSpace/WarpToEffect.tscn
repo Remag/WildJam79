@@ -1,0 +1,272 @@
+[gd_scene load_steps=8 format=3 uid="uid://hv2uraddyoum"]
+
+[ext_resource type="Texture2D" uid="uid://cy73e3sxmjpq0" path="res://Assets/Vfx/Circle.png" id="1_346pn"]
+[ext_resource type="Script" uid="uid://dbcd3mcxehm55" path="res://Scripts/Player/WarpEffect.cs" id="1_wa1jj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mqxj6"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_rt0na"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Circle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CircleImage:clip_children")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CircleImage/Scaler/Anchor:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CircleImage/Scaler:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FadeRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lfiix"]
+resource_name = "Unwarp"
+length = 3.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Circle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.859605, 1.93333),
+"transitions": PackedFloat32Array(1, 0.594604, 2.46229, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.00136e-05, 1.00136e-05), Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CircleImage:clip_children")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.850422, 0.933333, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 2, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CircleImage/Scaler/Anchor:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1.93187, 1.51572),
+"update": 0,
+"values": [0.0, 2.16944]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CircleImage/Scaler:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(2.14355, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FadeRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.46667, 2.83333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ReturnPlayer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wa1jj"]
+resource_name = "Warp"
+length = 3.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Circle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.859605, 1.93333),
+"transitions": PackedFloat32Array(1, 0.594604, 2.46229, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.00136e-05, 1.00136e-05), Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CircleImage:clip_children")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.850422, 0.933333, 1.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 2, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CircleImage/Scaler/Anchor:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1.93187, 1.51572),
+"update": 0,
+"values": [0.0, 2.16944]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CircleImage/Scaler:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(2.14355, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.26667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnWarpEnd"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FadeRect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.46667, 2.83333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lfiix"]
+_data = {
+&"RESET": SubResource("Animation_rt0na"),
+&"Unwarp": SubResource("Animation_lfiix"),
+&"Warp": SubResource("Animation_wa1jj")
+}
+
+[node name="WarpToEffect" type="Node2D" node_paths=PackedStringArray("_anchor", "_circleImage", "_animations")]
+script = ExtResource("1_wa1jj")
+_anchor = NodePath("CircleImage/Scaler/Anchor")
+_circleImage = NodePath("CircleImage")
+_animations = NodePath("AnimationPlayer")
+_scaleByPlayerSize = Array[float]([2.0, 3.0, 6.0])
+
+[node name="CircleImage" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(2, 2)
+texture = SubResource("ViewportTexture_mqxj6")
+
+[node name="Scaler" type="Node2D" parent="CircleImage"]
+
+[node name="Anchor" type="Node2D" parent="CircleImage/Scaler"]
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lfiix")
+}
+autoplay = "Warp"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Circle" type="Sprite2D" parent="SubViewport"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(256, 256)
+texture = ExtResource("1_346pn")
+
+[node name="FadeRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -4987.0
+offset_top = -5087.0
+offset_right = 5013.0
+offset_bottom = 4913.0
+color = Color(0, 0, 0, 1)

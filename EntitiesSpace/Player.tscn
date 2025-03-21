@@ -503,21 +503,7 @@ libraries = {
 [node name="Small" type="Node2D" parent="Visual"]
 scale = Vector2(0.5, 0.5)
 
-[node name="Eye" type="Sprite2D" parent="Visual/Small"]
-clip_children = 2
-z_index = 3
-position = Vector2(-5, -2)
-rotation = -0.785397
-texture = ExtResource("4_7eort")
-
-[node name="Iris" type="Sprite2D" parent="Visual/Small/Eye"]
-z_index = 4
-position = Vector2(0.778325, 4.96027)
-texture = ExtResource("5_4ta28")
-script = ExtResource("6_l6ohk")
-
 [node name="BodySmall" type="Sprite2D" parent="Visual/Small"]
-z_index = 2
 texture = ExtResource("3_hpvjx")
 
 [node name="Blob1" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
@@ -541,11 +527,20 @@ position = Vector2(-100, 12)
 rotation = 4.71238
 scale = Vector2(0.81, 0.81)
 
+[node name="Eye" type="Sprite2D" parent="Visual/Small"]
+position = Vector2(-5, -2)
+rotation = -0.785397
+texture = ExtResource("4_7eort")
+
+[node name="Iris" type="Sprite2D" parent="Visual/Small/Eye"]
+position = Vector2(0.778325, 4.96027)
+texture = ExtResource("5_4ta28")
+script = ExtResource("6_l6ohk")
+
 [node name="Medium" type="Node2D" parent="Visual"]
 
 [node name="BodyMid" type="Sprite2D" parent="Visual/Medium"]
 modulate = Color(1, 1, 1, 0)
-z_index = 2
 texture = ExtResource("3_l556p")
 
 [node name="PlayerBlob5" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
@@ -597,7 +592,6 @@ rotation = 6.02138
 scale = Vector2(0.88833, 0.779565)
 
 [node name="Eye" type="Sprite2D" parent="Visual/Medium"]
-z_index = 2
 rotation = -0.561996
 scale = Vector2(1, 1e-05)
 texture = ExtResource("8_231b2")
@@ -613,13 +607,11 @@ scale = Vector2(1.6, 1.6)
 
 [node name="BodyLarge" type="Sprite2D" parent="Visual/Large"]
 modulate = Color(1, 1, 1, 0)
-z_index = 2
 position = Vector2(-2, 1)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("12_ou0cs")
 
 [node name="EyeLarge" type="Sprite2D" parent="Visual/Large/BodyLarge"]
-z_index = 2
 position = Vector2(1.74001, 9.28357)
 rotation = -0.561996
 scale = Vector2(1, 1e-05)
@@ -631,7 +623,6 @@ texture = ExtResource("14_o1tba")
 script = ExtResource("6_l6ohk")
 
 [node name="EyeLarge2" type="Sprite2D" parent="Visual/Large/BodyLarge"]
-z_index = 2
 position = Vector2(45.9447, 73.4626)
 rotation = 2.61799
 scale = Vector2(1, 1e-05)
@@ -643,7 +634,6 @@ texture = ExtResource("5_4ta28")
 script = ExtResource("6_l6ohk")
 
 [node name="EyeLarge3" type="Sprite2D" parent="Visual/Large/BodyLarge"]
-z_index = 2
 position = Vector2(-34.7211, -64.1711)
 rotation = -0.561996
 scale = Vector2(1, 1e-05)

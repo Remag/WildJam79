@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 using WildJam78.Scripts.UI;
 
 public partial class GameField : Node {
@@ -16,6 +17,8 @@ public partial class GameField : Node {
     [Export]
     private PackedScene _playerPrefab;
     [Export]
+    private PackedScene _warpEffect;
+    [Export]
     private Button _restartButton;
     [Export]
     private Godot.Collections.Array<EnemyInfo> _testWave;
@@ -25,9 +28,10 @@ public partial class GameField : Node {
     private BackgroundSelection _bgSelection;
     [Export]
     public WorldAudioManager WorldAudioManager { get; set; }
-    
+
     private EnemyNodeInfo _currentNodeInfo;
     private float _currentLevelTimer = 0;
+    private bool _isSpawningEnemies = false;
     private int _nextWaveIndex = 0;
 
     private Player.SavedState _savedPlayerState;
@@ -44,7 +48,7 @@ public partial class GameField : Node {
 
     public override void _PhysicsProcess( double delta )
     {
-        if( Game.Player != null ) {
+        if( Game.Player != null && _isSpawningEnemies ) {
             _currentLevelTimer += (float)delta;
             if( _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count ) {
                 var waveInfo = _currentNodeInfo.WavesInfo[_nextWaveIndex];
@@ -89,6 +93,7 @@ public partial class GameField : Node {
 
     public void Travel( Texture2D locationBg, EnemyNodeInfo nodeInfo )
     {
+        Debug.Assert( nodeInfo != null );
         foreach( var node in GetTree().GetNodesInGroup( "ClearOnLevelClear" ) ) {
             node.QueueFree();
         }
@@ -96,6 +101,13 @@ public partial class GameField : Node {
             _savedPlayerState = Game.Player.SaveState();
         }
 
+        var effect = _warpEffect.Instantiate<WarpEffect>();
+        AddChild( effect );
+        effect.Initialize( Game.Player, locationBg, nodeInfo );
+    }
+
+    public void SwitchLocation( Texture2D locationBg, EnemyNodeInfo nodeInfo, WarpEffect effect )
+    {
         _currentNodeInfo = nodeInfo;
         _idleUiControl.Visible = nodeInfo.WavesInfo.Count == 0;
         if( locationBg == null ) {
@@ -104,9 +116,15 @@ public partial class GameField : Node {
             _nebulaRect.Texture = locationBg;
         }
 
+        effect.ReverseAnimation();
+    }
+
+    public void InitializeEnemyWave( EnemyNodeInfo nodeInfo )
+    {
         if( nodeInfo.WavesInfo.Count > 0 ) {
             SpawnWave( nodeInfo.WavesInfo[0] );
             _nextWaveIndex = 1;
+            _isSpawningEnemies = true;
         }
     }
 
@@ -115,10 +133,10 @@ public partial class GameField : Node {
         if( Game.Player != null ) {
             _savedPlayerState = Game.Player.SaveState();
         }
-        
+
         _tutorialNode.Visible = false;
         _idleUiControl.Visible = false;
-        
+
         foreach( var enemy in _testWave ) {
             for( int i = 0; i < enemy.Count; i++ ) {
                 spawnEnemy( enemy.Prefab );
@@ -128,9 +146,10 @@ public partial class GameField : Node {
         Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
-    private void spawnEnemy( PackedScene shipPrefab )
+    private void spawnEnemy( PackedScene shipPrefab, double moveDelay = 0 )
     {
         var ship = shipPrefab.Instantiate<EnemyShip>();
+        ship.MoveDelay = moveDelay;
         AddChild( ship );
         ship.GlobalPosition = Game.Player.GlobalPosition +
                               Vector2.FromAngle( Rng.RandomRange( 0, 2 * Mathf.Pi ) ) * 700;
@@ -167,9 +186,9 @@ public partial class GameField : Node {
     public void RestartGame()
     {
         _nextWaveIndex = 0;
-        
+
         Game.Field.WorldAudioManager.ButtonClickPlay();
-        
+
         _restartButton.Visible = false;
         _idleUiControl.Visible = false;
         var player = _playerPrefab.Instantiate<Player>();
@@ -202,11 +221,11 @@ public partial class GameField : Node {
         }
     }
 
-    private void SpawnWave( EnemyWaveInfo waveInfo )
+    private void SpawnWave( EnemyWaveInfo waveInfo, double moveDelay = 0 )
     {
         foreach( var enemy in waveInfo.EnemiesInfo ) {
             for( int i = 0; i < enemy.Count; i++ ) {
-                CallDeferred( MethodName.spawnEnemy, enemy.Prefab );
+                CallDeferred( MethodName.spawnEnemy, enemy.Prefab, moveDelay );
             }
         }
 

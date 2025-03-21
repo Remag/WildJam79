@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://3lwqvahw3p87" path="res://Sounds/Catch_ZapSplat.mp3" id="6_nti0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g8t2"]
-size = Vector2(2.7907, 14.2636)
+size = Vector2(13.0233, 14.2636)
 
 [node name="Tentacle" type="Node2D" node_paths=PackedStringArray("_tentacleLine", "_tentacleSoundPlayer", "_catchSoundPlayer")]
 z_index = -1
@@ -44,11 +44,12 @@ RealParent = NodePath("../../..")
 metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scaler/EndAnchor/Area2D"]
+position = Vector2(-3.66667, 0)
 scale = Vector2(1.075, 1.075)
 shape = SubResource("RectangleShape2D_7g8t2")
 
 [node name="TentacleMid" type="Line2D" parent="Scaler" node_paths=PackedStringArray("StartAnchor", "EndAnchor")]
-z_index = 1
+z_index = -1
 texture_repeat = 2
 points = PackedVector2Array(1, 0, 0, 0)
 width = 28.175

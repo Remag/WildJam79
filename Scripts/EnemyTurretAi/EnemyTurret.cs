@@ -37,7 +37,7 @@ public partial class EnemyTurret : Node2D {
     
     public override void _PhysicsProcess( double delta )
     {
-        if( _enemyShip.IsAiEnabled ) {
+        if( _enemyShip.IsShootingEnabled ) {
 
 	        if( Game.Player != null ) {
 		        _shootTarget.GlobalPosition = Game.Player.GlobalPosition;

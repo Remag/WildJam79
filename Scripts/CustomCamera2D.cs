@@ -14,7 +14,7 @@ public partial class CustomCamera2D : Camera2D {
     {
         base._PhysicsProcess( delta );
         if( Game.Player != null ) {
-            Position = Game.Player.Position;
+            Position = Game.Player.GlobalPosition;
         }
     }
 

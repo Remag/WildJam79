@@ -56,9 +56,13 @@ public partial class Player : RigidBody2D {
     private TentaclePlayer _activeTentacle;
     private List<TentacleAuto> _autoTentacles = new();
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         Game.Player = this;
+    }
+
+    public override void _Ready()
+    {
         _currentHp = _maxHpByLvl[0];
         _currentBlobs = _smallBlobs;
     }

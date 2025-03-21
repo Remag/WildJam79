@@ -33,6 +33,7 @@ scale = Vector2(0.8, 0.8)
 position = Vector2(1, 0)
 
 [node name="EndSprite" type="Sprite2D" parent="Scaler/EndAnchor"]
+z_index = -1
 position = Vector2(23, -4)
 rotation = -3.14159
 texture = ExtResource("2_yge1v")
@@ -51,7 +52,7 @@ scale = Vector2(1.075, 1.075)
 shape = SubResource("RectangleShape2D_7g8t2")
 
 [node name="TentacleMid" type="Line2D" parent="Scaler" node_paths=PackedStringArray("StartAnchor", "EndAnchor")]
-z_index = 1
+z_index = -1
 texture_repeat = 2
 points = PackedVector2Array(1, 0, 0, 0)
 width = 28.175
