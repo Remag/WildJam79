@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://du2c5try3ydx5"]
+[gd_scene load_steps=16 format=3 uid="uid://du2c5try3ydx5"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_tvijw"]
 [ext_resource type="PackedScene" uid="uid://r2vu35tnbc7w" path="res://Bullets/Bullet3.tscn" id="3_0gvqq"]
@@ -10,13 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="7_2q1eg"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="8_h1pid"]
 [ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="8_x7spu"]
+[ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/RocketBullet.tscn" id="9_x7spu"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="10_2q1eg"]
-[ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="11_h1pid"]
+[ext_resource type="Texture2D" uid="uid://civxbol4ydkjk" path="res://Assets/SpaceShip/Guns/RocketGun.webp" id="10_v6u2j"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="11_ralwe"]
 
 [sub_resource type="Resource" id="Resource_spwil"]
 script = ExtResource("10_2q1eg")
-_bulletPrefab = ExtResource("3_0gvqq")
+_bulletPrefab = ExtResource("9_x7spu")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
@@ -62,10 +63,12 @@ scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("6_fo27b")
 
 [node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip")]
-position = Vector2(-0.000305176, -88)
+position = Vector2(-0.000304079, -84)
 script = ExtResource("8_x7spu")
-_aiAttackShootDuration = 0.3
-_aiAttackShootPause = 4.0
+_aiAttackShootDelayMin = 1.0
+_aiAttackShootDelayMax = 1.0
+_aiAttackShootDuration = 1.0
+_aiAttackShootPause = 6.0
 _bulletSpawner = SubResource("Resource_spwil")
 _shootSoundPlayer2D = NodePath("../../Shoot2D")
 _shootTarget = NodePath("../ShootMarker")
@@ -76,8 +79,8 @@ _enemyShip = NodePath("../..")
 position = Vector2(-1.52588e-05, 4)
 
 [node name="Turret" type="Sprite2D" parent="Visuals/Turret/TurretBase"]
-position = Vector2(-36.0004, -99.9999)
-texture = ExtResource("11_h1pid")
+position = Vector2(-24, 4.00008)
+texture = ExtResource("10_v6u2j")
 centered = false
 
 [node name="ShootMarker" type="Node2D" parent="Visuals"]
