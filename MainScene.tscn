@@ -1,7 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
-[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip/EnemyShip2.tscn" id="3_a814b"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_x0cd2"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/EnemyShip1.tscn" id="9_3slyh"]
 [ext_resource type="PackedScene" uid="uid://cugvtasr1dxev" path="res://EntitiesSpace/DecalParts/SpaceDebris1.tscn" id="10_8s4c3"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="12_yvb8b"]
 [ext_resource type="AudioStream" uid="uid://00v07eyabpqp" path="res://Music/BGM3.mp3" id="13_nm5af"]
@@ -109,7 +109,7 @@ offset_right = 136.0
 offset_bottom = -13.0
 grow_vertical = 0
 script = ExtResource("7_3hf6u")
-_weaponsToEat = Array[PackedScene]([ExtResource("3_a814b"), ExtResource("3_a814b"), ExtResource("3_a814b")])
+_weaponsToEat = Array[PackedScene]([ExtResource("9_3slyh"), ExtResource("9_3slyh"), ExtResource("9_3slyh")])
 _trashPrefab = ExtResource("10_8s4c3")
 
 [node name="Eat" type="Button" parent="HUD/IdleUi/CheatMenu"]

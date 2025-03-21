@@ -117,17 +117,20 @@ public partial class Player : RigidBody2D {
         if( enemies.Count > 0 ) {
             _isPlayerControlled = false;
             _isShooting = false;
-            delayEatAllEnemies( enemies );
+            delayEatAllEnemies();
         } else {
             endVictoryAnimation();
         }
     }
 
-    private async void delayEatAllEnemies( Godot.Collections.Array<Node> enemies )
+    private async void delayEatAllEnemies()
     {
         await ToSignal( GetTree().CreateTimer( 0.75 ), "timeout" );
-        foreach( EnemyShip enemy in enemies ) {
-            EatTarget( enemy );
+        var enemies = GetTree().GetNodesInGroup( "Enemy" );
+        foreach( var enemy in enemies ) {
+            if( IsInstanceValid( enemy ) ) {
+                EatTarget( (EnemyShip)enemy );
+            }
         }
         _isEatingEnemies = true;
     }
