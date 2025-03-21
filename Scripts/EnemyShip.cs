@@ -132,9 +132,12 @@ public partial class EnemyShip : FoodSource {
 
 	public override bool TryTentaclePull( Tentacle tentacle )
 	{
+		if( IsPulledByTentacle ) {
+			return false;
+		}
 		var playerSize = Game.Player.CurrentGrowthLevel;
 		var dmg = _maxHp / 2 + 1;
-		if( playerSize > SizeLevel || dmg >= _currentHp ) {
+		if( playerSize > SizeLevel || dmg >= _currentHp || IsDead ) {
 			prepareTentacleAttach();
 			return true;
 		} else {
@@ -204,13 +207,16 @@ public partial class EnemyShip : FoodSource {
 	{
 		Freeze = true;
 		IsShootingEnabled = false;
+		IsPulledByTentacle = true;
 	}
 
 	public override void OnBroughtToPlayer( Tentacle tentacle )
 	{
 		Game.Player?.Assimilate( this, tentacle );
-		IsDead = true;
-		Game.Field.RemoveExistingShip();
+		if( !IsDead ) {
+			IsDead = true;
+			Game.Field.RemoveExistingShip();
+		}
 		QueueFree();
 		if( IsInstanceValid( _offscreenIndicator ) ) {
 			_offscreenIndicator.QueueFree();

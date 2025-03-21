@@ -50,6 +50,7 @@ public partial class Player : RigidBody2D {
 
     private bool _isShooting = false;
     private bool _isPlayerControlled = true;
+    private bool _isEatingEnemies = false;
 
     private int _currentHp = 5;
 
@@ -64,7 +65,7 @@ public partial class Player : RigidBody2D {
     public override void _Ready()
     {
         _currentHp = _maxHpByLvl[CurrentGrowthLevel];
-        _currentBlobs = getBlobsList(CurrentGrowthLevel);
+        _currentBlobs = getBlobsList( CurrentGrowthLevel );
     }
 
     public override void _ExitTree()
@@ -105,6 +106,32 @@ public partial class Player : RigidBody2D {
         }
     }
 
+    public void StartVictoryAnimation()
+    {
+        _animations.Play( "Victory" );
+    }
+
+    public void EatAllEnemies()
+    {
+        var enemies = GetTree().GetNodesInGroup( "Enemy" );
+        if( enemies.Count > 0 ) {
+            _isPlayerControlled = false;
+            _isShooting = false;
+            delayEatAllEnemies( enemies );
+        } else {
+            endVictoryAnimation();
+        }
+    }
+
+    private async void delayEatAllEnemies( Godot.Collections.Array<Node> enemies )
+    {
+        await ToSignal( GetTree().CreateTimer( 0.75 ), "timeout" );
+        foreach( EnemyShip enemy in enemies ) {
+            EatTarget( enemy );
+        }
+        _isEatingEnemies = true;
+    }
+
     public void Assimilate( FoodSource food, Tentacle src )
     {
         GainExp( food.GeneralExp );
@@ -139,14 +166,14 @@ public partial class Player : RigidBody2D {
         _currentHp = getMaxHp();
     }
 
-    public void TryGrow()
+    public bool TryGrow()
     {
         if( CurrentGrowthLevel >= GrowthXpByLvl.Count ) {
-            return;
+            return false;
         }
         var targetXp = GrowthXpByLvl[CurrentGrowthLevel];
         if( _currentGrowthXp < targetXp ) {
-            return;
+            return false;
         }
 
         foreach( var oldBlob in _currentBlobs ) {
@@ -161,6 +188,7 @@ public partial class Player : RigidBody2D {
 
         var animName = "Growth" + CurrentGrowthLevel.ToString();
         _animations.Play( animName );
+        return true;
     }
 
     public void TryRegrowWeapons()
@@ -360,6 +388,10 @@ public partial class Player : RigidBody2D {
 
     public override void _PhysicsProcess( double delta )
     {
+        if( _isEatingEnemies ) {
+            updateVictoryEating();
+        }
+
         var deltaF = (float)delta;
         var accelVector = new Vector2();
 
@@ -381,6 +413,28 @@ public partial class Player : RigidBody2D {
         var accelValue = _maxAccelPxSec * accelVector.Normalized();
         ApplyForce( accelValue * deltaF );
         updateShooting( delta );
+    }
+
+    private void updateVictoryEating()
+    {
+        if( _autoTentacles.Count == 0 ) {
+            endVictoryAnimation();
+        }
+    }
+
+    private void endVictoryAnimation()
+    {
+        _isPlayerControlled = true;
+        Game.Player.FullHeal();
+        if( !Game.Player.TryGrow() ) {
+            Game.Field.EnableIdleUi();
+        }
+        _isEatingEnemies = false;
+    }
+
+    public void OnGrowFinish()
+    {
+        Game.Field.EnableIdleUi();
     }
 
     public override void _IntegrateForces( PhysicsDirectBodyState2D state )
@@ -428,7 +482,7 @@ public partial class Player : RigidBody2D {
     {
         CurrentGrowthLevel = state.CurrentGrowthLevel;
         _currentBlobs = getBlobsList( CurrentGrowthLevel );
-        
+
         int weaponCoreIndex = 0;
         foreach( var stateBlobCore in state.blobCores ) {
             var newWeapon = attachBlob( stateBlobCore );
@@ -440,7 +494,7 @@ public partial class Player : RigidBody2D {
             }
         }
 
-        
+
         _currentGrowthXp = state._currentGrowthXp;
         _currentBlobIndex = state._currentBlobIndex;
         _currentHp = state._currentHp;

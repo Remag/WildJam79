@@ -14,6 +14,8 @@ public partial class TentacleAuto : Tentacle {
     private float _gravityGrowth = 0.5f;
     [Export]
     private float _gravityDelay = 0.1f;
+    [Export]
+    private float _autoCatchTimer = 2.0f;
     private Vector2 _currentVelocity;
 
     public void Initialize( FoodSource target )
@@ -32,13 +34,14 @@ public partial class TentacleAuto : Tentacle {
 
     public override void _PhysicsProcess( double delta )
     {
-        if( !IsInstanceValid( _target ) ) {
+        if( !IsInstanceValid( _target ) || _target.IsPulledByTentacle ) {
             AbortExtend();
         }
 
         var endAnchor = _tentacleLine.EndAnchor;
         var deltaF = (float)delta;
         _gravityDelay -= deltaF;
+
         if( _gravityDelay <= 0 ) {
             var dirDelta = _target.GlobalPosition - endAnchor.GlobalPosition;
             _currentVelocity += dirDelta * _startGravity * deltaF;
@@ -47,6 +50,12 @@ public partial class TentacleAuto : Tentacle {
         }
 
         endAnchor.GlobalPosition += _currentVelocity * deltaF;
+
+        _autoCatchTimer -= deltaF;
+        if( _currentMode == TentacleMode.Extend && _autoCatchTimer < 0 ) {
+            endAnchor.GlobalPosition = _target.GlobalPosition;
+            _tentacleShrinkSpeed *= 3;
+        }
 
         base._PhysicsProcess( delta );
     }
@@ -57,7 +66,7 @@ public partial class TentacleAuto : Tentacle {
             return;
         }
 
-        if( node == _target ) {
+        if( node == _target && !_target.IsPulledByTentacle ) {
             Attach( _target );
             _target.OnTentacleCollision();
         }

@@ -183,13 +183,20 @@ public partial class GameField : Node {
 
     private void onLevelClear()
     {
-        Game.Player.TryGrow();
-        Game.Player.FullHeal();
-        _idleUiControl.Visible = true;
-
+        CallDeferred( MethodName.playVictoryAnimation );
         foreach( var node in GetTree().GetNodesInGroup( "ClearOnLevelClear" ) ) {
             node.QueueFree();
         }
+    }
+
+    private void playVictoryAnimation()
+    {
+        Game.Player.EatAllEnemies();
+    }
+
+    public void EnableIdleUi()
+    {
+        _idleUiControl.Visible = true;
     }
 
     public void EndGame()
