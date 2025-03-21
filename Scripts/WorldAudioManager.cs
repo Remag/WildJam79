@@ -1,9 +1,13 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class WorldAudioManager : Node {
+    private List<AudioStreamPlayer> _bgmPlayers;
     [Export]
-    public AudioStreamPlayer BgmPlayer { get; set; }
+    private AudioStreamPlayer _stageBgmPlayer;
+    [Export]
+    private AudioStreamPlayer _titleBgmPlayer;
     [Export]
     private AudioStreamPlayer _buttonClickPlayer { get; set; }
     [Export]
@@ -14,7 +18,10 @@ public partial class WorldAudioManager : Node {
     public override void _Ready()
     {
         _stageName = Game.StageName;
-
+        _bgmPlayers = new List<AudioStreamPlayer>() {
+            _titleBgmPlayer, 
+            _stageBgmPlayer
+        };
         //setAllMuted( true );
     }
 
@@ -42,9 +49,25 @@ public partial class WorldAudioManager : Node {
 
     private void UpdateBgmForScene()
     {
-        var currentBgm = _stageName + "Bgm";
-        var interactive = BgmPlayer.GetStreamPlayback() as AudioStreamPlaybackInteractive;
-        interactive.SwitchToClipByName( currentBgm );
+        switch(_stageName) {
+            case "TestWave":
+                StopAllBGM();
+                _stageBgmPlayer.Play();
+                break;
+            case "Title":
+                StopAllBGM();
+                _titleBgmPlayer.Play();
+                break;
+        }
+        //var interactive = _stageBgmPlayer.GetStreamPlayback() as AudioStreamPlaybackInteractive;
+        //interactive.SwitchToClipByName( currentBgm );
+    }
+
+    private void StopAllBGM()
+    {
+        foreach( var bgmPlayer in _bgmPlayers ) {
+            bgmPlayer.Stop();
+        }
     }
 
     public void ButtonClickPlay()

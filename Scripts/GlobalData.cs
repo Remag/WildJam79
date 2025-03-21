@@ -11,6 +11,6 @@ public static class Game
     public static CustomCamera2D Camera;
     public static GameField Field;
     public static TravelMap TravelMap;
-    public static string StageName;
+    public static string StageName = "Title";
     public static Node2D TestSprite;
 }
