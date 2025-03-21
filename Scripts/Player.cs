@@ -277,6 +277,9 @@ public partial class Player : RigidBody2D {
 
     public void AssimilateWeapon( FoodSource weapon )
     {
+        if( weapon.CorePrefabs == null ) {
+            return;
+        }
         foreach( var prefab in weapon.CorePrefabs ) {
             doAssimilateWeapon( prefab, weapon.WeaponXp );
         }

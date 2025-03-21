@@ -16,7 +16,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_j3yn4"]
 radius = 56.0357
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 can_sleep = false
@@ -30,7 +30,8 @@ _damageEffectAnchor = NodePath("DamageAnchor")
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
-_hitbox = NodePath("")
+_hitbox = NodePath("Hitbox")
+_shield = NodePath("Shield")
 GeneralExp = 10
 HealHp = 5
 IsWeaponSource = true
