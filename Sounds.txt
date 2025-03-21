@@ -1,0 +1,18 @@
+[ https://freesound.org ]
+TitleBGM (Atmosphere - Horror 2 (Loop) by julius_galla -- https://freesound.org/s/202239/ -- License: Attribution 4.0)
+BGM3 (Action Music Loop 2 "Hunted" by MathewHenry -- https://freesound.org/s/685597/ -- License: Attribution 4.0)
+ShieldReflect3 (702771__matrixxx__force-field-01)
+
+[ https://free-sound-effects.net/ ]
+(не написано, что указывать)
+Chomp
+
+[ ZapSplat ]
+(достаточно указать вот это их название)
+ButtonClick
+Catch
+GameOver
+WarpIn
+
+[ http://www.freesfx.co.uk ]
+(все остальные звуки. достаточно указать сайт)

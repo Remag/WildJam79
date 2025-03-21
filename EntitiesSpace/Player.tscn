@@ -14,13 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://dl10uh0dmno4n" path="res://Assets/MainHero/EyeballMid.webp" id="8_231b2"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="8_upmy3"]
 [ext_resource type="Texture2D" uid="uid://pw2s2auerr07" path="res://Assets/MainHero/EyeMid.webp" id="9_5jdjn"]
-[ext_resource type="AudioStream" uid="uid://b8ek3sd5pxgvt" path="res://Sounds/ChompLongCut.mp3" id="9_upmy3"]
 [ext_resource type="AudioStream" uid="uid://cq7blko855kh1" path="res://Sounds/GameOver_ZapSplat.mp3" id="10_jhnwa"]
 [ext_resource type="Texture2D" uid="uid://tejh1hokvb1s" path="res://Assets/MainHero/BaseLarge.webp" id="12_ou0cs"]
 [ext_resource type="Texture2D" uid="uid://cth3hxa0hd5r" path="res://Assets/MainHero/EyeballLarge.webp" id="13_esfve"]
 [ext_resource type="Texture2D" uid="uid://oxwfjqvgqxqg" path="res://Assets/MainHero/EyeLarge.webp" id="14_o1tba"]
 [ext_resource type="Texture2D" uid="uid://phwkgwtegbnm" path="res://Assets/MainHero/EyeballLargeSide.webp" id="15_esfve"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="18_il04a"]
+[ext_resource type="AudioStream" uid="uid://dgqjllrn5ulx3" path="res://Sounds/ChomLongCut2.mp3" id="20_il04a"]
 
 [sub_resource type="Animation" id="Animation_hpvjx"]
 resource_name = "Growth1"
@@ -695,7 +695,7 @@ stream = ExtResource("8_upmy3")
 bus = &"sfx"
 
 [node name="Chomp" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_upmy3")
+stream = ExtResource("20_il04a")
 volume_db = 1.874
 bus = &"sfx"
 
