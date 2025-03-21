@@ -13,6 +13,7 @@ public partial class TentaclePlayer : Tentacle {
     public double TentacleMaxTime = 6;
 
     private double _currentExtendTime = 0;
+    private Vector2 _currentVelocity;
 
     public void Initialize( Player player )
     {
@@ -34,6 +35,7 @@ public partial class TentaclePlayer : Tentacle {
 
     public override void _PhysicsProcess( double delta )
     {
+        _tentacleLine.StartAnchor.GlobalPosition = Game.Player.GlobalPosition;
         var deltaF = (float)delta;
         switch( _currentMode ) {
             case TentacleMode.Extend:

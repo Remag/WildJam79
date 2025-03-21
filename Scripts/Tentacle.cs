@@ -29,8 +29,6 @@ public partial class Tentacle : Node2D {
     private AudioStreamPlayer _catchSoundPlayer;
     public FoodSource AttachedEntity { get; private set; }
 
-    protected Vector2 _currentVelocity;
-
     private double _currentKeepTime = 0;
     private double _currentExtendTime = 0;
     private double _currentLineSaveTime;

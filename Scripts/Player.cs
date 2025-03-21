@@ -220,7 +220,7 @@ public partial class Player : RigidBody2D {
             return;
         }
 
-        var targetXp = GrowthXpByLvl[CurrentGrowthLevel];
+        var targetXp = CurrentGrowthLevel < GrowthXpByLvl.Count ? GrowthXpByLvl[CurrentGrowthLevel] : 1000;
         var chunkXp = targetXp * 1.0f / _currentBlobs.Count;
         var blobIndex = (int)Math.Floor( _currentGrowthXp / chunkXp );
         if( blobIndex >= _currentBlobs.Count ) {
