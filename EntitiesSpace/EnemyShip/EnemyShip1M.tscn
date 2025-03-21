@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3pjhvmrasht6"]
+[gd_scene load_steps=14 format=3 uid="uid://c3pjhvmrasht6"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_0rmbg"]
 [ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_bt2j7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ccdh751mxa1u5" path="res://Assets/SpaceShip/ShipBody/MiddleRed.webp" id="7_0rmbg"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="8_06i6o"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_j3yn4"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="9_yrrw3"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="10_4t031"]
 [ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="11_i0gba"]
 [ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="12_47y8f"]
@@ -29,7 +30,7 @@ _damageEffectAnchor = NodePath("DamageAnchor")
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
-_hitbox = NodePath("Hitbox")
+_hitbox = NodePath("")
 GeneralExp = 10
 HealHp = 5
 IsWeaponSource = true
@@ -75,11 +76,14 @@ offset = Vector2(-310, -110)
 position = Vector2(-24, 0)
 rotation = 1.5708
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708
 collision_layer = 2
 collision_mask = 0
 monitoring = false
+script = ExtResource("9_yrrw3")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2(0.499998, -12)
@@ -94,12 +98,13 @@ stream = ExtResource("10_4t031")
 max_distance = 1000.0
 bus = &"sfx"
 
-[node name="Shield" type="Area2D" parent="." node_paths=PackedStringArray("_shieldDropSoundPlayer", "_shieldReflectSoundPlayer")]
+[node name="Shield" type="Area2D" parent="." node_paths=PackedStringArray("_shieldDropSoundPlayer", "_shieldReflectSoundPlayer", "RealParent")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("11_i0gba")
 _shieldDropSoundPlayer = NodePath("Drop")
 _shieldReflectSoundPlayer = NodePath("Reflect")
+RealParent = NodePath("..")
 
 [node name="ShieldSprite" type="Sprite2D" parent="Shield"]
 texture = ExtResource("12_47y8f")
