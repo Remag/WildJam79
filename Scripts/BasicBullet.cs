@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using WildJam78.Scripts;
 using WildJam78.Scripts.Bullets;
 
 public partial class BasicBullet : Node2D
@@ -68,22 +69,28 @@ public partial class BasicBullet : Node2D
 		_collisionArea.CollisionMask = (uint) 1 << ( maskValue - 1 );
 	}
 
-	public void OnAreaCollision( Area2D area2D )
+	public void OnAreaCollision( Node node )
 	{
-		if( area2D is Shield enemyShield ) {
-			enemyShield.OnBulletCollision(_bulletDamage);
-			HandleDestroy();
-		} else if( area2D.GetParent() is EnemyShip enemyShip ) {
-			enemyShip.OnBulletCollision(_bulletDamage);
-			HandleDestroy();
-		} else if( area2D.GetParent() is Player player ) {
-			player.OnBulletCollision(_bulletDamage);
-			HandleDestroy();
-		} else if( area2D.GetParent() is BasicBullet bullet ) {
-			bullet.HandleDestroy(useDeathLogic: true);
-			HandleDestroy(useDeathLogic: true);
+		GD.Print( "node = " + node );
+		switch (node)
+		{
+			case Shield enemyShield:
+				enemyShield.OnBulletCollision(_bulletDamage);
+				HandleDestroy();
+				break;
+			case EnemyShip enemyShip:
+				enemyShip.OnBulletCollision(_bulletDamage);
+				HandleDestroy();
+				break;
+			case Player player:
+				player.OnBulletCollision(_bulletDamage);
+				HandleDestroy();
+				break;
+			case BasicBullet bullet:
+				bullet.HandleDestroy(useDeathLogic: true);
+				HandleDestroy(useDeathLogic: true);
+				break;
 		}
-		
 	}
 
 	public void HandleDestroy(bool useDeathLogic = false)

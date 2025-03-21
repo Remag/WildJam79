@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=17 format=3 uid="uid://nh1c0ycvlv14"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
 [ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_4rxrc"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="9_7jj5h"]
 [ext_resource type="Texture2D" uid="uid://c57y86lplymx2" path="res://Assets/SpaceShip/Guns/GunParts/BlasterBase.webp" id="10_6n5o2"]
 [ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="11_kukyp"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="14_kukyp"]
 
 [sub_resource type="Resource" id="Resource_t1yll"]
 script = ExtResource("8_t1yll")
@@ -57,7 +58,6 @@ texture = ExtResource("5_7jj5h")
 [node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip") groups=["ClearOnRestart", "Enemy"]]
 script = ExtResource("8_i01dv")
 _aiAttackShootDuration = 1.2
-_aiAttackShootPause = 2.5
 _bulletSpawner = SubResource("Resource_t1yll")
 _shootSoundPlayer2D = NodePath("../../Shoot2D")
 _shootTarget = NodePath("../ShootMarker")
@@ -94,11 +94,14 @@ offset = Vector2(-310, -110)
 position = Vector2(-24, 0)
 rotation = 1.5708
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708
 collision_layer = 2
 collision_mask = 0
 monitoring = false
+script = ExtResource("14_kukyp")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2(0.499998, -12)

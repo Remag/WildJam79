@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dcxydx2svymhn"]
+[gd_scene load_steps=27 format=3 uid="uid://dcxydx2svymhn"]
 
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/BaseSmall.webp" id="3_hpvjx"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cth3hxa0hd5r" path="res://Assets/MainHero/EyeballLarge.webp" id="13_esfve"]
 [ext_resource type="Texture2D" uid="uid://oxwfjqvgqxqg" path="res://Assets/MainHero/EyeLarge.webp" id="14_o1tba"]
 [ext_resource type="Texture2D" uid="uid://phwkgwtegbnm" path="res://Assets/MainHero/EyeballLargeSide.webp" id="15_esfve"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="18_il04a"]
 
 [sub_resource type="Animation" id="Animation_hpvjx"]
 resource_name = "Growth1"
@@ -689,9 +690,12 @@ position = Vector2(-1, 0)
 scale = Vector2(1.193, 1.193)
 shape = SubResource("CircleShape2D_a814b")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 collision_mask = 0
 monitoring = false
+script = ExtResource("18_il04a")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false

@@ -62,19 +62,24 @@ public partial class TentaclePlayer : Tentacle {
         }
     }
 
-    public void OnAreaCollision( Area2D area2D )
+    public void OnAreaCollision( Node node )
     {
         if( _currentMode == TentacleMode.Shrink ) {
             return;
         }
 
-        if( area2D is Shield enemyShield ) {
-            AbortExtend();
-        } else if( area2D.GetParent() is FoodSource foodSource ) {
-            Attach( foodSource );
-            foodSource.OnTentacleCollision();
-        } else if( area2D.GetParent() is BasicBullet missile ) {
-            missile.HandleDestroy( true );
+        switch (node)
+        {
+            case Shield enemyShield:
+                AbortExtend();
+                break;
+            case FoodSource foodSource:
+                Attach( foodSource );
+                foodSource.OnTentacleCollision();
+                break;
+            case BasicBullet missile:
+                missile.HandleDestroy( true );
+                break;
         }
     }
 }

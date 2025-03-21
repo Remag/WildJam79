@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://r2vu35tnbc7w"]
+[gd_scene load_steps=11 format=3 uid="uid://r2vu35tnbc7w"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_exbaq"]
 [ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Bullet3_TargMoveLogic.tres" id="2_dj7m5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://u2gs0r782sv4" path="res://Bullets/Bullet2.tscn" id="4_dj7m5"]
 [ext_resource type="Script" uid="uid://6x0jwm35cobd" path="res://Scripts/Bullets/BulletDeathLogic.cs" id="5_sft0l"]
 [ext_resource type="Texture2D" uid="uid://cskkeicya56ek" path="res://Assets/SpaceShip/Bullets/Rocket.webp" id="6_dj7m5"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="7_sft0l"]
 
 [sub_resource type="Resource" id="Resource_dddoj"]
 script = ExtResource("3_7g3db")
@@ -38,15 +39,18 @@ scale = Vector2(0.75, 0.75)
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("6_dj7m5")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 position = Vector2(2.39297e-18, 1.10313e-12)
 scale = Vector2(0.515068, 0.696773)
 collision_layer = 6
 collision_mask = 0
+script = ExtResource("7_sft0l")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-6.79523, -6.41488e-06)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a1jof")
 
-[connection signal="area_entered" from="Area2D" to="." method="OnAreaCollision"]
+[connection signal="AreaCollision" from="Area2D" to="." method="OnAreaCollision"]

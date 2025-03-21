@@ -51,13 +51,13 @@ public partial class TentacleAuto : Tentacle {
         base._PhysicsProcess( delta );
     }
 
-    public void OnAreaCollision( Area2D area2D )
+    public void OnAreaCollision( Node node )
     {
         if( _currentMode == TentacleMode.Shrink ) {
             return;
         }
 
-        if( area2D.GetParent() == _target ) {
+        if( node == _target ) {
             Attach( _target );
             _target.OnTentacleCollision();
         }
