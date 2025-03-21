@@ -187,10 +187,8 @@ offset_bottom = 2048.0
 texture = ExtResource("8_p5x2j")
 stretch_mode = 1
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_buttonClickPlayer", "_deathSoundPlayer")]
 script = ExtResource("8_torvr")
-_stageBgmPlayer = NodePath("StageBgmPlayer")
-_titleBgmPlayer = NodePath("TitleBgmPlayer")
 _buttonClickPlayer = NodePath("ButtonClick")
 _deathSoundPlayer = NodePath("GameOver")
 
