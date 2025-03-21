@@ -20,8 +20,6 @@ public partial class EnemyShip : FoodSource {
 	private PackedScene _damageEffect;
 	[Export]
 	private Node2D _damageEffectAnchor;
-	[Export]
-	private PackedScene _bulletPrefab;
 
 	[Export]
 	public Node2D VisualNode { get; set; }
@@ -47,7 +45,6 @@ public partial class EnemyShip : FoodSource {
 		_currentHp = _maxHp;
 
 		if( _shield != null ) {
-			_shield.ShieldRegenerate += OnShieldRegenerate;
 			_shield.ShieldDestroy += OnShieldDestroy;
 			_hitbox.Monitorable = false;
 		}
@@ -200,11 +197,6 @@ public partial class EnemyShip : FoodSource {
 		} else {
 			_trail.HideTrail();
 		}
-	}
-
-	public void OnShieldRegenerate()
-	{
-		_hitbox.SetDeferred( Area2D.PropertyName.Monitorable, false );
 	}
 
 	public void OnShieldDestroy()

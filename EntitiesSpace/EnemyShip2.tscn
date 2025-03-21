@@ -37,7 +37,6 @@ _maxHp = 10
 _configRigid = ExtResource("3_ja242")
 _damageEffect = ExtResource("4_3lius")
 _damageEffectAnchor = NodePath("DamageAnchor")
-_bulletPrefab = ExtResource("3_sdw74")
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
