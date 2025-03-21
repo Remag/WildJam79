@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dy5tg0dsiv0p8" path="res://EntitiesSpace/BlobBasicCore3.tscn" id="5_caaev"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
-[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/PlasmaBullet.tscn" id="8_6n5o2"]
+[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/EBullets/PlasmaBullet.tscn" id="8_6n5o2"]
 [ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="8_i01dv"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="8_t1yll"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="9_7jj5h"]

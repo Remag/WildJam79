@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dt07exnbb24vc"]
 
 [ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_oqgxi"]
-[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_m2mym"]
+[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/EBullets/BasicBullet.tscn" id="2_m2mym"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="3_5bphd"]
 [ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="4_jhbnv"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="6_fk0a1"]

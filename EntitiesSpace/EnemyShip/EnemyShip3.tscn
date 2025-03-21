@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="7_2q1eg"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="8_h1pid"]
 [ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="8_x7spu"]
-[ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/RocketBullet.tscn" id="9_x7spu"]
+[ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/EBullets/RocketBullet.tscn" id="9_x7spu"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="10_2q1eg"]
 [ext_resource type="Texture2D" uid="uid://civxbol4ydkjk" path="res://Assets/SpaceShip/Guns/RocketGun.webp" id="10_v6u2j"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="11_ralwe"]

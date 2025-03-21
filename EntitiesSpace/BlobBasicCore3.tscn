@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_jeb3w"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_tc5lk"]
-[ext_resource type="PackedScene" uid="uid://blldfvvl1358o" path="res://Bullets/PlasmaBulletPlayer.tscn" id="3_tc5lk"]
+[ext_resource type="PackedScene" uid="uid://blldfvvl1358o" path="res://Bullets/PlayerBullets/PlasmaBulletPlayer.tscn" id="3_tc5lk"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_ovmsc"]
 [ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="5_xmu1c"]
 [ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="6_tc5lk"]
