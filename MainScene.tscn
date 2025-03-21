@@ -1,14 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=23 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
-[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="3_4mcbk"]
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip2.tscn" id="3_a814b"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="4_5crlr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
-[ext_resource type="PackedScene" uid="uid://du2c5try3ydx5" path="res://EntitiesSpace/EnemyShip3.tscn" id="6_mctxq"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="7_3hf6u"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
 [ext_resource type="AudioStream" uid="uid://dmljy2bt73tbh" path="res://Music/TestWaveBgm.mp3" id="8_hbc2u"]
@@ -21,7 +19,7 @@
 
 [sub_resource type="Resource" id="Resource_hbc2u"]
 script = ExtResource("4_5crlr")
-Prefab = ExtResource("3_4mcbk")
+Prefab = ExtResource("3_a814b")
 Count = 2
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
@@ -33,7 +31,7 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="Resource" id="Resource_x0cd2"]
 script = ExtResource("4_5crlr")
-Prefab = ExtResource("6_mctxq")
+Prefab = ExtResource("3_a814b")
 Count = 3
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 

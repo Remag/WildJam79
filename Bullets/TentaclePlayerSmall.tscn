@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://brdms4yh13312" path="res://TempAssets/Hero/TentacleEnd.png" id="2_v3bub"]
 [ext_resource type="Texture2D" uid="uid://d3oq77ju6me4s" path="res://TempAssets/Hero/TentacleSection.png" id="3_df4ae"]
 [ext_resource type="Script" uid="uid://bckuu1wnhechy" path="res://Scripts/Player/TentacleLine.cs" id="4_wk57j"]
-[ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="5_slfdc"]
+[ext_resource type="AudioStream" uid="uid://p68538wudgoe" path="res://Sounds/Tentacle05.mp3" id="5_dpj45"]
 [ext_resource type="AudioStream" uid="uid://3lwqvahw3p87" path="res://Sounds/Catch_ZapSplat.mp3" id="6_vpisi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g8t2"]
@@ -58,7 +58,7 @@ StartAnchor = NodePath("../StartAnchor")
 EndAnchor = NodePath("../EndAnchor")
 
 [node name="Tentacle" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_slfdc")
+stream = ExtResource("5_dpj45")
 volume_db = -4.692
 bus = &"sfx"
 parameters/looping = true
