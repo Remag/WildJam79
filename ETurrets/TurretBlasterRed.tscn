@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dps5dq1i2v16i"]
+
+[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_d7qyb"]
+[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/PlasmaBullet.tscn" id="2_guvrn"]
+[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="2_k5gk5"]
+[ext_resource type="Texture2D" uid="uid://c57y86lplymx2" path="res://Assets/SpaceShip/Guns/GunParts/BlasterBase.webp" id="2_lsvx3"]
+[ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="3_k5gk5"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="5_k5gk5"]
+
+[sub_resource type="Resource" id="Resource_guvrn"]
+script = ExtResource("2_k5gk5")
+_bulletPrefab = ExtResource("2_guvrn")
+_rngAngleDeg = 15.0
+metadata/_custom_type_script = "uid://de10ab1n1g1s"
+
+[node name="TurretBlasterRed" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_turretBase")]
+script = ExtResource("1_d7qyb")
+_aiAttackShootDuration = 1.2
+_aiAttackShootPauseMin = 2.5
+_aiAttackShootPauseMax = 3.0
+_bulletSpawner = SubResource("Resource_guvrn")
+_shootSoundPlayer2D = NodePath("Shoot2D")
+_turretBase = NodePath("TurretBase")
+
+[node name="TurretBase" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+
+[node name="Turret" type="Sprite2D" parent="TurretBase"]
+position = Vector2(-24.0001, -31.9999)
+texture = ExtResource("2_lsvx3")
+centered = false
+
+[node name="Turret" type="Sprite2D" parent="TurretBase/Turret"]
+position = Vector2(-4.00023, -64)
+texture = ExtResource("3_k5gk5")
+centered = false
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_k5gk5")
+max_distance = 1000.0
+bus = &"sfx"

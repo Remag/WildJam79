@@ -56,6 +56,8 @@ texture = ExtResource("5_7jj5h")
 [node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip") groups=["ClearOnRestart", "Enemy"]]
 script = ExtResource("8_i01dv")
 _aiAttackShootDuration = 1.2
+_aiAttackShootPauseMin = 2.5
+_aiAttackShootPauseMax = 3.0
 _bulletSpawner = SubResource("Resource_t1yll")
 _shootSoundPlayer2D = NodePath("../../Shoot2D")
 _shootTarget = NodePath("../ShootMarker")

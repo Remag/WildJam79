@@ -37,6 +37,7 @@ rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.966728, 0.000768359, 0.966934, 1)
 texture = ExtResource("6_6foiw")
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]

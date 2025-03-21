@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dt07exnbb24vc"]
+
+[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_oqgxi"]
+[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="2_m2mym"]
+[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="3_5bphd"]
+[ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="4_jhbnv"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="6_fk0a1"]
+
+[sub_resource type="Resource" id="Resource_guvrn"]
+script = ExtResource("3_5bphd")
+_bulletPrefab = ExtResource("2_m2mym")
+_rngAngleDeg = 0.0
+metadata/_custom_type_script = "uid://de10ab1n1g1s"
+
+[node name="TurrenGun" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_turretBase")]
+script = ExtResource("1_oqgxi")
+_aiAttackShootDelayMin = 1.5
+_aiAttackShootDuration = 4.55
+_aiAttackShootPauseMin = 2.5
+_aiAttackShootPauseMax = 3.5
+_bulletSpawner = SubResource("Resource_guvrn")
+_shootSoundPlayer2D = NodePath("Shoot2D")
+_turretBase = NodePath("TurretBase")
+
+[node name="TurretBase" type="Node2D" parent="."]
+position = Vector2(-1, 10)
+
+[node name="Turret" type="Sprite2D" parent="TurretBase"]
+position = Vector2(-37, -111)
+texture = ExtResource("4_jhbnv")
+centered = false
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_fk0a1")
+max_distance = 1000.0
+bus = &"sfx"

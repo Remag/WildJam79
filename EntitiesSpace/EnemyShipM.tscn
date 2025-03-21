@@ -1,24 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3pjhvmrasht6"]
+[gd_scene load_steps=13 format=3 uid="uid://c3pjhvmrasht6"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_0rmbg"]
-[ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_ptcjx"]
 [ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_bt2j7"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_jmwb2"]
-[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/PlasmaBullet.tscn" id="5_i0gba"]
-[ext_resource type="PackedScene" uid="uid://dy5tg0dsiv0p8" path="res://EntitiesSpace/BlobBasicCore3.tscn" id="6_47y8f"]
+[ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="5_0rmbg"]
+[ext_resource type="PackedScene" uid="uid://dt07exnbb24vc" path="res://ETurrets/TurretGun.tscn" id="6_ptcjx"]
 [ext_resource type="Texture2D" uid="uid://ccdh751mxa1u5" path="res://Assets/SpaceShip/ShipBody/MiddleRed.webp" id="7_0rmbg"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="8_06i6o"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_j3yn4"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="10_4t031"]
 [ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="11_i0gba"]
 [ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="12_47y8f"]
-[ext_resource type="AudioStream" uid="uid://dr8ymu1knhgrp" path="res://Sounds/ShieldReflect.wav" id="13_criy4"]
-[ext_resource type="AudioStream" uid="uid://c3umdaoxchtra" path="res://Sounds/ShieldDrop.mp3" id="14_06i6o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j3yn4"]
 radius = 56.0357
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_shootSoundPlayer2D", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 can_sleep = false
@@ -26,23 +23,15 @@ angular_damp = 1.0
 script = ExtResource("1_0rmbg")
 _maxHp = 10
 SizeLevel = 1
-_config = ExtResource("2_ptcjx")
 _configRigid = ExtResource("3_bt2j7")
-_aiAttackShootDuration = 1.8
-_aiAttackShootPause = 3.0
 _damageEffect = ExtResource("4_jmwb2")
 _damageEffectAnchor = NodePath("DamageAnchor")
-_bulletPrefab = ExtResource("5_i0gba")
-_attackType = 1
-_angle = 0.35
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
-_shootSoundPlayer2D = NodePath("Shoot2D")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 GeneralExp = 10
 HealHp = 5
-CorePrefab = ExtResource("6_47y8f")
 IsWeaponSource = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -58,6 +47,21 @@ scale = Vector2(0.25, 0.25)
 [node name="Main" type="Sprite2D" parent="Visuals"]
 scale = Vector2(2, 2)
 texture = ExtResource("7_0rmbg")
+
+[node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("5_0rmbg")]
+position = Vector2(-0.000376479, -104)
+_shootTarget = NodePath("../ShootMarker")
+_enemyShip = NodePath("../..")
+
+[node name="TurrenGun" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("6_ptcjx")]
+position = Vector2(1.448e-05, 4)
+_shootTarget = NodePath("../ShootMarker")
+_enemyShip = NodePath("../..")
+
+[node name="ShootMarker" type="Node2D" parent="Visuals"]
+position = Vector2(-0.000762939, -212)
+rotation = -1.5708
+scale = Vector2(4, 4)
 
 [node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
 visible = false
@@ -104,9 +108,7 @@ texture = ExtResource("12_47y8f")
 shape = SubResource("CircleShape2D_j3yn4")
 
 [node name="Reflect" type="AudioStreamPlayer" parent="Shield"]
-stream = ExtResource("13_criy4")
 bus = &"sfx"
 
 [node name="Drop" type="AudioStreamPlayer" parent="Shield"]
-stream = ExtResource("14_06i6o")
 bus = &"sfx"
