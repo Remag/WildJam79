@@ -10,6 +10,7 @@ public partial class PlayerBlob : Node2D {
     private AnimationPlayer _animations;
 
     public PackedScene SrcCore;
+    public bool IsWeapon { get; set; }
 
     public Node2D Initialize( PackedScene core )
     {
@@ -17,6 +18,7 @@ public partial class PlayerBlob : Node2D {
         SrcCore = core;
         Visible = true;
         var newCore = core.Instantiate<Node2D>();
+        IsWeapon = newCore is HeroWeaponCore;
         _enemyAnchor.AddChild( newCore );
         _animations.Play( "Appear" );
         return newCore;

@@ -66,6 +66,11 @@ public partial class GameField : Node {
         _nebulaRect.Texture = Rng.Choose( _bgSelection.Nebulae );
     }
 
+    public bool IsCombat()
+    {
+        return !_idleUiControl.Visible;
+    }
+
     public void OpenMap()
     {
         _tutorialNode.Visible = false;
@@ -131,7 +136,6 @@ public partial class GameField : Node {
     public void RemoveExistingShip()
     {
         var existingShips = GetTree().GetNodesInGroup( "Enemy" ).Count - 1;
-        GD.Print( "existingShips " + existingShips );
         if( _currentNodeInfo != null && existingShips == _currentNodeInfo.MinShipsAliveForNextWave ) {
             SpawnNextWave();
         }

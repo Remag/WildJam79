@@ -4,9 +4,10 @@ using System;
 public partial class SpaceDebris : FoodSource {
 
     [Export]
-    private float _driftAngularSpeed = 10;
+    private float _driftMaxAngularSpeed = 10;
     private float _driftMaxSpeed = 5;
 
+    private float _driftAngularSpeed;
     private Vector2 _driftVelocity;
 
     public override Node2D GetTentacleAnchor()
@@ -14,9 +15,9 @@ public partial class SpaceDebris : FoodSource {
         return this;
     }
 
-    public override void OnBroughtToPlayer()
+    public override void OnBroughtToPlayer( Tentacle tentacle )
     {
-        Game.Player?.Assimilate( this );
+        Game.Player?.Assimilate( this, tentacle );
         QueueFree();
     }
 
@@ -33,13 +34,17 @@ public partial class SpaceDebris : FoodSource {
     {
         var randomDir = new Vector2( 1, 0 ).Rotated( Rng.RandomRange( 0, 2 * Mathf.Pi ) );
         _driftVelocity = Rng.RandomRange( 0, _driftMaxSpeed ) * randomDir;
+        _driftAngularSpeed = Rng.RandomRange( -_driftMaxSpeed, _driftMaxSpeed );
     }
 
     public override void _Process( double delta )
     {
-        var deltaF = (float)delta;
-        Rotation += Mathf.RadToDeg( _driftAngularSpeed ) * deltaF;
-        GlobalPosition += _driftVelocity;
+    }
+
+    public override void _IntegrateForces( PhysicsDirectBodyState2D state )
+    {
+        state.LinearVelocity = _driftVelocity;
+        state.AngularVelocity = Mathf.DegToRad( _driftAngularSpeed );
     }
 
 }

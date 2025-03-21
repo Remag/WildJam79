@@ -36,6 +36,7 @@ folder_colors={
 
 Enemy=""
 ClearOnRestart=""
+EatOnWin=""
 
 [input]
 

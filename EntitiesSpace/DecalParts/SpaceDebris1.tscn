@@ -7,15 +7,24 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhmbs"]
 radius = 38.0526
 
-[node name="SpaceDebris" type="Sprite2D"]
-texture = ExtResource("1_s3v3h")
+[node name="SpaceDebris" type="RigidBody2D" groups=["ClearOnRestart", "EatOnWin"]]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_r1atj")
+GeneralExp = 20
 CorePrefabs = Array[PackedScene]([ExtResource("3_nhmbs")])
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(5, -1)
+shape = SubResource("CircleShape2D_nhmbs")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(5, -1)
+position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_nhmbs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s3v3h")

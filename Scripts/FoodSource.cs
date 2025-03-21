@@ -13,10 +13,10 @@ public abstract partial class FoodSource : RigidBody2D {
     [Export]
     public bool IsWeaponSource;
 
-    public bool IsDead { get; set;}
+    public bool IsDead { get; set; }
 
     public abstract Node2D GetTentacleAnchor();
     public abstract void OnTentacleCollision();
     public abstract bool TryTentaclePull( Tentacle tentacle );
-    public abstract void OnBroughtToPlayer();
+    public abstract void OnBroughtToPlayer( Tentacle tentacle );
 }

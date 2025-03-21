@@ -22,6 +22,8 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<int> _maxHpByLvl;
     [Export]
     private Godot.Collections.Array<PackedScene> _tentaclesByLevel;
+    [Export]
+    private Godot.Collections.Array<PackedScene> _autoTentaclesBySize;
 
     [Export]
     public Godot.Collections.Array<int> GrowthXpByLvl { get; private set; }
@@ -51,7 +53,8 @@ public partial class Player : RigidBody2D {
 
     private int _currentHp = 5;
 
-    private Tentacle _activeTentacle;
+    private TentaclePlayer _activeTentacle;
+    private List<TentacleAuto> _autoTentacles = new();
 
     public override void _Ready()
     {
@@ -75,7 +78,7 @@ public partial class Player : RigidBody2D {
 
         _currentHp -= damage;
         if( _currentHp <= 0 ) {
-            DestroyTentacle();
+            DestroyAllTentacles();
             QueueFree();
             Game.Field.EndGame();
         }
@@ -94,16 +97,21 @@ public partial class Player : RigidBody2D {
         _isPlayerControlled = isSet;
         if( !_isPlayerControlled ) {
             stopAttacking();
-            DestroyTentacle();
+            DestroyAllTentacles();
         }
     }
 
-    public void Assimilate( FoodSource food )
+    public void Assimilate( FoodSource food, Tentacle src )
     {
+        GainExp( food.GeneralExp );
+
         if( _currentBlobIndex >= _currentBlobs.Count ) {
+            if( !Game.Field.IsCombat() ) {
+                TryGrow();
+            }
             return;
         }
-        DestroyTentacle();
+        DestroyTentacle( src );
 
         assimilateGeneral( food );
         if( food.IsWeaponSource ) {
@@ -111,6 +119,10 @@ public partial class Player : RigidBody2D {
         }
         _currentHp = Math.Min( _currentHp + food.HealHp, getMaxHp() );
         _chompSoundPlayer.Play();
+
+        if( !Game.Field.IsCombat() ) {
+            TryGrow();
+        }
     }
 
     public void GainExp( int value )
@@ -164,6 +176,10 @@ public partial class Player : RigidBody2D {
             if( !blob.Visible ) {
                 break;
             }
+            if( !blob.IsWeapon ) {
+                continue;
+            }
+
             var blobCore = blob.SrcCore;
             var newWeapon = attachBlob( blobCore );
             if( newWeapon is HeroWeaponCore weaponCore ) {
@@ -200,7 +216,9 @@ public partial class Player : RigidBody2D {
 
     private void assimilateGeneral( FoodSource food )
     {
-        GainExp( food.GeneralExp );
+        if( food.IsWeaponSource ) {
+            return;
+        }
 
         var targetXp = GrowthXpByLvl[CurrentGrowthLevel];
         var chunkXp = targetXp * 1.0f / _currentBlobs.Count;
@@ -216,7 +234,7 @@ public partial class Player : RigidBody2D {
 
     private Node2D attachBlob( PackedScene blobPrefab )
     {
-        if( _currentBlobs.Count >= _currentBlobIndex ) {
+        if( _currentBlobIndex >= _currentBlobs.Count ) {
             return null;
         }
         var newBlob = _currentBlobs[_currentBlobIndex];
@@ -239,8 +257,10 @@ public partial class Player : RigidBody2D {
             existingWeapon.GainExp( weaponXp );
         } else {
             var newWeapon = (HeroWeaponCore)attachBlob( core );
-            newWeapon.Initialize( core );
-            _activeWeapons.Add( newWeapon );
+            if( newWeapon != null ) {
+                newWeapon.Initialize( core );
+                _activeWeapons.Add( newWeapon );
+            }
         }
     }
 
@@ -283,7 +303,7 @@ public partial class Player : RigidBody2D {
         if( _activeTentacle == null ) {
             _activeTentacle?.QueueFree();
             var tentaclePrefab = selectTentacle();
-            _activeTentacle = tentaclePrefab.Instantiate<Tentacle>();
+            _activeTentacle = tentaclePrefab.Instantiate<TentaclePlayer>();
             _activeTentacle.Initialize( this );
             Game.Field.AddChild( _activeTentacle );
         }
@@ -295,10 +315,43 @@ public partial class Player : RigidBody2D {
         return _tentaclesByLevel[level];
     }
 
-    public void DestroyTentacle()
+    public void EatTarget( FoodSource target )
+    {
+        var tentacle = _autoTentaclesBySize[0].Instantiate<TentacleAuto>();
+        tentacle.Initialize( target );
+        Game.Field.AddChild( tentacle );
+        _autoTentacles.Add( tentacle );
+    }
+
+    public void DestroyPlayerTentacle()
     {
         _activeTentacle?.QueueFree();
         _activeTentacle = null;
+    }
+
+    public void DestroyTentacle( Tentacle target )
+    {
+        if( target == _activeTentacle ) {
+            DestroyPlayerTentacle();
+        }
+
+        for( var i = 0; i < _autoTentacles.Count; i++ ) {
+            if( _autoTentacles[i] == target ) {
+                target.QueueFree();
+                _autoTentacles.RemoveAt( i );
+                return;
+            }
+        }
+    }
+
+    public void DestroyAllTentacles()
+    {
+        DestroyPlayerTentacle();
+
+        foreach( var tentacle in _autoTentacles ) {
+            tentacle.QueueFree();
+        }
+        _autoTentacles.Clear();
     }
 
     public override void _PhysicsProcess( double delta )

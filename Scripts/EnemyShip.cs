@@ -21,12 +21,12 @@ public partial class EnemyShip : FoodSource {
 	private Node2D _damageEffectAnchor;
 	[Export]
 	private PackedScene _bulletPrefab;
-	
+
 	[Export]
 	public Node2D VisualNode { get; set; }
 	[Export]
 	private ShipTrail _trail;
-	
+
 	private EnemyMoveHandlerRigid _moveHandlerRigid = null;
 
 	[Export]
@@ -40,7 +40,7 @@ public partial class EnemyShip : FoodSource {
 	{
 		Debug.Assert( _damageEffect != null, "Damage effect not set in the enemy ship prefab." );
 		Debug.Assert( _damageEffectAnchor != null, "Damage effect anchor not set in the enemy ship prefab." );
-		
+
 		_moveHandlerRigid = new EnemyMoveHandlerRigid( config: _configRigid, enemyShip: this );
 
 		_currentHp = _maxHp;
@@ -127,7 +127,8 @@ public partial class EnemyShip : FoodSource {
 	public override bool TryTentaclePull( Tentacle tentacle )
 	{
 		var playerSize = Game.Player.CurrentGrowthLevel;
-		if( playerSize > SizeLevel || isWeak() ) {
+		var dmg = _maxHp / 2 + 1;
+		if( playerSize > SizeLevel || dmg >= _currentHp ) {
 			prepareTentacleAttach();
 			return true;
 		} else {
@@ -174,9 +175,9 @@ public partial class EnemyShip : FoodSource {
 		_isAiEnabled = false;
 	}
 
-	public override void OnBroughtToPlayer()
+	public override void OnBroughtToPlayer( Tentacle tentacle )
 	{
-		Game.Player?.Assimilate( this );
+		Game.Player?.Assimilate( this, tentacle );
 		IsDead = true;
 		Game.Field.RemoveExistingShip();
 		QueueFree();

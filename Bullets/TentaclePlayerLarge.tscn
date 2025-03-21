@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dt6tdxfbg50n"]
 
-[ext_resource type="Script" uid="uid://dfgmu7ie4gbwo" path="res://Scripts/Tentacle.cs" id="1_uk8tn"]
+[ext_resource type="Script" uid="uid://cn124iemixtme" path="res://Scripts/TentaclePlayer.cs" id="1_uk8tn"]
 [ext_resource type="Texture2D" uid="uid://brdms4yh13312" path="res://TempAssets/Hero/TentacleEnd.png" id="2_jjswm"]
 [ext_resource type="Texture2D" uid="uid://d3oq77ju6me4s" path="res://TempAssets/Hero/TentacleSection.png" id="3_7nv4i"]
 [ext_resource type="Script" uid="uid://bckuu1wnhechy" path="res://Scripts/Player/TentacleLine.cs" id="4_62tk8"]
@@ -14,10 +14,10 @@ size = Vector2(2.7907, 14.2636)
 z_index = -1
 script = ExtResource("1_uk8tn")
 _mouseGravity = 25.0
-_tentacleExtendSpeed = 1300.0
-_tentacleShrinkSpeed = 4000.0
 TentacleMaxDistance = 2200.0
 TentacleMaxTime = 5.0
+_tentacleExtendSpeed = 1300.0
+_tentacleShrinkSpeed = 4000.0
 _tentacleAttachDelay = 0.4
 _tentacleLine = NodePath("Scaler/TentacleMid")
 _tentacleSoundPlayer = NodePath("Tentacle")

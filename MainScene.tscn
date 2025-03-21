@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=25 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip.tscn" id="3_4mcbk"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dmljy2bt73tbh" path="res://Music/TestWaveBgm.mp3" id="8_hbc2u"]
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
+[ext_resource type="PackedScene" uid="uid://cugvtasr1dxev" path="res://EntitiesSpace/DecalParts/SpaceDebris1.tscn" id="10_8s4c3"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="12_yvb8b"]
 [ext_resource type="AudioStream" uid="uid://d4fm122a7ybs1" path="res://Sounds/ButtonClick_ZapSplat.mp3" id="15_nm5af"]
 [ext_resource type="AudioStream" uid="uid://cq7blko855kh1" path="res://Sounds/GameOver_ZapSplat.mp3" id="16_x0cd2"]
@@ -133,6 +134,15 @@ offset_bottom = -13.0
 grow_vertical = 0
 script = ExtResource("7_3hf6u")
 _weaponsToEat = Array[PackedScene]([ExtResource("3_a814b"), ExtResource("3_a814b"), ExtResource("3_a814b")])
+_trashPrefab = ExtResource("10_8s4c3")
+
+[node name="Eat" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Eat Trash"
+
+[node name="Trash" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Spawn Trash"
 
 [node name="ResetGrowth" type="Button" parent="HUD/IdleUi/CheatMenu"]
 layout_mode = 2
@@ -216,6 +226,8 @@ texture = ExtResource("12_yvb8b")
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="." method="SpawnTestWave"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Eat" to="HUD/IdleUi/CheatMenu" method="EatAllTrash"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Trash" to="HUD/IdleUi/CheatMenu" method="SpawnTrash"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/ResetGrowth" to="HUD/IdleUi/CheatMenu" method="ResetGrowth"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Grow" to="HUD/IdleUi/CheatMenu" method="Grow"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons" to="HUD/IdleUi/CheatMenu" method="EatWeapons"]

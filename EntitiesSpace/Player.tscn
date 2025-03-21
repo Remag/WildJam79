@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dcxydx2svymhn"]
+[gd_scene load_steps=26 format=3 uid="uid://dcxydx2svymhn"]
 
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/BaseSmall.webp" id="3_hpvjx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bi7s1y3w2ngp3" path="res://Assets/MainHero/EyeBall.webp" id="4_7eort"]
 [ext_resource type="PackedScene" uid="uid://dt6tdxfbg50n" path="res://Bullets/TentaclePlayerLarge.tscn" id="4_bjqqk"]
 [ext_resource type="Texture2D" uid="uid://kf16sjsvwd6h" path="res://Assets/MainHero/Eye.webp" id="5_4ta28"]
+[ext_resource type="PackedScene" uid="uid://cyiefp4pu5ufl" path="res://Bullets/TentacleAutoSmall.tscn" id="5_bjqqk"]
 [ext_resource type="Script" uid="uid://f7rvj2fdt1uh" path="res://Scripts/Iris.cs" id="6_l6ohk"]
 [ext_resource type="PackedScene" uid="uid://legxaf8ejute" path="res://EntitiesSpace/PlayerBlob.tscn" id="7_oudfo"]
 [ext_resource type="Texture2D" uid="uid://dl10uh0dmno4n" path="res://Assets/MainHero/EyeballMid.webp" id="8_231b2"]
@@ -482,6 +483,7 @@ _animations = NodePath("AnimationPlayer")
 _maxVelocityPxSec = 350.0
 _maxHpByLvl = Array[int]([10, 30, 500])
 _tentaclesByLevel = Array[PackedScene]([ExtResource("3_wi0c6"), ExtResource("3_o1tba"), ExtResource("4_bjqqk")])
+_autoTentaclesBySize = Array[PackedScene]([ExtResource("5_bjqqk")])
 GrowthXpByLvl = Array[int]([100, 200])
 _cameraZoomByLvl = Array[float]([1.0, 0.7, 0.25])
 _smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3")]

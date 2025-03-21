@@ -6,47 +6,34 @@ using System.Linq;
 
 public partial class Tentacle : Node2D {
     [Export]
-    private float _mouseGravity = 5.0f;
+    protected float _tentacleExtendSpeed = 100;
     [Export]
-    private float _tentacleExtendSpeed = 100;
-    [Export]
-    private float _tentacleShrinkSpeed = 200;
-    [Export]
-    public float TentacleMaxDistance = 100;
-    [Export]
-    public double TentacleMaxTime = 6;
+    protected float _tentacleShrinkSpeed = 200;
     [Export]
     private double _tentacleAttachDelay = 0;
     [Export]
     private double _lineSavePeriod;
 
-    private enum TentacleMode {
+    protected enum TentacleMode {
         Extend,
         Keep,
         Shrink
     }
-    private TentacleMode _currentMode = TentacleMode.Extend;
+    protected TentacleMode _currentMode = TentacleMode.Extend;
 
     [Export]
-    private TentacleLine _tentacleLine;
+    protected TentacleLine _tentacleLine;
     [Export]
     private AudioStreamPlayer _tentacleSoundPlayer;
     [Export]
     private AudioStreamPlayer _catchSoundPlayer;
     public FoodSource AttachedEntity { get; private set; }
 
-    private Vector2 _currentVelocity;
+    protected Vector2 _currentVelocity;
 
     private double _currentKeepTime = 0;
     private double _currentExtendTime = 0;
     private double _currentLineSaveTime;
-    private bool _isFirstUpdate = true;
-
-    public void Initialize( Player player )
-    {
-        var endAnchor = _tentacleLine.EndAnchor;
-        endAnchor.GlobalPosition = player.GlobalPosition;
-    }
 
     public Node2D GetEndAnchor()
     {
@@ -69,12 +56,6 @@ public partial class Tentacle : Node2D {
 
     public override void _Ready()
     {
-        var canvasMousePos = GetViewport().GetMousePosition();
-        var globalMousePos = Game.Camera.GetCanvasTransform().AffineInverse() * canvasMousePos;
-        var endAnchor = _tentacleLine.EndAnchor;
-        var dirDelta = globalMousePos - endAnchor.GlobalPosition;
-
-        _currentVelocity = new Vector2( _tentacleExtendSpeed, 0 ).Rotated( dirDelta.Angle() );
         updateEndRotation( _tentacleLine.Points );
         _tentacleSoundPlayer.Play();
     }
@@ -95,31 +76,17 @@ public partial class Tentacle : Node2D {
                 updateShrink( deltaF );
                 break;
         }
-        _isFirstUpdate = false;
     }
 
     private void updateExtend( float delta )
     {
-        var canvasMousePos = GetViewport().GetMousePosition();
-        var globalMousePos = Game.Camera.GetCanvasTransform().AffineInverse() * canvasMousePos;
-        var endAnchor = _tentacleLine.EndAnchor;
-        var dirDelta = globalMousePos - endAnchor.GlobalPosition;
-        _currentVelocity += dirDelta * _mouseGravity * delta;
-        _currentVelocity = _currentVelocity.Normalized() * _tentacleExtendSpeed;
-        endAnchor.GlobalPosition += _currentVelocity * delta;
-
         updateLineSave( delta );
-
-        _currentExtendTime += delta;
-        if( _currentExtendTime >= TentacleMaxTime || ( _tentacleLine.EndAnchor.GlobalPosition - _tentacleLine.StartAnchor.GlobalPosition ).LengthSquared() >= TentacleMaxDistance * TentacleMaxDistance ) {
-            _currentMode = TentacleMode.Shrink;
-        }
     }
 
     private void updateLineSave( float delta )
     {
         _currentLineSaveTime += delta;
-        if( !_isFirstUpdate && _currentLineSaveTime >= _lineSavePeriod ) {
+        if( _currentLineSaveTime >= _lineSavePeriod ) {
             _currentLineSaveTime = 0;
             saveLinePositions();
         }
@@ -181,9 +148,9 @@ public partial class Tentacle : Node2D {
         }
 
         if( AttachedEntity != null && IsInstanceValid( AttachedEntity ) ) {
-            AttachedEntity.OnBroughtToPlayer();
+            AttachedEntity.OnBroughtToPlayer( this );
         }
-        Game.Player.DestroyTentacle();
+        Game.Player.DestroyTentacle( this );
     }
 
     private enum LineDecision {
@@ -281,22 +248,6 @@ public partial class Tentacle : Node2D {
         var lineDir = lineList[0] - lineList[1];
         if( lineDir.LengthSquared() > 1 ) {
             endAnchor.Rotation = lineDir.Angle();
-        }
-    }
-
-    public void OnAreaCollision( Area2D area2D )
-    {
-        if( _currentMode == TentacleMode.Shrink ) {
-            return;
-        }
-
-        if( area2D is Shield enemyShield ) {
-            AbortExtend();
-        } else if( area2D.GetParent() is FoodSource foodSource ) {
-            Attach( foodSource );
-            foodSource.OnTentacleCollision();
-        } else if( area2D.GetParent() is BasicBullet missile ) {
-            missile.HandleDestroy( true );
         }
     }
 }
