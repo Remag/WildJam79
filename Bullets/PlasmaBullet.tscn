@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqu7mb0ib3ocp"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_a1jof"]
-[ext_resource type="Resource" uid="uid://dykswp1wubb6t" path="res://EntitiesSpace/Res/Bullets/Bullet2_MoveLogic.tres" id="2_1fycg"]
+[ext_resource type="Resource" uid="uid://cc7gvauj8ju0h" path="res://EntitiesSpace/Res/Bullets/PlasmaBullet_MoveLogic.tres" id="2_ygdoa"]
 [ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_887uv"]
 [ext_resource type="Texture2D" uid="uid://dyx5maco2tka2" path="res://Assets/SpaceShip/Bullets/Bullet.webp" id="4_1fycg"]
 
@@ -14,11 +14,11 @@ metadata/_custom_type_script = "uid://b66fo1ud8763f"
 radius = 5.0
 height = 16.0
 
-[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
 light_mask = 4
 script = ExtResource("1_a1jof")
 _collisionArea = NodePath("Area2D")
-_moveLogic = ExtResource("2_1fycg")
+_moveLogic = ExtResource("2_ygdoa")
 _lifespanLogic = SubResource("Resource_qq402")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

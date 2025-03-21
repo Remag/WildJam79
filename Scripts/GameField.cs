@@ -89,6 +89,9 @@ public partial class GameField : Node {
 
     public void Travel( Texture2D locationBg, EnemyNodeInfo nodeInfo )
     {
+        foreach( var node in GetTree().GetNodesInGroup( "ClearOnLevelClear" ) ) {
+            node.QueueFree();
+        }
         if( Game.Player != null ) {
             _savedPlayerState = Game.Player.SaveState();
         }
@@ -149,6 +152,10 @@ public partial class GameField : Node {
         Game.Player.TryGrow();
         Game.Player.FullHeal();
         _idleUiControl.Visible = true;
+        
+        foreach( var node in GetTree().GetNodesInGroup( "ClearOnLevelClear" ) ) {
+            node.QueueFree();
+        }
     }
 
     public void EndGame()
