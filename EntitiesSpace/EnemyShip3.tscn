@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://du2c5try3ydx5"]
+[gd_scene load_steps=11 format=3 uid="uid://du2c5try3ydx5"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_tvijw"]
-[ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_ralwe"]
-[ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/RocketBullet.tscn" id="3_0gvqq"]
+[ext_resource type="PackedScene" uid="uid://r2vu35tnbc7w" path="res://Bullets/Bullet3.tscn" id="3_0gvqq"]
 [ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/EnemyShip3MoveConfig.tres" id="3_07nkk"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_tvijw"]
 [ext_resource type="Texture2D" uid="uid://didraosdcyllq" path="res://Assets/SpaceShip/ShipBody/SmallGreen.webp" id="5_tvijw"]
@@ -12,25 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="8_h1pid"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="11_ralwe"]
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_shootSoundPlayer2D", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip2" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
 script = ExtResource("1_tvijw")
 _maxHp = 10
 SizeLevel = 1
-_config = ExtResource("2_ralwe")
 _configRigid = ExtResource("3_07nkk")
-_aiAttackShootDelay = 1.0
-_aiAttackShootDuration = 1.0
-_aiAttackShootPause = 6.0
 _damageEffect = ExtResource("4_tvijw")
 _damageEffectAnchor = NodePath("DamageAnchor")
 _bulletPrefab = ExtResource("3_0gvqq")
-_angle = 0.0
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
-_shootSoundPlayer2D = NodePath("Shoot2D")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 GeneralExp = 60

@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=16 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
-[ext_resource type="Resource" uid="uid://csqy8du76uqip" path="res://EntitiesSpace/Res/EnemyMoveConfig.tres" id="2_i2eit"]
 [ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="3_ja242"]
 [ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/BasicBullet.tscn" id="3_sdw74"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_3lius"]
@@ -19,24 +18,18 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyjk0"]
 radius = 56.0357
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_shootSoundPlayer2D", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
 script = ExtResource("1_um61q")
 _maxHp = 10
-_config = ExtResource("2_i2eit")
 _configRigid = ExtResource("3_ja242")
-_aiAttackShootDelay = 1.5
-_aiAttackShootDuration = 4.55
-_aiAttackShootPause = 2.5
 _damageEffect = ExtResource("4_3lius")
 _damageEffectAnchor = NodePath("DamageAnchor")
 _bulletPrefab = ExtResource("3_sdw74")
-_angle = 0.0
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
-_shootSoundPlayer2D = NodePath("Shoot2D")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
