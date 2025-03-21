@@ -13,7 +13,7 @@ public partial class EnemyShip : FoodSource {
 	[Export]
 	private EnemyMoveConfigRigid _configRigid = new();
 
-	private bool _isAiEnabled = true;
+	public bool IsAiEnabled = true;
 
 	[Export]
 	private PackedScene _damageEffect;
@@ -51,7 +51,7 @@ public partial class EnemyShip : FoodSource {
 			_hitbox.Monitorable = false;
 		}
 
-		if( _isAiEnabled && _offscreenIndicator != null ) {
+		if( IsAiEnabled && _offscreenIndicator != null ) {
 			RemoveChild( _offscreenIndicator );
 			GetParent().AddChild( _offscreenIndicator );
 		}
@@ -65,7 +65,7 @@ public partial class EnemyShip : FoodSource {
 
 	public override void _PhysicsProcess( double delta )
 	{
-		if( _isAiEnabled ) {
+		if( IsAiEnabled ) {
 			handleIndicator();
 		}
 	}
@@ -172,7 +172,7 @@ public partial class EnemyShip : FoodSource {
 	private void prepareTentacleAttach()
 	{
 		Freeze = true;
-		_isAiEnabled = false;
+		IsAiEnabled = false;
 	}
 
 	public override void OnBroughtToPlayer( Tentacle tentacle )
@@ -186,7 +186,7 @@ public partial class EnemyShip : FoodSource {
 
 	public void DisableAllBehavior()
 	{
-		_isAiEnabled = false;
+		IsAiEnabled = false;
 	}
 
 	public void SetTrail( bool isSet )

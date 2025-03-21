@@ -37,6 +37,7 @@ folder_colors={
 Enemy=""
 ClearOnRestart=""
 EatOnWin=""
+ClearOnLevelClear=""
 
 [input]
 

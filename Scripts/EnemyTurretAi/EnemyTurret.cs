@@ -23,8 +23,8 @@ public partial class EnemyTurret : Node2D {
     private Node2D _shootTarget;
     [Export]
     private Node2D _turretBase;
-    
-    private bool _isAiEnabled = true;
+    [Export]
+    private EnemyShip _enemyShip;
     
     private enum AttackState {
 	    Shooting,
@@ -37,7 +37,7 @@ public partial class EnemyTurret : Node2D {
     
     public override void _PhysicsProcess( double delta )
     {
-        if( _isAiEnabled ) {
+        if( _enemyShip.IsAiEnabled ) {
 
 	        if( Game.Player != null ) {
 		        _shootTarget.GlobalPosition = Game.Player.GlobalPosition;

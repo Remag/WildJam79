@@ -53,12 +53,13 @@ scale = Vector2(0.25, 0.25)
 scale = Vector2(2, 2)
 texture = ExtResource("5_7jj5h")
 
-[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase")]
+[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip") groups=["ClearOnRestart", "Enemy"]]
 script = ExtResource("8_i01dv")
 _bulletSpawner = SubResource("Resource_t1yll")
 _shootSoundPlayer2D = NodePath("../../Shoot2D")
 _shootTarget = NodePath("../ShootMarker")
 _turretBase = NodePath("TurretBase")
+_enemyShip = NodePath("../..")
 
 [node name="TurretBase" type="Node2D" parent="Visuals/Turret"]
 position = Vector2(-1.52588e-05, 4)

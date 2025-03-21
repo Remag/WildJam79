@@ -20,7 +20,7 @@ _bulletPrefab = ExtResource("3_0gvqq")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
-[node name="EnemyShip2" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip3" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
@@ -61,7 +61,7 @@ rotation = 0.431096
 scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("6_fo27b")
 
-[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase")]
+[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip")]
 position = Vector2(-0.000305176, -88)
 script = ExtResource("8_x7spu")
 _aiAttackShootDuration = 0.3
@@ -70,6 +70,7 @@ _bulletSpawner = SubResource("Resource_spwil")
 _shootSoundPlayer2D = NodePath("../../Shoot2D")
 _shootTarget = NodePath("../ShootMarker")
 _turretBase = NodePath("TurretBase")
+_enemyShip = NodePath("../..")
 
 [node name="TurretBase" type="Node2D" parent="Visuals/Turret"]
 position = Vector2(-1.52588e-05, 4)
