@@ -9,16 +9,19 @@
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_7d47m")
 _bulletPrefab = ExtResource("2_ipayf")
+_rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_ipayf"]
 script = ExtResource("4_7d47m")
 _bulletPrefab = ExtResource("2_ipayf")
+_rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_jy6jm"]
 script = ExtResource("4_7d47m")
 _bulletPrefab = ExtResource("2_ipayf")
+_rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
