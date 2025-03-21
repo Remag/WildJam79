@@ -51,7 +51,7 @@ public partial class HeroWeaponCore : Node2D {
     {
         _levelNodes[_currentLevel].UpdateShooting( delta );
     }
-    
+
     public SavedState SaveState()
     {
         var state = new SavedState();
@@ -62,10 +62,12 @@ public partial class HeroWeaponCore : Node2D {
 
     public void RestoreState( SavedState state )
     {
+        _levelNodes[_currentLevel].Visible = false;
         _currentExp = state._currentExp;
         _currentLevel = state._currentLevel;
+        _levelNodes[_currentLevel].Visible = true;
     }
-    
+
     public class SavedState {
         public int _currentExp = 0;
         public int _currentLevel = 0;

@@ -86,7 +86,7 @@ public partial class BasicBullet : Node2D
 		
 	}
 
-	private void HandleDestroy(bool useDeathLogic = false)
+	public void HandleDestroy(bool useDeathLogic = false)
 	{
 		if( _isDestroyed ) return;
 		

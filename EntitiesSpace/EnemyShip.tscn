@@ -36,7 +36,7 @@ _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 GeneralExp = 10
-CorePrefab = ExtResource("5_caaev")
+CorePrefabs = Array[PackedScene]([ExtResource("5_caaev")])
 IsWeaponSource = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

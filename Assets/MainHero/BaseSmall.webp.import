@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hikfclss8pqy"
-path="res://.godot/imported/ExtraBlob.webp-7494b76e288c7cd29b39db9f99015818.ctex"
+uid="uid://dns7hb6m5k723"
+path="res://.godot/imported/BaseSmall.webp-9501fae17ff1712e0e91eb0f46ea24fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/MainHero/ExtraBlob.webp"
-dest_files=["res://.godot/imported/ExtraBlob.webp-7494b76e288c7cd29b39db9f99015818.ctex"]
+source_file="res://Assets/MainHero/BaseSmall.webp"
+dest_files=["res://.godot/imported/BaseSmall.webp-9501fae17ff1712e0e91eb0f46ea24fe.ctex"]
 
 [params]
 

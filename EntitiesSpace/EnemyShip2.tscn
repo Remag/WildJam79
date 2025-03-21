@@ -45,7 +45,7 @@ _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 GeneralExp = 35
 HealHp = 5
-CorePrefab = ExtResource("4_i2eit")
+CorePrefabs = Array[PackedScene]([ExtResource("4_i2eit")])
 IsWeaponSource = true
 
 [node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]

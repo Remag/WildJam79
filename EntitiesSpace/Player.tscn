@@ -1,18 +1,28 @@
-[gd_scene load_steps=16 format=3 uid="uid://dcxydx2svymhn"]
+[gd_scene load_steps=25 format=3 uid="uid://dcxydx2svymhn"]
 
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
-[ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/MainBody.webp" id="3_hpvjx"]
-[ext_resource type="PackedScene" uid="uid://b74mshutj3hsf" path="res://Bullets/Tentacle.tscn" id="3_wi0c6"]
+[ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/BaseSmall.webp" id="3_hpvjx"]
+[ext_resource type="Texture2D" uid="uid://c8n08a4231yb7" path="res://Assets/MainHero/BaseMid.webp" id="3_l556p"]
+[ext_resource type="PackedScene" uid="uid://273j1v2r4gx1" path="res://Bullets/TentaclePlayerMedium.tscn" id="3_o1tba"]
+[ext_resource type="PackedScene" uid="uid://b74mshutj3hsf" path="res://Bullets/TentaclePlayerSmall.tscn" id="3_wi0c6"]
 [ext_resource type="Texture2D" uid="uid://bi7s1y3w2ngp3" path="res://Assets/MainHero/EyeBall.webp" id="4_7eort"]
+[ext_resource type="PackedScene" uid="uid://dt6tdxfbg50n" path="res://Bullets/TentaclePlayerLarge.tscn" id="4_bjqqk"]
 [ext_resource type="Texture2D" uid="uid://kf16sjsvwd6h" path="res://Assets/MainHero/Eye.webp" id="5_4ta28"]
 [ext_resource type="Script" uid="uid://f7rvj2fdt1uh" path="res://Scripts/Iris.cs" id="6_l6ohk"]
 [ext_resource type="PackedScene" uid="uid://legxaf8ejute" path="res://EntitiesSpace/PlayerBlob.tscn" id="7_oudfo"]
+[ext_resource type="Texture2D" uid="uid://dl10uh0dmno4n" path="res://Assets/MainHero/EyeballMid.webp" id="8_231b2"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="8_upmy3"]
+[ext_resource type="Texture2D" uid="uid://pw2s2auerr07" path="res://Assets/MainHero/EyeMid.webp" id="9_5jdjn"]
 [ext_resource type="AudioStream" uid="uid://b8ek3sd5pxgvt" path="res://Sounds/ChompLongCut.mp3" id="9_upmy3"]
 [ext_resource type="AudioStream" uid="uid://cq7blko855kh1" path="res://Sounds/GameOver_ZapSplat.mp3" id="10_jhnwa"]
+[ext_resource type="Texture2D" uid="uid://tejh1hokvb1s" path="res://Assets/MainHero/BaseLarge.webp" id="12_ou0cs"]
+[ext_resource type="Texture2D" uid="uid://cth3hxa0hd5r" path="res://Assets/MainHero/EyeballLarge.webp" id="13_esfve"]
+[ext_resource type="Texture2D" uid="uid://oxwfjqvgqxqg" path="res://Assets/MainHero/EyeLarge.webp" id="14_o1tba"]
+[ext_resource type="Texture2D" uid="uid://phwkgwtegbnm" path="res://Assets/MainHero/EyeballLargeSide.webp" id="15_esfve"]
 
 [sub_resource type="Animation" id="Animation_hpvjx"]
 resource_name = "Growth1"
+length = 5.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,52 +30,128 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.466667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(4.16667, 4.43333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [0.8],
+"args": [],
+"method": &"TryRegrowWeapons"
+}, {
+"args": [],
 "method": &"UpdateCameraZoom"
 }]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Body:scale")
+tracks/1/path = NodePath("Visual/Small/BodySmall:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(-2, -2),
+"times": PackedFloat32Array(0, 0.3, 0.633333, 1.16667, 1.4, 2.5),
+"transitions": PackedFloat32Array(-2, -2, -2, 2, 2, -2),
 "update": 0,
-"values": [Vector2(0.4, 0.4), Vector2(0.8, 0.8)]
+"values": [Vector2(1, 1), Vector2(1.1, 0.8), Vector2(0.7, 1.05), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(2.2, 2.2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/2/path = NodePath("Visual/Medium/BodyMid:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1.93333, 2.66667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.476988, 0.476988), Vector2(0.954, 0.954)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:scale")
+tracks/3/path = NodePath("Visual/Small/BodySmall:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 2.06667, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/Small/BodySmall:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.933333, 2.46667),
+"transitions": PackedFloat32Array(1, -2, 2, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, 1.5708]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visual/Small/Eye:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.566667, 0.833333, 1.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visual/Small/Eye/Iris:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.476988, 0.476988), Vector2(0.954, 0.954)]
+"values": [0.0, -1.5708]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visual/Medium/BodyMid:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.46667, 2.7, 2.9),
+"transitions": PackedFloat32Array(1, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visual/Medium/Eye:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 3.03333, 3.7, 3.86667),
+"transitions": PackedFloat32Array(1, -2, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0), Vector2(1, 1.1), Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visual/Medium/BodyMid:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.03333, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.44855, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_4ta28"]
 resource_name = "Growth2"
+length = 5.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -73,48 +159,147 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.466667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(4.26667, 4.43333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [0.5],
+"args": [],
+"method": &"TryRegrowWeapons"
+}, {
+"args": [],
 "method": &"UpdateCameraZoom"
 }]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Body:scale")
+tracks/1/path = NodePath("Visual/Medium/BodyMid:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(-2, -2),
+"times": PackedFloat32Array(0, 0.3, 0.633333, 1.16667, 1.4, 2.5),
+"transitions": PackedFloat32Array(-2, -2, -2, 2, 2, -2),
 "update": 0,
-"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1.1, 0.8), Vector2(0.7, 1.05), Vector2(0.7, 0.7), Vector2(0.7, 0.7), Vector2(2.2, 2.2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/2/path = NodePath("Visual/Medium/BodyMid:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 2.06667, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.954, 0.954), Vector2(1.193, 1.193)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:scale")
+tracks/3/path = NodePath("Visual/Medium/BodyMid:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.3, 0.933333, 2.46667),
+"transitions": PackedFloat32Array(1, -2, 2, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, 1.5708]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/Large/BodyLarge:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.9, 2.46667, 2.7, 2.9),
+"transitions": PackedFloat32Array(1, 1, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visual/Large/BodyLarge:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.954, 0.954), Vector2(1.193, 1.193)]
+"values": [0.0, 0.44855]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visual/Large/BodyLarge:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.93333, 2.66667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visual/Medium/Eye:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.566667, 0.833333, 1.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visual/Medium/Eye/Iris:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visual/Large/BodyLarge/EyeLarge:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3.03333, 3.7, 3.86667),
+"transitions": PackedFloat32Array(1, -2, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0), Vector2(1, 1.1), Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visual/Large/BodyLarge/EyeLarge2:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 3.16667, 3.83334, 4.00001),
+"transitions": PackedFloat32Array(1, -2, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0), Vector2(1, 1.1), Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Visual/Large/BodyLarge/EyeLarge3:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 3.33333, 4, 4.16667),
+"transitions": PackedFloat32Array(1, -2, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7eort"]
@@ -122,38 +307,158 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Body:scale")
+tracks/0/path = NodePath("Visual/Small/BodySmall:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.4, 0.4)]
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/1/path = NodePath("Visual/Medium/BodyMid:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.476988, 0.476988)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:scale")
+tracks/2/path = NodePath("Visual/Small/BodySmall:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.477, 0.477)]
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/Small/BodySmall:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/Small/Eye:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visual/Small/Eye/Iris:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visual/Medium/BodyMid:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visual/Medium/Eye:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visual/Medium/BodyMid:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visual/Large/BodyLarge/EyeLarge:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visual/Large/BodyLarge/EyeLarge2:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Visual/Large/BodyLarge/EyeLarge3:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Visual/Large/BodyLarge:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7eort"]
@@ -166,19 +471,22 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
 radius = 29.865
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_blobs", "_shootSoundPlayer", "_chompSoundPlayer")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
 center_of_mass_mode = 1
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("2_5ncpa")
-_mainNode = NodePath("Visual/Body")
-_eyeball = NodePath("Visual/Body/Eye")
+_mainNode = NodePath("Visual/Small/BodySmall")
+_eyeball = NodePath("Visual/Small/Eye")
 _animations = NodePath("AnimationPlayer")
 _maxVelocityPxSec = 350.0
-_maxHp = 10
-_tentaclePrefab = ExtResource("3_wi0c6")
+_maxHpByLvl = Array[int]([10, 30, 500])
+_tentaclesByLevel = Array[PackedScene]([ExtResource("3_wi0c6"), ExtResource("3_o1tba"), ExtResource("4_bjqqk")])
 GrowthXpByLvl = Array[int]([100, 200])
-_blobs = [NodePath("Visual/PlayerBlob"), NodePath("Visual/PlayerBlob2"), NodePath("Visual/PlayerBlob3"), NodePath("Visual/PlayerBlob4"), NodePath("Visual/PlayerBlob6"), NodePath("Visual/PlayerBlob7"), NodePath("Visual/PlayerBlob8"), NodePath("Visual/PlayerBlob9"), NodePath("Visual/PlayerBlob10"), NodePath("Visual/PlayerBlob11"), NodePath("Visual/PlayerBlob12"), NodePath("Visual/PlayerBlob13")]
+_cameraZoomByLvl = Array[float]([1.0, 0.7, 0.25])
+_smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3")]
+_mediumBlobs = [NodePath("Visual/Medium/BodyMid/PlayerBlob5"), NodePath("Visual/Medium/BodyMid/PlayerBlob7"), NodePath("Visual/Medium/BodyMid/PlayerBlob9"), NodePath("Visual/Medium/BodyMid/PlayerBlob11"), NodePath("Visual/Medium/BodyMid/PlayerBlob6"), NodePath("Visual/Medium/BodyMid/PlayerBlob8"), NodePath("Visual/Medium/BodyMid/PlayerBlob10"), NodePath("Visual/Medium/BodyMid/PlayerBlob12")]
+_largeBlobs = [NodePath("Visual/Large/BodyLarge/PlayerBlob5"), NodePath("Visual/Large/BodyLarge/PlayerBlob6"), NodePath("Visual/Large/BodyLarge/PlayerBlob8"), NodePath("Visual/Large/BodyLarge/PlayerBlob7"), NodePath("Visual/Large/BodyLarge/PlayerBlob10"), NodePath("Visual/Large/BodyLarge/PlayerBlob9")]
 _shootSoundPlayer = NodePath("Shoot")
 _chompSoundPlayer = NodePath("Chomp")
 
@@ -189,86 +497,194 @@ libraries = {
 
 [node name="Visual" type="Node2D" parent="."]
 
-[node name="Body" type="Sprite2D" parent="Visual"]
-z_index = 2
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_hpvjx")
+[node name="Small" type="Node2D" parent="Visual"]
+scale = Vector2(0.5, 0.5)
 
-[node name="Eye" type="Sprite2D" parent="Visual/Body"]
+[node name="Eye" type="Sprite2D" parent="Visual/Small"]
 clip_children = 2
 z_index = 3
-position = Vector2(-7.18555, -1.97351)
-scale = Vector2(1.17038, 1.17038)
+position = Vector2(-5, -2)
+rotation = -0.785397
 texture = ExtResource("4_7eort")
 
-[node name="Iris" type="Sprite2D" parent="Visual/Body/Eye"]
+[node name="Iris" type="Sprite2D" parent="Visual/Small/Eye"]
 z_index = 4
+position = Vector2(0.778325, 4.96027)
 texture = ExtResource("5_4ta28")
 script = ExtResource("6_l6ohk")
 
-[node name="PlayerBlob" parent="Visual" instance=ExtResource("7_oudfo")]
-visible = false
-position = Vector2(40.3612, -8.30968)
-scale = Vector2(0.4, 0.4)
+[node name="BodySmall" type="Sprite2D" parent="Visual/Small"]
+z_index = 2
+texture = ExtResource("3_hpvjx")
 
-[node name="PlayerBlob2" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="Blob1" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-47.484, 8.30968)
-scale = Vector2(0.4, 0.4)
+z_index = 3
+position = Vector2(44, -98)
+rotation = 0.261799
+scale = Vector2(0.81, 0.81)
 
-[node name="PlayerBlob3" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="Blob2" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-10.6838, -40.3612)
-scale = Vector2(0.4, 0.4)
+z_index = 3
+position = Vector2(60, 82)
+rotation = 2.35619
+scale = Vector2(0.81, 0.81)
 
-[node name="PlayerBlob4" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="Blob3" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(13.058, 40.3612)
-scale = Vector2(0.4, 0.4)
+z_index = 3
+position = Vector2(-100, 12)
+rotation = 4.71238
+scale = Vector2(0.81, 0.81)
 
-[node name="PlayerBlob6" parent="Visual" instance=ExtResource("7_oudfo")]
-visible = false
-position = Vector2(52, 16)
-scale = Vector2(0.4, 0.4)
+[node name="Medium" type="Node2D" parent="Visual"]
 
-[node name="PlayerBlob7" parent="Visual" instance=ExtResource("7_oudfo")]
-visible = false
-position = Vector2(-52, -16)
-scale = Vector2(0.4, 0.4)
+[node name="BodyMid" type="Sprite2D" parent="Visual/Medium"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+texture = ExtResource("3_l556p")
 
-[node name="PlayerBlob8" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob5" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(35, -40)
-scale = Vector2(0.4, 0.4)
+position = Vector2(119.584, -99.7235)
+rotation = 0.523598
+scale = Vector2(0.88833, 0.779565)
 
-[node name="PlayerBlob9" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob6" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-32, 48)
-scale = Vector2(0.4, 0.4)
+position = Vector2(162.477, 21.6856)
+rotation = 1.57079
+scale = Vector2(0.88833, 0.779565)
 
-[node name="PlayerBlob10" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob7" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-58, 86)
-scale = Vector2(0.4, 0.4)
+position = Vector2(92.6499, 114.11)
+rotation = 1.83259
+scale = Vector2(0.88833, 0.779565)
 
-[node name="PlayerBlob11" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob8" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(-99, -38)
-scale = Vector2(0.4, 0.4)
+position = Vector2(-33.4957, 144.855)
+rotation = 3.14159
+scale = Vector2(0.88833, 0.779565)
 
-[node name="PlayerBlob12" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob9" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(41, -86)
-scale = Vector2(0.4, 0.4)
+position = Vector2(-151.516, 81.798)
+rotation = 4.18878
+scale = Vector2(0.88833, 0.779565)
 
-[node name="PlayerBlob13" parent="Visual" instance=ExtResource("7_oudfo")]
+[node name="PlayerBlob10" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
 visible = false
-position = Vector2(97, 35)
-scale = Vector2(0.4, 0.4)
+position = Vector2(-158.873, -23.4202)
+rotation = 4.45058
+scale = Vector2(0.88833, 0.779565)
+
+[node name="PlayerBlob11" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-88.6119, -114.943)
+rotation = 5.23598
+scale = Vector2(0.88833, 0.779565)
+
+[node name="PlayerBlob12" parent="Visual/Medium/BodyMid" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(32.2959, -154.266)
+rotation = 6.02138
+scale = Vector2(0.88833, 0.779565)
+
+[node name="Eye" type="Sprite2D" parent="Visual/Medium"]
+z_index = 2
+rotation = -0.561996
+scale = Vector2(1, 1e-05)
+texture = ExtResource("8_231b2")
+
+[node name="Iris" type="Sprite2D" parent="Visual/Medium/Eye"]
+position = Vector2(1.15951, 1.91195)
+texture = ExtResource("9_5jdjn")
+script = ExtResource("6_l6ohk")
+_maxOffsetPx = 7.0
+
+[node name="Large" type="Node2D" parent="Visual"]
+scale = Vector2(1.6, 1.6)
+
+[node name="BodyLarge" type="Sprite2D" parent="Visual/Large"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+position = Vector2(-2, 1)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("12_ou0cs")
+
+[node name="EyeLarge" type="Sprite2D" parent="Visual/Large/BodyLarge"]
+z_index = 2
+position = Vector2(1.74001, 9.28357)
+rotation = -0.561996
+scale = Vector2(1, 1e-05)
+texture = ExtResource("13_esfve")
+
+[node name="Iris" type="Sprite2D" parent="Visual/Large/BodyLarge/EyeLarge"]
+position = Vector2(1.89136, -1.55165)
+texture = ExtResource("14_o1tba")
+script = ExtResource("6_l6ohk")
+
+[node name="EyeLarge2" type="Sprite2D" parent="Visual/Large/BodyLarge"]
+z_index = 2
+position = Vector2(45.9447, 73.4626)
+rotation = 2.61799
+scale = Vector2(1, 1e-05)
+texture = ExtResource("15_esfve")
+
+[node name="Iris" type="Sprite2D" parent="Visual/Large/BodyLarge/EyeLarge2"]
+position = Vector2(1.89136, -1.55165)
+texture = ExtResource("5_4ta28")
+script = ExtResource("6_l6ohk")
+
+[node name="EyeLarge3" type="Sprite2D" parent="Visual/Large/BodyLarge"]
+z_index = 2
+position = Vector2(-34.7211, -64.1711)
+rotation = -0.561996
+scale = Vector2(1, 1e-05)
+texture = ExtResource("15_esfve")
+
+[node name="Iris" type="Sprite2D" parent="Visual/Large/BodyLarge/EyeLarge3"]
+position = Vector2(1.89136, -1.55165)
+texture = ExtResource("5_4ta28")
+script = ExtResource("6_l6ohk")
+
+[node name="PlayerBlob5" parent="Visual/Large/BodyLarge" instance=ExtResource("7_oudfo")]
+position = Vector2(142.1, -195.042)
+rotation = 0.523598
+scale = Vector2(0.720754, 0.719113)
+
+[node name="PlayerBlob6" parent="Visual/Large/BodyLarge" instance=ExtResource("7_oudfo")]
+position = Vector2(240.592, 2.40268)
+rotation = 1.309
+scale = Vector2(0.720754, 0.719113)
+
+[node name="PlayerBlob8" parent="Visual/Large/BodyLarge" instance=ExtResource("7_oudfo")]
+position = Vector2(-152.608, 198.573)
+rotation = 3.92699
+scale = Vector2(0.720754, 0.719113)
+
+[node name="PlayerBlob7" parent="Visual/Large/BodyLarge" instance=ExtResource("7_oudfo")]
+position = Vector2(-224.634, 7.119)
+rotation = 4.71238
+scale = Vector2(0.720754, 0.719113)
+
+[node name="PlayerBlob10" parent="Visual/Large/BodyLarge" instance=ExtResource("7_oudfo")]
+position = Vector2(-133.748, -198.928)
+rotation = 5.49778
+scale = Vector2(0.720754, 0.719113)
+
+[node name="PlayerBlob9" parent="Visual/Large/BodyLarge" instance=ExtResource("7_oudfo")]
+position = Vector2(44.2086, 234.251)
+rotation = 3.14159
+scale = Vector2(0.720754, 0.719113)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 0)
-scale = Vector2(0.477, 0.477)
+scale = Vector2(1.193, 1.193)
 shape = SubResource("CircleShape2D_a814b")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -276,8 +692,9 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 position = Vector2(-1, 0)
-scale = Vector2(0.476988, 0.476988)
+scale = Vector2(1.193, 1.193)
 shape = SubResource("CircleShape2D_a814b")
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]

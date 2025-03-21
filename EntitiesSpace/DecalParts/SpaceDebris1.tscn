@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cugvtasr1dxev"]
+
+[ext_resource type="Texture2D" uid="uid://d1ytdsq6kedh8" path="res://Assets/SpaceShip/ShipParts/PartPurpleSmall.webp" id="1_s3v3h"]
+[ext_resource type="Script" uid="uid://dbw6oxcxc5dnd" path="res://Scripts/SpaceDebris.cs" id="2_r1atj"]
+[ext_resource type="PackedScene" uid="uid://draawj72qffpb" path="res://EntitiesSpace/DecalCores/SpaceDebrisCore1.tscn" id="3_nhmbs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhmbs"]
+radius = 38.0526
+
+[node name="SpaceDebris" type="Sprite2D"]
+texture = ExtResource("1_s3v3h")
+script = ExtResource("2_r1atj")
+CorePrefabs = Array[PackedScene]([ExtResource("3_nhmbs")])
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, -1)
+shape = SubResource("CircleShape2D_nhmbs")

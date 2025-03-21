@@ -9,7 +9,7 @@ public abstract partial class FoodSource : RigidBody2D {
     [Export]
     public int HealHp = 1;
     [Export]
-    public PackedScene CorePrefab;
+    public Godot.Collections.Array<PackedScene> CorePrefabs;
     [Export]
     public bool IsWeaponSource;
 

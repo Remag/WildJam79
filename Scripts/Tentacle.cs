@@ -286,13 +286,17 @@ public partial class Tentacle : Node2D {
 
     public void OnAreaCollision( Area2D area2D )
     {
+        if( _currentMode == TentacleMode.Shrink ) {
+            return;
+        }
+
         if( area2D is Shield enemyShield ) {
             AbortExtend();
         } else if( area2D.GetParent() is FoodSource foodSource ) {
-            if( _currentMode != TentacleMode.Shrink ) {
-                Attach( foodSource );
-                foodSource.OnTentacleCollision();
-            }
+            Attach( foodSource );
+            foodSource.OnTentacleCollision();
+        } else if( area2D.GetParent() is BasicBullet missile ) {
+            missile.HandleDestroy( true );
         }
     }
 }

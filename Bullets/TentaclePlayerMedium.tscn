@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://273j1v2r4gx1"]
+
+[ext_resource type="Script" uid="uid://dfgmu7ie4gbwo" path="res://Scripts/Tentacle.cs" id="1_l7rkn"]
+[ext_resource type="Texture2D" uid="uid://brdms4yh13312" path="res://TempAssets/Hero/TentacleEnd.png" id="2_yge1v"]
+[ext_resource type="Texture2D" uid="uid://d3oq77ju6me4s" path="res://TempAssets/Hero/TentacleSection.png" id="3_o4cxh"]
+[ext_resource type="Script" uid="uid://bckuu1wnhechy" path="res://Scripts/Player/TentacleLine.cs" id="4_v2ou8"]
+[ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="5_avr4o"]
+[ext_resource type="AudioStream" uid="uid://3lwqvahw3p87" path="res://Sounds/Catch_ZapSplat.mp3" id="6_q0bmg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g8t2"]
+size = Vector2(2.7907, 14.2636)
+
+[node name="Tentacle" type="Node2D" node_paths=PackedStringArray("_tentacleLine", "_tentacleSoundPlayer", "_catchSoundPlayer")]
+z_index = -1
+script = ExtResource("1_l7rkn")
+_mouseGravity = 25.0
+_tentacleExtendSpeed = 800.0
+_tentacleShrinkSpeed = 1800.0
+TentacleMaxDistance = 900.0
+TentacleMaxTime = 1.5
+_tentacleAttachDelay = 0.4
+_tentacleLine = NodePath("Scaler/TentacleMid")
+_tentacleSoundPlayer = NodePath("Tentacle")
+_catchSoundPlayer = NodePath("Catch")
+
+[node name="Scaler" type="Node2D" parent="."]
+scale = Vector2(0.8, 0.8)
+
+[node name="StartAnchor" type="Node2D" parent="Scaler"]
+
+[node name="EndAnchor" type="Node2D" parent="Scaler"]
+position = Vector2(1, 0)
+
+[node name="EndSprite" type="Sprite2D" parent="Scaler/EndAnchor"]
+position = Vector2(23, -4)
+rotation = -3.14159
+texture = ExtResource("2_yge1v")
+
+[node name="Area2D" type="Area2D" parent="Scaler/EndAnchor"]
+position = Vector2(31, -7)
+scale = Vector2(3, 3)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scaler/EndAnchor/Area2D"]
+scale = Vector2(1.075, 1.075)
+shape = SubResource("RectangleShape2D_7g8t2")
+
+[node name="TentacleMid" type="Line2D" parent="Scaler" node_paths=PackedStringArray("StartAnchor", "EndAnchor")]
+z_index = 1
+texture_repeat = 2
+points = PackedVector2Array(1, 0, 0, 0)
+width = 28.175
+texture = ExtResource("3_o4cxh")
+texture_mode = 1
+script = ExtResource("4_v2ou8")
+StartAnchor = NodePath("../StartAnchor")
+EndAnchor = NodePath("../EndAnchor")
+
+[node name="Tentacle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_avr4o")
+volume_db = -4.692
+bus = &"sfx"
+parameters/looping = true
+
+[node name="Catch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_q0bmg")
+volume_db = -3.91
+bus = &"sfx"
+
+[connection signal="area_entered" from="Scaler/EndAnchor/Area2D" to="." method="OnAreaCollision"]

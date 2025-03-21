@@ -36,7 +36,7 @@ _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 GeneralExp = 60
-CorePrefab = ExtResource("6_tvijw")
+CorePrefabs = Array[PackedScene]([ExtResource("6_tvijw")])
 IsWeaponSource = true
 
 [node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]
@@ -64,6 +64,8 @@ texture = ExtResource("6_fo27b")
 [node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase")]
 position = Vector2(-0.000305176, -88)
 script = ExtResource("8_x7spu")
+_aiAttackShootDuration = 0.3
+_aiAttackShootPause = 4.0
 _bulletSpawner = SubResource("Resource_spwil")
 _shootSoundPlayer2D = NodePath("../../Shoot2D")
 _shootTarget = NodePath("../ShootMarker")

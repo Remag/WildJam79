@@ -1,14 +1,113 @@
-[gd_scene load_steps=3 format=3 uid="uid://legxaf8ejute"]
+[gd_scene load_steps=7 format=3 uid="uid://legxaf8ejute"]
 
+[ext_resource type="Texture2D" uid="uid://dbp5fe847cvma" path="res://Assets/MainHero/Blob2.png" id="1_pvc6y"]
 [ext_resource type="Script" uid="uid://dspvqpbnknyin" path="res://Scripts/PlayerBlob.cs" id="1_sucu1"]
-[ext_resource type="Texture2D" uid="uid://hikfclss8pqy" path="res://Assets/MainHero/ExtraBlob.webp" id="2_sucu1"]
 
-[node name="PlayerBlob" type="Node2D" node_paths=PackedStringArray("_enemyAnchor")]
+[sub_resource type="Animation" id="Animation_sucu1"]
+resource_name = "Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.533333),
+"transitions": PackedFloat32Array(-2, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hvhlf"]
+resource_name = "HideCore"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyAnchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pvc6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyAnchor:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvhlf"]
+_data = {
+&"Appear": SubResource("Animation_sucu1"),
+&"HideCore": SubResource("Animation_hvhlf"),
+&"RESET": SubResource("Animation_pvc6y")
+}
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_enemyAnchor", "_animations")]
 script = ExtResource("1_sucu1")
-_enemyAnchor = NodePath("EnemyAnchor")
+_enemyAnchor = NodePath("PlayerBlob/EnemyAnchor")
+_animations = NodePath("AnimationPlayer")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_sucu1")
+[node name="PlayerBlob" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-6, 71)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_pvc6y")
+offset = Vector2(6, -71)
 
-[node name="EnemyAnchor" type="Node2D" parent="."]
-position = Vector2(8, 17)
+[node name="EnemyAnchor" type="Node2D" parent="PlayerBlob"]
+position = Vector2(10, -57)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PlayerBlob")
+libraries = {
+&"": SubResource("AnimationLibrary_hvhlf")
+}

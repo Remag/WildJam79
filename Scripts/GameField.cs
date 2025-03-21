@@ -143,6 +143,7 @@ public partial class GameField : Node {
     private void onLevelClear()
     {
         Game.Player.TryGrow();
+        Game.Player.FullHeal();
         _idleUiControl.Visible = true;
     }
 
@@ -168,6 +169,7 @@ public partial class GameField : Node {
         }
 
         AddChild( player );
+        player.UpdateCameraZoom();
 
         foreach( var node in GetTree().GetNodesInGroup( "ClearOnRestart" ) ) {
             node.QueueFree();
