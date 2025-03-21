@@ -477,9 +477,9 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
-radius = 29.865
+radius = 24.0
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_playerHitboxes", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
 center_of_mass_mode = 1
 linear_damp = 1.0
 angular_damp = 1.0
@@ -491,8 +491,10 @@ _maxVelocityPxSec = 350.0
 _maxHpByLvl = Array[int]([10, 30, 500])
 _tentaclesByLevel = Array[PackedScene]([ExtResource("3_wi0c6"), ExtResource("3_o1tba"), ExtResource("4_bjqqk")])
 _autoTentaclesBySize = Array[PackedScene]([ExtResource("5_bjqqk")])
+_playerHitboxes = [NodePath("CollisionShape2D"), NodePath("Hitbox/CollisionShape2D")]
 GrowthXpByLvl = Array[int]([100, 200])
 _cameraZoomByLvl = Array[float]([1.0, 0.7, 0.25])
+_heroHitboxScaleByLvl = Array[float]([1.0, 2.0, 3.0])
 _smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3")]
 _mediumBlobs = [NodePath("Visual/Medium/BodyMid/PlayerBlob5"), NodePath("Visual/Medium/BodyMid/PlayerBlob7"), NodePath("Visual/Medium/BodyMid/PlayerBlob9"), NodePath("Visual/Medium/BodyMid/PlayerBlob11"), NodePath("Visual/Medium/BodyMid/PlayerBlob6"), NodePath("Visual/Medium/BodyMid/PlayerBlob8"), NodePath("Visual/Medium/BodyMid/PlayerBlob10"), NodePath("Visual/Medium/BodyMid/PlayerBlob12")]
 _largeBlobs = [NodePath("Visual/Large/BodyLarge/PlayerBlob5"), NodePath("Visual/Large/BodyLarge/PlayerBlob6"), NodePath("Visual/Large/BodyLarge/PlayerBlob8"), NodePath("Visual/Large/BodyLarge/PlayerBlob7"), NodePath("Visual/Large/BodyLarge/PlayerBlob10"), NodePath("Visual/Large/BodyLarge/PlayerBlob9")]
@@ -678,9 +680,7 @@ rotation = 3.14159
 scale = Vector2(0.720754, 0.719113)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1, 0)
-scale = Vector2(1.193, 1.193)
 shape = SubResource("CircleShape2D_a814b")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
@@ -691,9 +691,7 @@ RealParent = NodePath("..")
 metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
 position = Vector2(-1, 0)
-scale = Vector2(1.193, 1.193)
 shape = SubResource("CircleShape2D_a814b")
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
