@@ -26,9 +26,13 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<PackedScene> _autoTentaclesBySize;
 
     [Export]
+    private Godot.Collections.Array<Node2D> _playerHitboxes;
+    [Export]
     public Godot.Collections.Array<int> GrowthXpByLvl { get; private set; }
     [Export]
     private Godot.Collections.Array<float> _cameraZoomByLvl;
+    [Export]
+    private Godot.Collections.Array<float> _heroHitboxScaleByLvl;
     [Export]
     private Godot.Collections.Array<PlayerBlob> _smallBlobs;
     [Export]
@@ -117,6 +121,7 @@ public partial class Player : RigidBody2D {
         if( enemies.Count > 0 ) {
             _isPlayerControlled = false;
             _isShooting = false;
+            LinearDamp = 2;
             delayEatAllEnemies();
         } else {
             endVictoryAnimation();
@@ -246,7 +251,9 @@ public partial class Player : RigidBody2D {
         var level = Math.Clamp( CurrentGrowthLevel, 0, _cameraZoomByLvl.Count - 1 );
         var zoomValue = _cameraZoomByLvl[level];
         var zTween = Camera.CreateTween();
+        var sTween = Camera.CreateTween();
         zTween.TweenProperty( Camera, "zoom", new Vector2( zoomValue, zoomValue ), 0.75 ).SetEase( Tween.EaseType.InOut );
+        sTween.TweenProperty( Camera, "scale", new Vector2( 1 / zoomValue, 1 / zoomValue ), 0.75 ).SetEase( Tween.EaseType.InOut );
     }
 
     private void assimilateGeneral( FoodSource food )
@@ -433,6 +440,7 @@ public partial class Player : RigidBody2D {
         _isPlayerControlled = true;
         Game.Player.FullHeal();
         if( !Game.Player.TryGrow() ) {
+            LinearDamp = 1;
             Game.Field.EnableIdleUi();
         }
         _isEatingEnemies = false;
@@ -440,6 +448,12 @@ public partial class Player : RigidBody2D {
 
     public void OnGrowFinish()
     {
+        var level = Math.Clamp( CurrentGrowthLevel, 0, _heroHitboxScaleByLvl.Count - 1 );
+        var hitboxScale = _heroHitboxScaleByLvl[level];
+        foreach( var hitbox in _playerHitboxes ) {
+            hitbox.Scale = new Vector2( hitboxScale, hitboxScale );
+        }
+        LinearDamp = 1;
         Game.Field.EnableIdleUi();
     }
 
