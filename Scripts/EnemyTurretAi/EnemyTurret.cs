@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 namespace WildJam78.Scripts.EnemyTurretAi;
 
@@ -15,6 +16,11 @@ public partial class EnemyTurret : Node2D {
     
     [Export]
     private BulletSpawner _bulletSpawner;
+
+    [Export] 
+    private float _angularVelocity = 1f;
+    [Export] 
+    private float _activationDistance = 200f;
     
     [Export]
     private AudioStreamPlayer2D _shootSoundPlayer2D;
@@ -25,6 +31,8 @@ public partial class EnemyTurret : Node2D {
     private Node2D _turretBase;
     [Export]
     private EnemyShip _enemyShip;
+    [Export]
+    private Node2D _spawnPoint;
     
     private enum AttackState {
 	    Shooting,
@@ -40,7 +48,18 @@ public partial class EnemyTurret : Node2D {
         if( _enemyShip.IsShootingEnabled ) {
 
 	        if( Game.Player != null ) {
-		        _shootTarget.GlobalPosition = Game.Player.GlobalPosition;
+		        var vectorToPlayer = Game.Player.GlobalPosition - GlobalPosition;
+		        var vectorToShootTarget = _shootTarget.GlobalPosition - GlobalPosition;
+		        var angle = vectorToShootTarget.AngleTo( vectorToPlayer );
+		        float rotationAngle;
+		        var maxAngle = _angularVelocity * (float)delta;
+		        if( Math.Abs( angle ) > maxAngle ) {
+			        rotationAngle = Math.Sign( angle ) * maxAngle;
+		        } else {
+			        rotationAngle = angle;
+		        }
+
+		        _shootTarget.GlobalPosition = GlobalPosition + vectorToShootTarget.Rotated( rotationAngle ).Normalized() * vectorToPlayer.Length();
 	        }
 
 	        _turretBase.Rotation = ( Position - _shootTarget.Position ).Angle() - float.Pi / 2;
@@ -67,8 +86,10 @@ public partial class EnemyTurret : Node2D {
 				InitPauseAttackState();
 				break;
 			case AttackState.Pausing:
-				_currentAttackState = AttackState.Shooting;
-				InitShootAttackState();
+				if( IsTargetInDistance() ) {
+					_currentAttackState = AttackState.Shooting;
+					InitShootAttackState();
+				}
 				break;
 		}
 	}
@@ -84,7 +105,7 @@ public partial class EnemyTurret : Node2D {
 	{
 		_attackStateDuration = _aiAttackShootDuration;
 		_isShooting = true;
-		_currentShootDelay = _aiAttackShootDelayMin;
+		_currentShootDelay = 0;
 	}
 
 	private void ShootPlayer( double delta )
@@ -108,11 +129,16 @@ public partial class EnemyTurret : Node2D {
 			return;
 		}
 		var targetPos = _shootTarget.GlobalPosition;
-		_bulletSpawner.SpawnBullets( this, targetPos, isEnemyBullet:true );
+		_bulletSpawner.SpawnBullets( _spawnPoint ?? this, targetPos, isEnemyBullet:true );
 	}
 	
 	private float GetAttackShootPause()
 	{
 		return Rng.RandomRange( _aiAttackShootPauseMin, _aiAttackShootPauseMax );
+	}
+
+	private bool IsTargetInDistance()
+	{
+		return ( _shootTarget.GlobalPosition - GlobalPosition ).Length() <= _activationDistance;
 	}
 }

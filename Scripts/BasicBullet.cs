@@ -68,7 +68,6 @@ public partial class BasicBullet : Node2D {
 
 	public void OnAreaCollision( Node node )
 	{
-		GD.Print( "node = " + node );
 		switch( node ) {
 			case Shield enemyShield:
 				enemyShield.OnBulletCollision( _bulletDamage );
