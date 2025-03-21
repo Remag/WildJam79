@@ -7,11 +7,11 @@ public partial class EnemyTurret : Node2D {
     [Export]
     private float _aiAttackShootDelayMin = 0.2F;
     [Export]
-    private float _aiAttackShootDelayMax = 0.2F;
-    [Export]
     private float _aiAttackShootDuration = 0.6F;
     [Export]
-    private float _aiAttackShootPause = 1.2F;
+    private float _aiAttackShootPauseMin = 1.2F;
+    [Export]
+    private float _aiAttackShootPauseMax = 1.2F;
     
     [Export]
     private BulletSpawner _bulletSpawner;
@@ -75,7 +75,7 @@ public partial class EnemyTurret : Node2D {
 
 	private void InitPauseAttackState()
 	{
-		_attackStateDuration = _aiAttackShootPause;
+		_attackStateDuration = GetAttackShootPause();
 		_isShooting = false;
 		_currentShootDelay = 0;
 	}
@@ -84,7 +84,7 @@ public partial class EnemyTurret : Node2D {
 	{
 		_attackStateDuration = _aiAttackShootDuration;
 		_isShooting = true;
-		_currentShootDelay = GetAttackShootDelay();
+		_currentShootDelay = _aiAttackShootDelayMin;
 	}
 
 	private void ShootPlayer( double delta )
@@ -94,7 +94,7 @@ public partial class EnemyTurret : Node2D {
 		}
 		_currentShootDelay -= delta;
 		if( _currentShootDelay < 0 ) {
-			_currentShootDelay = GetAttackShootDelay();
+			_currentShootDelay = _aiAttackShootDelayMin;
 			SpawnBulletPattern();
 			_shootSoundPlayer2D.Play();
 
@@ -111,8 +111,8 @@ public partial class EnemyTurret : Node2D {
 		_bulletSpawner.SpawnBullets( this, targetPos, isEnemyBullet:true );
 	}
 	
-	private float GetAttackShootDelay()
+	private float GetAttackShootPause()
 	{
-		return Rng.RandomRange( _aiAttackShootDelayMin, _aiAttackShootDelayMax );
+		return Rng.RandomRange( _aiAttackShootPauseMin, _aiAttackShootPauseMax );
 	}
 }
