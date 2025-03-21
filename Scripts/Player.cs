@@ -63,8 +63,8 @@ public partial class Player : RigidBody2D {
 
     public override void _Ready()
     {
-        _currentHp = _maxHpByLvl[0];
-        _currentBlobs = _smallBlobs;
+        _currentHp = _maxHpByLvl[CurrentGrowthLevel];
+        _currentBlobs = getBlobsList(CurrentGrowthLevel);
     }
 
     public override void _ExitTree()
@@ -426,6 +426,9 @@ public partial class Player : RigidBody2D {
 
     public void RestoreState( SavedState state )
     {
+        CurrentGrowthLevel = state.CurrentGrowthLevel;
+        _currentBlobs = getBlobsList( CurrentGrowthLevel );
+        
         int weaponCoreIndex = 0;
         foreach( var stateBlobCore in state.blobCores ) {
             var newWeapon = attachBlob( stateBlobCore );
@@ -437,7 +440,7 @@ public partial class Player : RigidBody2D {
             }
         }
 
-        CurrentGrowthLevel = state.CurrentGrowthLevel;
+        
         _currentGrowthXp = state._currentGrowthXp;
         _currentBlobIndex = state._currentBlobIndex;
         _currentHp = state._currentHp;
