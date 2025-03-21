@@ -10,7 +10,7 @@ script = ExtResource("3_ssmih")
 _maxLifeTime = 0.5
 metadata/_custom_type_script = "uid://b66fo1ud8763f"
 
-[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
 light_mask = 4
 script = ExtResource("1_wllqh")
 _collisionArea = NodePath("Area2D")

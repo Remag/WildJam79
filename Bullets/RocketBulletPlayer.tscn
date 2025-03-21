@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfhr5smnl7me0"]
+[gd_scene load_steps=10 format=3 uid="uid://7wii0dftvcg"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_ytu3j"]
 [ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Bullet3_TargMoveLogic.tres" id="2_4yjrl"]
@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://6x0jwm35cobd"
 radius = 7.0
 height = 75.7182
 
-[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
 light_mask = 4
 script = ExtResource("1_ytu3j")
 _collisionArea = NodePath("Area2D")

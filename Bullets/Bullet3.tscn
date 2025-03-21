@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://6x0jwm35cobd"
 radius = 7.0
 height = 75.7182
 
-[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
 light_mask = 4
 script = ExtResource("1_exbaq")
 _collisionArea = NodePath("Area2D")
