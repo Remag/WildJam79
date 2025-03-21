@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_c26t0"]
 [ext_resource type="Resource" uid="uid://bl4t4vq7iavu2" path="res://EntitiesSpace/Res/Bullets/Bullet1_MoveLogic.tres" id="2_h7k3a"]
 [ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_h7k3a"]
-[ext_resource type="Texture2D" uid="uid://dyx5maco2tka2" path="res://Assets/SpaceShip/Bullets/Bullet.webp" id="4_h7k3a"]
+[ext_resource type="Texture2D" uid="uid://bx3a5xv0gbr3i" path="res://Assets/SpaceShip/Bullets/Bullet2.webp" id="4_h7k3a"]
 
 [sub_resource type="Resource" id="Resource_6i060"]
 script = ExtResource("3_h7k3a")
 metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h7k3a"]
-radius = 17.0294
+radius = 15.0
 
 [node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
 light_mask = 4
@@ -21,9 +21,8 @@ _lifespanLogic = SubResource("Resource_6i060")
 _bulletDamage = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 2)
 rotation = -1.5708
-scale = Vector2(3.5, 2)
+scale = Vector2(2, 2)
 texture = ExtResource("4_h7k3a")
 
 [node name="Area2D" type="Area2D" parent="."]

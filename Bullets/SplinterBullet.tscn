@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxkwdiaflrcet"]
+
+[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_wllqh"]
+[ext_resource type="Resource" uid="uid://cd1ud1qhf1o0h" path="res://EntitiesSpace/Res/Bullets/SplinterBullet_MoveLogic.tres" id="2_wllqh"]
+[ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_ssmih"]
+[ext_resource type="Texture2D" uid="uid://dhl7t18rin6fo" path="res://Assets/SpaceShip/Bullets/RocketPeace2.webp" id="4_wllqh"]
+
+[sub_resource type="Resource" id="Resource_qq402"]
+script = ExtResource("3_ssmih")
+_maxLifeTime = 0.5
+metadata/_custom_type_script = "uid://b66fo1ud8763f"
+
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnRestart"]]
+light_mask = 4
+script = ExtResource("1_wllqh")
+_collisionArea = NodePath("Area2D")
+_moveLogic = ExtResource("2_wllqh")
+_lifespanLogic = SubResource("Resource_qq402")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(4.42803e-06, 0.776993, 0.72994, 1)
+position = Vector2(-1, 0)
+rotation = 1.5708
+texture = ExtResource("4_wllqh")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(9, -4, 11, 5, -1, 5, -13, -7, 6, -7)
+
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaCollision"]

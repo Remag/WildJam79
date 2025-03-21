@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=20 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="3_ja242"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_txwvw"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_nlicg"]
 [ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="8_iejuy"]
-[ext_resource type="PackedScene" uid="uid://u2gs0r782sv4" path="res://Bullets/Bullet2.tscn" id="9_3r6s0"]
 [ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="9_sdw74"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="10_i0w3r"]
 [ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="10_txwvw"]
@@ -21,7 +20,7 @@
 
 [sub_resource type="Resource" id="Resource_s2las"]
 script = ExtResource("10_i0w3r")
-_bulletPrefab = ExtResource("9_3r6s0")
+_bulletPrefab = ExtResource("3_sdw74")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
@@ -72,6 +71,10 @@ texture = ExtResource("6_flhrm")
 [node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase")]
 position = Vector2(3.05176e-05, 8)
 script = ExtResource("8_iejuy")
+_aiAttackShootDelayMin = 1.5
+_aiAttackShootDelayMax = 1.5
+_aiAttackShootDuration = 4.55
+_aiAttackShootPause = 2.5
 _bulletSpawner = SubResource("Resource_s2las")
 _shootSoundPlayer2D = NodePath("../../Shoot2D")
 _shootTarget = NodePath("../ShootMarker")
