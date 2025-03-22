@@ -36,6 +36,7 @@ public partial class GameField : Node {
     private float _currentLevelTimer = 0;
     private bool _isSpawningEnemies = false;
     private int _nextWaveIndex = 0;
+    private bool _isTestWaveActive = false;
 
     private Player.SavedState _savedPlayerState;
 
@@ -124,6 +125,7 @@ public partial class GameField : Node {
     public void SwitchLocation( Texture2D locationBg, EnemyNodeInfo nodeInfo, WarpEffect effect )
     {
         _currentNodeInfo = nodeInfo;
+        _isTestWaveActive = false;
         _idleUiControl.Visible = nodeInfo.WavesInfo.Count == 0;
         if( locationBg == null ) {
             randomizeNebula();
@@ -150,6 +152,7 @@ public partial class GameField : Node {
             _savedPlayerState = Game.Player.SaveState();
         }
         _currentNodeInfo = _testWaveNodeInfo;
+        _isTestWaveActive = true;
 
         _tutorialNode.Visible = false;
         _idleUiControl.Visible = false;
@@ -221,6 +224,9 @@ public partial class GameField : Node {
     public void RestartGame()
     {
         _nextWaveIndex = 0;
+        if( _isTestWaveActive ) {
+            _currentNodeInfo = null;
+        }
 
         Game.Field.WorldAudioManager.ButtonClickPlay();
 
@@ -240,7 +246,7 @@ public partial class GameField : Node {
             node.QueueFree();
         }
 
-        if( _currentNodeInfo != null ) {
+        if( !_isTestWaveActive ) {
             SpawnNextWave();
         } else {
             onLevelClear();
