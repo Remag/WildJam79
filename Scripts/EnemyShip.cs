@@ -10,7 +10,7 @@ public partial class EnemyShip : FoodSource {
 	private int _maxHp = 3;
 	private int _currentHp = 3;
 	[Export]
-	private int SizeLevel = 0;
+	public int SizeLevel = 0;
 	[Export]
 	private EnemyMoveConfigRigid _configRigid = new();
 

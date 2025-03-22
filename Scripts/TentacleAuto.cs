@@ -36,6 +36,8 @@ public partial class TentacleAuto : Tentacle {
     {
         if( !IsInstanceValid( _target ) || _target.IsPulledByTentacle ) {
             AbortExtend();
+            base._PhysicsProcess( delta );
+            return;
         }
 
         var endAnchor = _tentacleLine.EndAnchor;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dcxydx2svymhn"]
+[gd_scene load_steps=29 format=3 uid="uid://dcxydx2svymhn"]
 
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/BaseSmall.webp" id="3_hpvjx"]
@@ -545,7 +545,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
 radius = 24.0
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeballs", "_animations", "_playerHitboxes", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_il04a"]
+radius = 500.0
+
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeballs", "_animations", "_autoTentacleArea", "_playerHitboxes", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
 center_of_mass_mode = 1
 linear_damp = 1.0
 angular_damp = 1.0
@@ -557,7 +560,8 @@ _maxVelocityPxSec = 350.0
 _maxHpByLvl = Array[int]([10, 30, 200])
 _tentaclesByLevel = Array[PackedScene]([ExtResource("3_wi0c6"), ExtResource("3_o1tba"), ExtResource("4_bjqqk")])
 _autoTentaclesBySize = Array[PackedScene]([ExtResource("5_bjqqk")])
-_tentacleDamageByLevel = Array[int]([10, 30, 50])
+_tentacleDamageByLevel = Array[int]([5, 10, 50])
+_autoTentacleArea = NodePath("AutoTentacleArea")
 _playerHitboxes = [NodePath("CollisionShape2D"), NodePath("Hitbox/CollisionShape2D")]
 GrowthXpByLvl = Array[int]([100, 200])
 _cameraZoomByLvl = Array[float]([1.0, 0.7, 0.33])
@@ -750,6 +754,18 @@ scale = Vector2(0.720754, 0.719113)
 position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_a814b")
 
+[node name="AutoTentacleArea" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
+collision_layer = 0
+collision_mask = 10
+monitoring = false
+monitorable = false
+script = ExtResource("18_il04a")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoTentacleArea"]
+shape = SubResource("CircleShape2D_il04a")
+
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 collision_mask = 0
 monitoring = false
@@ -775,3 +791,5 @@ bus = &"sfx"
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_jhnwa")
 bus = &"sfx"
+
+[connection signal="AreaCollision" from="AutoTentacleArea" to="." method="OnAutoTentacleAreaEntered"]

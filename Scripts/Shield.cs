@@ -12,6 +12,8 @@ public partial class Shield : ParentArea2D {
     private AudioStreamPlayer _shieldReflectSoundPlayer;
 
     [Export]
+    public EnemyShip EnemyShip;
+    [Export]
     private Sprite2D _baseSprite;
     [Export]
     private Sprite2D _surfaceSprite;

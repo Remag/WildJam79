@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using WildJam78.Scripts;
 using Array = Godot.Collections.Array;
 
 public partial class Player : RigidBody2D {
@@ -26,6 +27,9 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<PackedScene> _autoTentaclesBySize;
     [Export]
     private Godot.Collections.Array<int> _tentacleDamageByLevel;
+    
+    [Export]
+    private ParentArea2D _autoTentacleArea;
 
     [Export]
     private Godot.Collections.Array<Node2D> _playerHitboxes;
@@ -72,6 +76,7 @@ public partial class Player : RigidBody2D {
     {
         _currentHp = _maxHpByLvl[CurrentGrowthLevel];
         _currentBlobs = getBlobsList( CurrentGrowthLevel );
+        _autoTentacleArea.Monitoring = CurrentGrowthLevel >= 2;
     }
 
     public override void _ExitTree()
@@ -217,6 +222,7 @@ public partial class Player : RigidBody2D {
 
         var animName = "Growth" + CurrentGrowthLevel.ToString();
         _animations.Play( animName, customSpeed: isInstant ? 100 : 1 );
+        _autoTentacleArea.SetDeferred( Area2D.PropertyName.Monitoring, CurrentGrowthLevel >= 2 );
         return true;
     }
 
@@ -538,6 +544,23 @@ public partial class Player : RigidBody2D {
     internal void ShootSoundPlay()
     {
         _shootSoundPlayer.Play();
+    }
+
+    public void OnAutoTentacleAreaEntered( Node node )
+    {
+        switch (node)
+        {
+            case EnemyShip enemyShip: {
+                if( enemyShip.SizeLevel == 0 ) {
+                    CallDeferred( MethodName.EatTarget, enemyShip );
+                }
+
+                break;
+            }
+            case FoodSource foodSource:
+                CallDeferred( MethodName.EatTarget, foodSource );
+                break;
+        }
     }
 
     public SavedState SaveState()

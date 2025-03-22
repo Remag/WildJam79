@@ -7,6 +7,8 @@ public partial class TentaclePlayer : Tentacle {
     public float TentacleMaxDistance = 100;
     [Export]
     public double TentacleMaxTime = 6;
+    [Export]
+    public int MinSizeLevel = 0;
 
     private double _currentExtendTime = 0;
     private Vector2 _currentVelocity;
@@ -67,8 +69,16 @@ public partial class TentaclePlayer : Tentacle {
         switch (node)
         {
             case Shield enemyShield:
-                AbortExtend();
-                Game.Field.WorldAudioManager.ShieldReflectNoDamageSoundPlay();
+                if( enemyShield.EnemyShip.SizeLevel >= MinSizeLevel ) {
+                    AbortExtend();
+                    Game.Field.WorldAudioManager.ShieldReflectNoDamageSoundPlay();
+                }
+                break;
+            case EnemyShip enemyShip:
+                if( enemyShip.SizeLevel >= MinSizeLevel ) {
+                    Attach( enemyShip );
+                    enemyShip.OnTentacleCollision();
+                }
                 break;
             case FoodSource foodSource:
                 Attach( foodSource );
