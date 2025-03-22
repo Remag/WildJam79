@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cek8px8d5iiw8"]
+[gd_scene load_steps=15 format=3 uid="uid://cek8px8d5iiw8"]
 
 [ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
 [ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
@@ -8,6 +8,9 @@
 [ext_resource type="StyleBox" uid="uid://d2ojcbi804co1" path="res://GameUI/MapNodeCompletedStyle.tres" id="4_agtnh"]
 [ext_resource type="Resource" uid="uid://cavn88ldtdblm" path="res://EnemyWaves/Map1Wave.tres" id="7_sv05a"]
 [ext_resource type="Resource" uid="uid://c62ko6887l6oe" path="res://EnemyWaves/Map2Wave.tres" id="8_b3tq4"]
+[ext_resource type="Resource" uid="uid://dn7lrbtk7khla" path="res://EnemyWaves/Map3-1Wave.tres" id="9_xlnef"]
+[ext_resource type="Resource" uid="uid://1m1q4bq7laex" path="res://EnemyWaves/Map3-2Wave.tres" id="10_35f8b"]
+[ext_resource type="Resource" uid="uid://bq54ts3q3xwdf" path="res://EnemyWaves/Map4-1Wave.tres" id="11_sv05a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k420c"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 0.886275)
@@ -92,6 +95,7 @@ offset_left = 120.0
 offset_top = 110.0
 offset_right = 137.0
 offset_bottom = 126.0
+_nodeInfo = ExtResource("9_xlnef")
 _next = [NodePath("../Map4-1"), NodePath("../Map4-2")]
 
 [node name="Map3-2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
@@ -100,6 +104,7 @@ offset_left = 120.0
 offset_top = 170.0
 offset_right = 137.0
 offset_bottom = 186.0
+_nodeInfo = ExtResource("10_35f8b")
 _next = [NodePath("../Map4-2"), NodePath("../Map4-3")]
 
 [node name="Map4-1" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
@@ -108,6 +113,7 @@ offset_left = 180.0
 offset_top = 80.0
 offset_right = 197.0
 offset_bottom = 96.0
+_nodeInfo = ExtResource("11_sv05a")
 _next = [NodePath("../Map5")]
 
 [node name="Map4-2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
