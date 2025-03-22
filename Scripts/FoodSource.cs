@@ -9,6 +9,8 @@ public abstract partial class FoodSource : RigidBody2D {
     [Export]
     public int HealHp = 1;
     [Export]
+    public float ShrinkSpeedReduction = 1;
+    [Export]
     public Godot.Collections.Array<PackedScene> CorePrefabs;
     [Export]
     public PackedScene DecalPrefab;
