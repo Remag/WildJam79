@@ -48,8 +48,7 @@ scale = Vector2(0.25, 0.25)
 scale = Vector2(2, 2)
 texture = ExtResource("6_81eum")
 
-[node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_aoi00")]
-_shootTarget = NodePath("")
+[node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_aoi00")]
 _enemyShip = NodePath("../..")
 
 [node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]

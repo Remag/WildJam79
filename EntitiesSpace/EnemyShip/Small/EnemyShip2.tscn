@@ -52,8 +52,7 @@ position = Vector2(0, -24)
 scale = Vector2(2, 2)
 texture = ExtResource("5_i2eit")
 
-[node name="TurrenGun" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_h0e7l")]
-_shootTarget = NodePath("")
+[node name="TurrenGun" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_h0e7l")]
 _enemyShip = NodePath("../..")
 
 [node name="Decal" type="Sprite2D" parent="Visuals"]
