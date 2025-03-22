@@ -1,17 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=12 format=3 uid="uid://nh1c0ycvlv14"]
 
-[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_kulxl"]
-[ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/Ships/EnemyShip1MoveConfig.tres" id="2_ffw8n"]
-[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_kdlwq"]
-[ext_resource type="PackedScene" uid="uid://dy5tg0dsiv0p8" path="res://EntitiesSpace/BlobBasicCore3.tscn" id="4_ru1f1"]
-[ext_resource type="PackedScene" uid="uid://djg524mjkxw7x" path="res://EntitiesSpace/DecalCores/RedDecalCoreS.tscn" id="5_1fxmt"]
-[ext_resource type="Texture2D" uid="uid://dh5vfxtkx4mwr" path="res://Assets/SpaceShip/ShipBody/SmallRed.webp" id="6_81eum"]
-[ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="7_aoi00"]
-[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="8_y5xtj"]
-[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_6h2oc"]
-[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="10_1ob7x"]
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
+[ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_4rxrc"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_caaev"]
+[ext_resource type="Texture2D" uid="uid://dh5vfxtkx4mwr" path="res://Assets/SpaceShip/ShipBody/SmallRed.webp" id="5_7jj5h"]
+[ext_resource type="PackedScene" uid="uid://dy5tg0dsiv0p8" path="res://EntitiesSpace/BlobBasicCore3.tscn" id="5_caaev"]
+[ext_resource type="PackedScene" uid="uid://djg524mjkxw7x" path="res://EntitiesSpace/DecalCores/RedDecalCoreS.tscn" id="5_i2xif"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
+[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
+[ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="7_or2ih"]
+[ext_resource type="AudioStream" uid="uid://fnaqanuha1is" path="res://Sounds/EnemyHit1.wav" id="11_or2ih"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="14_kukyp"]
 
-[node name="EnemyShip1" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip1" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 can_sleep = false
@@ -25,6 +26,7 @@ VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
+_hullHitSoundPlayer = NodePath("HullHitSoundPlayer")
 GeneralExp = 10
 CorePrefabs = Array[PackedScene]([ExtResource("4_ru1f1")])
 DecalPrefab = ExtResource("5_1fxmt")
@@ -81,3 +83,8 @@ polygon = PackedVector2Array(-12.9315, 7.22581, -0.219177, -13.4194, 12.4932, 7.
 
 [node name="DamageAnchor" type="Node2D" parent="."]
 position = Vector2(1, 9)
+
+[node name="HullHitSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_or2ih")
+volume_db = -4.692
+bus = &"sfx"
