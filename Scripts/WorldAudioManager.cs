@@ -18,6 +18,8 @@ public partial class WorldAudioManager : Node {
     private AudioStreamPlayer _tentacleSoundPlayer;
     [Export]
     private AudioStreamPlayer _explosionSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _bottlePopSoundPlayer;
 
     string _stageName;
 
@@ -107,5 +109,10 @@ public partial class WorldAudioManager : Node {
     public void ExplosionSoundPlay()
     {
         _explosionSoundPlayer.Play();
+    }
+
+    internal void BottlePopSoundPlay()
+    {
+        _bottlePopSoundPlayer.Play();
     }
 }

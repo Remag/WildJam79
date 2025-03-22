@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=53 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
@@ -28,7 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://cm07dmfvr3jit" path="res://Assets/MainHero/Drop.webp" id="21_7jkkr"]
 [ext_resource type="PackedScene" uid="uid://c3hh1ov2kjtox" path="res://EntitiesSpace/DecalParts/TutorialDebris2.tscn" id="22_amtbh"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="22_cxdnd"]
+[ext_resource type="AudioStream" uid="uid://cnf2rh3j4jnkr" path="res://Sounds/BottlePop.wav" id="23_cxdnd"]
 [ext_resource type="PackedScene" uid="uid://bnqvmbhwphipr" path="res://EntitiesSpace/DecalParts/TutorialDebris3.tscn" id="23_obg7t"]
+[ext_resource type="AudioStream" uid="uid://cnkamk2nla40g" path="res://Sounds/BottleShake.mp3" id="27_6dw4c"]
 
 [sub_resource type="Animation" id="Animation_3slyh"]
 resource_name = "Intro"
@@ -745,6 +747,25 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GlassShakeSoundPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_6dw4c")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_6dw4c")
+}],
+"times": PackedFloat32Array(0, 2)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_amtbh"]
 length = 0.001
@@ -1241,7 +1262,7 @@ offset_bottom = 2048.0
 texture = ExtResource("8_p5x2j")
 stretch_mode = 1
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_bottlePopSoundPlayer")]
 script = ExtResource("8_torvr")
 _stageBgmPlayer = NodePath("StageBgmPlayer")
 _titleBgmPlayer = NodePath("TitleBgmPlayer")
@@ -1250,6 +1271,7 @@ _deathSoundPlayer = NodePath("GameOver")
 _shieldReflectNoDamageSoundPlayer = NodePath("ShieldReflectSoundPlayer")
 _tentacleSoundPlayer = NodePath("Tentacle")
 _explosionSoundPlayer = NodePath("ExplosionSoundPlayer")
+_bottlePopSoundPlayer = NodePath("BottlePopSoundPlayer")
 
 [node name="StageBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("13_nm5af")
@@ -1284,6 +1306,10 @@ bus = &"sfx"
 [node name="ExplosionSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("22_cxdnd")
 volume_db = -7.0
+
+[node name="BottlePopSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("23_cxdnd")
+bus = &"sfx"
 
 [node name="Intro" type="Node2D" parent="." node_paths=PackedStringArray("_animations")]
 script = ExtResource("20_7jkkr")
@@ -1329,6 +1355,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_5o6vq")
 }
 autoplay = "Rotate"
+
+[node name="GlassShakeSoundPlayer" type="AudioStreamPlayer" parent="Intro/GlassRotation"]
+bus = &"sfx"
 
 [node name="SpaceDebris" parent="Intro" groups=["NearDebris"] instance=ExtResource("10_8s4c3")]
 position = Vector2(323, 413)
