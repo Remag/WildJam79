@@ -11,6 +11,13 @@ public partial class Shield : ParentArea2D {
     [Export]
     private AudioStreamPlayer _shieldReflectSoundPlayer;
 
+    [Export]
+    private Sprite2D _baseSprite;
+    [Export]
+    private Sprite2D _surfaceSprite;
+    [Export]
+    private PackedScene _shieldEffect;
+
     [Signal]
     public delegate void ShieldDestroyEventHandler();
 
@@ -22,8 +29,21 @@ public partial class Shield : ParentArea2D {
         RealParent = this;
     }
 
-    public void OnBulletCollision( int damage )
+    public void OnBulletCollision( int damage, Node2D source )
     {
+        var circleRadius = 50;
+        var sourceDir = ( Position - ToLocal( source.GlobalPosition ) ).Normalized();
+        
+        var startPoint = _surfaceSprite.Position - sourceDir * circleRadius;
+        var effect = _shieldEffect.Instantiate<Node2D>();
+        _surfaceSprite.AddChild( effect );
+        effect.Position = startPoint;
+        effect.Rotation = sourceDir.Angle();
+        var posTween = effect.CreateTween();
+
+        posTween.TweenProperty( effect, "position", startPoint + sourceDir * circleRadius * 3, 0.4 ).SetEase( Tween.EaseType.InOut );
+        delayDeleteEffect( effect );
+
         _currentHp -= damage;
         if( _currentHp <= 0 ) {
             _currentHp = 0;
@@ -34,6 +54,15 @@ public partial class Shield : ParentArea2D {
         } else {
             _shieldReflectSoundPlayer.Play();
         }
-        Modulate = Colors.Transparent.Lerp( Colors.White, (float)_currentHp / _config.maxHp );
+        _baseSprite.Modulate = Colors.Transparent.Lerp( Colors.White, (float)_currentHp / _config.maxHp );
     }
+
+    private async void delayDeleteEffect( Node effect )
+    {
+        await ToSignal( GetTree().CreateTimer( 0.75 ), "timeout" );
+        if( IsInstanceValid( effect ) ) {
+            effect.QueueFree();
+        }
+    }
+
 }

@@ -261,7 +261,11 @@ public partial class Player : RigidBody2D {
         if( food.IsWeaponSource ) {
             return;
         }
+        tryAttachDecalBlob( food.DecalPrefab );
+    }
 
+    private void tryAttachDecalBlob( PackedScene decal )
+    {
         var targetXp = CurrentGrowthLevel < GrowthXpByLvl.Count ? GrowthXpByLvl[CurrentGrowthLevel] : 1000;
         var chunkXp = targetXp * 1.0f / _currentBlobs.Count;
         var blobIndex = (int)Math.Floor( _currentGrowthXp / chunkXp );
@@ -270,8 +274,19 @@ public partial class Player : RigidBody2D {
         }
         var targetBlob = _currentBlobs[blobIndex];
         if( !targetBlob.Visible ) {
-            attachBlob( food.DecalPrefab );
+            attachBlob( decal );
         }
+    }
+
+    private int getWeaponCount()
+    {
+        int result = 0;
+        foreach( var blob in _currentBlobs ) {
+            if( blob.IsWeapon ) {
+                result++;
+            }
+        }
+        return result;
     }
 
     private Node2D attachBlob( PackedScene blobPrefab )
@@ -291,22 +306,37 @@ public partial class Player : RigidBody2D {
             return;
         }
         foreach( var prefab in weapon.CorePrefabs ) {
-            doAssimilateWeapon( prefab, weapon.WeaponXp );
+            doAssimilateWeapon( prefab, weapon.DecalPrefab, weapon.WeaponXp );
         }
     }
 
-    private void doAssimilateWeapon( PackedScene core, int weaponXp )
+    private void doAssimilateWeapon( PackedScene core, PackedScene backupDecal, int weaponXp )
     {
         var existingWeapon = _activeWeapons.Find( ( target ) => target.SrcCore == core );
         if( existingWeapon != null ) {
+            tryAttachDecalBlob( backupDecal );
             existingWeapon.GainExp( weaponXp );
+
         } else {
             var newWeapon = (HeroWeaponCore)attachBlob( core );
+            if( newWeapon == null ) {
+                newWeapon = (HeroWeaponCore)switchToWeaponBlob( core );
+            }
             if( newWeapon != null ) {
                 newWeapon.Initialize( core );
                 _activeWeapons.Add( newWeapon );
             }
         }
+    }
+
+    private Node2D switchToWeaponBlob( PackedScene core )
+    {
+        foreach( var blob in _currentBlobs ) {
+            if( !blob.IsWeapon ) {
+                return blob.SwitchToWeapon( core );
+            }
+        }
+        return null;
     }
 
     public override void _Input( InputEvent e )

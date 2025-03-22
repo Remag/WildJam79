@@ -54,7 +54,7 @@ public partial class TentacleAuto : Tentacle {
         _autoCatchTimer -= deltaF;
         if( _currentMode == TentacleMode.Extend && _autoCatchTimer < 0 ) {
             endAnchor.GlobalPosition = _target.GlobalPosition;
-            _tentacleShrinkSpeed *= 3;
+            _tentacleShrinkSpeed *= 2;
         }
 
         base._PhysicsProcess( delta );

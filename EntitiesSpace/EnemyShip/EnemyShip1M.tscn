@@ -11,11 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_j3yn4"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="9_yrrw3"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="10_4t031"]
-[ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="11_i0gba"]
-[ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="12_47y8f"]
+[ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="12_yrrw3"]
+[ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="13_4yixe"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j3yn4"]
-radius = 56.0357
+[sub_resource type="Resource" id="Resource_phaa5"]
+script = ExtResource("13_4yixe")
+maxHp = 5
 
 [node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
@@ -101,22 +102,5 @@ stream = ExtResource("10_4t031")
 max_distance = 1000.0
 bus = &"sfx"
 
-[node name="Shield" type="Area2D" parent="." node_paths=PackedStringArray("_shieldDropSoundPlayer", "_shieldReflectSoundPlayer", "RealParent")]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("11_i0gba")
-_shieldDropSoundPlayer = NodePath("Drop")
-_shieldReflectSoundPlayer = NodePath("Reflect")
-RealParent = NodePath(".")
-
-[node name="ShieldSprite" type="Sprite2D" parent="Shield"]
-texture = ExtResource("12_47y8f")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
-shape = SubResource("CircleShape2D_j3yn4")
-
-[node name="Reflect" type="AudioStreamPlayer" parent="Shield"]
-bus = &"sfx"
-
-[node name="Drop" type="AudioStreamPlayer" parent="Shield"]
-bus = &"sfx"
+[node name="Shield" parent="." instance=ExtResource("12_yrrw3")]
+_config = SubResource("Resource_phaa5")

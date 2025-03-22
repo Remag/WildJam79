@@ -13,6 +13,19 @@ public partial class WarpEffect : Node2D
     [Export]
     private Godot.Collections.Array<float> _scaleByPlayerSize;
 
+    [Export]
+    public float WarpEffectRadius {
+        get {
+            return _warpEffectRadius;
+        }
+        set {
+            _warpEffectRadius = value;
+            Game.Field.SetWarpEffectCircle( _warpEffectRadius );
+        }
+    }
+
+    private float _warpEffectRadius = 0;
+
     private Player _player;
 
     Texture2D _bgTo;
@@ -52,5 +65,10 @@ public partial class WarpEffect : Node2D
         Game.Field.AddChild( _player );
         _player.GlobalPosition = GlobalPosition;
         Game.Field.InitializeEnemyWave( _nodeTo );
+    }
+
+    public void Cleanup()
+    {
+        QueueFree();
     }
 }

@@ -5,7 +5,9 @@ using System.Runtime.InteropServices;
 
 public partial class PlayerBlob : Node2D {
     [Export]
-    private Node2D _enemyAnchor;
+    private Node2D _weaponAnchor;
+    [Export]
+    private Node2D _decalAnchor;
     [Export]
     private AnimationPlayer _animations;
 
@@ -19,8 +21,21 @@ public partial class PlayerBlob : Node2D {
         Visible = true;
         var newCore = core.Instantiate<Node2D>();
         IsWeapon = newCore is HeroWeaponCore;
-        _enemyAnchor.AddChild( newCore );
+        var targetAnchor = IsWeapon ? _weaponAnchor : _decalAnchor;
+        targetAnchor.AddChild( newCore );
         _animations.Play( "Appear" );
+        return newCore;
+    }
+
+    public Node2D SwitchToWeapon( PackedScene weaponCore )
+    {
+        SrcCore = weaponCore;
+        var newCore = weaponCore.Instantiate<Node2D>();
+        IsWeapon = newCore is HeroWeaponCore;
+        Debug.Assert( IsWeapon );
+        _weaponAnchor.AddChild( newCore );
+        _weaponAnchor.Scale = Vector2.Zero;
+        _animations.Play( "SwitchToWeapon" );
         return newCore;
     }
 

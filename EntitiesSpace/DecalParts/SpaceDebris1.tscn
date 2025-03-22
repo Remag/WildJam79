@@ -14,6 +14,7 @@ collision_mask = 0
 script = ExtResource("2_r1atj")
 GeneralExp = 20
 CorePrefabs = Array[PackedScene]([ExtResource("3_nhmbs")])
+DecalPrefab = ExtResource("3_nhmbs")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(5, -1)

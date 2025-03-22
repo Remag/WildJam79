@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://6ptlvbb75vsy"]
+
+[ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="1_23mo7"]
+[ext_resource type="Texture2D" uid="uid://b86u6h8xdg5oy" path="res://Assets/SpaceShip/ShieldBase.webp" id="2_2hqjv"]
+[ext_resource type="PackedScene" uid="uid://c4thvpg63msq3" path="res://EntitiesSpace/ShieldEffect.tscn" id="2_ed4tc"]
+[ext_resource type="AudioStream" uid="uid://bc3o8b8le62vs" path="res://Sounds/ShieldReflect3.mp3" id="3_ed4tc"]
+[ext_resource type="Texture2D" uid="uid://cdilaxdeil5do" path="res://Assets/SpaceShip/ShieldComb.webp" id="3_l2bfa"]
+[ext_resource type="AudioStream" uid="uid://cq0vgww6s14cd" path="res://Sounds/ShieldDrop2.wav" id="4_l2bfa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bf6tq"]
+radius = 56.0357
+
+[node name="Shield" type="Area2D" node_paths=PackedStringArray("_shieldDropSoundPlayer", "_shieldReflectSoundPlayer", "_baseSprite", "_surfaceSprite", "RealParent")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_23mo7")
+_shieldDropSoundPlayer = NodePath("Drop")
+_shieldReflectSoundPlayer = NodePath("Reflect")
+_baseSprite = NodePath("Base")
+_surfaceSprite = NodePath("Surface")
+_shieldEffect = ExtResource("2_ed4tc")
+RealParent = NodePath(".")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_2hqjv")
+
+[node name="Surface" type="Sprite2D" parent="."]
+clip_children = 1
+texture = ExtResource("3_l2bfa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_bf6tq")
+
+[node name="Reflect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ed4tc")
+volume_db = 3.128
+bus = &"sfx"
+
+[node name="Drop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l2bfa")
+bus = &"sfx"

@@ -171,7 +171,7 @@ public partial class EnemyShip : FoodSource {
 	private void resetColor()
 	{
 		var tween = CreateTween();
-		tween.TweenProperty( VisualNode, "modulate", Colors.DarkGray, 0.5 );
+		tween.TweenProperty( VisualNode, "modulate", new Color( 0.25f, 0.25f, 0.25f ), 0.7 );
 	}
 
 	private void onMajorDamage( Node2D dmgPositionSource )

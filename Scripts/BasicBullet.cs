@@ -70,7 +70,7 @@ public partial class BasicBullet : Node2D {
 	{
 		switch( node ) {
 			case Shield enemyShield:
-				enemyShield.OnBulletCollision( _bulletDamage );
+				enemyShield.OnBulletCollision( _bulletDamage, this );
 				HandleDestroy();
 				break;
 			case EnemyShip enemyShip:

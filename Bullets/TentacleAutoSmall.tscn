@@ -14,6 +14,7 @@ size = Vector2(13.0233, 14.2636)
 [node name="Tentacle" type="Node2D" node_paths=PackedStringArray("_tentacleLine", "_tentacleSoundPlayer", "_catchSoundPlayer")]
 z_index = -1
 script = ExtResource("1_vl7v1")
+_autoCatchTimer = 3.0
 _tentacleExtendSpeed = 600.0
 _tentacleShrinkSpeed = 1500.0
 _tentacleAttachDelay = 0.4

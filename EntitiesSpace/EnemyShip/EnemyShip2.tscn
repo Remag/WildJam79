@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=18 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="3_ja242"]
@@ -11,23 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_txwvw"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_nlicg"]
 [ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="8_iejuy"]
-[ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="9_sdw74"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="10_i0w3r"]
-[ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="10_txwvw"]
 [ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="11_s34hh"]
-[ext_resource type="AudioStream" uid="uid://cq0vgww6s14cd" path="res://Sounds/ShieldDrop2.wav" id="12_ja242"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="13_iejuy"]
+[ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="14_7n8mk"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="15_cw16v"]
-[ext_resource type="AudioStream" uid="uid://bc3o8b8le62vs" path="res://Sounds/ShieldReflect3.mp3" id="16_iejuy"]
 
 [sub_resource type="Resource" id="Resource_s2las"]
 script = ExtResource("10_i0w3r")
 _bulletPrefab = ExtResource("3_sdw74")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_oyjk0"]
-radius = 56.0357
 
 [node name="EnemyShip2" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
@@ -106,6 +100,8 @@ offset = Vector2(-310, -110)
 position = Vector2(-23, 0)
 rotation = 1.5708
 
+[node name="Shield" parent="." instance=ExtResource("14_7n8mk")]
+
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708
 collision_layer = 2
@@ -119,29 +115,6 @@ metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 position = Vector2(0.499998, -12)
 scale = Vector2(2.28125, 1.9375)
 polygon = PackedVector2Array(-17.7534, 17.0323, -18.6301, 11.871, -0.219177, -12.3871, 18.1918, 11.3548, 17.7534, 17.0323)
-
-[node name="Shield" type="Area2D" parent="." node_paths=PackedStringArray("_shieldDropSoundPlayer", "_shieldReflectSoundPlayer", "RealParent")]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("9_sdw74")
-_shieldDropSoundPlayer = NodePath("Drop")
-_shieldReflectSoundPlayer = NodePath("Reflect")
-RealParent = NodePath(".")
-
-[node name="ShieldSprite" type="Sprite2D" parent="Shield"]
-texture = ExtResource("10_txwvw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
-shape = SubResource("CircleShape2D_oyjk0")
-
-[node name="Reflect" type="AudioStreamPlayer" parent="Shield"]
-stream = ExtResource("16_iejuy")
-volume_db = 3.128
-bus = &"sfx"
-
-[node name="Drop" type="AudioStreamPlayer" parent="Shield"]
-stream = ExtResource("12_ja242")
-bus = &"sfx"
 
 [node name="DamageAnchor" type="Node2D" parent="."]
 position = Vector2(-7, -20)

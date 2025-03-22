@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4thvpg63msq3"]
+
+[ext_resource type="Texture2D" uid="uid://dj1pa16v5rsbx" path="res://Assets/Vfx/GradientLine.png" id="1_f4v1p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pbsc8"]
+blend_mode = 1
+
+[node name="Base" type="Sprite2D"]
+self_modulate = Color(0.462291, 0.462291, 0.462291, 1)
+material = SubResource("CanvasItemMaterial_pbsc8")
+scale = Vector2(1, 2.33929)
+texture = ExtResource("1_f4v1p")

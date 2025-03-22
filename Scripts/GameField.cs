@@ -29,6 +29,8 @@ public partial class GameField : Node {
     private BackgroundSelection _bgSelection;
     [Export]
     public WorldAudioManager WorldAudioManager { get; set; }
+    [Export]
+    private ColorRect _warpEffectRect;
 
     private EnemyNodeInfo _currentNodeInfo;
     private float _currentLevelTimer = 0;
@@ -39,6 +41,7 @@ public partial class GameField : Node {
 
     public override void _Ready()
     {
+        _warpEffectRect.Visible = false;
         Game.TestSprite = (Node2D)FindChild( "TestSprite" );
         GD.Randomize();
         Game.Field = this;
@@ -74,6 +77,17 @@ public partial class GameField : Node {
     public bool IsCombat()
     {
         return !_idleUiControl.Visible;
+    }
+
+    public void SetWarpEffectCircle( float circleRadius )
+    {
+        if( circleRadius <= 0 || circleRadius > 1 ) {
+            _warpEffectRect.Visible = false;
+            return;
+        }
+        _warpEffectRect.Visible = true;
+        var material = (ShaderMaterial)_warpEffectRect.Material;
+        material.SetShaderParameter( "outerSize", circleRadius );
     }
 
     public void OpenMap()

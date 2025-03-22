@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://legxaf8ejute"]
+[gd_scene load_steps=8 format=3 uid="uid://legxaf8ejute"]
 
 [ext_resource type="Texture2D" uid="uid://dbp5fe847cvma" path="res://Assets/MainHero/Blob2.png" id="1_pvc6y"]
 [ext_resource type="Script" uid="uid://dspvqpbnknyin" path="res://Scripts/PlayerBlob.cs" id="1_sucu1"]
@@ -35,10 +35,22 @@ resource_name = "HideCore"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyAnchor:scale")
+tracks/0/path = NodePath("DecalAnchor:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponAnchor:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.366667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -74,7 +86,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("EnemyAnchor:scale")
+tracks/2/path = NodePath("DecalAnchor:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -84,16 +96,45 @@ tracks/2/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_3fnbv"]
+resource_name = "SwitchToWeapon"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DecalAnchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponAnchor:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hvhlf"]
 _data = {
 &"Appear": SubResource("Animation_sucu1"),
 &"HideCore": SubResource("Animation_hvhlf"),
-&"RESET": SubResource("Animation_pvc6y")
+&"RESET": SubResource("Animation_pvc6y"),
+&"SwitchToWeapon": SubResource("Animation_3fnbv")
 }
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_enemyAnchor", "_animations")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_weaponAnchor", "_decalAnchor", "_animations")]
 script = ExtResource("1_sucu1")
-_enemyAnchor = NodePath("PlayerBlob/EnemyAnchor")
+_weaponAnchor = NodePath("PlayerBlob/WeaponAnchor")
+_decalAnchor = NodePath("PlayerBlob/DecalAnchor")
 _animations = NodePath("AnimationPlayer")
 
 [node name="PlayerBlob" type="Sprite2D" parent="."]
@@ -103,7 +144,10 @@ scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_pvc6y")
 offset = Vector2(6, -71)
 
-[node name="EnemyAnchor" type="Node2D" parent="PlayerBlob"]
+[node name="DecalAnchor" type="Node2D" parent="PlayerBlob"]
+position = Vector2(10, -57)
+
+[node name="WeaponAnchor" type="Node2D" parent="PlayerBlob"]
 position = Vector2(10, -57)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
