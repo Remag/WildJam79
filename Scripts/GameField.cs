@@ -102,6 +102,7 @@ public partial class GameField : Node {
         player.UpdateCameraZoom();
         player.SetMoveEnabled( false );
         _tutorial.Start();
+        WorldAudioManager.BottlePopSoundPlay();
     }
 
     public bool IsCombat()

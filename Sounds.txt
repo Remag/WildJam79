@@ -5,6 +5,8 @@ ShieldReflect3 (702771__matrixxx__force-field-01)
 BigBullet (fuzzsound-bullet.wav by jtragaudio -- https://freesound.org/s/238159/ -- License: Attribution 3.0)
 ShieldReflectNoDamage (reflection.mp3 by Taira Komori -- https://freesound.org/s/214048/ -- License: Attribution 4.0)
 Final (cinematic triller.WAV by Maico201 -- https://freesound.org/s/343064/ -- License: Attribution NonCommercial 4.0)
+BottleShake (Bottle Shake by Entagon -- https://freesound.org/s/563727/ -- License: Attribution 4.0)
+BottlePop (Bottle Pop by jackyyang09 -- https://freesound.org/s/432781/ -- License: Creative Commons 0)
 
 [ https://free-sound-effects.net/ ]
 (не написано, что указывать)
