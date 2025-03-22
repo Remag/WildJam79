@@ -1,8 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 public partial class TentaclePlayer : Tentacle {
     [Export]
@@ -72,6 +68,7 @@ public partial class TentaclePlayer : Tentacle {
         {
             case Shield enemyShield:
                 AbortExtend();
+                Game.Field.WorldAudioManager.ShieldReflectNoDamageSoundPlay();
                 break;
             case FoodSource foodSource:
                 Attach( foodSource );

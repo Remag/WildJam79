@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://273j1v2r4gx1"]
+[gd_scene load_steps=10 format=3 uid="uid://273j1v2r4gx1"]
 
 [ext_resource type="Script" uid="uid://cn124iemixtme" path="res://Scripts/TentaclePlayer.cs" id="1_st2yl"]
 [ext_resource type="Texture2D" uid="uid://brdms4yh13312" path="res://TempAssets/Hero/TentacleEnd.png" id="2_yge1v"]
@@ -7,16 +7,18 @@
 [ext_resource type="Script" uid="uid://bckuu1wnhechy" path="res://Scripts/Player/TentacleLine.cs" id="4_v2ou8"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="5_avr4o"]
 [ext_resource type="AudioStream" uid="uid://3lwqvahw3p87" path="res://Sounds/Catch_ZapSplat.mp3" id="6_q0bmg"]
+[ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="8_fgnlp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g8t2"]
 size = Vector2(2.7907, 14.2636)
 
-[node name="Tentacle" type="Node2D" node_paths=PackedStringArray("_tentacleLine", "_tentacleSoundPlayer", "_catchSoundPlayer")]
+[node name="Tentacle" type="Node2D" node_paths=PackedStringArray("_shieldReflectSoundPlayer", "_tentacleLine", "_tentacleSoundPlayer", "_catchSoundPlayer")]
 z_index = -1
 script = ExtResource("1_st2yl")
 _mouseGravity = 25.0
 TentacleMaxDistance = 900.0
 TentacleMaxTime = 1.5
+_shieldReflectSoundPlayer = NodePath("ShieldReflectSoundPlayer")
 _tentacleExtendSpeed = 800.0
 _tentacleShrinkSpeed = 1800.0
 _tentacleAttachDelay = 0.4
@@ -72,5 +74,10 @@ parameters/looping = true
 stream = ExtResource("6_q0bmg")
 volume_db = -3.91
 bus = &"sfx"
+
+[node name="ShieldReflectSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fgnlp")
+volume_db = -16.421
+pitch_scale = 0.67
 
 [connection signal="AreaCollision" from="Scaler/EndAnchor/Area2D" to="." method="OnAreaCollision"]

@@ -12,6 +12,8 @@ public partial class WorldAudioManager : Node {
     private AudioStreamPlayer _buttonClickPlayer { get; set; }
     [Export]
     private AudioStreamPlayer _deathSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _shieldReflectNoDamageSoundPlayer;
 
     string _stageName;
 
@@ -81,5 +83,10 @@ public partial class WorldAudioManager : Node {
     public void DeathSoundPlay()
     {
         _deathSoundPlayer.Play();
+    }
+
+    public void ShieldReflectNoDamageSoundPlay()
+    {
+        _shieldReflectNoDamageSoundPlayer.Play();
     }
 }
