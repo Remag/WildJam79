@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://dskm7s0shjs4e"]
+
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_tvijw"]
+[ext_resource type="Resource" path="res://EntitiesSpace/Res/EnemyShip3MoveConfig.tres" id="3_07nkk"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_tvijw"]
+[ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_m7bcb"]
+[ext_resource type="Texture2D" uid="uid://didraosdcyllq" path="res://Assets/SpaceShip/ShipBody/SmallGreen.webp" id="5_tvijw"]
+[ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_fo27b"]
+[ext_resource type="PackedScene" uid="uid://tdcj5t5ppshr" path="res://EntitiesSpace/BlobBasicCore2.tscn" id="6_tvijw"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="7_2q1eg"]
+[ext_resource type="PackedScene" uid="uid://b2syxoponwx7g" path="res://ETurrets/TurretRocket.tscn" id="7_3ythr"]
+[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="8_h1pid"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="11_ralwe"]
+[ext_resource type="AudioStream" uid="uid://fnaqanuha1is" path="res://Sounds/EnemyHit1.wav" id="13_mtlip"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="14_fo27b"]
+
+[node name="EnemyShip3" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
+collision_layer = 2
+collision_mask = 0
+angular_damp = 1.0
+script = ExtResource("1_tvijw")
+_maxHp = 10
+SizeLevel = 1
+_configRigid = ExtResource("3_07nkk")
+_damageEffect = ExtResource("4_tvijw")
+_damageEffectAnchor = NodePath("DamageAnchor")
+VisualNode = NodePath("Visuals")
+_trail = NodePath("ShipTrail")
+_offscreenIndicator = NodePath("OffscreenIndicator")
+_hitbox = NodePath("Hitbox")
+_hullHitSoundPlayer = NodePath("HullHitSoundPlayer")
+GeneralExp = 60
+CorePrefabs = Array[PackedScene]([ExtResource("6_tvijw")])
+DecalPrefab = ExtResource("5_m7bcb")
+IsWeaponSource = true
+
+[node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]
+position = Vector2(12, 1)
+rotation = 1.5708
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-14.4657, 6.19361, -0.438393, -11.871, 13.5891, 6.19349, -0.438302, 17.5484)
+
+[node name="Visuals" type="Node2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="Main" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -24)
+scale = Vector2(2, 2)
+texture = ExtResource("5_tvijw")
+
+[node name="TurrenRocket" parent="Visuals" instance=ExtResource("7_3ythr")]
+position = Vector2(-8.67844e-05, -24)
+
+[node name="Decal" type="Sprite2D" parent="Visuals"]
+modulate = Color(0.833986, 0.000714068, 0.862334, 0.564706)
+position = Vector2(-39.9999, 16.0001)
+rotation = 0.431096
+scale = Vector2(0.404437, 0.287938)
+texture = ExtResource("6_fo27b")
+
+[node name="ShootMarker" type="Node2D" parent="Visuals"]
+position = Vector2(-0.000762939, -212)
+rotation = -1.5708
+scale = Vector2(4, 4)
+
+[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+visible = false
+position = Vector2(0, 4.5)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("7_2q1eg")
+centered = false
+offset = Vector2(-310, -110)
+
+[node name="ShipTrail" parent="." instance=ExtResource("8_h1pid")]
+position = Vector2(-23, 0)
+rotation = 1.5708
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("14_fo27b")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+
+[node name="HitboxPolygon" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(-4.34399e-05, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-14.0274, 6.19361, -3.64974e-05, -11.871, 14.0274, 6.19349, 5.39527e-05, 17.5484)
+
+[node name="DamageAnchor" type="Node2D" parent="."]
+position = Vector2(-1, -12)
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ralwe")
+max_distance = 1000.0
+bus = &"sfx"
+
+[node name="HullHitSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_mtlip")
+volume_db = -4.692
+bus = &"sfx"
