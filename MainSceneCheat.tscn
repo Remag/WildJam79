@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=26 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="2_8onvp"]
