@@ -10,10 +10,11 @@ public partial class OffscreenIndicator : Node2D {
     public override void _PhysicsProcess( double delta )
     {
         var deltaF = ( float ) delta;
-        var timeScale = 0.5f;
         if( _isShowing ) {
+            var timeScale = 0.5f;
             _lerpValue = Mathf.Min( 1f, _lerpValue + deltaF / timeScale );
         } else {
+            var timeScale = 0.1f;
             _lerpValue = Mathf.Max( 0f, _lerpValue - deltaF / timeScale );
         }
 

@@ -85,7 +85,7 @@ position = Vector2(-0.000762939, -212)
 rotation = -1.5708
 scale = Vector2(4, 4)
 
-[node name="OffscreenIndicator" parent="." groups=["ClearOnLevelClear", "ClearOnRestart"] instance=ExtResource("10_8wetx")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("10_8wetx")]
 
 [node name="ShipTrail" parent="." instance=ExtResource("10_nd0qt")]
 position = Vector2(-60, 0)

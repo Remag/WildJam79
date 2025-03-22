@@ -105,7 +105,7 @@ _enemyShip = NodePath("../../..")
 position = Vector2(44.0002, 47.9998)
 _enemyShip = NodePath("../..")
 
-[node name="OffscreenIndicator" parent="." groups=["ClearOnLevelClear", "ClearOnRestart"] instance=ExtResource("8_e7olk")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("8_e7olk")]
 visible = false
 
 [node name="ShipTrail" parent="." instance=ExtResource("9_4spnn")]

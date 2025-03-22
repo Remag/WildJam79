@@ -54,7 +54,7 @@ _enemyShip = NodePath("../..")
 position = Vector2(-24, 0)
 rotation = 1.5708
 
-[node name="OffscreenIndicator" parent="." groups=["ClearOnLevelClear", "ClearOnRestart"] instance=ExtResource("9_kdlwq")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("9_kdlwq")]
 visible = false
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]

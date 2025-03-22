@@ -131,7 +131,7 @@ rotation = 1.5708
 scale = Vector2(0.25, 0.25)
 _enemyShip = NodePath("..")
 
-[node name="OffscreenIndicator" parent="." groups=["ClearOnLevelClear", "ClearOnRestart"] instance=ExtResource("8_lviff")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("8_lviff")]
 visible = false
 
 [node name="ShipTrail" parent="." instance=ExtResource("9_bxghi")]

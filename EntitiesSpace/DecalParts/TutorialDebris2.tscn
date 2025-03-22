@@ -37,4 +37,4 @@ shape = SubResource("CircleShape2D_nhmbs")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_4ofdt")
 
-[node name="OffscreenIndicator" parent="." groups=["ClearOnRestart"] instance=ExtResource("5_xw1y6")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("5_xw1y6")]

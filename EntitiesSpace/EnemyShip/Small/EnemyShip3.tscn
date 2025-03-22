@@ -60,7 +60,7 @@ rotation = 0.431096
 scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("6_fo27b")
 
-[node name="OffscreenIndicator" parent="." groups=["ClearOnLevelClear", "ClearOnRestart"] instance=ExtResource("9_h50a6")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("9_h50a6")]
 visible = false
 
 [node name="ShipTrail" parent="." instance=ExtResource("8_h1pid")]

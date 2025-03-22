@@ -69,7 +69,7 @@ position = Vector2(88, 36)
 scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("8_8uf67")
 
-[node name="OffscreenIndicator" parent="." groups=["ClearOnLevelClear", "ClearOnRestart"] instance=ExtResource("9_oo7p6")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("9_oo7p6")]
 visible = false
 
 [node name="ShipTrail" parent="." instance=ExtResource("10_viqxj")]
