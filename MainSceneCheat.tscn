@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=31 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_rvy8n"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="2_8onvp"]
+[ext_resource type="PackedScene" uid="uid://dgxc83pyb44kj" path="res://GameUI/SettingsMenu.tscn" id="2_s02ea"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_u4e62"]
 [ext_resource type="Resource" uid="uid://cfq5yrofpnafg" path="res://EnemyWaves/BigWave1.tres" id="4_b7oo7"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_huaye"]
@@ -40,9 +41,11 @@ size = Vector2(2200, 2200)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8xkvn"]
 blend_mode = 1
 
-[node name="MainScene" type="Node"]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_hud")]
 process_mode = 3
 script = ExtResource("1_rvy8n")
+_settingsPrefab = ExtResource("2_s02ea")
+_hud = NodePath("HUD")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
