@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=13 format=3 uid="uid://bnij20bv6uuny"]
 
-[ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/EnemyShip1B.tscn" id="1_oq440"]
+[ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip1B.tscn" id="1_oq440"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_wnw60"]
 [ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="3_e5m2p"]
 [ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="3_yswum"]
