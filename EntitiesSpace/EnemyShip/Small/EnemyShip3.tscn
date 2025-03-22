@@ -47,8 +47,9 @@ position = Vector2(0, -24)
 scale = Vector2(2, 2)
 texture = ExtResource("5_tvijw")
 
-[node name="TurrenRocket" parent="Visuals" instance=ExtResource("7_3ythr")]
+[node name="TurrenRocket" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_3ythr")]
 position = Vector2(-8.67844e-05, -24)
+_enemyShip = NodePath("../..")
 
 [node name="Decal" type="Sprite2D" parent="Visuals"]
 modulate = Color(0.833986, 0.000714068, 0.862334, 0.564706)
@@ -56,11 +57,6 @@ position = Vector2(-39.9999, 16.0001)
 rotation = 0.431096
 scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("6_fo27b")
-
-[node name="ShootMarker" type="Node2D" parent="Visuals"]
-position = Vector2(-0.000762939, -212)
-rotation = -1.5708
-scale = Vector2(4, 4)
 
 [node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
 visible = false
