@@ -39,7 +39,6 @@ _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 [node name="Level1" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_2aqgo")
-_weaponHeatGenSpeed = 0
 _attackDelaySec = 4.0
 _bulletSpawner = SubResource("Resource_i685c")
 
@@ -51,7 +50,6 @@ texture = ExtResource("5_xuh3f")
 [node name="Level2" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_2aqgo")
-_weaponHeatGenSpeed = 0
 _attackDelaySec = 4.0
 _bulletSpawner = SubResource("Resource_q2r8k")
 
@@ -69,7 +67,6 @@ texture = ExtResource("5_xuh3f")
 [node name="Level3" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_2aqgo")
-_weaponHeatGenSpeed = 0
 _attackDelaySec = 4.0
 _bulletSpawner = SubResource("Resource_2aqgo")
 
