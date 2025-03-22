@@ -146,6 +146,7 @@ public partial class GameField : Node {
         }
         if( Game.Player != null ) {
             _savedPlayerState = Game.Player.SaveState();
+            Game.Player.SetControl( false );
         }
 
         _idleUiControl.Visible = false;

@@ -2,8 +2,7 @@ using Godot;
 using System;
 using WildJam78.Scripts.UI;
 
-public partial class WarpEffect : Node2D
-{
+public partial class WarpEffect : Node2D {
     [Export]
     private Node2D _anchor;
     [Export]
@@ -71,6 +70,7 @@ public partial class WarpEffect : Node2D
         _anchor.RemoveChild( _player );
         Game.Field.AddChild( _player );
         _player.GlobalPosition = GlobalPosition;
+        Game.Player.SetControl( true );
         Game.Field.InitializeEnemyWave( _nodeTo );
     }
 

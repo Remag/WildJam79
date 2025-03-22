@@ -212,6 +212,7 @@ public partial class Player : RigidBody2D {
     public void FullHeal()
     {
         _currentHp = getMaxHp();
+        ModulateEyesColor();
     }
 
     public bool TryGrow( bool isInstant = false )
@@ -233,6 +234,7 @@ public partial class Player : RigidBody2D {
         _prevBlobs = _currentBlobs;
         _currentBlobs = getBlobsList( CurrentGrowthLevel );
         _currentHp = getMaxHp();
+        ModulateEyesColor();
 
         var animName = "Growth" + CurrentGrowthLevel.ToString();
         _animations.Play( animName, customSpeed: isInstant ? 100 : 1 );
