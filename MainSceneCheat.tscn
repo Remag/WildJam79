@@ -165,7 +165,6 @@ text = "Weapon 3"
 [node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("2_8onvp")]
 position = Vector2(556, 400)
 Camera = NodePath("../Camera2D")
-_tentacleDamageByLevel = null
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ScreenWrapArea")]
 position = Vector2(556, 400)
