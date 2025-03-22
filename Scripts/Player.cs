@@ -9,7 +9,7 @@ public partial class Player : RigidBody2D {
     [Export]
     private Node2D _mainNode;
     [Export]
-    private Node2D _eyeball;
+    private Godot.Collections.Array<Node2D> _eyeballs;
     [Export]
     private AnimationPlayer _animations;
     [Export]
@@ -24,7 +24,7 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<PackedScene> _tentaclesByLevel;
     [Export]
     private Godot.Collections.Array<PackedScene> _autoTentaclesBySize;
-
+    
     [Export]
     private Godot.Collections.Array<Node2D> _playerHitboxes;
     [Export]
@@ -92,7 +92,10 @@ public partial class Player : RigidBody2D {
             Game.Field.EndGame();
         }
 
-        _eyeball.Modulate = Colors.Red.Lerp( Colors.White, (float)_currentHp / getMaxHp() );
+        var modulateColor = Colors.Red.Lerp( Colors.White, (float)_currentHp / getMaxHp() );
+        foreach (var eyeball in _eyeballs) {
+            eyeball.Modulate = modulateColor;
+        }
     }
 
     private int getMaxHp()

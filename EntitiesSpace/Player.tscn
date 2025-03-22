@@ -479,21 +479,21 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_a814b"]
 radius = 24.0
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeball", "_animations", "_playerHitboxes", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeballs", "_animations", "_playerHitboxes", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
 center_of_mass_mode = 1
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("2_5ncpa")
 _mainNode = NodePath("Visual/Small/BodySmall")
-_eyeball = NodePath("Visual/Small/Eye")
+_eyeballs = [NodePath("Visual/Small/Eye"), NodePath("Visual/Medium/Eye"), NodePath("Visual/Large/BodyLarge/EyeLarge"), NodePath("Visual/Large/BodyLarge/EyeLarge2"), NodePath("Visual/Large/BodyLarge/EyeLarge3")]
 _animations = NodePath("AnimationPlayer")
 _maxVelocityPxSec = 350.0
-_maxHpByLvl = Array[int]([10, 30, 500])
+_maxHpByLvl = Array[int]([10, 30, 200])
 _tentaclesByLevel = Array[PackedScene]([ExtResource("3_wi0c6"), ExtResource("3_o1tba"), ExtResource("4_bjqqk")])
 _autoTentaclesBySize = Array[PackedScene]([ExtResource("5_bjqqk")])
 _playerHitboxes = [NodePath("CollisionShape2D"), NodePath("Hitbox/CollisionShape2D")]
 GrowthXpByLvl = Array[int]([100, 200])
-_cameraZoomByLvl = Array[float]([1.0, 0.7, 0.25])
+_cameraZoomByLvl = Array[float]([1.0, 0.7, 0.33])
 _heroHitboxScaleByLvl = Array[float]([1.0, 2.0, 3.0])
 _smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3")]
 _mediumBlobs = [NodePath("Visual/Medium/BodyMid/PlayerBlob5"), NodePath("Visual/Medium/BodyMid/PlayerBlob7"), NodePath("Visual/Medium/BodyMid/PlayerBlob9"), NodePath("Visual/Medium/BodyMid/PlayerBlob11"), NodePath("Visual/Medium/BodyMid/PlayerBlob6"), NodePath("Visual/Medium/BodyMid/PlayerBlob8"), NodePath("Visual/Medium/BodyMid/PlayerBlob10"), NodePath("Visual/Medium/BodyMid/PlayerBlob12")]
@@ -608,7 +608,7 @@ script = ExtResource("6_l6ohk")
 _maxOffsetPx = 7.0
 
 [node name="Large" type="Node2D" parent="Visual"]
-scale = Vector2(1.6, 1.6)
+scale = Vector2(1.2, 1.2)
 
 [node name="BodyLarge" type="Sprite2D" parent="Visual/Large"]
 modulate = Color(1, 1, 1, 0)

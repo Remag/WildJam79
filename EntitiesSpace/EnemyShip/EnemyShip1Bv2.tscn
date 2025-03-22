@@ -1,0 +1,147 @@
+[gd_scene load_steps=16 format=3 uid="uid://b1y4l6y4tgo3x"]
+
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_c66cq"]
+[ext_resource type="Script" uid="uid://bvixcm5fb4rto" path="res://Scripts/EnemyMove/EnemyMoveConfigRigid.cs" id="2_hhkoq"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_e7olk"]
+[ext_resource type="PackedScene" uid="uid://b7qv5wbwkqu6q" path="res://EntitiesSpace/DecalCores/PurpleDecalCoreM.tscn" id="4_2o8jx"]
+[ext_resource type="Texture2D" uid="uid://bnbfs0cm0kvgo" path="res://Assets/SpaceShip/ShipBody/BigRed.webp" id="5_kq08q"]
+[ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="6_vkrue"]
+[ext_resource type="PackedScene" uid="uid://bw88mhh4bohqv" path="res://ETurrets/TurretBlasterRedCircle.tscn" id="7_s3kxg"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="8_x1ijt"]
+[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_4spnn"]
+[ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="10_mr5nq"]
+[ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="11_nkb2q"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="12_dbtod"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="13_nmfca"]
+
+[sub_resource type="Resource" id="Resource_rrk83"]
+script = ExtResource("2_hhkoq")
+minRadius = 400.0
+maxRadius = 800.0
+rngAngle = 0.0
+newTargetChooseTime = 5.0
+targetReachRadius = 150.0
+targetReachDelay = 3.0
+maxVelocity = 100.0
+maxAngularVelocity = 0.4
+acceleration = 50.0
+metadata/_custom_type_script = "uid://bvixcm5fb4rto"
+
+[sub_resource type="Resource" id="Resource_4yixe"]
+script = ExtResource("11_nkb2q")
+maxHp = 200
+metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
+
+[node name="EnemyShip1B" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "EatOnWin", "Enemy"]]
+collision_layer = 2
+collision_mask = 0
+can_sleep = false
+angular_damp = 1.0
+script = ExtResource("1_c66cq")
+_maxHp = 250
+SizeLevel = 1
+_configRigid = SubResource("Resource_rrk83")
+_damageEffect = ExtResource("3_e7olk")
+_damageEffectAnchor = NodePath("DamageAnchor")
+VisualNode = NodePath("Visuals")
+_trail = NodePath("ShipTrail")
+_offscreenIndicator = NodePath("OffscreenIndicator")
+_hitbox = NodePath("Hitbox")
+_shield = NodePath("Shield")
+GeneralExp = 10
+HealHp = 5
+CorePrefabs = Array[PackedScene]([])
+DecalPrefab = ExtResource("4_2o8jx")
+IsWeaponSource = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(12, 0)
+rotation = 1.5708
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-17.0959, 9.80652, -4.91922e-05, -16, 17.9726, 9.80637, 8.41028e-05, 27.3548)
+
+[node name="Visuals" type="Node2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="Main" type="Sprite2D" parent="Visuals"]
+scale = Vector2(12, 12)
+texture = ExtResource("5_kq08q")
+
+[node name="TopBlasters" type="Node2D" parent="Visuals"]
+
+[node name="TurretBlasterRed6" parent="Visuals/TopBlasters" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("6_vkrue")]
+position = Vector2(-116.004, -1128)
+_aiAttackShootDuration = 1.8
+_angularVelocity = 5.0
+_activationDistance = 5000.0
+_enemyShip = NodePath("../../..")
+
+[node name="TurretBlasterRed" parent="Visuals/TopBlasters" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("6_vkrue")]
+position = Vector2(-1136, 136.004)
+_aiAttackShootDuration = 1.8
+_angularVelocity = 5.0
+_activationDistance = 5000.0
+_enemyShip = NodePath("../../..")
+
+[node name="BottomBlasters" type="Node2D" parent="Visuals"]
+
+[node name="TurretBlasterRed6" parent="Visuals/BottomBlasters" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("6_vkrue")]
+position = Vector2(151.996, -1132)
+_aiAttackShootDuration = 1.8
+_angularVelocity = 5.0
+_activationDistance = 5000.0
+_enemyShip = NodePath("../../..")
+
+[node name="TurretBlasterRed" parent="Visuals/BottomBlasters" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("6_vkrue")]
+position = Vector2(1136, 136.004)
+_aiAttackShootDuration = 1.8
+_angularVelocity = 5.0
+_activationDistance = 5000.0
+_enemyShip = NodePath("../../..")
+
+[node name="TurretBlasterRedBig" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_s3kxg")]
+position = Vector2(44.0002, 47.9998)
+_enemyShip = NodePath("../..")
+
+[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+visible = false
+position = Vector2(0, 4.5)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("8_x1ijt")
+centered = false
+offset = Vector2(-310, -110)
+
+[node name="ShipTrail" parent="." instance=ExtResource("9_4spnn")]
+position = Vector2(-282, 1)
+rotation = 1.5708
+scale = Vector2(6, 6)
+
+[node name="Shield" parent="." instance=ExtResource("10_mr5nq")]
+scale = Vector2(8, 8)
+_config = SubResource("Resource_4yixe")
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("12_dbtod")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(0.499998, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-129.973, 23.2264, 3.28711, -175.484, 136.548, 21.6768, 1.97318, 192.516)
+metadata/_edit_lock_ = true
+
+[node name="DamageAnchor" type="Node2D" parent="."]
+position = Vector2(1, 9)
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_nmfca")
+max_distance = 1000.0
+bus = &"sfx"

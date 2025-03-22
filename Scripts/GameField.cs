@@ -168,7 +168,7 @@ public partial class GameField : Node {
         ship.MoveDelay = moveDelay;
         AddChild( ship );
         ship.GlobalPosition = Game.Player.GlobalPosition +
-                              Vector2.FromAngle( Rng.RandomRange( 0, 2 * Mathf.Pi ) ) * 700;
+                              Vector2.FromAngle( Rng.RandomRange( 0, 2 * Mathf.Pi ) ) * 700 / Game.Camera.Zoom;
     }
 
     public void RemoveExistingShip()

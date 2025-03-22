@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://bg8g4nfw1hbcy"]
+
+[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_46dfu"]
+[ext_resource type="Script" uid="uid://c1m4v0ibdsq2e" path="res://Scripts/Bullets/MoveLogic/LinearBulletMoveLogic.cs" id="2_46dfu"]
+[ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_y3kqp"]
+[ext_resource type="Texture2D" uid="uid://dyx5maco2tka2" path="res://Assets/SpaceShip/Bullets/Bullet.webp" id="4_wmbej"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="5_sqha0"]
+
+[sub_resource type="Resource" id="Resource_24scg"]
+script = ExtResource("2_46dfu")
+startMinVelocity = 600.0
+startMaxVelocity = 800.0
+maxVelocity = 3000.0
+acceleration = 1500.0
+metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"
+
+[sub_resource type="Resource" id="Resource_qq402"]
+script = ExtResource("3_y3kqp")
+_maxLifeTime = 10.0
+metadata/_custom_type_script = "uid://b66fo1ud8763f"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
+radius = 5.0
+height = 16.0
+
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
+light_mask = 4
+script = ExtResource("1_46dfu")
+_collisionArea = NodePath("Transform/Area2D")
+_moveLogic = SubResource("Resource_24scg")
+_lifespanLogic = SubResource("Resource_qq402")
+_bulletDamage = 20
+
+[node name="Transform" type="Node2D" parent="."]
+scale = Vector2(9, 9)
+
+[node name="Sprite2D" type="Sprite2D" parent="Transform"]
+modulate = Color(0.273, 0.78, 0, 1)
+position = Vector2(0, -1)
+rotation = 1.5708
+texture = ExtResource("4_wmbej")
+
+[node name="Area2D" type="Area2D" parent="Transform" node_paths=PackedStringArray("RealParent")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_sqha0")
+RealParent = NodePath("../..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transform/Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_a1jof")
+
+[connection signal="AreaCollision" from="Transform/Area2D" to="." method="OnAreaCollision"]
