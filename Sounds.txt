@@ -2,6 +2,7 @@
 TitleBGM (Atmosphere - Horror 2 (Loop) by julius_galla -- https://freesound.org/s/202239/ -- License: Attribution 4.0)
 BGM3 (Action Music Loop 2 "Hunted" by MathewHenry -- https://freesound.org/s/685597/ -- License: Attribution 4.0)
 ShieldReflect3 (702771__matrixxx__force-field-01)
+BigBullet (fuzzsound-bullet.wav by jtragaudio -- https://freesound.org/s/238159/ -- License: Attribution 3.0)
 
 [ https://free-sound-effects.net/ ]
 (не написано, что указывать)
@@ -12,7 +13,9 @@ Chomp
 ButtonClick
 Catch
 GameOver
-WarpIn
+Blaster
+RocketLaunch
+Explosion
 
 [ http://www.freesfx.co.uk ]
 (все остальные звуки. достаточно указать сайт)

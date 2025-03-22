@@ -24,6 +24,11 @@ public partial class WarpEffect : Node2D
         }
     }
 
+    [Export]
+    private AudioStreamPlayer _warpInSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _warpOutSoundPlayer;
+
     private float _warpEffectRadius = 0;
 
     private Player _player;
@@ -47,6 +52,7 @@ public partial class WarpEffect : Node2D
         player.Position = Vector2.Zero;
 
         _animations.Play( "Warp" );
+        _warpInSoundPlayer.Play();
     }
 
     public void OnWarpEnd()
@@ -57,6 +63,7 @@ public partial class WarpEffect : Node2D
     public void ReverseAnimation()
     {
         _animations.PlayBackwards( "Unwarp" );
+        _warpOutSoundPlayer.Play();
     }
 
     public void ReturnPlayer()

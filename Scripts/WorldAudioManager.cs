@@ -50,6 +50,9 @@ public partial class WorldAudioManager : Node {
     private void UpdateBgmForScene()
     {
         switch(_stageName) {
+            case null:
+                StopAllBGM(); 
+                break;
             case "TestWave":
                 StopAllBGM();
                 _stageBgmPlayer.Play();

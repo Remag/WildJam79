@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://hv2uraddyoum"]
+[gd_scene load_steps=10 format=3 uid="uid://hv2uraddyoum"]
 
 [ext_resource type="Texture2D" uid="uid://cy73e3sxmjpq0" path="res://Assets/Vfx/Circle.png" id="1_346pn"]
 [ext_resource type="Script" uid="uid://dbcd3mcxehm55" path="res://Scripts/Player/WarpEffect.cs" id="1_wa1jj"]
+[ext_resource type="AudioStream" uid="uid://b0ljignmt3aae" path="res://Sounds/WarpIn.mp3" id="3_rt0na"]
+[ext_resource type="AudioStream" uid="uid://bh0ivdn4ny73t" path="res://Sounds/WarpOut.mp3" id="4_lfiix"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqxj6"]
 viewport_path = NodePath("SubViewport")
@@ -295,12 +297,14 @@ _data = {
 &"Warp": SubResource("Animation_wa1jj")
 }
 
-[node name="WarpToEffect" type="Node2D" node_paths=PackedStringArray("_anchor", "_circleImage", "_animations")]
+[node name="WarpToEffect" type="Node2D" node_paths=PackedStringArray("_anchor", "_circleImage", "_animations", "_warpInSoundPlayer", "_warpOutSoundPlayer")]
 script = ExtResource("1_wa1jj")
 _anchor = NodePath("CircleImage/Scaler/Anchor")
 _circleImage = NodePath("CircleImage")
 _animations = NodePath("AnimationPlayer")
 _scaleByPlayerSize = Array[float]([2.0, 3.0, 6.0])
+_warpInSoundPlayer = NodePath("WarpInSoundPlayer")
+_warpOutSoundPlayer = NodePath("WarpOutSoundPlayer")
 
 [node name="CircleImage" type="Sprite2D" parent="."]
 z_index = 1
@@ -333,3 +337,12 @@ offset_top = -5087.0
 offset_right = 5013.0
 offset_bottom = 4913.0
 color = Color(0, 0, 0, 1)
+
+[node name="WarpInSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rt0na")
+pitch_scale = 1.15
+bus = &"sfx"
+
+[node name="WarpOutSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lfiix")
+pitch_scale = 1.15
