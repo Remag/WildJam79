@@ -1,0 +1,231 @@
+[gd_scene load_steps=23 format=3 uid="uid://xhv0kaj7ymrv"]
+
+[ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
+[ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="2_8onvp"]
+[ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_u4e62"]
+[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="4_w33cu"]
+[ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_huaye"]
+[ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="6_alxon"]
+[ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="7_t7ilo"]
+[ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="8_hq7hl"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="9_p87ng"]
+[ext_resource type="PackedScene" uid="uid://cugvtasr1dxev" path="res://EntitiesSpace/DecalParts/SpaceDebris1.tscn" id="10_y4ibr"]
+[ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="11_c2xa3"]
+[ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="12_hamdo"]
+[ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="13_aa5ys"]
+[ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="14_b0bgo"]
+[ext_resource type="AudioStream" uid="uid://00v07eyabpqp" path="res://Music/BGM3.mp3" id="15_5nv7p"]
+[ext_resource type="AudioStream" uid="uid://d4fm122a7ybs1" path="res://Sounds/ButtonClick_ZapSplat.mp3" id="16_nqrho"]
+[ext_resource type="AudioStream" uid="uid://cq7blko855kh1" path="res://Sounds/GameOver_ZapSplat.mp3" id="17_5dfft"]
+[ext_resource type="AudioStream" uid="uid://d1o5u51rj1enm" path="res://Music/TitleBGM.mp3" id="18_3gegi"]
+[ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="19_67llk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtmsi"]
+shader = ExtResource("6_alxon")
+shader_parameter/startPos = Vector2(0.5, 0.5)
+shader_parameter/effectPower = 0.03
+shader_parameter/outerSize = 0.0
+shader_parameter/waveSize = 0.05
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rf2cd"]
+size = Vector2(2200, 2200)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8xkvn"]
+blend_mode = 1
+
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_tutorialNode", "_restartButton", "_idleUiControl", "WorldAudioManager", "_warpEffectRect")]
+script = ExtResource("1_g0egd")
+_camera = NodePath("Camera2D")
+_mapControl = NodePath("HUD/TravelMap")
+_starRect = NodePath("ParallaxBackground/StarLayer/TextureRect")
+_nebulaRect = NodePath("ParallaxBackground/NebulaLayer/TextureRect")
+_tutorialNode = NodePath("HUD/Label")
+_playerPrefab = ExtResource("2_8onvp")
+_warpEffect = ExtResource("3_u4e62")
+_restartButton = NodePath("HUD/RestartButton")
+_testWaveNodeInfo = ExtResource("4_w33cu")
+_idleUiControl = NodePath("HUD/IdleUi")
+_bgSelection = ExtResource("5_huaye")
+WorldAudioManager = NodePath("WorldAudioManager")
+_warpEffectRect = NodePath("Effect/ColorRect")
+
+[node name="Effect" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Effect"]
+material = SubResource("ShaderMaterial_xtmsi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TravelMap" parent="HUD" instance=ExtResource("7_t7ilo")]
+visible = false
+offset_left = 278.0
+offset_top = 194.0
+offset_right = -270.0
+offset_bottom = -158.0
+
+[node name="Label" type="Label" parent="HUD"]
+offset_right = 319.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 24
+text = "WASD/Arrows to Accelerate
+Hold Left Click to Shoot
+Hold Right Click to Tentacle
+"
+
+[node name="RestartButton" type="Button" parent="HUD"]
+visible = false
+offset_left = 347.0
+offset_top = 249.0
+offset_right = 762.0
+offset_bottom = 346.0
+theme_override_font_sizes/font_size = 54
+text = "Restart"
+
+[node name="IdleUi" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 645.0
+
+[node name="MapButton" type="Button" parent="HUD/IdleUi"]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 30.0
+offset_right = 757.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 54
+text = "Warp"
+
+[node name="TestWave" type="Button" parent="HUD/IdleUi"]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 31.0
+offset_right = 1141.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 54
+text = "Test wave"
+
+[node name="CheatMenu" type="VBoxContainer" parent="HUD/IdleUi"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -79.0
+offset_right = 136.0
+offset_bottom = -13.0
+grow_vertical = 0
+script = ExtResource("8_hq7hl")
+_weaponsToEat = Array[PackedScene]([ExtResource("9_p87ng")])
+_trashPrefab = ExtResource("10_y4ibr")
+
+[node name="Eat" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Eat Trash"
+
+[node name="Trash" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Spawn Trash"
+
+[node name="ResetGrowth" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Reset Growth"
+
+[node name="Grow" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Grow
+"
+
+[node name="Weapons" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Weapon Preset"
+
+[node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("2_8onvp")]
+position = Vector2(556, 400)
+Camera = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ScreenWrapArea")]
+position = Vector2(556, 400)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("11_c2xa3")
+ScreenWrapArea = NodePath("GameZone/CollisionShape2D")
+
+[node name="GameZone" type="Area2D" parent="Camera2D"]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/GameZone"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_rf2cd")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="NebulaLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(2048, 2048)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/NebulaLayer"]
+offset_right = 2048.0
+offset_bottom = 2048.0
+texture = ExtResource("12_hamdo")
+stretch_mode = 1
+
+[node name="StarLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2048, 2048)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/StarLayer"]
+material = SubResource("CanvasItemMaterial_8xkvn")
+offset_right = 2048.0
+offset_bottom = 2048.0
+texture = ExtResource("13_aa5ys")
+stretch_mode = 1
+
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer")]
+script = ExtResource("14_b0bgo")
+_stageBgmPlayer = NodePath("StageBgmPlayer")
+_titleBgmPlayer = NodePath("TitleBgmPlayer")
+_buttonClickPlayer = NodePath("ButtonClick")
+_deathSoundPlayer = NodePath("GameOver")
+
+[node name="StageBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("15_5nv7p")
+volume_db = -12.18
+bus = &"music"
+parameters/looping = true
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("16_nqrho")
+bus = &"sfx"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("17_5dfft")
+bus = &"sfx"
+
+[node name="TitleBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("18_3gegi")
+autoplay = true
+bus = &"music"
+parameters/looping = true
+
+[node name="TestSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("19_67llk")
+
+[connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
+[connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]
+[connection signal="pressed" from="HUD/IdleUi/TestWave" to="." method="SpawnTestWave"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Eat" to="HUD/IdleUi/CheatMenu" method="EatAllTrash"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Trash" to="HUD/IdleUi/CheatMenu" method="SpawnTrash"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/ResetGrowth" to="HUD/IdleUi/CheatMenu" method="ResetGrowth"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Grow" to="HUD/IdleUi/CheatMenu" method="Grow"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons" to="HUD/IdleUi/CheatMenu" method="EatWeapons"]
+[connection signal="area_exited" from="Camera2D/GameZone" to="Camera2D" method="OnAreaLeave"]
