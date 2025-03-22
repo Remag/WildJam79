@@ -216,6 +216,7 @@ public partial class EnemyShip : FoodSource {
 		Freeze = true;
 		IsShootingEnabled = false;
 		IsPulledByTentacle = true;
+		CollisionLayer = 0;
 	}
 
 	public override void OnBroughtToPlayer( Tentacle tentacle )

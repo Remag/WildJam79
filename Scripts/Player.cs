@@ -79,6 +79,7 @@ public partial class Player : RigidBody2D {
         _currentHp = _maxHpByLvl[CurrentGrowthLevel];
         _currentBlobs = getBlobsList( CurrentGrowthLevel );
         _autoTentacleArea.Monitoring = CurrentGrowthLevel >= 2;
+        Mass = 10 ^ CurrentGrowthLevel;
     }
 
     public override void _ExitTree()
@@ -502,7 +503,7 @@ public partial class Player : RigidBody2D {
         }
 
         var accelValue = _maxAccelPxSec * accelVector.Normalized();
-        ApplyForce( accelValue * deltaF );
+        ApplyForce( accelValue * deltaF * Mass );
         updateShooting( delta );
     }
 
@@ -621,6 +622,7 @@ public partial class Player : RigidBody2D {
         _currentGrowthXp = state._currentGrowthXp;
         _currentBlobIndex = state._currentBlobIndex;
         _currentHp = state._currentHp;
+        Mass = 10 ^ CurrentGrowthLevel;
         if( CurrentGrowthLevel > 0 ) {
             var animName = "Growth" + CurrentGrowthLevel;
 

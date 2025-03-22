@@ -37,7 +37,7 @@ public class EnemyMoveHandlerRigid {
         }
         
         
-        state.ApplyCentralForce( Vector2.FromAngle( state.Transform.Rotation ) * _config.acceleration );
+        state.ApplyCentralForce( Vector2.FromAngle( state.Transform.Rotation ) * _config.acceleration / state.InverseMass );
         state.LinearVelocity = state.LinearVelocity.LimitLength( _config.maxVelocity );
 
         if( !_isTargetReached ) {
