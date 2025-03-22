@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://bo1juf5brst7i"
 [node name="TurrenGunx3" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_spawnPoint")]
 script = ExtResource("1_bqo0w")
 _aiAttackShootDelayMin = 1.0
-_aiAttackShootDuration = 4.5
+_aiAttackShootDuration = 3.0
 _aiAttackShootPauseMin = 1.5
 _aiAttackShootPauseMax = 2.0
 _bulletSpawner = SubResource("Resource_b8qpl")

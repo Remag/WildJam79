@@ -10,8 +10,7 @@
 radius = 54.0093
 
 [node name="SpaceDebris" type="RigidBody2D" node_paths=PackedStringArray("_sprite", "_offscreenIndicator") groups=["ClearOnRestart", "EatOnWin"]]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 8
 script = ExtResource("1_0yy7h")
 _sprite = NodePath("Sprite2D")
 _driftMaxSpeed = 0.0
@@ -19,9 +18,8 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 GeneralExp = 0
 DecalPrefab = ExtResource("2_18r1o")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(5, -1)
-shape = SubResource("CircleShape2D_nhmbs")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(4, -48, 40, -25, 37, -6, 27, 3, 25, 31, 8, 47, -24, 45, -40, 23, -39, -2, -26, -21, -3, -26)
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 collision_layer = 10

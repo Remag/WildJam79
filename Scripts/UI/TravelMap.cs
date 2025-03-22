@@ -48,11 +48,11 @@ public partial class TravelMap : Control {
             Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
-    public void SetEnemyHint( Godot.Collections.Array<EnemyInfo> enemies )
+    public void SetEnemyHint( Godot.Collections.Dictionary<PackedScene, int> enemiesMap )
     {
-        foreach( var enemy in enemies ) {
+        foreach( var enemyKey in enemiesMap ) {
             var hintControl = _hintPrefab.Instantiate<ShipInfoHint>();
-            hintControl.SetHintInfo( enemy.Count, enemy.Prefab );
+            hintControl.SetHintInfo( enemyKey.Value, enemyKey.Key );
             _hintContainer.AddChild( hintControl );
         }
         _hintContainer.Visible = true;

@@ -29,8 +29,8 @@
 [ext_resource type="AudioStream" uid="uid://tm5k4wb6kum" path="res://Sounds/EchoCut_ZapSplat.mp3" id="18_s02ea"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="19_67llk"]
 [ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="19_u21sk"]
-[ext_resource type="Resource" uid="uid://blnr6tg62p6yf" path="res://EnemyWaves/Map4-3Wave.tres" id="21_rvy8n"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
+[ext_resource type="Resource" uid="uid://bq1atcu446iai" path="res://EnemyWaves/BigWave3.tres" id="23_1eypv"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
 
 [sub_resource type="Animation" id="Animation_kvyqs"]
@@ -395,7 +395,7 @@ _nebulaRect = NodePath("ParallaxBackground/NebulaLayer/TextureRect")
 _playerPrefab = ExtResource("2_8onvp")
 _warpEffect = ExtResource("3_u4e62")
 _restartButton = NodePath("../HUD/RestartButton")
-_testWaveNodeInfo = ExtResource("21_rvy8n")
+_testWaveNodeInfo = ExtResource("23_1eypv")
 _idleUiControl = NodePath("../HUD/IdleUi")
 _warpControl = NodePath("../HUD/IdleUi/WarpButton")
 _bgSelection = ExtResource("5_huaye")
