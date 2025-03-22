@@ -1,17 +1,22 @@
-[gd_scene load_steps=56 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=64 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_lppff"]
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://dgxc83pyb44kj" path="res://GameUI/SettingsMenu.tscn" id="2_5o6vq"]
+[ext_resource type="Texture2D" uid="uid://qm036ucedfws" path="res://TempAssets/Missile.png" id="3_kvyqs"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_x0cd2"]
 [ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="4_3slyh"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="4_i1thg"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
+[ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="5_a28bb"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
+[ext_resource type="Texture2D" uid="uid://ce5hxpfp8ri71" path="res://TempAssets/Shield.png" id="6_506kc"]
 [ext_resource type="PackedScene" uid="uid://bnspkihh2hsu1" path="res://EntitiesSpace/DecalParts/GlassDebris.tscn" id="6_h86nx"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="7_3hf6u"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
+[ext_resource type="Texture2D" uid="uid://cajrtii7cc6kk" path="res://TempAssets/Tentacle.png" id="7_igrck"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="7_xtmsi"]
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
@@ -33,6 +38,115 @@
 [ext_resource type="AudioStream" uid="uid://cnf2rh3j4jnkr" path="res://Sounds/BottlePop.wav" id="23_cxdnd"]
 [ext_resource type="PackedScene" uid="uid://bnqvmbhwphipr" path="res://EntitiesSpace/DecalParts/TutorialDebris3.tscn" id="23_obg7t"]
 [ext_resource type="AudioStream" uid="uid://cnkamk2nla40g" path="res://Sounds/BottleShake.mp3" id="27_6dw4c"]
+
+[sub_resource type="Animation" id="Animation_kvyqs"]
+resource_name = "Cutscene"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene/Slide1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.266667, 1.33333, 10.3333, 11.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene/Slide2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 2.83333, 10.3333, 11.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscene/Slide3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.7, 4.53333, 10.3333, 11.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene/Slide4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5.53333, 6.36667, 10.3333, 11.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cutscene/Slide5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7.33333, 8.16667, 10.3333, 11.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cutscene/Label:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 12.3667, 13.1333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i1thg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene/Slide1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a28bb"]
+_data = {
+&"Cutscene": SubResource("Animation_kvyqs"),
+&"RESET": SubResource("Animation_i1thg")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtmsi"]
 shader = ExtResource("7_xtmsi")
@@ -922,6 +1036,74 @@ _hud = NodePath("HUD")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="Cutscene" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 177.0
+offset_top = 181.0
+offset_right = 177.0
+offset_bottom = 181.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Cutscene"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_a28bb")
+}
+
+[node name="Slide1" type="TextureRect" parent="HUD/Cutscene"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 195.0
+offset_top = 19.0
+offset_right = 235.0
+offset_bottom = 62.0
+texture = ExtResource("3_kvyqs")
+
+[node name="Slide2" type="TextureRect" parent="HUD/Cutscene"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 311.0
+offset_top = 218.0
+offset_right = 621.0
+offset_bottom = 438.0
+texture = ExtResource("4_i1thg")
+
+[node name="Slide3" type="TextureRect" parent="HUD/Cutscene"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 311.0
+offset_top = 218.0
+offset_right = 351.0
+offset_bottom = 258.0
+texture = ExtResource("5_a28bb")
+
+[node name="Slide4" type="TextureRect" parent="HUD/Cutscene"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 311.0
+offset_top = 218.0
+offset_right = 431.0
+offset_bottom = 338.0
+texture = ExtResource("6_506kc")
+
+[node name="Slide5" type="TextureRect" parent="HUD/Cutscene"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 311.0
+offset_top = 218.0
+offset_right = 794.0
+offset_bottom = 274.0
+texture = ExtResource("7_igrck")
+
+[node name="Label" type="Label" parent="HUD/Cutscene"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "It's over.
+
+Godot Wild Jam 79."
+
 [node name="TutorialLabels" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 0
@@ -1260,7 +1442,7 @@ volume_db = -7.0
 stream = ExtResource("23_cxdnd")
 bus = &"sfx"
 
-[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation")]
+[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation", "_finalAnimation")]
 process_mode = 1
 script = ExtResource("1_torvr")
 _camera = NodePath("Camera2D")
@@ -1280,6 +1462,7 @@ _glassSprite = NodePath("Intro/GlassRotation/Glass")
 _glassDebris = ExtResource("6_h86nx")
 _tutorial = NodePath("Intro")
 _startAnimation = NodePath("Intro/GlassRotation/AnimationPlayer")
+_finalAnimation = NodePath("../HUD/Cutscene/AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameField"]
 callback_mode_process = 0

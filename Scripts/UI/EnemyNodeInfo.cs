@@ -9,4 +9,6 @@ public partial class EnemyNodeInfo : Resource {
 
     [Export] 
     public int MinShipsAliveForNextWave = 1;
+    [Export]
+    public bool IsFinalNode = false;
 }

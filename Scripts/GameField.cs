@@ -39,6 +39,8 @@ public partial class GameField : Node {
     private Tutorial _tutorial;
     [Export]
     private AnimationPlayer _startAnimation;
+    [Export]
+    private AnimationPlayer _finalAnimation;
 
     private EnemyNodeInfo _currentNodeInfo;
     private float _currentLevelTimer = 0;
@@ -159,6 +161,10 @@ public partial class GameField : Node {
 
     public void SwitchLocation( Texture2D locationBg, EnemyNodeInfo nodeInfo, WarpEffect effect )
     {
+        if( nodeInfo.IsFinalNode ) {
+            _finalAnimation.Play( "Cutscene" );
+            return;
+        } 
         _currentNodeInfo = nodeInfo;
         _isTestWaveActive = false;
         _idleUiControl.Visible = nodeInfo.WavesInfo.Count == 0;

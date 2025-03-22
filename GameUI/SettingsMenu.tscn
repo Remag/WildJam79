@@ -140,11 +140,11 @@ offset_right = 37.5
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Cancel"
+text = "Ok"
 
 [connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/HBoxContainer/HSlider" to="." method="SetMasterVolume"]
 [connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/HBoxContainer2/HSlider" to="." method="SetSfxVolume"]
 [connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer3/HBoxContainer3/HSlider" to="." method="SetMusicVolume"]
-[connection signal="toggled" from="Panel/VBoxContainer/HBoxContainer4/CheckButton" to="." method="MuteSound"]
+[connection signal="toggled" from="Panel/VBoxContainer/HBoxContainer4/CheckButton" to="." method="MuteAllSound"]
 [connection signal="toggled" from="Panel/VBoxContainer/HBoxContainer5/CheckButton" to="." method="MuteMusic"]
 [connection signal="pressed" from="Panel/Cancel" to="." method="CloseSettings"]

@@ -47,4 +47,5 @@ metadata/_custom_type_script = "uid://djvcagko6b25v"
 script = ExtResource("4_yswum")
 WavesInfo = Array[Object]([SubResource("Resource_ysdgj"), SubResource("Resource_0kh7w")])
 MinShipsAliveForNextWave = 1
+IsFinalNode = false
 metadata/_custom_type_script = "uid://3et64xg5xbi4"
