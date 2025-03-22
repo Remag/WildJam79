@@ -24,7 +24,7 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<PackedScene> _tentaclesByLevel;
     [Export]
     private Godot.Collections.Array<PackedScene> _autoTentaclesBySize;
-    
+
     [Export]
     private Godot.Collections.Array<Node2D> _playerHitboxes;
     [Export]
@@ -87,15 +87,26 @@ public partial class Player : RigidBody2D {
 
         _currentHp -= damage;
         if( _currentHp <= 0 ) {
-            DestroyAllTentacles();
-            QueueFree();
-            Game.Field.EndGame();
+            Die();
         }
 
         var modulateColor = Colors.Red.Lerp( Colors.White, (float)_currentHp / getMaxHp() );
-        foreach (var eyeball in _eyeballs) {
+        foreach( var eyeball in _eyeballs ) {
             eyeball.Modulate = modulateColor;
         }
+    }
+
+    public void Die()
+    {
+        DestroyAllTentacles();
+        _isPlayerControlled = false;
+        _animations.Play( "Death" );
+    }
+
+    public void Cleanup()
+    {
+        Game.Field.EndGame();
+        QueueFree();
     }
 
     private int getMaxHp()
