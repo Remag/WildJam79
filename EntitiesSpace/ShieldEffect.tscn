@@ -8,5 +8,5 @@ blend_mode = 1
 [node name="Base" type="Sprite2D"]
 self_modulate = Color(0.462291, 0.462291, 0.462291, 1)
 material = SubResource("CanvasItemMaterial_pbsc8")
-scale = Vector2(5, 11.695)
+scale = Vector2(1, 2.339)
 texture = ExtResource("1_f4v1p")

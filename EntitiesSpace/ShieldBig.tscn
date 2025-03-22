@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ca6y1ysxxw1yv"]
 
 [ext_resource type="Script" uid="uid://cn44apl70ytg4" path="res://Scripts/Shield.cs" id="1_7y55v"]
-[ext_resource type="PackedScene" uid="uid://c4thvpg63msq3" path="res://EntitiesSpace/ShieldEffect.tscn" id="2_r8w2r"]
+[ext_resource type="PackedScene" uid="uid://dhlxnoot8xnw4" path="res://EntitiesSpace/ShieldEffectBig.tscn" id="2_7y55v"]
 [ext_resource type="Texture2D" uid="uid://bbh8dar4kmrk5" path="res://Assets/SpaceShip/ShieldBigBase.webp" id="3_7y55v"]
 [ext_resource type="Texture2D" uid="uid://cpp3qsk4q3cld" path="res://Assets/SpaceShip/ShieldBigCombs.webp" id="4_r8w2r"]
 [ext_resource type="AudioStream" uid="uid://bc3o8b8le62vs" path="res://Sounds/ShieldReflect3.mp3" id="5_h6o8y"]
@@ -18,7 +18,7 @@ _shieldDropSoundPlayer = NodePath("Drop")
 _shieldReflectSoundPlayer = NodePath("Reflect")
 _baseSprite = NodePath("Base")
 _surfaceSprite = NodePath("Surface")
-_shieldEffect = ExtResource("2_r8w2r")
+_shieldEffect = ExtResource("2_7y55v")
 _circleRadius = 250.0
 RealParent = NodePath(".")
 
