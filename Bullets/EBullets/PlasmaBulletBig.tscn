@@ -17,6 +17,7 @@ metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"
 [sub_resource type="Resource" id="Resource_qq402"]
 script = ExtResource("3_y3kqp")
 _maxLifeTime = 10.0
+AlphaTweenTime = 0.5
 metadata/_custom_type_script = "uid://b66fo1ud8763f"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
