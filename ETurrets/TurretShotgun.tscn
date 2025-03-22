@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="2_55da8"]
 [ext_resource type="PackedScene" uid="uid://kep2j7hfg3vm" path="res://Bullets/EBullets/ShotgunBullet.tscn" id="2_ufsiu"]
 [ext_resource type="Texture2D" uid="uid://bvu6ne3vqkio6" path="res://Assets/SpaceShip/Guns/Shotgun.webp" id="3_ufsiu"]
-[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="5_n70ym"]
+[ext_resource type="AudioStream" uid="uid://b0faxbbd1w1hr" path="res://Sounds/ShotgunCut.mp3" id="5_ufsiu"]
 
 [sub_resource type="Resource" id="Resource_5pp6x"]
 script = ExtResource("2_55da8")
@@ -41,7 +41,7 @@ centered = false
 position = Vector2(1, -107)
 
 [node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_n70ym")
+stream = ExtResource("5_ufsiu")
 max_distance = 1000.0
 bus = &"sfx"
 
