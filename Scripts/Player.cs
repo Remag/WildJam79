@@ -102,10 +102,7 @@ public partial class Player : RigidBody2D {
             Die();
         }
 
-        var modulateColor = Colors.Red.Lerp( Colors.White, (float)_currentHp / getMaxHp() );
-        foreach( var eyeball in _eyeballs ) {
-            eyeball.Modulate = modulateColor;
-        }
+        ModulateEyesColor();
     }
 
     public void Die()
@@ -184,6 +181,7 @@ public partial class Player : RigidBody2D {
         }
         _currentHp = Math.Min( _currentHp + food.HealHp, getMaxHp() );
         _chompSoundPlayer.Play();
+        ModulateEyesColor();
 
         if( !Game.Field.IsCombat() ) {
             TryGrow();
@@ -544,6 +542,14 @@ public partial class Player : RigidBody2D {
     internal void ShootSoundPlay()
     {
         _shootSoundPlayer.Play();
+    }
+
+    private void ModulateEyesColor()
+    {
+        var modulateColor = Colors.Red.Lerp( Colors.White, (float)_currentHp / getMaxHp() );
+        foreach( var eyeball in _eyeballs ) {
+            eyeball.Modulate = modulateColor;
+        }
     }
 
     public void OnAutoTentacleAreaEntered( Node node )

@@ -144,9 +144,10 @@ position = Vector2(-282, 1)
 rotation = 1.5708
 scale = Vector2(6, 6)
 
-[node name="Shield" parent="." instance=ExtResource("10_s8e3q")]
+[node name="Shield" parent="." node_paths=PackedStringArray("EnemyShip") instance=ExtResource("10_s8e3q")]
 scale = Vector2(1.5, 1.5)
 _config = SubResource("Resource_lviff")
+EnemyShip = NodePath("..")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708

@@ -73,7 +73,8 @@ offset = Vector2(-310, -110)
 position = Vector2(-23, 0)
 rotation = 1.5708
 
-[node name="Shield" parent="." instance=ExtResource("14_7n8mk")]
+[node name="Shield" parent="." node_paths=PackedStringArray("EnemyShip") instance=ExtResource("14_7n8mk")]
+EnemyShip = NodePath("..")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708
