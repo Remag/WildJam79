@@ -132,6 +132,7 @@ public partial class GameField : Node {
         }
 
         effect.ReverseAnimation();
+        Game.StageName = "TestWave";
     }
 
     public void InitializeEnemyWave( EnemyNodeInfo nodeInfo )

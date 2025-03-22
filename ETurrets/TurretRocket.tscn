@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/EBullets/RocketBullet.tscn" id="2_462sr"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="3_wh43a"]
 [ext_resource type="Texture2D" uid="uid://civxbol4ydkjk" path="res://Assets/SpaceShip/Guns/RocketGun.webp" id="4_462sr"]
-[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="5_evv5b"]
+[ext_resource type="AudioStream" uid="uid://bestfkcejbubt" path="res://Sounds/RocketLaunchCut_ZapSplat.mp3" id="5_462sr"]
 
 [sub_resource type="Resource" id="Resource_guvrn"]
 script = ExtResource("3_wh43a")
@@ -36,6 +36,6 @@ centered = false
 position = Vector2(1, -55)
 
 [node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_evv5b")
+stream = ExtResource("5_462sr")
 max_distance = 1000.0
 bus = &"sfx"
