@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
 script = ExtResource("1_jeb3w")
-_levelReqs = Array[int]([999, 999])
+_levelReqs = Array[int]([32, 999])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 
 [node name="Level1" type="Node2D" parent="."]

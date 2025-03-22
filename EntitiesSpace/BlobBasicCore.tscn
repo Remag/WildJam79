@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
 script = ExtResource("1_k6m0d")
-_levelReqs = Array[int]([5, 10])
+_levelReqs = Array[int]([22, 999])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 
 [node name="Level1" type="Node2D" parent="."]

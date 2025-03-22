@@ -18,7 +18,7 @@ script = ExtResource("6_cy44l")
 _bulletPrefab = ExtResource("3_2aqgo")
 _counter = 2
 _fromAngleDeg = 0.0
-_toAngleDeg = 90.0
+_toAngleDeg = 180.0
 _isFullCircle = false
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
 script = ExtResource("1_xuh3f")
-_levelReqs = Array[int]([6, 17])
+_levelReqs = Array[int]([13, 999])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 
 [node name="Level1" type="Node2D" parent="."]
