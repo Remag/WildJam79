@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bchrtaxng7su0" path="res://GameUI/ShipInfoHint.tscn" id="2_xrfvj"]
 [ext_resource type="StyleBox" uid="uid://bx70hubj1enkt" path="res://GameUI/MapModeActiveStyle.tres" id="3_xrfvj"]
 [ext_resource type="StyleBox" uid="uid://d2ojcbi804co1" path="res://GameUI/MapNodeCompletedStyle.tres" id="4_agtnh"]
-[ext_resource type="Resource" uid="uid://b0fg7fpx7xlwp" path="res://EnemyWaves/Map1Wave.tres" id="7_sv05a"]
-[ext_resource type="Resource" uid="uid://bkj4q3oi1gpc2" path="res://EnemyWaves/Map2Wave.tres" id="8_b3tq4"]
+[ext_resource type="Resource" uid="uid://cavn88ldtdblm" path="res://EnemyWaves/Map1Wave.tres" id="7_sv05a"]
+[ext_resource type="Resource" uid="uid://c62ko6887l6oe" path="res://EnemyWaves/Map2Wave.tres" id="8_b3tq4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k420c"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 0.886275)
@@ -92,7 +92,7 @@ offset_left = 120.0
 offset_top = 110.0
 offset_right = 137.0
 offset_bottom = 126.0
-_next = [NodePath("../Map3-2"), NodePath("../MapNode6")]
+_next = [NodePath("../Map3-2"), NodePath("../Map4-1")]
 
 [node name="Map3-2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
@@ -100,38 +100,38 @@ offset_left = 120.0
 offset_top = 170.0
 offset_right = 137.0
 offset_bottom = 186.0
-_next = [NodePath("../MapNode7")]
+_next = [NodePath("../Map4-2")]
 
-[node name="MapNode6" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+[node name="Map4-1" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 257.0
-offset_top = 21.0
-offset_right = 274.0
-offset_bottom = 37.0
-_next = [NodePath("../MapNode7")]
+offset_left = 180.0
+offset_top = 80.0
+offset_right = 197.0
+offset_bottom = 96.0
+_next = [NodePath("../Map4-2")]
 
-[node name="MapNode7" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+[node name="Map4-2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 285.0
-offset_top = 22.0
-offset_right = 302.0
-offset_bottom = 38.0
-_next = [NodePath("../MapNode8")]
+offset_left = 180.0
+offset_top = 140.0
+offset_right = 197.0
+offset_bottom = 156.0
+_next = [NodePath("../Map4-3")]
 
-[node name="MapNode8" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+[node name="Map4-3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 314.0
-offset_top = 25.0
-offset_right = 331.0
-offset_bottom = 41.0
-_next = [NodePath("../MapNode9"), NodePath("../MapNode10")]
+offset_left = 180.0
+offset_top = 200.0
+offset_right = 197.0
+offset_bottom = 216.0
+_next = [NodePath("../Map5"), NodePath("../MapNode10")]
 
-[node name="MapNode9" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+[node name="Map5" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
-offset_left = 343.0
-offset_top = 25.0
-offset_right = 360.0
-offset_bottom = 41.0
+offset_left = 240.0
+offset_top = 140.0
+offset_right = 257.0
+offset_bottom = 156.0
 _next = [NodePath("../MapNode11")]
 
 [node name="MapNode10" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
