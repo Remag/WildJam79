@@ -16,6 +16,7 @@ public partial class BasicBullet : Node2D {
 
 	[Export]
 	private bool _isEnemyBullet = false;
+	public bool IsEnemyBullet { get { return _isEnemyBullet; } }
 
 	[Export]
 	private int _bulletDamage = 1;

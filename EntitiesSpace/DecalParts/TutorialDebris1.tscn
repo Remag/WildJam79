@@ -1,19 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://cugvtasr1dxev"]
+[gd_scene load_steps=7 format=3 uid="uid://cugvtasr1dxev"]
 
-[ext_resource type="Texture2D" uid="uid://d1ytdsq6kedh8" path="res://Assets/SpaceShip/ShipParts/PartPurpleSmall.webp" id="1_s3v3h"]
 [ext_resource type="Script" uid="uid://dbw6oxcxc5dnd" path="res://Scripts/SpaceDebris.cs" id="2_r1atj"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="3_ipvs0"]
 [ext_resource type="PackedScene" uid="uid://draawj72qffpb" path="res://EntitiesSpace/DecalCores/PurpleDecalCoreS.tscn" id="3_nhmbs"]
+[ext_resource type="Texture2D" uid="uid://bripsewyri7k2" path="res://Assets/SpaceShip/ShipDebris/PurpleSmallPieceNormal.webp" id="4_ipvs0"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="5_q2bs2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhmbs"]
 radius = 38.0526
 
-[node name="SpaceDebris" type="RigidBody2D" groups=["ClearOnRestart", "EatOnWin"]]
+[node name="SpaceDebris" type="RigidBody2D" node_paths=PackedStringArray("_sprite", "_offscreenIndicator") groups=["ClearOnRestart", "EatOnWin"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_r1atj")
-GeneralExp = 20
-CorePrefabs = Array[PackedScene]([ExtResource("3_nhmbs")])
+_sprite = NodePath("Sprite2D")
+_driftMaxSpeed = 0.0
+_offscreenIndicator = NodePath("OffscreenIndicator")
+GeneralExp = 0
 DecalPrefab = ExtResource("3_nhmbs")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -21,7 +24,7 @@ position = Vector2(5, -1)
 shape = SubResource("CircleShape2D_nhmbs")
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
-collision_layer = 8
+collision_layer = 10
 collision_mask = 0
 script = ExtResource("3_ipvs0")
 RealParent = NodePath("..")
@@ -32,4 +35,12 @@ position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_nhmbs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_s3v3h")
+texture = ExtResource("4_ipvs0")
+
+[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+visible = false
+position = Vector2(0, 4.5)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("5_q2bs2")
+centered = false
+offset = Vector2(-310, -110)

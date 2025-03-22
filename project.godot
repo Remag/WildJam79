@@ -39,6 +39,8 @@ Enemy=""
 ClearOnRestart=""
 EatOnWin=""
 ClearOnLevelClear=""
+NearDebris=""
+FarDebris=""
 
 [input]
 

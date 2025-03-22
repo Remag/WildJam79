@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dcxydx2svymhn"]
+[gd_scene load_steps=30 format=3 uid="uid://dcxydx2svymhn"]
 
 [ext_resource type="Script" uid="uid://xvc8wpu28dbs" path="res://Scripts/Player.cs" id="2_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://dns7hb6m5k723" path="res://Assets/MainHero/BaseSmall.webp" id="3_hpvjx"]
@@ -21,6 +21,21 @@
 [ext_resource type="Texture2D" uid="uid://phwkgwtegbnm" path="res://Assets/MainHero/EyeballLargeSide.webp" id="15_esfve"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="18_il04a"]
 [ext_resource type="AudioStream" uid="uid://dgqjllrn5ulx3" path="res://Sounds/ChomLongCut2.mp3" id="20_il04a"]
+
+[sub_resource type="Animation" id="Animation_3jk7k"]
+resource_name = "Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.566667),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_il04a"]
 resource_name = "Death"
@@ -536,6 +551,7 @@ tracks/14/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7eort"]
 _data = {
+&"Appear": SubResource("Animation_3jk7k"),
 &"Death": SubResource("Animation_il04a"),
 &"Growth1": SubResource("Animation_hpvjx"),
 &"Growth2": SubResource("Animation_4ta28"),

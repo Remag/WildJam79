@@ -26,7 +26,7 @@ public partial class TentaclePlayer : Tentacle {
         var endAnchor = _tentacleLine.EndAnchor;
         var dirDelta = globalMousePos - endAnchor.GlobalPosition;
 
-        _currentVelocity = new Vector2( _tentacleExtendSpeed, 0 ).Rotated( dirDelta.Angle() );
+        _currentVelocity = new Vector2( _tentacleExtendSpeed, 0 ).Rotated( dirDelta.Angle() + Mathf.DegToRad( Rng.Choose( [-15.0f, 15.0f] ) ) );
 
         base._Ready();
     }

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3hh1ov2kjtox"]
+
+[ext_resource type="Script" uid="uid://dbw6oxcxc5dnd" path="res://Scripts/SpaceDebris.cs" id="1_4ofdt"]
+[ext_resource type="PackedScene" uid="uid://draawj72qffpb" path="res://EntitiesSpace/DecalCores/PurpleDecalCoreS.tscn" id="2_xw1y6"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="3_mcjjr"]
+[ext_resource type="Texture2D" uid="uid://coxge3mspf8oo" path="res://Assets/SpaceShip/ShipDebris/PurpleMidPieceNormal.webp" id="4_4ofdt"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="5_xw1y6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhmbs"]
+radius = 38.0526
+
+[node name="SpaceDebris" type="RigidBody2D" node_paths=PackedStringArray("_sprite", "_offscreenIndicator") groups=["ClearOnRestart", "EatOnWin"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_4ofdt")
+_sprite = NodePath("Sprite2D")
+_driftMaxSpeed = 0.0
+_offscreenIndicator = NodePath("OffscreenIndicator")
+GeneralExp = 0
+DecalPrefab = ExtResource("2_xw1y6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(5, -1)
+shape = SubResource("CircleShape2D_nhmbs")
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
+collision_layer = 10
+collision_mask = 0
+script = ExtResource("3_mcjjr")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -1)
+shape = SubResource("CircleShape2D_nhmbs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_4ofdt")
+
+[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+visible = false
+position = Vector2(0, 4.5)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("5_xw1y6")
+centered = false
+offset = Vector2(-310, -110)
