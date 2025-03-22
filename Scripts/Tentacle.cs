@@ -124,7 +124,7 @@ public partial class Tentacle : Node2D {
 
     private void updateShrink( float delta )
     {
-        var shrinkDistance = _tentacleShrinkSpeed * delta;
+        var shrinkDistance = _tentacleShrinkSpeed * delta / (AttachedEntity?.ShrinkSpeedReduction ?? 1f);
         var points = _tentacleLine.Points;
         Debug.Assert( points.Length >= 2 );
 
