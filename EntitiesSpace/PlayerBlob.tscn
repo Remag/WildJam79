@@ -151,6 +151,7 @@ position = Vector2(10, -57)
 position = Vector2(10, -57)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
 root_node = NodePath("../PlayerBlob")
 libraries = {
 &"": SubResource("AnimationLibrary_hvhlf")

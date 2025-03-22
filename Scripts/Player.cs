@@ -164,7 +164,7 @@ public partial class Player : RigidBody2D {
 
     private async void delayEatAllEnemies()
     {
-        await ToSignal( GetTree().CreateTimer( 0.75 ), "timeout" );
+        await ToSignal( GetTree().CreateTimer( 0.75, processAlways:false, processInPhysics:true ), "timeout" );
         var enemies = GetTree().GetNodesInGroup( "Enemy" );
         foreach( var enemy in enemies ) {
             if( IsInstanceValid( enemy ) ) {
@@ -295,6 +295,8 @@ public partial class Player : RigidBody2D {
         var zoomValue = _cameraZoomByLvl[level];
         var zTween = Camera.CreateTween();
         var sTween = Camera.CreateTween();
+        zTween.SetProcessMode( Tween.TweenProcessMode.Physics );
+        sTween.SetProcessMode( Tween.TweenProcessMode.Physics );
         zTween.TweenProperty( Camera, "zoom", new Vector2( zoomValue, zoomValue ), 0.75 ).SetEase( Tween.EaseType.InOut );
         sTween.TweenProperty( Camera, "scale", new Vector2( 1 / zoomValue, 1 / zoomValue ), 0.75 ).SetEase( Tween.EaseType.InOut );
     }

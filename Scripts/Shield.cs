@@ -72,14 +72,14 @@ public partial class Shield : ParentArea2D {
         effect.Position = startPoint;
         effect.Rotation = sourceDir.Angle();
         var posTween = effect.CreateTween();
-
+        posTween.SetProcessMode( Tween.TweenProcessMode.Physics );
         posTween.TweenProperty( effect, "position", startPoint + sourceDir * circleRadius * 3, 0.4 ).SetEase( Tween.EaseType.InOut );
         delayDeleteEffect( effect );
     }
 
     private async void delayDeleteEffect( Node effect )
     {
-        await ToSignal( GetTree().CreateTimer( 0.75 ), "timeout" );
+        await ToSignal( GetTree().CreateTimer( 0.75, processAlways:false, processInPhysics:true ), "timeout" );
         if( IsInstanceValid( effect ) ) {
             effect.QueueFree();
         }

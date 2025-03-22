@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=30 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
+[ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_rvy8n"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="2_8onvp"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_u4e62"]
 [ext_resource type="Resource" uid="uid://cfq5yrofpnafg" path="res://EnemyWaves/BigWave1.tres" id="4_b7oo7"]
@@ -40,17 +41,8 @@ size = Vector2(2200, 2200)
 blend_mode = 1
 
 [node name="MainScene" type="Node"]
-
-[node name="Effect" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Effect"]
-material = SubResource("ShaderMaterial_xtmsi")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+process_mode = 3
+script = ExtResource("1_rvy8n")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -147,6 +139,17 @@ text = "Weapon 2"
 [node name="Weapons3" type="Button" parent="HUD/IdleUi/CheatMenu"]
 layout_mode = 2
 text = "Weapon 3"
+
+[node name="Effect" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Effect"]
+material = SubResource("ShaderMaterial_xtmsi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer")]
 script = ExtResource("14_b0bgo")

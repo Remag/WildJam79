@@ -259,6 +259,7 @@ public partial class GameField : Node {
         _idleUiControl.Visible = true;
         _warpControl.Position = new Vector2( 393.0f, -145.0f );
         var tween = _warpControl.CreateTween();
+        tween.SetProcessMode( Tween.TweenProcessMode.Physics );
         tween.TweenProperty( _warpControl, "position", new Vector2( 393.0f, 22.0f ), 0.4f ).SetEase( Tween.EaseType.InOut );
     }
 
