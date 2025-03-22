@@ -16,6 +16,8 @@ public partial class WorldAudioManager : Node {
     private AudioStreamPlayer _shieldReflectNoDamageSoundPlayer;
     [Export]
     private AudioStreamPlayer _tentacleSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _explosionSoundPlayer;
 
     string _stageName;
 
@@ -100,5 +102,10 @@ public partial class WorldAudioManager : Node {
     internal void StopTentacleSound()
     {
         _tentacleSoundPlayer.Stop();
+    }
+
+    public void ExplosionSoundPlay()
+    {
+        _explosionSoundPlayer.Play();
     }
 }

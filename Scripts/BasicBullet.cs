@@ -101,6 +101,7 @@ public partial class BasicBullet : Node2D {
 			for( var i = 0f; i < 2 * Mathf.Pi; i += 2 * Mathf.Pi / count ) {
 				CallDeferred( MethodName.InstantiateBullet, _deathLogic.BulletPrefab, i, Position );
 			}
+			Game.Field.WorldAudioManager.ExplosionSoundPlay();
 		}
 
 		QueueFree();

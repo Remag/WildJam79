@@ -8,5 +8,4 @@ public partial class BulletDeathLogic : Resource {
     public int Count = 10;
     [Export]
     public PackedScene BulletPrefab;
-
 }

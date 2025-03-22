@@ -110,6 +110,7 @@ public partial class Player : RigidBody2D {
         DestroyAllTentacles();
         _isPlayerControlled = false;
         _animations.Play( "Death" );
+        Game.Field.WorldAudioManager.DeathSoundPlay();
     }
 
     public void Cleanup()
