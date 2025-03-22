@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=17 format=3 uid="uid://nh1c0ycvlv14"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
 [ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_4rxrc"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_caaev"]
 [ext_resource type="Texture2D" uid="uid://dh5vfxtkx4mwr" path="res://Assets/SpaceShip/ShipBody/SmallRed.webp" id="5_7jj5h"]
 [ext_resource type="PackedScene" uid="uid://dy5tg0dsiv0p8" path="res://EntitiesSpace/BlobBasicCore3.tscn" id="5_caaev"]
+[ext_resource type="PackedScene" uid="uid://djg524mjkxw7x" path="res://EntitiesSpace/DecalCores/RedDecalCoreS.tscn" id="5_i2xif"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
 [ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/EBullets/PlasmaBullet.tscn" id="8_6n5o2"]
@@ -37,6 +38,7 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 GeneralExp = 10
 CorePrefabs = Array[PackedScene]([ExtResource("5_caaev")])
+DecalPrefab = ExtResource("5_i2xif")
 IsWeaponSource = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

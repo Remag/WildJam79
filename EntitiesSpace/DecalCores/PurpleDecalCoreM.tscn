@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7qv5wbwkqu6q"]
+
+[ext_resource type="Texture2D" uid="uid://36alr6qvbm4b" path="res://Assets/SpaceShip/ShipParts/PartPurpleMiddle.webp" id="1_v2qb5"]
+
+[node name="SpaceDebris" type="Sprite2D"]
+texture = ExtResource("1_v2qb5")

@@ -270,7 +270,7 @@ public partial class Player : RigidBody2D {
         }
         var targetBlob = _currentBlobs[blobIndex];
         if( !targetBlob.Visible ) {
-            attachBlob( food.CorePrefabs[0] );
+            attachBlob( food.DecalPrefab );
         }
     }
 

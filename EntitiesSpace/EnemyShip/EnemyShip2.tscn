@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=22 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="3_ja242"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_3lius"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_i2eit"]
 [ext_resource type="Texture2D" uid="uid://bkurvmjdon55s" path="res://Assets/SpaceShip/ShipBody/SmallPurple.webp" id="5_i2eit"]
+[ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_x7nr2"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_flhrm"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_txwvw"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_nlicg"]
@@ -45,6 +46,7 @@ _shield = NodePath("Shield")
 GeneralExp = 35
 HealHp = 5
 CorePrefabs = Array[PackedScene]([ExtResource("4_i2eit")])
+DecalPrefab = ExtResource("5_x7nr2")
 IsWeaponSource = true
 
 [node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]

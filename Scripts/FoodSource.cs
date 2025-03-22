@@ -11,6 +11,8 @@ public abstract partial class FoodSource : RigidBody2D {
     [Export]
     public Godot.Collections.Array<PackedScene> CorePrefabs;
     [Export]
+    public PackedScene DecalPrefab;
+    [Export]
     public bool IsWeaponSource;
 
     public bool IsDead { get; set; }

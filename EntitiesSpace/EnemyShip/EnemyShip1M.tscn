@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3pjhvmrasht6"]
+[gd_scene load_steps=15 format=3 uid="uid://c3pjhvmrasht6"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_0rmbg"]
 [ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_bt2j7"]
+[ext_resource type="PackedScene" uid="uid://b7qv5wbwkqu6q" path="res://EntitiesSpace/DecalCores/PurpleDecalCoreM.tscn" id="4_4yixe"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_jmwb2"]
 [ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="5_0rmbg"]
 [ext_resource type="PackedScene" uid="uid://dt07exnbb24vc" path="res://ETurrets/TurretGun.tscn" id="6_ptcjx"]
@@ -34,6 +35,7 @@ _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 GeneralExp = 10
 HealHp = 5
+DecalPrefab = ExtResource("4_4yixe")
 IsWeaponSource = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
