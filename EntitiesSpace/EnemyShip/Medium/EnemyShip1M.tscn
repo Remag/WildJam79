@@ -27,7 +27,7 @@ collision_mask = 0
 can_sleep = false
 angular_damp = 1.0
 script = ExtResource("1_bopgb")
-_maxHp = 10
+_maxHp = 12
 SizeLevel = 1
 _configRigid = ExtResource("2_xcfu4")
 _damageEffect = ExtResource("3_e42u5")
@@ -39,7 +39,7 @@ _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 _hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
 GeneralExp = 10
-HealHp = 5
+HealHp = 10
 DecalPrefab = ExtResource("4_o0bpd")
 IsWeaponSource = true
 

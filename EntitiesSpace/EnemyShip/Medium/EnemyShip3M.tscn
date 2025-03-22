@@ -39,6 +39,7 @@ _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 _hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
 GeneralExp = 60
+HealHp = 12
 CorePrefabs = Array[PackedScene]([ExtResource("4_m3p6l")])
 DecalPrefab = ExtResource("5_eaasj")
 IsWeaponSource = true
@@ -86,6 +87,7 @@ rotation = -1.5708
 scale = Vector2(4, 4)
 
 [node name="OffscreenIndicator" parent="." instance=ExtResource("10_8wetx")]
+visible = false
 
 [node name="ShipTrail" parent="." instance=ExtResource("10_nd0qt")]
 position = Vector2(-60, 0)
