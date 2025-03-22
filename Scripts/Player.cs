@@ -608,9 +608,11 @@ public partial class Player : RigidBody2D {
         _currentGrowthXp = state._currentGrowthXp;
         _currentBlobIndex = state._currentBlobIndex;
         _currentHp = state._currentHp;
-        var animName = "Growth" + CurrentGrowthLevel;
+        if( CurrentGrowthLevel > 0 ) {
+            var animName = "Growth" + CurrentGrowthLevel;
 
-        _animations.Play( animName, customSpeed: 100f );
+            _animations.Play( animName, customSpeed: 100f );
+        }
     }
 
     public class SavedState {

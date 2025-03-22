@@ -11,6 +11,7 @@
 
 [sub_resource type="Resource" id="Resource_dddoj"]
 script = ExtResource("3_oxh10")
+AlphaTweenTime = 0.5
 metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="Resource" id="Resource_8m4er"]

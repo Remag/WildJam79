@@ -31,7 +31,6 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 _hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
-GeneralExp = 35
 HealHp = 5
 CorePrefabs = Array[PackedScene]([ExtResource("4_i2eit")])
 DecalPrefab = ExtResource("5_x7nr2")
