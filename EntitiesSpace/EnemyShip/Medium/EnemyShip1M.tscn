@@ -54,33 +54,24 @@ scale = Vector2(0.25, 0.25)
 scale = Vector2(4, 4)
 texture = ExtResource("5_dvy3s")
 
-[node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("6_t1ruc")]
+[node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("6_t1ruc")]
 position = Vector2(-252, 32.0009)
 _activationDistance = 1250.0
-_shootTarget = NodePath("../ShootMarker")
 _enemyShip = NodePath("../..")
 
-[node name="TurretBlasterRed3" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("6_t1ruc")]
+[node name="TurretBlasterRed3" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("6_t1ruc")]
 position = Vector2(272, 31.999)
 _activationDistance = 1250.0
-_shootTarget = NodePath("../ShootMarker")
 _enemyShip = NodePath("../..")
 
-[node name="TurretBlasterRed2" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("6_t1ruc")]
+[node name="TurretBlasterRed2" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("6_t1ruc")]
 position = Vector2(3.99905, -260)
 _activationDistance = 1250.0
-_shootTarget = NodePath("../ShootMarker")
 _enemyShip = NodePath("../..")
 
-[node name="TurretBlasterRedMedium" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_3kpue")]
+[node name="TurretBlasterRedMedium" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_3kpue")]
 position = Vector2(8.00002, 3.99997)
-_shootTarget = NodePath("../ShootMarker")
 _enemyShip = NodePath("../..")
-
-[node name="ShootMarker" type="Node2D" parent="Visuals"]
-position = Vector2(-0.000762939, -212)
-rotation = -1.5708
-scale = Vector2(4, 4)
 
 [node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
 visible = false

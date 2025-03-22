@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=13 format=3 uid="uid://c3vejahmlhp7g"]
+
+[ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/EnemyShip1B.tscn" id="1_xr7gr"]
+[ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_k58kq"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="3_wrqwc"]
+[ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="4_6b4xm"]
+[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip2.tscn" id="5_7bhds"]
+[ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="6_2mv5n"]
+
+[sub_resource type="Resource" id="Resource_rt00r"]
+script = ExtResource("2_k58kq")
+Prefab = ExtResource("1_xr7gr")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_2jyw2"]
+script = ExtResource("2_k58kq")
+Prefab = ExtResource("3_wrqwc")
+Count = 5
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_ysdgj"]
+script = ExtResource("4_6b4xm")
+EnemiesInfo = Array[Object]([SubResource("Resource_rt00r"), SubResource("Resource_2jyw2")])
+SpawnTimePoint = 0.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_0wifn"]
+script = ExtResource("2_k58kq")
+Prefab = ExtResource("5_7bhds")
+Count = 5
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_e5m2p"]
+script = ExtResource("2_k58kq")
+Prefab = ExtResource("1_xr7gr")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_0kh7w"]
+script = ExtResource("4_6b4xm")
+EnemiesInfo = Array[Object]([SubResource("Resource_0wifn"), SubResource("Resource_e5m2p")])
+SpawnTimePoint = 15.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[resource]
+script = ExtResource("6_2mv5n")
+WavesInfo = Array[Object]([SubResource("Resource_ysdgj"), SubResource("Resource_0kh7w")])
+MinShipsAliveForNextWave = 1
+metadata/_custom_type_script = "uid://3et64xg5xbi4"

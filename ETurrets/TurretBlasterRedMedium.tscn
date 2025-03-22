@@ -13,7 +13,7 @@ _bulletPrefab = ExtResource("2_vixyw")
 _rngAngleDeg = 15.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
-[node name="TurretBlasterRedMedium" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_turretBase", "_spawnPoint")]
+[node name="TurretBlasterRedMedium" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_spawnPoint")]
 script = ExtResource("1_vixyw")
 _aiAttackShootDuration = 1.6
 _aiAttackShootPauseMin = 1.5
@@ -22,6 +22,7 @@ _bulletSpawner = SubResource("Resource_guvrn")
 _angularVelocity = 5.0
 _activationDistance = 10000.0
 _shootSoundPlayer2D = NodePath("Shoot2D")
+_shootTarget = NodePath("ShootMarker")
 _turretBase = NodePath("Scale/TurretBase")
 _spawnPoint = NodePath("Scale/TurretBase/SpawnPoint")
 
@@ -48,3 +49,8 @@ position = Vector2(-1.99998, -93)
 stream = ExtResource("6_475md")
 max_distance = 1000.0
 bus = &"sfx"
+
+[node name="ShootMarker" type="Node2D" parent="."]
+position = Vector2(-20, -1044)
+rotation = -1.5708
+scale = Vector2(4, 4)
