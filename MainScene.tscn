@@ -1115,7 +1115,7 @@ text = "Start"
 [node name="Settings" type="Button" parent="HUD/MainMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Start"
+text = "Settings"
 
 [node name="TravelMap" parent="HUD" instance=ExtResource("3_rf2cd")]
 visible = false
@@ -1404,7 +1404,7 @@ position = Vector2(751, 299)
 _spriteScale = 0.5
 
 [connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Start" to="GameField" method="StartGame"]
-[connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Settings" to="GameField" method="StartGame"]
+[connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Settings" to="." method="ShowSettings"]
 [connection signal="pressed" from="HUD/RestartButton" to="GameField" method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/WarpButton" to="GameField" method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="GameField" method="SpawnTestWave"]

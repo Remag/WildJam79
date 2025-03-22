@@ -150,6 +150,7 @@ public partial class GameField : Node {
             Game.Player.SetControl( false );
         }
 
+        _isSpawningEnemies = false;
         _idleUiControl.Visible = false;
         var effect = _warpEffect.Instantiate<WarpEffect>();
         AddChild( effect );
