@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy4ff36kjn688"]
+
+[ext_resource type="Script" uid="uid://c1msxdbgi23m2" path="res://Scripts/OffscreenIndicator.cs" id="1_4ubbk"]
+[ext_resource type="Texture2D" uid="uid://dd6ia8ncbvdc2" path="res://Assets/SpaceShip/Indicator.webp" id="1_71ja6"]
+
+[node name="OffscreenIndicator" type="Node2D" groups=["ClearOnLevelClear", "ClearOnRestart"]]
+script = ExtResource("1_4ubbk")
+
+[node name="Indicator" type="Sprite2D" parent="."]
+position = Vector2(-47, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_71ja6")

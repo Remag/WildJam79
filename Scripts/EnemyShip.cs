@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using WildJam78.Scripts;
 using WildJam78.Scripts.Audio;
 using WildJam78.Scripts.EnemyMove;
 
@@ -32,7 +33,7 @@ public partial class EnemyShip : FoodSource {
 	private EnemyMoveHandlerRigid _moveHandlerRigid = null;
 
 	[Export]
-	private Node2D _offscreenIndicator = null;
+	private OffscreenIndicator _offscreenIndicator = null;
 	[Export]
 	private Area2D _hitbox = null;
 	[Export]
@@ -58,6 +59,8 @@ public partial class EnemyShip : FoodSource {
 		if( IsShootingEnabled && _offscreenIndicator != null ) {
 			RemoveChild( _offscreenIndicator );
 			GetParent().AddChild( _offscreenIndicator );
+			var zoom = 1f / Game.Camera.Zoom.X;
+			_offscreenIndicator.GlobalScale = new Vector2(zoom, zoom);
 		}
 	}
 
@@ -88,12 +91,12 @@ public partial class EnemyShip : FoodSource {
 		var cameraRect = Game.Camera.GetCanvasTransform().AffineInverse() * GetViewportRect();
 		var position = GlobalPosition;
 		if( !cameraRect.HasPoint( position ) ) {
-			_offscreenIndicator.Show();
+			_offscreenIndicator.ShowIndicator();
 			_offscreenIndicator.Rotation = ( position - cameraRect.GetCenter() ).Angle();
 			var newPosition = position.Clamp( cameraRect.Position, cameraRect.End );
 			_offscreenIndicator.GlobalPosition = newPosition;
 		} else {
-			_offscreenIndicator.Hide();
+			_offscreenIndicator.HideIndicator();
 		}
 	}
 
