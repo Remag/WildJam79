@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dps5dq1i2v16i"]
 
 [ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_d7qyb"]
-[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/EBullets/PlasmaBullet.tscn" id="2_guvrn"]
+[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/EBullets/Plasma/PlasmaBullet.tscn" id="2_guvrn"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="2_k5gk5"]
 [ext_resource type="Texture2D" uid="uid://c57y86lplymx2" path="res://Assets/SpaceShip/Guns/GunParts/BlasterBase.webp" id="2_lsvx3"]
 [ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="3_k5gk5"]
@@ -19,7 +19,8 @@ _aiAttackShootDuration = 1.0
 _aiAttackShootPauseMin = 1.5
 _aiAttackShootPauseMax = 2.0
 _bulletSpawner = SubResource("Resource_guvrn")
-_activationDistance = 1000.0
+_angularVelocity = 5.0
+_activationDistance = 10000.0
 _shootSoundPlayer2D = NodePath("Shoot2D")
 _turretBase = NodePath("TurretBase")
 _spawnPoint = NodePath("TurretBase/SpawnPoint")

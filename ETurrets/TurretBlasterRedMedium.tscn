@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5bkr0g03g5m0"]
+
+[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_vixyw"]
+[ext_resource type="PackedScene" uid="uid://cxpa3iv1slwgb" path="res://Bullets/EBullets/Plasma/PlasmaBulletv2.tscn" id="2_vixyw"]
+[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="3_f6142"]
+[ext_resource type="Texture2D" uid="uid://c57y86lplymx2" path="res://Assets/SpaceShip/Guns/GunParts/BlasterBase.webp" id="4_la8lt"]
+[ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="5_1kqid"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="6_475md"]
+
+[sub_resource type="Resource" id="Resource_guvrn"]
+script = ExtResource("3_f6142")
+_bulletPrefab = ExtResource("2_vixyw")
+_rngAngleDeg = 15.0
+metadata/_custom_type_script = "uid://de10ab1n1g1s"
+
+[node name="TurretBlasterRedMedium" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_turretBase", "_spawnPoint")]
+script = ExtResource("1_vixyw")
+_aiAttackShootDuration = 1.6
+_aiAttackShootPauseMin = 1.5
+_aiAttackShootPauseMax = 2.0
+_bulletSpawner = SubResource("Resource_guvrn")
+_angularVelocity = 5.0
+_activationDistance = 10000.0
+_shootSoundPlayer2D = NodePath("Shoot2D")
+_turretBase = NodePath("Scale/TurretBase")
+_spawnPoint = NodePath("Scale/TurretBase/SpawnPoint")
+
+[node name="Scale" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="TurretBase" type="Node2D" parent="Scale"]
+position = Vector2(-1.52588e-05, 4)
+
+[node name="Turret" type="Sprite2D" parent="Scale/TurretBase"]
+position = Vector2(-24.0001, -31.9999)
+texture = ExtResource("4_la8lt")
+centered = false
+
+[node name="Turret" type="Sprite2D" parent="Scale/TurretBase/Turret"]
+position = Vector2(-4.00023, -64)
+texture = ExtResource("5_1kqid")
+centered = false
+
+[node name="SpawnPoint" type="Node2D" parent="Scale/TurretBase"]
+position = Vector2(-1.99998, -93)
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_475md")
+max_distance = 1000.0
+bus = &"sfx"

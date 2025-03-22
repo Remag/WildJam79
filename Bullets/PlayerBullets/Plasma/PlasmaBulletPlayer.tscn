@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_rksko"]
 [ext_resource type="Resource" uid="uid://bwov42g2mn8wi" path="res://EntitiesSpace/Res/Bullets/PlasmaBulletPlayer_MoveLogic.tres" id="2_rksko"]
-[ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_1cseu"]
+[ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_ei0ho"]
 [ext_resource type="Texture2D" uid="uid://dyx5maco2tka2" path="res://Assets/SpaceShip/Bullets/Bullet.webp" id="4_ptbqx"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="5_wxqyp"]
 
-[sub_resource type="Resource" id="Resource_qq402"]
-script = ExtResource("3_1cseu")
-_maxLifeTime = 10.0
-metadata/_custom_type_script = "uid://b66fo1ud8763f"
+[sub_resource type="Resource" id="Resource_cxa1p"]
+script = ExtResource("3_ei0ho")
+metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
 radius = 5.0
@@ -20,7 +19,7 @@ light_mask = 4
 script = ExtResource("1_rksko")
 _collisionArea = NodePath("Area2D")
 _moveLogic = ExtResource("2_rksko")
-_lifespanLogic = SubResource("Resource_qq402")
+_lifespanLogic = SubResource("Resource_cxa1p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.968627, 0, 0.968627, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://du2c5try3ydx5"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_tvijw"]
-[ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/EnemyShip3MoveConfig.tres" id="3_07nkk"]
+[ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/Ships/EnemyShip3MoveConfig.tres" id="3_07nkk"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_tvijw"]
 [ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_m7bcb"]
 [ext_resource type="Texture2D" uid="uid://didraosdcyllq" path="res://Assets/SpaceShip/ShipBody/SmallGreen.webp" id="5_tvijw"]

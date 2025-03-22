@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy5tg0dsiv0p8"]
+[gd_scene load_steps=11 format=3 uid="uid://dy5tg0dsiv0p8"]
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_jeb3w"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_tc5lk"]
-[ext_resource type="PackedScene" uid="uid://blldfvvl1358o" path="res://Bullets/PlayerBullets/PlasmaBulletPlayer.tscn" id="3_tc5lk"]
+[ext_resource type="PackedScene" uid="uid://blldfvvl1358o" path="res://Bullets/PlayerBullets/Plasma/PlasmaBulletPlayer.tscn" id="3_tc5lk"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_ovmsc"]
 [ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="5_tc5lk"]
+[ext_resource type="PackedScene" uid="uid://cvo8jllx1uc0e" path="res://Bullets/PlayerBullets/Plasma/PlasmaBulletPlayerv2.tscn" id="6_f3e6y"]
 [ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="6_tc5lk"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
@@ -15,10 +16,10 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_f3e6y"]
 script = ExtResource("6_tc5lk")
-_bulletPrefab = ExtResource("3_tc5lk")
+_bulletPrefab = ExtResource("6_f3e6y")
 _counter = 3
-_fromAngleDeg = -15.0
-_toAngleDeg = 15.0
+_fromAngleDeg = -25.0
+_toAngleDeg = 25.0
 _isFullCircle = false
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 

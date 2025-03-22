@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://ckknr6hu8ksgm"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_5ahos"]
-[ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/EnemyShip3MoveConfig.tres" id="2_hb6lp"]
+[ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/Ships/EnemyShip3MoveConfig.tres" id="2_hb6lp"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_6fiwf"]
 [ext_resource type="PackedScene" uid="uid://tdcj5t5ppshr" path="res://EntitiesSpace/BlobBasicCore2.tscn" id="4_m3p6l"]
 [ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_eaasj"]
@@ -43,11 +43,11 @@ IsWeaponSource = true
 position = Vector2(12, 1)
 rotation = 1.5708
 scale = Vector2(2.28125, 1.9375)
-polygon = PackedVector2Array(-0.438405, -16, 17.0959, 4.12896, 17.0959, 12.9032, -0.438286, 22.7097, -17.9726, 12.3872, -17.9726, 4.12911)
+polygon = PackedVector2Array(-35.0685, 2.06467, -0.876831, -38.7097, 34.6301, 2.5805, 34.6302, 18.5805, -0.876593, 38.7097, -35.0684, 18.0647)
 
 [node name="Visuals" type="Node2D" parent="."]
 rotation = 1.5708
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 
 [node name="Main" type="Sprite2D" parent="Visuals"]
 position = Vector2(0, -24)
@@ -94,6 +94,7 @@ position = Vector2(-23, 0)
 rotation = 1.5708
 
 [node name="Shield" parent="." instance=ExtResource("10_hb6lp")]
+scale = Vector2(2, 2)
 _config = SubResource("Resource_m3p6l")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
@@ -108,7 +109,7 @@ metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 [node name="HitboxPolygon" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2(-4.34399e-05, -12)
 scale = Vector2(2.28125, 1.9375)
-polygon = PackedVector2Array(-5.0779e-05, -16.5161, 17.5343, 4.12896, 17.5343, 12.387, 6.98212e-05, 22.7097, -17.5342, 12.3872, -17.5342, 4.12911)
+polygon = PackedVector2Array(-34.6301, 2.06466, -0.0001206, -39.2258, 35.0685, 2.06437, 35.0686, 18.5805, 0.000119013, 38.7097, -34.6301, 18.0647)
 
 [node name="DamageAnchor" type="Node2D" parent="."]
 position = Vector2(-1, -12)

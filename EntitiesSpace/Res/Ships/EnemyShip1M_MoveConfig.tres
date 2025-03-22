@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyMoveConfigRigid" load_steps=2 format=3 uid="uid://dnhytxtic0gfi"]
+
+[ext_resource type="Script" uid="uid://bvixcm5fb4rto" path="res://Scripts/EnemyMove/EnemyMoveConfigRigid.cs" id="1_dk6sq"]
+
+[resource]
+script = ExtResource("1_dk6sq")
+minRadius = 150.0
+maxRadius = 280.0
+rngAngle = 1.5708
+newTargetChooseTime = 5.0
+targetReachRadius = 100.0
+targetReachDelay = 3.0
+maxVelocity = 350.0
+maxAngularVelocity = 1.2
+acceleration = 400.0
