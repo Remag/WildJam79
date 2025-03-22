@@ -54,7 +54,7 @@ public partial class TentaclePlayer : Tentacle {
 
         _currentExtendTime += delta;
         if( _currentExtendTime >= TentacleMaxTime || ( _tentacleLine.EndAnchor.GlobalPosition - _tentacleLine.StartAnchor.GlobalPosition ).LengthSquared() >= TentacleMaxDistance * TentacleMaxDistance ) {
-            _currentMode = TentacleMode.Shrink;
+            SetShrink();
         }
     }
 

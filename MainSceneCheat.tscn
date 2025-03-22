@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=27 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="2_8onvp"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://d1o5u51rj1enm" path="res://Music/TitleBGM.mp3" id="18_3gegi"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="19_67llk"]
 [ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="19_u21sk"]
+[ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtmsi"]
 shader = ExtResource("6_alxon")
@@ -164,6 +165,7 @@ text = "Weapon 3"
 [node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("2_8onvp")]
 position = Vector2(556, 400)
 Camera = NodePath("../Camera2D")
+_tentacleDamageByLevel = null
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("ScreenWrapArea")]
 position = Vector2(556, 400)
@@ -204,13 +206,14 @@ offset_bottom = 2048.0
 texture = ExtResource("13_aa5ys")
 stretch_mode = 1
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer")]
 script = ExtResource("14_b0bgo")
 _stageBgmPlayer = NodePath("StageBgmPlayer")
 _titleBgmPlayer = NodePath("TitleBgmPlayer")
 _buttonClickPlayer = NodePath("ButtonClick")
 _deathSoundPlayer = NodePath("GameOver")
 _shieldReflectNoDamageSoundPlayer = NodePath("ShieldReflectSoundPlayer")
+_tentacleSoundPlayer = NodePath("Tentacle")
 
 [node name="StageBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("15_5nv7p")
@@ -236,6 +239,11 @@ parameters/looping = true
 stream = ExtResource("19_u21sk")
 volume_db = -16.421
 pitch_scale = 0.67
+
+[node name="Tentacle" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("22_fwbxm")
+volume_db = -4.692
+bus = &"sfx"
 
 [node name="TestSprite" type="Sprite2D" parent="."]
 visible = false

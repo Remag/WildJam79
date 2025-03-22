@@ -14,6 +14,8 @@ public partial class WorldAudioManager : Node {
     private AudioStreamPlayer _deathSoundPlayer;
     [Export]
     private AudioStreamPlayer _shieldReflectNoDamageSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _tentacleSoundPlayer;
 
     string _stageName;
 
@@ -88,5 +90,15 @@ public partial class WorldAudioManager : Node {
     public void ShieldReflectNoDamageSoundPlay()
     {
         _shieldReflectNoDamageSoundPlayer.Play();
+    }
+
+    public void TentacleSoundPlay()
+    {
+        _tentacleSoundPlayer.Play();
+    }
+
+    internal void StopTentacleSound()
+    {
+        _tentacleSoundPlayer.Stop();
     }
 }

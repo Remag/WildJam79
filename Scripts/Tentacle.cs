@@ -24,8 +24,6 @@ public partial class Tentacle : Node2D {
     [Export]
     protected TentacleLine _tentacleLine;
     [Export]
-    private AudioStreamPlayer _tentacleSoundPlayer;
-    [Export]
     private AudioStreamPlayer _catchSoundPlayer;
     public FoodSource AttachedEntity { get; private set; }
 
@@ -41,8 +39,14 @@ public partial class Tentacle : Node2D {
     public void AbortExtend()
     {
         if( _currentMode == TentacleMode.Extend ) {
-            _currentMode = TentacleMode.Shrink;
+            SetShrink();
         }
+    }
+
+    protected void SetShrink()
+    {
+        Game.Field.WorldAudioManager.TentacleSoundPlay();
+        _currentMode = TentacleMode.Shrink;
     }
 
     public void Attach( FoodSource entity )
@@ -55,7 +59,7 @@ public partial class Tentacle : Node2D {
     public override void _Ready()
     {
         updateEndRotation( _tentacleLine.Points );
-        _tentacleSoundPlayer.Play();
+        Game.Field.WorldAudioManager.TentacleSoundPlay();
     }
 
     public override void _PhysicsProcess( double delta )
@@ -94,7 +98,7 @@ public partial class Tentacle : Node2D {
     {
         Debug.Assert( AttachedEntity != null );
         if( !IsInstanceValid( AttachedEntity ) ) {
-            _currentMode = TentacleMode.Shrink;
+            SetShrink();
             return;
         }
 
@@ -103,7 +107,7 @@ public partial class Tentacle : Node2D {
 
         _currentKeepTime += delta;
         if( _currentKeepTime >= _tentacleAttachDelay ) {
-            _currentMode = TentacleMode.Shrink;
+            SetShrink();
             if( !AttachedEntity.TryTentaclePull( this ) ) {
                 var endDir = getTentacleEndDir();
                 AttachedEntity.ApplyCentralImpulse( -endDir.Normalized() * 500 );

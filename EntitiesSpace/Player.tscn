@@ -763,11 +763,13 @@ shape = SubResource("CircleShape2D_a814b")
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_upmy3")
+max_polyphony = 3
 bus = &"sfx"
 
 [node name="Chomp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_il04a")
 volume_db = 1.874
+max_polyphony = 5
 bus = &"sfx"
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
