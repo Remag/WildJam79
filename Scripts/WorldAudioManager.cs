@@ -20,6 +20,8 @@ public partial class WorldAudioManager : Node {
     private AudioStreamPlayer _explosionSoundPlayer;
     [Export]
     private AudioStreamPlayer _bottlePopSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _echoSoundPlayer;
 
     string _stageName;
 
@@ -27,10 +29,9 @@ public partial class WorldAudioManager : Node {
     {
         _stageName = Game.StageName;
         _bgmPlayers = new List<AudioStreamPlayer>() {
-            _titleBgmPlayer, 
+            _titleBgmPlayer,
             _stageBgmPlayer
         };
-        //setAllMuted( true );
     }
 
     public override void _Input( InputEvent inputEvent )
@@ -57,9 +58,9 @@ public partial class WorldAudioManager : Node {
 
     private void UpdateBgmForScene()
     {
-        switch(_stageName) {
+        switch( _stageName ) {
             case null:
-                StopAllBGM(); 
+                StopAllBGM();
                 break;
             case "TestWave":
                 StopAllBGM();
@@ -114,5 +115,11 @@ public partial class WorldAudioManager : Node {
     internal void BottlePopSoundPlay()
     {
         _bottlePopSoundPlayer.Play();
+    }
+
+    internal void EchoSoundPlay()
+    {
+        if( _echoSoundPlayer.Playing == false )
+            _echoSoundPlayer.Play();
     }
 }

@@ -10,6 +10,7 @@ public static class Game
     public static Player Player;
     public static CustomCamera2D Camera;
     public static GameField Field;
+    public static MainScene MainScene;
     public static TravelMap TravelMap;
     public static string StageName = "Title";
     public static Node2D TestSprite;

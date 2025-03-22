@@ -21,6 +21,7 @@ GameOver
 Blaster
 RocketLaunch
 Explosion
+Echo
 
 [ http://www.freesfx.co.uk ]
 (все остальные звуки. достаточно указать сайт)

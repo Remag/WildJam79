@@ -121,6 +121,7 @@ public partial class GameField : Node {
         _warpEffectRect.Visible = true;
         var material = (ShaderMaterial)_warpEffectRect.Material;
         material.SetShaderParameter( "outerSize", circleRadius );
+        WorldAudioManager.EchoSoundPlay();
     }
 
     public void OpenMap()
@@ -149,6 +150,7 @@ public partial class GameField : Node {
             Game.Player.SetControl( false );
         }
 
+        _isSpawningEnemies = false;
         _idleUiControl.Visible = false;
         var effect = _warpEffect.Instantiate<WarpEffect>();
         AddChild( effect );
