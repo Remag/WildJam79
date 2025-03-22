@@ -18,6 +18,10 @@ public partial class Shield : ParentArea2D {
     [Export]
     private PackedScene _shieldEffect;
 
+    [Export]
+    private float _shieldEffectMaxDelay = 0.2f;
+    private double _shieldEffectDelay = 0;
+
     [Signal]
     public delegate void ShieldDestroyEventHandler();
 
@@ -27,10 +31,21 @@ public partial class Shield : ParentArea2D {
     {
         _currentHp = _config.maxHp;
         RealParent = this;
+        _shieldEffectDelay = _shieldEffectMaxDelay;
+    }
+
+    public override void _Process( double delta )
+    {
+        _shieldEffectDelay -= delta;
     }
 
     public void OnBulletCollision( int damage, Node2D source )
     {
+        if( _shieldEffectDelay > 0 ) {
+            return;
+        }
+        _shieldEffectDelay = _shieldEffectMaxDelay;
+
         var circleRadius = 50;
         var sourceDir = ( Position - ToLocal( source.GlobalPosition ) ).Normalized();
         
