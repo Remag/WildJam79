@@ -93,8 +93,9 @@ centered = false
 offset = Vector2(-310, -110)
 
 [node name="ShipTrail" parent="." instance=ExtResource("10_nd0qt")]
-position = Vector2(-23, 0)
+position = Vector2(-60, 0)
 rotation = 1.5708
+scale = Vector2(2, 2)
 
 [node name="Shield" parent="." instance=ExtResource("10_hb6lp")]
 scale = Vector2(2, 2)

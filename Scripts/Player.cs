@@ -188,7 +188,7 @@ public partial class Player : RigidBody2D {
         _currentHp = getMaxHp();
     }
 
-    public bool TryGrow()
+    public bool TryGrow(bool isInstant = false)
     {
         if( CurrentGrowthLevel >= GrowthXpByLvl.Count ) {
             return false;
@@ -209,7 +209,7 @@ public partial class Player : RigidBody2D {
         _currentHp = getMaxHp();
 
         var animName = "Growth" + CurrentGrowthLevel.ToString();
-        _animations.Play( animName );
+        _animations.Play( animName, customSpeed:isInstant ? 100 : 1 );
         return true;
     }
 
@@ -321,6 +321,16 @@ public partial class Player : RigidBody2D {
         }
         foreach( var prefab in weapon.CorePrefabs ) {
             doAssimilateWeapon( prefab, weapon.DecalPrefab, weapon.WeaponXp );
+        }
+    }
+    
+    public void ClearWeapons()
+    {
+        _activeWeapons.Clear();
+        _currentBlobIndex = 0;
+        foreach (var currentBlob in _currentBlobs)
+        {
+            currentBlob.Reset();
         }
     }
 
@@ -562,6 +572,9 @@ public partial class Player : RigidBody2D {
         _currentGrowthXp = state._currentGrowthXp;
         _currentBlobIndex = state._currentBlobIndex;
         _currentHp = state._currentHp;
+        var animName = "Growth" + CurrentGrowthLevel;
+        
+        _animations.Play( animName, customSpeed:100f );
     }
 
     public class SavedState {

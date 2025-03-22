@@ -3,14 +3,16 @@
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="2_8onvp"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_u4e62"]
-[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="4_w33cu"]
+[ext_resource type="Resource" uid="uid://cfq5yrofpnafg" path="res://EnemyWaves/BigWave1.tres" id="4_b7oo7"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_huaye"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="6_alxon"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="7_t7ilo"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="8_hq7hl"]
-[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="9_p87ng"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="9_onwqg"]
 [ext_resource type="PackedScene" uid="uid://cugvtasr1dxev" path="res://EntitiesSpace/DecalParts/SpaceDebris1.tscn" id="10_y4ibr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="11_c2xa3"]
+[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip2.tscn" id="11_fwbxm"]
+[ext_resource type="PackedScene" uid="uid://du2c5try3ydx5" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip3.tscn" id="11_onwqg"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="12_hamdo"]
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="13_aa5ys"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="14_b0bgo"]
@@ -44,7 +46,7 @@ _tutorialNode = NodePath("HUD/Label")
 _playerPrefab = ExtResource("2_8onvp")
 _warpEffect = ExtResource("3_u4e62")
 _restartButton = NodePath("HUD/RestartButton")
-_testWaveNodeInfo = ExtResource("4_w33cu")
+_testWaveNodeInfo = ExtResource("4_b7oo7")
 _idleUiControl = NodePath("HUD/IdleUi")
 _bgSelection = ExtResource("5_huaye")
 WorldAudioManager = NodePath("WorldAudioManager")
@@ -123,7 +125,7 @@ offset_right = 136.0
 offset_bottom = -13.0
 grow_vertical = 0
 script = ExtResource("8_hq7hl")
-_weaponsToEat = Array[PackedScene]([ExtResource("9_p87ng")])
+_weaponsToEat = Array[PackedScene]([ExtResource("9_onwqg"), ExtResource("11_fwbxm"), ExtResource("11_onwqg")])
 _trashPrefab = ExtResource("10_y4ibr")
 
 [node name="Eat" type="Button" parent="HUD/IdleUi/CheatMenu"]
@@ -143,9 +145,21 @@ layout_mode = 2
 text = "Grow
 "
 
-[node name="Weapons" type="Button" parent="HUD/IdleUi/CheatMenu"]
+[node name="WeaponsReset" type="Button" parent="HUD/IdleUi/CheatMenu"]
 layout_mode = 2
-text = "Weapon Preset"
+text = "Weapon Reset"
+
+[node name="Weapons1" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Weapon 1"
+
+[node name="Weapons2" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Weapon 2"
+
+[node name="Weapons3" type="Button" parent="HUD/IdleUi/CheatMenu"]
+layout_mode = 2
+text = "Weapon 3"
 
 [node name="Player" parent="." node_paths=PackedStringArray("Camera") instance=ExtResource("2_8onvp")]
 position = Vector2(556, 400)
@@ -234,5 +248,8 @@ texture = ExtResource("19_67llk")
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Trash" to="HUD/IdleUi/CheatMenu" method="SpawnTrash"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/ResetGrowth" to="HUD/IdleUi/CheatMenu" method="ResetGrowth"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Grow" to="HUD/IdleUi/CheatMenu" method="Grow"]
-[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons" to="HUD/IdleUi/CheatMenu" method="EatWeapons"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/WeaponsReset" to="HUD/IdleUi/CheatMenu" method="ResetWeapons"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons1" to="HUD/IdleUi/CheatMenu" method="EatWeapon1"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons2" to="HUD/IdleUi/CheatMenu" method="EatWeapon2"]
+[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons3" to="HUD/IdleUi/CheatMenu" method="EatWeapon3"]
 [connection signal="area_exited" from="Camera2D/GameZone" to="Camera2D" method="OnAreaLeave"]

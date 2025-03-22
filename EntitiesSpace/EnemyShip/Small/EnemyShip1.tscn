@@ -29,6 +29,7 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
 GeneralExp = 10
+HealHp = 2
 CorePrefabs = Array[PackedScene]([ExtResource("4_ru1f1")])
 DecalPrefab = ExtResource("5_1fxmt")
 IsWeaponSource = true
@@ -48,13 +49,8 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_81eum")
 
 [node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_aoi00")]
-_shootTarget = NodePath("../ShootMarker")
+_shootTarget = NodePath("")
 _enemyShip = NodePath("../..")
-
-[node name="ShootMarker" type="Node2D" parent="Visuals"]
-position = Vector2(-0.000762939, -212)
-rotation = -1.5708
-scale = Vector2(4, 4)
 
 [node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
 visible = false

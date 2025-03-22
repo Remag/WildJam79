@@ -19,18 +19,28 @@ public partial class CheatMenu : Node {
         var level = Game.Player.CurrentGrowthLevel;
         var maxLevel = Game.Player.GrowthXpByLvl.Count - 1;
         Game.Player.GainExp( Game.Player.GrowthXpByLvl[Math.Min( level, maxLevel )] );
-        Game.Player.TryGrow();
+        Game.Player.TryGrow(isInstant:true);
         Game.Field.WorldAudioManager.ButtonClickPlay();
     }
-
-    public void EatWeapons()
+    
+    public void ResetWeapons()
     {
-        foreach( var weapon in _weaponsToEat ) {
-            var obj = weapon.Instantiate<EnemyShip>();
-            Game.Player.AssimilateWeapon( obj );
-            obj.QueueFree();
-        }
-        Game.Field.WorldAudioManager.ButtonClickPlay();
+        Game.Player.ClearWeapons();
+    }
+
+    public void EatWeapon1()
+    {
+        EatWeapons( 0 );
+    }
+    
+    public void EatWeapon2()
+    {
+        EatWeapons( 1 );
+    }
+    
+    public void EatWeapon3()
+    {
+        EatWeapons( 2 );
     }
 
     public void SpawnTrash()
@@ -47,5 +57,14 @@ public partial class CheatMenu : Node {
         foreach( FoodSource node in GetTree().GetNodesInGroup( "EatOnWin" ) ) {
             Game.Player.EatTarget( node );
         }
+    }
+    
+    private void EatWeapons(int index)
+    {
+        var weapon = _weaponsToEat[index];
+        var obj = weapon.Instantiate<EnemyShip>();
+        Game.Player.AssimilateWeapon( obj );
+        obj.QueueFree();
+        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 }
