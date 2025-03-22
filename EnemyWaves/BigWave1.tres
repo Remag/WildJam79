@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=7 format=3 uid="uid://cfq5yrofpnafg"]
+
+[ext_resource type="PackedScene" uid="uid://b1y4l6y4tgo3x" path="res://EntitiesSpace/EnemyShip/EnemyShip1Bv2.tscn" id="1_4ienh"]
+[ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="1_jp7pb"]
+[ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_jgwln"]
+[ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="3_amxhb"]
+
+[sub_resource type="Resource" id="Resource_rt00r"]
+script = ExtResource("2_jgwln")
+Prefab = ExtResource("1_4ienh")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_ysdgj"]
+script = ExtResource("3_amxhb")
+EnemiesInfo = Array[Object]([SubResource("Resource_rt00r")])
+SpawnTimePoint = 0.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[resource]
+script = ExtResource("1_jp7pb")
+WavesInfo = Array[Object]([SubResource("Resource_ysdgj")])
+MinShipsAliveForNextWave = 1
+metadata/_custom_type_script = "uid://3et64xg5xbi4"

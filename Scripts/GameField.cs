@@ -21,8 +21,8 @@ public partial class GameField : Node {
     private PackedScene _warpEffect;
     [Export]
     private Button _restartButton;
-    [Export]
-    private Godot.Collections.Array<EnemyInfo> _testWave;
+    [Export] 
+    private EnemyNodeInfo _testWaveNodeInfo;
     [Export]
     private Control _idleUiControl;
     [Export]
@@ -149,15 +149,13 @@ public partial class GameField : Node {
         if( Game.Player != null ) {
             _savedPlayerState = Game.Player.SaveState();
         }
+        _currentNodeInfo = _testWaveNodeInfo;
 
         _tutorialNode.Visible = false;
         _idleUiControl.Visible = false;
 
-        foreach( var enemy in _testWave ) {
-            for( int i = 0; i < enemy.Count; i++ ) {
-                spawnEnemy( enemy.Prefab );
-            }
-        }
+        InitializeEnemyWave(_testWaveNodeInfo);
+        
         Game.StageName = "TestWave";
         Game.Field.WorldAudioManager.ButtonClickPlay();
     }

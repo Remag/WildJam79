@@ -15,7 +15,7 @@ _toAngleDeg = 30.0
 _isFullCircle = false
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
-[node name="TurrenShotgun" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_turretBase", "_spawnPoint")]
+[node name="TurrenShotgun" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_spawnPoint")]
 script = ExtResource("1_ufsiu")
 _aiAttackShootDelayMin = 1.5
 _aiAttackShootDuration = 1.0
@@ -25,6 +25,7 @@ _bulletSpawner = SubResource("Resource_5pp6x")
 _angularVelocity = 5.0
 _activationDistance = 300.0
 _shootSoundPlayer2D = NodePath("Shoot2D")
+_shootTarget = NodePath("ShootMarker")
 _turretBase = NodePath("TurretBase")
 _spawnPoint = NodePath("TurretBase/SpawnPoint")
 
@@ -43,3 +44,8 @@ position = Vector2(1, -107)
 stream = ExtResource("5_n70ym")
 max_distance = 1000.0
 bus = &"sfx"
+
+[node name="ShootMarker" type="Node2D" parent="."]
+position = Vector2(-20, -1044)
+rotation = -1.5708
+scale = Vector2(4, 4)
