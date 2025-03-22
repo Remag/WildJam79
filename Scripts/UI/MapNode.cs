@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Godot.Collections;
 using WildJam78.Scripts.UI;
 
 public partial class MapNode : Control {
@@ -41,16 +42,20 @@ public partial class MapNode : Control {
 
     public void OnNodeEntered()
     {
-        var hintEnemies = new Godot.Collections.Array<EnemyInfo>();
+        var prefabToMap = new Dictionary<PackedScene, int>();
         if( _nodeInfo != null ) {
             foreach( var enemyWaveInfo in _nodeInfo.WavesInfo ) {
                 foreach( var enemyInfo in enemyWaveInfo.EnemiesInfo ) {
-                    hintEnemies.Add( enemyInfo );
+                    if( prefabToMap.ContainsKey( enemyInfo.Prefab ) ) {
+                        prefabToMap[enemyInfo.Prefab] += enemyInfo.Count;
+                    } else {
+                        prefabToMap[enemyInfo.Prefab] = enemyInfo.Count;
+                    }
                 }
             }
         }
 
-        Game.TravelMap.SetEnemyHint( hintEnemies );
+        Game.TravelMap.SetEnemyHint( prefabToMap );
     }
 
     public void OnNodeLeft()
