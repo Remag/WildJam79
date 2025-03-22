@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://hhltxustj3jw" path="res://ETurrets/TurretBlasterRedBig.tscn" id="7_f4vbq"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="8_72wf1"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_bxghi"]
-[ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="10_fy8sc"]
-[ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="11_l2afv"]
+[ext_resource type="PackedScene" uid="uid://ca6y1ysxxw1yv" path="res://EntitiesSpace/ShieldBig.tscn" id="10_s8e3q"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="12_evvhw"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="13_hy60f"]
 [ext_resource type="AudioStream" uid="uid://d1y8e1rqsjra7" path="res://Sounds/EnemyHit1.wav" id="14_rrk83"]
@@ -142,10 +141,8 @@ position = Vector2(-282, 1)
 rotation = 1.5708
 scale = Vector2(6, 6)
 
-[node name="Shield" parent="." instance=ExtResource("10_fy8sc")]
-scale = Vector2(8, 8)
-_config = SubResource("Resource_4yixe")
-metadata/_edit_lock_ = true
+[node name="Shield" parent="." instance=ExtResource("10_s8e3q")]
+scale = Vector2(1.5, 1.5)
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708

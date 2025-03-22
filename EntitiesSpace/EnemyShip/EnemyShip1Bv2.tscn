@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bw88mhh4bohqv" path="res://ETurrets/TurretBlasterRedCircle.tscn" id="7_s3kxg"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="8_x1ijt"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_4spnn"]
-[ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="10_mr5nq"]
-[ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="11_nkb2q"]
+[ext_resource type="PackedScene" uid="uid://ca6y1ysxxw1yv" path="res://EntitiesSpace/ShieldBig.tscn" id="10_8pgtn"]
+[ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="11_c66cq"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="12_dbtod"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="13_nmfca"]
 [ext_resource type="AudioStream" uid="uid://d1y8e1rqsjra7" path="res://Sounds/EnemyHit1.wav" id="14_hhkoq"]
@@ -29,8 +29,8 @@ maxAngularVelocity = 0.4
 acceleration = 50.0
 metadata/_custom_type_script = "uid://bvixcm5fb4rto"
 
-[sub_resource type="Resource" id="Resource_4yixe"]
-script = ExtResource("11_nkb2q")
+[sub_resource type="Resource" id="Resource_hhkoq"]
+script = ExtResource("11_c66cq")
 maxHp = 200
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
@@ -116,10 +116,9 @@ position = Vector2(-282, 1)
 rotation = 1.5708
 scale = Vector2(6, 6)
 
-[node name="Shield" parent="." instance=ExtResource("10_mr5nq")]
-scale = Vector2(8, 8)
-_config = SubResource("Resource_4yixe")
-metadata/_edit_lock_ = true
+[node name="Shield" parent="." instance=ExtResource("10_8pgtn")]
+scale = Vector2(1.5, 1.5)
+_config = SubResource("Resource_hhkoq")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708

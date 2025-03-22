@@ -43,4 +43,18 @@ public partial class PlayerBlob : Node2D {
     {
         _animations.Play( "HideCore" );
     }
+
+    public void Reset()
+    {
+        Visible = false;
+        SrcCore = null;
+        foreach (var child in _weaponAnchor.GetChildren())
+        {
+            child.QueueFree();
+        }
+        foreach (var child in _decalAnchor.GetChildren())
+        {
+            child.QueueFree();
+        }
+    }
 }

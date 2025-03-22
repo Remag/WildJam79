@@ -176,11 +176,11 @@ public partial class GameField : Node {
     {
         var existingShips = GetTree().GetNodesInGroup( "Enemy" );
         var aliveCount = getAliveCount( existingShips );
+        var hasNewWaves = _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count;
         if( _currentNodeInfo != null && aliveCount == _currentNodeInfo.MinShipsAliveForNextWave ) {
             SpawnNextWave();
         }
-
-        var hasNewWaves = _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count;
+        
         if( aliveCount == 0 && !hasNewWaves ) {
             onLevelClear();
         }
