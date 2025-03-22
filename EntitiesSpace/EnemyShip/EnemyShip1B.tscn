@@ -55,10 +55,10 @@ DecalPrefab = ExtResource("4_6u5tw")
 IsWeaponSource = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(12.5, 9.53674e-07)
 rotation = 1.5708
 scale = Vector2(2.28125, 1.9375)
-polygon = PackedVector2Array(-17.0959, 9.80652, -4.91922e-05, -16, 17.9726, 9.80637, 8.41028e-05, 27.3548)
+polygon = PackedVector2Array(-129.973, 23.2264, -30.466, -70.7095, -13.8087, -165.677, 3.28711, -175.484, 21.2598, -164.129, 37.0409, -68.1292, 136.548, 21.6768, 120.767, 71.2253, 42.3017, 125.935, 2.41152, 189.935, -40.1092, 124.903, -115.507, 75.3553)
 
 [node name="Visuals" type="Node2D" parent="."]
 rotation = 1.5708
@@ -157,7 +157,7 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2(0.499998, -12)
 scale = Vector2(2.28125, 1.9375)
-polygon = PackedVector2Array(-129.973, 23.2264, 3.28711, -175.484, 136.548, 21.6768, 1.97318, 192.516)
+polygon = PackedVector2Array(-129.973, 23.2264, -30.466, -70.7095, -13.8087, -165.677, 3.28711, -175.484, 21.2598, -164.129, 37.0409, -68.1292, 136.548, 21.6768, 120.767, 71.2253, 42.3017, 125.935, 2.41152, 189.935, -40.1092, 124.903, -115.507, 75.3553)
 metadata/_edit_lock_ = true
 
 [node name="DamageAnchor" type="Node2D" parent="."]
