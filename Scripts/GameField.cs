@@ -14,14 +14,12 @@ public partial class GameField : Node {
     [Export]
     private TextureRect _nebulaRect;
     [Export]
-    private Control _tutorialNode;
-    [Export]
     private PackedScene _playerPrefab;
     [Export]
     private PackedScene _warpEffect;
     [Export]
     private Button _restartButton;
-    [Export] 
+    [Export]
     private EnemyNodeInfo _testWaveNodeInfo;
     [Export]
     private Control _idleUiControl;
@@ -31,6 +29,14 @@ public partial class GameField : Node {
     public WorldAudioManager WorldAudioManager { get; set; }
     [Export]
     private ColorRect _warpEffectRect;
+    [Export]
+    private Sprite2D _glassSprite;
+    [Export]
+    private PackedScene _glassDebris;
+    [Export]
+    private Tutorial _tutorial;
+    [Export]
+    private AnimationPlayer _startAnimation;
 
     private EnemyNodeInfo _currentNodeInfo;
     private float _currentLevelTimer = 0;
@@ -75,6 +81,29 @@ public partial class GameField : Node {
         _nebulaRect.Texture = Rng.Choose( _bgSelection.Nebulae );
     }
 
+    public void StartGame()
+    {
+        _startAnimation.Play( "Break" );
+    }
+
+
+    public void SpawnPlayer()
+    {
+        var player = _playerPrefab.Instantiate<Player>();
+        AddChild( player );
+        player.Camera = _camera;
+        player.GlobalPosition = _glassSprite.GlobalPosition;
+        player.Appear();
+        _glassSprite.QueueFree();
+        var glassDebris = _glassDebris.Instantiate<FoodSource>();
+        AddChild( glassDebris );
+        glassDebris.GlobalPosition = _glassSprite.GlobalPosition;
+        glassDebris.ApplyCentralImpulse( new Vector2( -80, 80 ) );
+        player.UpdateCameraZoom();
+        player.SetMoveEnabled( false );
+        _tutorial.Start();
+    }
+
     public bool IsCombat()
     {
         return !_idleUiControl.Visible;
@@ -93,7 +122,6 @@ public partial class GameField : Node {
 
     public void OpenMap()
     {
-        _tutorialNode.Visible = false;
         Game.Player.SetControl( false );
         _mapControl.Visible = true;
         _idleUiControl.Visible = false;
@@ -154,26 +182,37 @@ public partial class GameField : Node {
         _currentNodeInfo = _testWaveNodeInfo;
         _isTestWaveActive = true;
 
-        _tutorialNode.Visible = false;
         _idleUiControl.Visible = false;
 
-        InitializeEnemyWave(_testWaveNodeInfo);
-        
+        InitializeEnemyWave( _testWaveNodeInfo );
+
         Game.StageName = "TestWave";
         Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
-    private void spawnEnemy( PackedScene shipPrefab, double moveDelay = 0 )
+    public EnemyShip SpawnEnemy( PackedScene shipPrefab, double moveDelay = 0 )
     {
         var ship = shipPrefab.Instantiate<EnemyShip>();
         ship.MoveDelay = moveDelay;
         AddChild( ship );
         ship.GlobalPosition = Game.Player.GlobalPosition +
                               Vector2.FromAngle( Rng.RandomRange( 0, 2 * Mathf.Pi ) ) * 700 / Game.Camera.Zoom;
+        return ship;
+    }
+
+    public void EndTutorial()
+    {
+        EnableIdleUi();
+        _tutorial.QueueFree();
+        _tutorial = null;
     }
 
     public void RemoveExistingShip()
     {
+        if( _tutorial != null ) {
+            return;
+        }
+
         var existingShips = GetTree().GetNodesInGroup( "Enemy" );
         var aliveCount = getAliveCount( existingShips );
         var hasNewWaves = _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count;
@@ -265,7 +304,7 @@ public partial class GameField : Node {
     {
         foreach( var enemy in waveInfo.EnemiesInfo ) {
             for( int i = 0; i < enemy.Count; i++ ) {
-                CallDeferred( MethodName.spawnEnemy, enemy.Prefab, moveDelay );
+                CallDeferred( MethodName.SpawnEnemy, enemy.Prefab, moveDelay );
             }
         }
 

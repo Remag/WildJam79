@@ -16,7 +16,6 @@ script = ExtResource("1_uk8tn")
 _mouseGravity = 25.0
 TentacleMaxDistance = 2200.0
 TentacleMaxTime = 5.0
-MinSizeLevel = 1
 _tentacleExtendSpeed = 1300.0
 _tentacleShrinkSpeed = 4000.0
 _tentacleAttachDelay = 0.4

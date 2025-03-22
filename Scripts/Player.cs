@@ -60,9 +60,11 @@ public partial class Player : RigidBody2D {
 
     private bool _isShooting = false;
     private bool _isPlayerControlled = true;
+    private bool _canMove = true;
     private bool _isEatingEnemies = false;
 
     private int _currentHp = 5;
+    public bool CanDie = true;
 
     private TentaclePlayer _activeTentacle;
     private List<TentacleAuto> _autoTentacles = new();
@@ -86,6 +88,11 @@ public partial class Player : RigidBody2D {
         }
     }
 
+    public void SetMoveEnabled( bool isEnabled )
+    {
+        _canMove = isEnabled;
+    }
+
     public int GetTentacleDamage()
     {
         return _tentacleDamageByLevel[CurrentGrowthLevel];
@@ -99,7 +106,10 @@ public partial class Player : RigidBody2D {
 
         _currentHp -= damage;
         if( _currentHp <= 0 ) {
-            Die();
+            _currentHp = 0;
+            if( CanDie ) {
+                Die();
+            }
         }
 
         ModulateEyesColor();
@@ -187,6 +197,11 @@ public partial class Player : RigidBody2D {
         if( !Game.Field.IsCombat() ) {
             TryGrow();
         }
+    }
+
+    public void Appear()
+    {
+        _animations.Play( "Appear" );
     }
 
     public void GainExp( int value )
@@ -317,7 +332,7 @@ public partial class Player : RigidBody2D {
 
     private Node2D attachBlob( PackedScene blobPrefab )
     {
-        if( _currentBlobIndex >= _currentBlobs.Count ) {
+        if( blobPrefab == null || _currentBlobIndex >= _currentBlobs.Count ) {
             return null;
         }
         var newBlob = _currentBlobs[_currentBlobIndex];
@@ -473,7 +488,7 @@ public partial class Player : RigidBody2D {
         var deltaF = (float)delta;
         var accelVector = new Vector2();
 
-        if( _isPlayerControlled ) {
+        if( _isPlayerControlled && _canMove ) {
             if( Input.IsActionPressed( "CharacterUp" ) ) {
                 accelVector += new Vector2( 0, -1 );
             }
