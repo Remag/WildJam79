@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckknr6hu8ksgm"]
+[gd_scene load_steps=16 format=3 uid="uid://ckknr6hu8ksgm"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_5ahos"]
 [ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/Ships/EnemyShip3MoveConfig.tres" id="2_hb6lp"]
@@ -14,18 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="10_nd0qt"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="11_evpj4"]
 [ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="13_6fiwf"]
-[ext_resource type="AudioStream" uid="uid://fnaqanuha1is" path="res://Sounds/EnemyHit1.wav" id="15_m3p6l"]
 
 [sub_resource type="Resource" id="Resource_m3p6l"]
 script = ExtResource("13_6fiwf")
 maxHp = 10
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_m3p6l"]
-stream_count = 1
-stream_0 = ExtResource("15_m3p6l")
-
-[node name="EnemyShip3M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip3M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
@@ -39,7 +34,6 @@ VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
-_hullHitSoundPlayer = NodePath("HullHitSoundPlayer")
 GeneralExp = 60
 CorePrefabs = Array[PackedScene]([ExtResource("4_m3p6l")])
 DecalPrefab = ExtResource("5_eaasj")
@@ -119,8 +113,3 @@ polygon = PackedVector2Array(-34.6301, 2.06466, -0.0001206, -39.2258, 35.0685, 2
 
 [node name="DamageAnchor" type="Node2D" parent="."]
 position = Vector2(-1, -12)
-
-[node name="HullHitSoundPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPlaylist_m3p6l")
-volume_db = -4.692
-bus = &"sfx"

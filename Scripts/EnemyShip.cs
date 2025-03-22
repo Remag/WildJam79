@@ -37,9 +37,6 @@ public partial class EnemyShip : FoodSource {
 	[Export]
 	private Shield _shield = null;
 
-	[Export]
-	private AudioStreamPlayer _hullHitSoundPlayer;
-
 	public override void _Ready()
 	{
 		Debug.Assert( _damageEffect != null, "Damage effect not set in the enemy ship prefab." );
@@ -122,9 +119,7 @@ public partial class EnemyShip : FoodSource {
 	public void OnBulletCollision( int damage )
 	{
 		doDamage( damage, null );
-        _hullHitSoundPlayer.Play();
-
-    }
+	}
 
 	public override Node2D GetTentacleAnchor()
 	{
