@@ -180,7 +180,7 @@ public partial class GameField : Node {
         if( _currentNodeInfo != null && aliveCount == _currentNodeInfo.MinShipsAliveForNextWave ) {
             SpawnNextWave();
         }
-
+        
         if( aliveCount == 0 && !hasNewWaves ) {
             onLevelClear();
         }

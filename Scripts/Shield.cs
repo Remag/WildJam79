@@ -19,6 +19,9 @@ public partial class Shield : ParentArea2D {
     private PackedScene _shieldEffect;
 
     [Export]
+    private float _circleRadius = 50;
+    
+    [Export]
     private float _shieldEffectMaxDelay = 0.2f;
     private double _shieldEffectDelay = 0;
 
@@ -41,24 +44,6 @@ public partial class Shield : ParentArea2D {
 
     public void OnBulletCollision( int damage, Node2D source )
     {
-        if( _shieldEffectDelay > 0 ) {
-            return;
-        }
-        _shieldEffectDelay = _shieldEffectMaxDelay;
-
-        var circleRadius = 50;
-        var sourceDir = ( Position - ToLocal( source.GlobalPosition ) ).Normalized();
-        
-        var startPoint = _surfaceSprite.Position - sourceDir * circleRadius;
-        var effect = _shieldEffect.Instantiate<Node2D>();
-        _surfaceSprite.AddChild( effect );
-        effect.Position = startPoint;
-        effect.Rotation = sourceDir.Angle();
-        var posTween = effect.CreateTween();
-
-        posTween.TweenProperty( effect, "position", startPoint + sourceDir * circleRadius * 3, 0.4 ).SetEase( Tween.EaseType.InOut );
-        delayDeleteEffect( effect );
-
         _currentHp -= damage;
         if( _currentHp <= 0 ) {
             _currentHp = 0;
@@ -70,6 +55,24 @@ public partial class Shield : ParentArea2D {
             _shieldReflectSoundPlayer.Play();
         }
         _baseSprite.Modulate = Colors.Transparent.Lerp( Colors.White, (float)_currentHp / _config.maxHp );
+        
+        if( _shieldEffectDelay > 0 ) {
+            return;
+        }
+        _shieldEffectDelay = _shieldEffectMaxDelay;
+
+        var circleRadius = _circleRadius;
+        var sourceDir = ( Position - ToLocal( source.GlobalPosition ) ).Normalized();
+        
+        var startPoint = _surfaceSprite.Position - sourceDir * circleRadius;
+        var effect = _shieldEffect.Instantiate<Node2D>();
+        _surfaceSprite.AddChild( effect );
+        effect.Position = startPoint;
+        effect.Rotation = sourceDir.Angle();
+        var posTween = effect.CreateTween();
+
+        posTween.TweenProperty( effect, "position", startPoint + sourceDir * circleRadius * 3, 0.4 ).SetEase( Tween.EaseType.InOut );
+        delayDeleteEffect( effect );
     }
 
     private async void delayDeleteEffect( Node effect )

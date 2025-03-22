@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using WildJam78.Scripts.Audio;
 using WildJam78.Scripts.EnemyMove;
 
 public partial class EnemyShip : FoodSource {
@@ -37,7 +38,10 @@ public partial class EnemyShip : FoodSource {
 	[Export]
 	private Shield _shield = null;
 
-	public override void _Ready()
+    [Export]
+    private RandomPitchSoundPlayer _hullHitSoundPlayer;
+
+    public override void _Ready()
 	{
 		Debug.Assert( _damageEffect != null, "Damage effect not set in the enemy ship prefab." );
 		Debug.Assert( _damageEffectAnchor != null, "Damage effect anchor not set in the enemy ship prefab." );
@@ -119,9 +123,12 @@ public partial class EnemyShip : FoodSource {
 	public void OnBulletCollision( int damage )
 	{
 		doDamage( damage, null );
-	}
+        _hullHitSoundPlayer.Play();
+    }
 
-	public override Node2D GetTentacleAnchor()
+    
+
+    public override Node2D GetTentacleAnchor()
 	{
 		return _damageEffectAnchor;
 	}

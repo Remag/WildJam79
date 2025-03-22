@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=16 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/Ships/EnemyShip2MoveConfig.tres" id="3_ja242"]
@@ -12,9 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_nlicg"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="13_iejuy"]
 [ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="14_7n8mk"]
+[ext_resource type="AudioStream" uid="uid://d1y8e1rqsjra7" path="res://Sounds/EnemyHit1.wav" id="14_pvsqp"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="15_cw16v"]
+[ext_resource type="Script" uid="uid://dh0o5pady331u" path="res://Scripts/Audio/RandomPitchSoundPlayer.cs" id="15_nnv4o"]
 
-[node name="EnemyShip2" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip2" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 angular_damp = 1.0
@@ -28,6 +30,7 @@ _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
+_hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
 GeneralExp = 35
 HealHp = 5
 CorePrefabs = Array[PackedScene]([ExtResource("4_i2eit")])
@@ -94,3 +97,10 @@ position = Vector2(-7, -20)
 stream = ExtResource("15_cw16v")
 max_distance = 1000.0
 bus = &"sfx"
+
+[node name="HullDamageSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_pvsqp")
+volume_db = -20.0
+bus = &"sfx"
+script = ExtResource("15_nnv4o")
+metadata/_custom_type_script = "uid://dh0o5pady331u"
