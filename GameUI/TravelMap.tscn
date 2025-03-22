@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cek8px8d5iiw8"]
+[gd_scene load_steps=17 format=3 uid="uid://cek8px8d5iiw8"]
 
 [ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
 [ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://dn7lrbtk7khla" path="res://EnemyWaves/Map3-1Wave.tres" id="9_xlnef"]
 [ext_resource type="Resource" uid="uid://1m1q4bq7laex" path="res://EnemyWaves/Map3-2Wave.tres" id="10_35f8b"]
 [ext_resource type="Resource" uid="uid://bq54ts3q3xwdf" path="res://EnemyWaves/Map4-1Wave.tres" id="11_sv05a"]
+[ext_resource type="Resource" uid="uid://b27tc2em52vgx" path="res://EnemyWaves/Map4-2Wave.tres" id="12_03qm0"]
+[ext_resource type="Resource" uid="uid://j0b4uoesaqh0" path="res://EnemyWaves/Map5Wave.tres" id="13_hxb48"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k420c"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 0.886275)
@@ -122,6 +124,7 @@ offset_left = 180.0
 offset_top = 140.0
 offset_right = 197.0
 offset_bottom = 156.0
+_nodeInfo = ExtResource("12_03qm0")
 _next = [NodePath("../Map5")]
 
 [node name="Map4-3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
@@ -138,6 +141,7 @@ offset_left = 240.0
 offset_top = 140.0
 offset_right = 257.0
 offset_bottom = 156.0
+_nodeInfo = ExtResource("13_hxb48")
 
 [node name="Margin" type="MarginContainer" parent="."]
 visible = false

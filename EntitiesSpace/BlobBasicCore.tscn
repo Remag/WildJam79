@@ -26,77 +26,84 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
 script = ExtResource("1_k6m0d")
-_levelReqs = Array[int]([5, 10])
+_levelReqs = Array[int]([22, 999])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 
-[node name="Level1" type="Node2D" parent="."]
+[node name="Level1" type="Node2D" parent="." node_paths=PackedStringArray("_spawnPoint")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_jy6jm")
-_weaponHeatGenSpeed = 0
 _attackDelaySec = 0.65
 _bulletSpawner = SubResource("Resource_i685c")
+_spawnPoint = NodePath("SpawnPoint")
 
 [node name="Wings" type="Sprite2D" parent="Level1"]
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
 texture = ExtResource("2_pgvwl")
 
-[node name="Level2" type="Node2D" parent="."]
+[node name="SpawnPoint" type="Node2D" parent="Level1"]
+position = Vector2(0, -190)
+scale = Vector2(2, 2)
+
+[node name="Level2" type="Node2D" parent="." node_paths=PackedStringArray("_spawnPoint")]
+visible = false
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_jy6jm")
-_weaponHeatGenSpeed = 0
 _attackDelaySec = 0.45
 _bulletSpawner = SubResource("Resource_ipayf")
+_spawnPoint = NodePath("SpawnPoint")
+
+[node name="Wings3" type="Sprite2D" parent="Level2"]
+position = Vector2(-22, -72)
+scale = Vector2(2, 2)
+texture = ExtResource("2_pgvwl")
+
+[node name="Wings2" type="Sprite2D" parent="Level2"]
+position = Vector2(28, -72)
+scale = Vector2(2, 2)
+texture = ExtResource("2_pgvwl")
 
 [node name="Wings" type="Sprite2D" parent="Level2"]
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
 texture = ExtResource("2_pgvwl")
 
-[node name="Wings3" type="Sprite2D" parent="Level2"]
-position = Vector2(-30, -68)
-rotation = -0.383972
+[node name="SpawnPoint" type="Node2D" parent="Level2"]
+position = Vector2(0, -190)
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
 
-[node name="Wings2" type="Sprite2D" parent="Level2"]
-position = Vector2(42, -68)
-rotation = 0.383972
-scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
-
-[node name="Level3" type="Node2D" parent="."]
+[node name="Level3" type="Node2D" parent="." node_paths=PackedStringArray("_spawnPoint")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_jy6jm")
-_weaponHeatGenSpeed = 0
 _attackDelaySec = 0.25
 _bulletSpawner = SubResource("Resource_jy6jm")
+_spawnPoint = NodePath("SpawnPoint")
+
+[node name="Wings5" type="Sprite2D" parent="Level3"]
+position = Vector2(42, -72)
+scale = Vector2(2, 2)
+texture = ExtResource("2_pgvwl")
+
+[node name="Wings4" type="Sprite2D" parent="Level3"]
+position = Vector2(-38, -72)
+scale = Vector2(2, 2)
+texture = ExtResource("2_pgvwl")
+
+[node name="Wings3" type="Sprite2D" parent="Level3"]
+position = Vector2(-20, -72)
+scale = Vector2(2, 2)
+texture = ExtResource("2_pgvwl")
+
+[node name="Wings2" type="Sprite2D" parent="Level3"]
+position = Vector2(24, -72)
+scale = Vector2(2, 2)
+texture = ExtResource("2_pgvwl")
 
 [node name="Wings" type="Sprite2D" parent="Level3"]
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
 texture = ExtResource("2_pgvwl")
 
-[node name="Wings4" type="Sprite2D" parent="Level3"]
-position = Vector2(-12, -72)
-rotation = -0.191986
+[node name="SpawnPoint" type="Node2D" parent="Level3"]
+position = Vector2(0, -190)
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
-
-[node name="Wings5" type="Sprite2D" parent="Level3"]
-position = Vector2(20, -72)
-rotation = 0.191986
-scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
-
-[node name="Wings3" type="Sprite2D" parent="Level3"]
-position = Vector2(-30, -68)
-rotation = -0.383972
-scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")
-
-[node name="Wings2" type="Sprite2D" parent="Level3"]
-position = Vector2(42, -68)
-rotation = 0.383972
-scale = Vector2(2, 2)
-texture = ExtResource("2_pgvwl")

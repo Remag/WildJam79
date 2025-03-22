@@ -32,7 +32,6 @@ public partial class WorldAudioManager : Node {
             _titleBgmPlayer,
             _stageBgmPlayer
         };
-        //setAllMuted( true );
     }
 
     public override void _Input( InputEvent inputEvent )

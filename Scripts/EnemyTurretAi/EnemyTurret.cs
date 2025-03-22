@@ -129,7 +129,7 @@ public partial class EnemyTurret : Node2D {
 			return;
 		}
 		var targetPos = _shootTarget.GlobalPosition;
-		_bulletSpawner.SpawnBullets( _spawnPoint ?? this, targetPos, isEnemyBullet:true );
+		_bulletSpawner.SpawnBullets( this, _spawnPoint ?? this, targetPos, isEnemyBullet:true );
 	}
 	
 	private float GetAttackShootPause()

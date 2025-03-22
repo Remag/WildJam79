@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="2_8onvp"]
 [ext_resource type="PackedScene" uid="uid://dgxc83pyb44kj" path="res://GameUI/SettingsMenu.tscn" id="2_s02ea"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_u4e62"]
-[ext_resource type="Resource" uid="uid://cfq5yrofpnafg" path="res://EnemyWaves/BigWave1.tres" id="4_b7oo7"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_huaye"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="6_alxon"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="7_t7ilo"]
@@ -30,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://tm5k4wb6kum" path="res://Sounds/EchoCut_ZapSplat.mp3" id="18_s02ea"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="19_67llk"]
 [ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="19_u21sk"]
+[ext_resource type="Resource" uid="uid://blnr6tg62p6yf" path="res://EnemyWaves/Map4-3Wave.tres" id="21_rvy8n"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
 
@@ -395,7 +395,7 @@ _nebulaRect = NodePath("ParallaxBackground/NebulaLayer/TextureRect")
 _playerPrefab = ExtResource("2_8onvp")
 _warpEffect = ExtResource("3_u4e62")
 _restartButton = NodePath("../HUD/RestartButton")
-_testWaveNodeInfo = ExtResource("4_b7oo7")
+_testWaveNodeInfo = ExtResource("21_rvy8n")
 _idleUiControl = NodePath("../HUD/IdleUi")
 _warpControl = NodePath("../HUD/IdleUi/WarpButton")
 _bgSelection = ExtResource("5_huaye")

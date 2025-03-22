@@ -15,7 +15,7 @@ public partial class FanBulletSpawner : BulletSpawner {
     private bool _isFullCircle = false;
     
 
-    public override void SpawnBullets( Node2D shootAnchor, Vector2 targetGlobalPos, bool isEnemyBullet )
+    public override void SpawnBullets( Node2D shootAnchor, Node2D spawnPoint, Vector2 targetGlobalPos, bool isEnemyBullet )
     {
         var angleCounter = _isFullCircle ? _counter : ( _counter - 1 );
         for( var i = 0; i < _counter; i++ ) {
@@ -24,7 +24,7 @@ public partial class FanBulletSpawner : BulletSpawner {
             var bulletDir = targetGlobalPos - shootAnchor.GlobalPosition;
             var bullet = _bulletPrefab.Instantiate<BasicBullet>();
             bullet.Rotation = bulletDir.Angle() + Mathf.DegToRad(angleDeg);
-            bullet.GlobalPosition = shootAnchor.GlobalPosition;
+            bullet.GlobalPosition = spawnPoint.GlobalPosition;
             bullet.SetIsEnemyBullet( isEnemyBullet );
             Game.Field.AddChild( bullet );
         }

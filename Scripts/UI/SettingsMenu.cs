@@ -27,52 +27,62 @@ public partial class SettingsMenu : Control {
 
     public void MuteAllSound( bool isMuted )
     {
-
+        var busIndex = AudioServer.GetBusIndex( "Master" );
+        AudioServer.SetBusMute( busIndex, isMuted );
     }
 
     public bool IsAllSoundMuted()
     {
-        return false;
+        var busIndex = AudioServer.GetBusIndex( "Master" );
+        return AudioServer.IsBusMute( busIndex );
     }
 
     public void MuteMusic( bool isMuted )
     {
-
+        var busIndex = AudioServer.GetBusIndex( "music" );
+        AudioServer.SetBusMute( busIndex, isMuted );
     }
 
     public bool IsMusicMuted()
     {
-        return false;
+        var busIndex = AudioServer.GetBusIndex( "music" );
+        return AudioServer.IsBusMute( busIndex );
     }
 
     public void SetMasterVolume( float value )
     {
-
+        var busIndex = AudioServer.GetBusIndex( "Master" );
+        AudioServer.SetBusVolumeLinear( busIndex, value / 100 );
     }
 
     public float GetMasterVolume()
     {
-        return 0.0f;
+        var busIndex = AudioServer.GetBusIndex( "Master" );
+        return AudioServer.GetBusVolumeLinear( busIndex ) * 100;
     }
 
     public void SetMusicVolume( float value )
     {
-
+        var busIndex = AudioServer.GetBusIndex( "music" );
+        AudioServer.SetBusVolumeLinear( busIndex, value / 100 );
     }
 
     public float GetMusicVolume()
     {
-        return 0.0f;
+        var busIndex = AudioServer.GetBusIndex( "music" );
+        return AudioServer.GetBusVolumeLinear( busIndex ) * 100;
     }
 
     public void SetSfxVolume( float value )
     {
-
+        var busIndex = AudioServer.GetBusIndex( "sfx" );
+        AudioServer.SetBusVolumeLinear( busIndex, value / 100 );
     }
 
     public float GetSfxVolume()
     {
-        return 0.0f;
+        var busIndex = AudioServer.GetBusIndex( "sfx" );
+        return AudioServer.GetBusVolumeLinear( busIndex ) * 100;
     }
 
     public void CloseSettings()
