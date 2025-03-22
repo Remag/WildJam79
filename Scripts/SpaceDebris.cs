@@ -36,6 +36,7 @@ public partial class SpaceDebris : FoodSource {
 
     public override bool TryTentaclePull( Tentacle tentacle )
     {
+        CollisionLayer = 0;
         return true;
     }
 

@@ -36,6 +36,7 @@ metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
 [node name="EnemyShip1B" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "EatOnWin", "Enemy"]]
 collision_layer = 2
+mass = 100.0
 can_sleep = false
 angular_damp = 1.0
 script = ExtResource("1_c66cq")

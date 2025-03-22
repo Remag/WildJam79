@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=57 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_lppff"]
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://d4fm122a7ybs1" path="res://Sounds/ButtonClick_ZapSplat.mp3" id="15_nm5af"]
 [ext_resource type="AudioStream" uid="uid://d1o5u51rj1enm" path="res://Music/TitleBGM.mp3" id="16_8s4c3"]
 [ext_resource type="AudioStream" uid="uid://cq7blko855kh1" path="res://Sounds/GameOver_ZapSplat.mp3" id="16_x0cd2"]
+[ext_resource type="AudioStream" uid="uid://tm5k4wb6kum" path="res://Sounds/EchoCut_ZapSplat.mp3" id="18_5i0cj"]
 [ext_resource type="Texture2D" uid="uid://b7n4h815hmryo" path="res://Assets/MainHero/glass1.webp" id="19_1ms6g"]
 [ext_resource type="Script" uid="uid://bmk0w2air4knk" path="res://Scripts/Tutorial.cs" id="20_7jkkr"]
 [ext_resource type="Texture2D" uid="uid://cj67olvqyo432" path="res://Assets/MainHero/monster1.webp" id="20_h86nx"]
@@ -1211,7 +1212,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_bottlePopSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_bottlePopSoundPlayer", "_echoSoundPlayer")]
 script = ExtResource("8_torvr")
 _stageBgmPlayer = NodePath("StageBgmPlayer")
 _titleBgmPlayer = NodePath("TitleBgmPlayer")
@@ -1221,6 +1222,7 @@ _shieldReflectNoDamageSoundPlayer = NodePath("ShieldReflectSoundPlayer")
 _tentacleSoundPlayer = NodePath("Tentacle")
 _explosionSoundPlayer = NodePath("ExplosionSoundPlayer")
 _bottlePopSoundPlayer = NodePath("BottlePopSoundPlayer")
+_echoSoundPlayer = NodePath("EchoSoundPlayer")
 
 [node name="StageBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("13_nm5af")
@@ -1259,6 +1261,10 @@ volume_db = -7.0
 [node name="BottlePopSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("23_cxdnd")
 bus = &"sfx"
+
+[node name="EchoSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("18_5i0cj")
+volume_db = 4.0
 
 [node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation")]
 process_mode = 1
