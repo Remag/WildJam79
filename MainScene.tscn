@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=54 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
 [ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="9_3slyh"]
+[ext_resource type="PackedScene" uid="uid://cq5hjo8vkc5v5" path="res://GameUI/WarpButton.tscn" id="9_6dw4c"]
 [ext_resource type="PackedScene" uid="uid://cugvtasr1dxev" path="res://EntitiesSpace/DecalParts/TutorialDebris1.tscn" id="10_8s4c3"]
 [ext_resource type="AudioStream" uid="uid://00v07eyabpqp" path="res://Music/BGM3.mp3" id="13_nm5af"]
 [ext_resource type="AudioStream" uid="uid://d4fm122a7ybs1" path="res://Sounds/ButtonClick_ZapSplat.mp3" id="15_nm5af"]
@@ -911,7 +912,7 @@ _data = {
 &"Rotate": SubResource("Animation_ro037")
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation")]
 script = ExtResource("1_torvr")
 _camera = NodePath("Camera2D")
 _mapControl = NodePath("HUD/TravelMap")
@@ -922,6 +923,7 @@ _warpEffect = ExtResource("3_x0cd2")
 _restartButton = NodePath("HUD/RestartButton")
 _testWaveNodeInfo = ExtResource("4_3slyh")
 _idleUiControl = NodePath("HUD/IdleUi")
+_warpControl = NodePath("HUD/IdleUi/WarpButton")
 _bgSelection = ExtResource("5_p5x2j")
 WorldAudioManager = NodePath("WorldAudioManager")
 _warpEffectRect = NodePath("Effect/ColorRect")
@@ -1162,14 +1164,12 @@ anchors_preset = 0
 offset_right = 1150.0
 offset_bottom = 645.0
 
-[node name="MapButton" type="Button" parent="HUD/IdleUi"]
+[node name="WarpButton" parent="HUD/IdleUi" instance=ExtResource("9_6dw4c")]
 layout_mode = 0
-offset_left = 342.0
-offset_top = 30.0
-offset_right = 757.0
-offset_bottom = 127.0
-theme_override_font_sizes/font_size = 54
-text = "Warp"
+offset_left = 390.0
+offset_top = -145.0
+offset_right = 745.0
+offset_bottom = -72.0
 
 [node name="TestWave" type="Button" parent="HUD/IdleUi"]
 layout_mode = 0
@@ -1386,7 +1386,7 @@ _spriteScale = 0.5
 
 [connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Start" to="." method="StartGame"]
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
-[connection signal="pressed" from="HUD/IdleUi/MapButton" to="." method="OpenMap"]
+[connection signal="pressed" from="HUD/IdleUi/WarpButton" to="." method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="." method="SpawnTestWave"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Eat" to="HUD/IdleUi/CheatMenu" method="EatAllTrash"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Trash" to="HUD/IdleUi/CheatMenu" method="SpawnTrash"]

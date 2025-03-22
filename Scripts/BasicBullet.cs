@@ -53,6 +53,10 @@ public partial class BasicBullet : Node2D {
 
 		if( _lifespanLogic.IsDestroyed( _currentLifetime, deltaF ) ) {
 			var tween = GetTree().CreateTween();
+			tween.TweenCallback( Callable.From( () => {
+				_collisionArea.Monitorable = false;
+				_collisionArea.Monitoring = false;
+			} ) );
 			tween.TweenProperty( this, "modulate", Colors.Transparent, _lifespanLogic.AlphaTweenTime );
 			tween.TweenCallback( Callable.From( QueueFree ) );
 		}

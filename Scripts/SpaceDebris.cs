@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using WildJam78.Scripts;
 
 public partial class SpaceDebris : FoodSource {
 
@@ -12,7 +13,7 @@ public partial class SpaceDebris : FoodSource {
     [Export]
     private float _driftMaxSpeed = 5;
     [Export]
-    private Node2D _offscreenIndicator = null;
+    private OffscreenIndicator _offscreenIndicator = null;
 
     public bool ShowIndicator = false;
 
@@ -68,12 +69,12 @@ public partial class SpaceDebris : FoodSource {
         var cameraRect = Game.Camera.GetCanvasTransform().AffineInverse() * GetViewportRect();
         var position = GlobalPosition;
         if( !cameraRect.HasPoint( position ) ) {
-            _offscreenIndicator.Show();
+            _offscreenIndicator.ShowIndicator();
             _offscreenIndicator.Rotation = ( position - cameraRect.GetCenter() ).Angle();
             var newPosition = position.Clamp( cameraRect.Position, cameraRect.End );
             _offscreenIndicator.GlobalPosition = newPosition;
         } else {
-            _offscreenIndicator.Hide();
+            _offscreenIndicator.HideIndicator();
         }
     }
 

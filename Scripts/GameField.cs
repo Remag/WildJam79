@@ -24,6 +24,8 @@ public partial class GameField : Node {
     [Export]
     private Control _idleUiControl;
     [Export]
+    private Control _warpControl;
+    [Export]
     private BackgroundSelection _bgSelection;
     [Export]
     public WorldAudioManager WorldAudioManager { get; set; }
@@ -146,6 +148,7 @@ public partial class GameField : Node {
             _savedPlayerState = Game.Player.SaveState();
         }
 
+        _idleUiControl.Visible = false;
         var effect = _warpEffect.Instantiate<WarpEffect>();
         AddChild( effect );
         effect.Initialize( Game.Player, locationBg, nodeInfo );
@@ -220,7 +223,7 @@ public partial class GameField : Node {
         if( _currentNodeInfo != null && aliveCount == _currentNodeInfo.MinShipsAliveForNextWave ) {
             SpawnNextWave();
         }
-        
+
         if( aliveCount == 0 && !hasNewWaves ) {
             onLevelClear();
         }
@@ -253,6 +256,9 @@ public partial class GameField : Node {
     public void EnableIdleUi()
     {
         _idleUiControl.Visible = true;
+        _warpControl.Position = new Vector2( 393.0f, -145.0f );
+        var tween = _warpControl.CreateTween();
+        tween.TweenProperty( _warpControl, "position", new Vector2( 393.0f, 22.0f ), 0.4f ).SetEase( Tween.EaseType.InOut );
     }
 
     public void EndGame()

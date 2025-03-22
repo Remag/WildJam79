@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://draawj72qffpb" path="res://EntitiesSpace/DecalCores/PurpleDecalCoreS.tscn" id="2_18r1o"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="3_3edlr"]
 [ext_resource type="Texture2D" uid="uid://ce3cva25i6xmn" path="res://Assets/SpaceShip/ShipDebris/PurpleBigPieceNormal.webp" id="4_0yy7h"]
-[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="5_18r1o"]
+[ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="5_18r1o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhmbs"]
 radius = 54.0093
@@ -37,10 +37,4 @@ shape = SubResource("CircleShape2D_nhmbs")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_0yy7h")
 
-[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
-visible = false
-position = Vector2(0, 4.5)
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("5_18r1o")
-centered = false
-offset = Vector2(-310, -110)
+[node name="OffscreenIndicator" parent="." groups=["ClearOnRestart"] instance=ExtResource("5_18r1o")]
