@@ -126,8 +126,6 @@ public partial class EnemyShip : FoodSource {
         _hullHitSoundPlayer.Play();
     }
 
-    
-
     public override Node2D GetTentacleAnchor()
 	{
 		return _damageEffectAnchor;

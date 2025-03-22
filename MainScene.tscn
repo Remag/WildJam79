@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=54 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
@@ -912,7 +912,7 @@ _data = {
 &"Rotate": SubResource("Animation_ro037")
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation")]
 script = ExtResource("1_torvr")
 _camera = NodePath("Camera2D")
 _mapControl = NodePath("HUD/TravelMap")
@@ -923,6 +923,7 @@ _warpEffect = ExtResource("3_x0cd2")
 _restartButton = NodePath("HUD/RestartButton")
 _testWaveNodeInfo = ExtResource("4_3slyh")
 _idleUiControl = NodePath("HUD/IdleUi")
+_warpControl = NodePath("HUD/IdleUi/WarpButton")
 _bgSelection = ExtResource("5_p5x2j")
 WorldAudioManager = NodePath("WorldAudioManager")
 _warpEffectRect = NodePath("Effect/ColorRect")
@@ -1164,10 +1165,11 @@ offset_right = 1150.0
 offset_bottom = 645.0
 
 [node name="WarpButton" parent="HUD/IdleUi" instance=ExtResource("9_6dw4c")]
-offset_left = 393.0
-offset_top = 22.0
-offset_right = 748.0
-offset_bottom = 95.0
+layout_mode = 0
+offset_left = 390.0
+offset_top = -145.0
+offset_right = 745.0
+offset_bottom = -72.0
 
 [node name="TestWave" type="Button" parent="HUD/IdleUi"]
 layout_mode = 0
@@ -1384,6 +1386,7 @@ _spriteScale = 0.5
 
 [connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Start" to="." method="StartGame"]
 [connection signal="pressed" from="HUD/RestartButton" to="." method="RestartGame"]
+[connection signal="pressed" from="HUD/IdleUi/WarpButton" to="." method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="." method="SpawnTestWave"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Eat" to="HUD/IdleUi/CheatMenu" method="EatAllTrash"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Trash" to="HUD/IdleUi/CheatMenu" method="SpawnTrash"]

@@ -39,7 +39,7 @@ size = Vector2(2200, 2200)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8xkvn"]
 blend_mode = 1
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "WorldAudioManager", "_warpEffectRect")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect")]
 script = ExtResource("1_g0egd")
 _camera = NodePath("Camera2D")
 _mapControl = NodePath("HUD/TravelMap")
@@ -50,6 +50,7 @@ _warpEffect = ExtResource("3_u4e62")
 _restartButton = NodePath("HUD/RestartButton")
 _testWaveNodeInfo = ExtResource("4_b7oo7")
 _idleUiControl = NodePath("HUD/IdleUi")
+_warpControl = NodePath("HUD/IdleUi/WarpButton")
 _bgSelection = ExtResource("5_huaye")
 WorldAudioManager = NodePath("WorldAudioManager")
 _warpEffectRect = NodePath("Effect/ColorRect")
