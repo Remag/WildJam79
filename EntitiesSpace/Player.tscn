@@ -557,6 +557,7 @@ _maxVelocityPxSec = 350.0
 _maxHpByLvl = Array[int]([10, 30, 200])
 _tentaclesByLevel = Array[PackedScene]([ExtResource("3_wi0c6"), ExtResource("3_o1tba"), ExtResource("4_bjqqk")])
 _autoTentaclesBySize = Array[PackedScene]([ExtResource("5_bjqqk")])
+_tentacleDamageByLevel = Array[int]([10, 30, 50])
 _playerHitboxes = [NodePath("CollisionShape2D"), NodePath("Hitbox/CollisionShape2D")]
 GrowthXpByLvl = Array[int]([100, 200])
 _cameraZoomByLvl = Array[float]([1.0, 0.7, 0.33])

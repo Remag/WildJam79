@@ -143,12 +143,12 @@ public partial class EnemyShip : FoodSource {
 			return false;
 		}
 		var playerSize = Game.Player.CurrentGrowthLevel;
-		var dmg = _maxHp / 2 + 1;
+		var dmg = Game.Player.GetTentacleDamage();
 		if( playerSize > SizeLevel || dmg >= _currentHp || IsDead ) {
 			prepareTentacleAttach();
 			return true;
 		} else {
-			doDamage( _maxHp / 2 + 1, tentacle.GetEndAnchor() );
+			doDamage( dmg, tentacle.GetEndAnchor() );
 			return false;
 		}
 	}

@@ -24,6 +24,8 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<PackedScene> _tentaclesByLevel;
     [Export]
     private Godot.Collections.Array<PackedScene> _autoTentaclesBySize;
+    [Export]
+    private Godot.Collections.Array<int> _tentacleDamageByLevel;
 
     [Export]
     private Godot.Collections.Array<Node2D> _playerHitboxes;
@@ -77,6 +79,11 @@ public partial class Player : RigidBody2D {
         if( Game.Player == this ) {
             Game.Player = null;
         }
+    }
+
+    public int GetTentacleDamage()
+    {
+        return _tentacleDamageByLevel[CurrentGrowthLevel];
     }
 
     public void OnBulletCollision( int damage )
