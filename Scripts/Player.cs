@@ -177,22 +177,16 @@ public partial class Player : RigidBody2D {
     public void Assimilate( FoodSource food, Tentacle src )
     {
         GainExp( food.GeneralExp );
+        _currentHp = Math.Min( _currentHp + food.HealHp, getMaxHp() );
+        _chompSoundPlayer.Play();
+        ModulateEyesColor();
 
-        if( _currentBlobIndex >= _currentBlobs.Count ) {
-            if( !Game.Field.IsCombat() ) {
-                TryGrow();
-            }
-            return;
-        }
         DestroyTentacle( src );
-
+        
         assimilateGeneral( food );
         if( food.IsWeaponSource ) {
             AssimilateWeapon( food );
         }
-        _currentHp = Math.Min( _currentHp + food.HealHp, getMaxHp() );
-        _chompSoundPlayer.Play();
-        ModulateEyesColor();
 
         if( !Game.Field.IsCombat() ) {
             TryGrow();
