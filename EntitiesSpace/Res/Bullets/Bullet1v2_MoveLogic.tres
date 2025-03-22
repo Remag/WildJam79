@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LinearBulletMoveLogic" load_steps=2 format=3 uid="uid://bfdbf874npng3"]
+
+[ext_resource type="Script" uid="uid://c1m4v0ibdsq2e" path="res://Scripts/Bullets/MoveLogic/LinearBulletMoveLogic.cs" id="1_nalch"]
+
+[resource]
+script = ExtResource("1_nalch")
+startMinVelocity = 700.0
+startMaxVelocity = 700.0
+maxVelocity = 700.0
+acceleration = 0.0
+metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"

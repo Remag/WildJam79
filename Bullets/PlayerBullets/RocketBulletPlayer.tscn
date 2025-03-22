@@ -1,22 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://7wii0dftvcg"]
+[gd_scene load_steps=10 format=3 uid="uid://7wii0dftvcg"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_ytu3j"]
-[ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Bullet3_TargMoveLogic.tres" id="2_4yjrl"]
+[ext_resource type="Script" uid="uid://bmqtgdfo6tysn" path="res://Scripts/Bullets/MoveLogic/TargetedBulletMoveLogic.cs" id="2_1yjl5"]
 [ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_fqe1f"]
-[ext_resource type="PackedScene" uid="uid://bxkwdiaflrcet" path="res://Bullets/SplinterBullet.tscn" id="4_727lf"]
-[ext_resource type="Script" uid="uid://6x0jwm35cobd" path="res://Scripts/Bullets/BulletDeathLogic.cs" id="5_4qkds"]
 [ext_resource type="Texture2D" uid="uid://cskkeicya56ek" path="res://Assets/SpaceShip/Bullets/Rocket.webp" id="6_6foiw"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="7_4yjrl"]
+[ext_resource type="PackedScene" uid="uid://dauqnw48oydox" path="res://EntitiesSpace/MissileTrail.tscn" id="8_h5o08"]
+
+[sub_resource type="Resource" id="Resource_il2rn"]
+script = ExtResource("2_1yjl5")
+startMinVelocity = 350.0
+startMaxVelocity = 350.0
+maxVelocity = 550.0
+angularVelocity = 1.45
+acceleration = 50.0
+activeTime = 999.0
+inactiveFriction = 300.0
+metadata/_custom_type_script = "uid://bmqtgdfo6tysn"
 
 [sub_resource type="Resource" id="Resource_dddoj"]
 script = ExtResource("3_fqe1f")
 metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
-
-[sub_resource type="Resource" id="Resource_8m4er"]
-script = ExtResource("5_4qkds")
-Count = 12
-BulletPrefab = ExtResource("4_727lf")
-metadata/_custom_type_script = "uid://6x0jwm35cobd"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
 radius = 7.0
@@ -26,9 +30,8 @@ height = 75.7182
 light_mask = 4
 script = ExtResource("1_ytu3j")
 _collisionArea = NodePath("Area2D")
-_moveLogic = ExtResource("2_4yjrl")
+_moveLogic = SubResource("Resource_il2rn")
 _lifespanLogic = SubResource("Resource_dddoj")
-_deathLogic = SubResource("Resource_8m4er")
 _bulletDamage = 5
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -55,5 +58,9 @@ metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 position = Vector2(-6.79523, -6.41488e-06)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a1jof")
+
+[node name="ShipTrail" parent="." instance=ExtResource("8_h5o08")]
+position = Vector2(-25, 0)
+rotation = 1.57079
 
 [connection signal="AreaCollision" from="Area2D" to="." method="OnAreaCollision"]

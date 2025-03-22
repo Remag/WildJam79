@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=29 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="4_5crlr"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
+[ext_resource type="PackedScene" uid="uid://cwsgy7h1g2lu" path="res://EntitiesSpace/EnemyShip/EnemyShip2M.tscn" id="6_8qg48"]
+[ext_resource type="PackedScene" uid="uid://ckknr6hu8ksgm" path="res://EntitiesSpace/EnemyShip/EnemyShip3M.tscn" id="7_1ms6g"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="7_3hf6u"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="7_xtmsi"]
@@ -24,6 +26,18 @@
 [sub_resource type="Resource" id="Resource_x0cd2"]
 script = ExtResource("4_5crlr")
 Prefab = ExtResource("4_3slyh")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_h86nx"]
+script = ExtResource("4_5crlr")
+Prefab = ExtResource("6_8qg48")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_7jkkr"]
+script = ExtResource("4_5crlr")
+Prefab = ExtResource("7_1ms6g")
 Count = 1
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
@@ -50,7 +64,7 @@ _tutorialNode = NodePath("HUD/Label")
 _playerPrefab = ExtResource("3_rpqi1")
 _warpEffect = ExtResource("3_x0cd2")
 _restartButton = NodePath("HUD/RestartButton")
-_testWave = Array[Object]([SubResource("Resource_x0cd2")])
+_testWave = Array[Object]([SubResource("Resource_x0cd2"), SubResource("Resource_h86nx"), SubResource("Resource_7jkkr")])
 _idleUiControl = NodePath("HUD/IdleUi")
 _bgSelection = ExtResource("5_p5x2j")
 WorldAudioManager = NodePath("WorldAudioManager")

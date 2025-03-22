@@ -1,27 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://0ikuy4wnc65u"]
+[gd_scene load_steps=14 format=3 uid="uid://0ikuy4wnc65u"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_um61q"]
 [ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="3_ja242"]
-[ext_resource type="PackedScene" uid="uid://u2wshe5a8fvk" path="res://Bullets/EBullets/BasicBullet.tscn" id="3_sdw74"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="4_3lius"]
 [ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_i2eit"]
 [ext_resource type="Texture2D" uid="uid://bkurvmjdon55s" path="res://Assets/SpaceShip/ShipBody/SmallPurple.webp" id="5_i2eit"]
 [ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_x7nr2"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_flhrm"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_txwvw"]
+[ext_resource type="PackedScene" uid="uid://dt07exnbb24vc" path="res://ETurrets/TurretGun.tscn" id="7_h0e7l"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_nlicg"]
-[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="8_iejuy"]
-[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="10_i0w3r"]
-[ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="11_s34hh"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="13_iejuy"]
 [ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="14_7n8mk"]
 [ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="15_cw16v"]
-
-[sub_resource type="Resource" id="Resource_s2las"]
-script = ExtResource("10_i0w3r")
-_bulletPrefab = ExtResource("3_sdw74")
-_rngAngleDeg = 0.0
-metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="EnemyShip2" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
@@ -58,30 +49,15 @@ position = Vector2(0, -24)
 scale = Vector2(2, 2)
 texture = ExtResource("5_i2eit")
 
+[node name="TurrenGun" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_h0e7l")]
+_shootTarget = NodePath("../ShootMarker")
+_enemyShip = NodePath("../..")
+
 [node name="Decal" type="Sprite2D" parent="Visuals"]
 modulate = Color(0.833986, 0.000714068, 0.862334, 0.564706)
 position = Vector2(88, 36)
 scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("6_flhrm")
-
-[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip")]
-position = Vector2(3.05176e-05, 8)
-script = ExtResource("8_iejuy")
-_aiAttackShootDelayMin = 1.5
-_aiAttackShootDuration = 4.55
-_bulletSpawner = SubResource("Resource_s2las")
-_shootSoundPlayer2D = NodePath("../../Shoot2D")
-_shootTarget = NodePath("../ShootMarker")
-_turretBase = NodePath("TurretBase")
-_enemyShip = NodePath("../..")
-
-[node name="TurretBase" type="Node2D" parent="Visuals/Turret"]
-position = Vector2(-1.52588e-05, 4)
-
-[node name="Turret" type="Sprite2D" parent="Visuals/Turret/TurretBase"]
-position = Vector2(-36.0004, -99.9999)
-texture = ExtResource("11_s34hh")
-centered = false
 
 [node name="ShootMarker" type="Node2D" parent="Visuals"]
 position = Vector2(-0.000762939, -212)

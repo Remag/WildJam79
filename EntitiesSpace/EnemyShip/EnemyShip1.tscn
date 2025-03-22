@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://nh1c0ycvlv14"]
+[gd_scene load_steps=11 format=3 uid="uid://nh1c0ycvlv14"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_mykhl"]
 [ext_resource type="Resource" uid="uid://c2hlsmdwrfocl" path="res://EntitiesSpace/Res/EnemyShip1MoveConfig.tres" id="3_4rxrc"]
@@ -8,27 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://djg524mjkxw7x" path="res://EntitiesSpace/DecalCores/RedDecalCoreS.tscn" id="5_i2xif"]
 [ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_3upej"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_mmokd"]
-[ext_resource type="PackedScene" uid="uid://bqu7mb0ib3ocp" path="res://Bullets/EBullets/PlasmaBullet.tscn" id="8_6n5o2"]
-[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="8_i01dv"]
-[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="8_t1yll"]
-[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="9_7jj5h"]
-[ext_resource type="Texture2D" uid="uid://c57y86lplymx2" path="res://Assets/SpaceShip/Guns/GunParts/BlasterBase.webp" id="10_6n5o2"]
-[ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="11_kukyp"]
+[ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="7_or2ih"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="14_kukyp"]
 
-[sub_resource type="Resource" id="Resource_t1yll"]
-script = ExtResource("8_t1yll")
-_bulletPrefab = ExtResource("8_6n5o2")
-_rngAngleDeg = 15.0
-metadata/_custom_type_script = "uid://de10ab1n1g1s"
-
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip1" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 can_sleep = false
 angular_damp = 1.0
 script = ExtResource("1_mykhl")
-_maxHp = 7
+_maxHp = 5
 _configRigid = ExtResource("3_4rxrc")
 _damageEffect = ExtResource("3_caaev")
 _damageEffectAnchor = NodePath("DamageAnchor")
@@ -55,29 +44,9 @@ scale = Vector2(0.25, 0.25)
 scale = Vector2(2, 2)
 texture = ExtResource("5_7jj5h")
 
-[node name="Turret" type="Node2D" parent="Visuals" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_enemyShip")]
-script = ExtResource("8_i01dv")
-_aiAttackShootDuration = 1.2
-_aiAttackShootPauseMin = 2.5
-_aiAttackShootPauseMax = 3.0
-_bulletSpawner = SubResource("Resource_t1yll")
-_shootSoundPlayer2D = NodePath("../../Shoot2D")
+[node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_or2ih")]
 _shootTarget = NodePath("../ShootMarker")
-_turretBase = NodePath("TurretBase")
 _enemyShip = NodePath("../..")
-
-[node name="TurretBase" type="Node2D" parent="Visuals/Turret"]
-position = Vector2(-1.52588e-05, 4)
-
-[node name="Turret" type="Sprite2D" parent="Visuals/Turret/TurretBase"]
-position = Vector2(-24.0001, -31.9999)
-texture = ExtResource("10_6n5o2")
-centered = false
-
-[node name="Turret" type="Sprite2D" parent="Visuals/Turret/TurretBase/Turret"]
-position = Vector2(-4.00023, -64)
-texture = ExtResource("11_kukyp")
-centered = false
 
 [node name="ShootMarker" type="Node2D" parent="Visuals"]
 position = Vector2(-0.000762939, -212)
@@ -112,8 +81,3 @@ polygon = PackedVector2Array(-12.9315, 7.22581, -0.219177, -13.4194, 12.4932, 7.
 
 [node name="DamageAnchor" type="Node2D" parent="."]
 position = Vector2(1, 9)
-
-[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_7jj5h")
-max_distance = 1000.0
-bus = &"sfx"

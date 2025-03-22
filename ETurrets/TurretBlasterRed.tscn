@@ -13,14 +13,16 @@ _bulletPrefab = ExtResource("2_guvrn")
 _rngAngleDeg = 15.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
-[node name="TurretBlasterRed" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_turretBase")]
+[node name="TurretBlasterRed" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_turretBase", "_spawnPoint")]
 script = ExtResource("1_d7qyb")
-_aiAttackShootDuration = 1.2
-_aiAttackShootPauseMin = 2.5
-_aiAttackShootPauseMax = 3.0
+_aiAttackShootDuration = 1.0
+_aiAttackShootPauseMin = 1.5
+_aiAttackShootPauseMax = 2.0
 _bulletSpawner = SubResource("Resource_guvrn")
+_activationDistance = 1000.0
 _shootSoundPlayer2D = NodePath("Shoot2D")
 _turretBase = NodePath("TurretBase")
+_spawnPoint = NodePath("TurretBase/SpawnPoint")
 
 [node name="TurretBase" type="Node2D" parent="."]
 position = Vector2(-1.52588e-05, 4)
@@ -34,6 +36,9 @@ centered = false
 position = Vector2(-4.00023, -64)
 texture = ExtResource("3_k5gk5")
 centered = false
+
+[node name="SpawnPoint" type="Node2D" parent="TurretBase"]
+position = Vector2(-1.99998, -93)
 
 [node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_k5gk5")

@@ -18,12 +18,12 @@ script = ExtResource("1_wllqh")
 _collisionArea = NodePath("Rotator/Area2D")
 _moveLogic = ExtResource("2_wllqh")
 _lifespanLogic = SubResource("Resource_qq402")
+_bulletDamage = 2
 
 [node name="Rotator" type="Node2D" parent="."]
 script = ExtResource("4_ssmih")
 
 [node name="Sprite2D" type="Sprite2D" parent="Rotator"]
-modulate = Color(4.42803e-06, 0.776993, 0.72994, 1)
 position = Vector2(-1, 0)
 rotation = 1.5708
 texture = ExtResource("4_wllqh")

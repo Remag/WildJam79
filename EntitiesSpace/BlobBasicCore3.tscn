@@ -4,12 +4,13 @@
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_tc5lk"]
 [ext_resource type="PackedScene" uid="uid://blldfvvl1358o" path="res://Bullets/PlayerBullets/PlasmaBulletPlayer.tscn" id="3_tc5lk"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_ovmsc"]
-[ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="5_xmu1c"]
+[ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="5_tc5lk"]
 [ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="6_tc5lk"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_ovmsc")
 _bulletPrefab = ExtResource("3_tc5lk")
+_rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_f3e6y"]
@@ -18,6 +19,7 @@ _bulletPrefab = ExtResource("3_tc5lk")
 _counter = 3
 _fromAngleDeg = -15.0
 _toAngleDeg = 15.0
+_isFullCircle = false
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [sub_resource type="Resource" id="Resource_ovmsc"]
@@ -26,6 +28,7 @@ _bulletPrefab = ExtResource("3_tc5lk")
 _counter = 5
 _fromAngleDeg = -30.0
 _toAngleDeg = 30.0
+_isFullCircle = false
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
@@ -41,75 +44,65 @@ _attackDelaySec = 0.25
 _bulletSpawner = SubResource("Resource_i685c")
 
 [node name="Wings" type="Sprite2D" parent="Level1"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Level2" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_tc5lk")
 _weaponHeatGenSpeed = 0
-_attackDelaySec = 0.25
 _bulletSpawner = SubResource("Resource_f3e6y")
 
 [node name="Wings" type="Sprite2D" parent="Level2"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Wings3" type="Sprite2D" parent="Level2"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(-30, -68)
 rotation = -0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Wings2" type="Sprite2D" parent="Level2"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(42, -68)
 rotation = 0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Level3" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_tc5lk")
 _weaponHeatGenSpeed = 0
-_attackDelaySec = 0.25
+_attackDelaySec = 0.15
 _bulletSpawner = SubResource("Resource_ovmsc")
 
 [node name="Wings" type="Sprite2D" parent="Level3"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(2, -72)
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Wings4" type="Sprite2D" parent="Level3"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(-12, -72)
 rotation = -0.191986
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Wings5" type="Sprite2D" parent="Level3"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(20, -72)
 rotation = 0.191986
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Wings3" type="Sprite2D" parent="Level3"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(-30, -68)
 rotation = -0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")
 
 [node name="Wings2" type="Sprite2D" parent="Level3"]
-modulate = Color(0, 0.894118, 0.607843, 1)
 position = Vector2(42, -68)
 rotation = 0.383972
 scale = Vector2(2, 2)
-texture = ExtResource("5_xmu1c")
+texture = ExtResource("5_tc5lk")

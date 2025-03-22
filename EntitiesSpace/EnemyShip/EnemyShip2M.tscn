@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=3 uid="uid://cwsgy7h1g2lu"]
+
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_pkp61"]
+[ext_resource type="Resource" uid="uid://b3lrr3spip8o" path="res://EntitiesSpace/Res/EnemyShip2MoveConfig.tres" id="2_c8rof"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_7ql7p"]
+[ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/BlobBasicCore.tscn" id="4_lm7mj"]
+[ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_6gdcl"]
+[ext_resource type="Texture2D" uid="uid://b2miw8wp8ppfk" path="res://Assets/SpaceShip/ShipBody/MiddlePurple.webp" id="6_pkp61"]
+[ext_resource type="PackedScene" uid="uid://bjcshqoy6jo72" path="res://ETurrets/TurretGunx3.tscn" id="7_pkp61"]
+[ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="8_8uf67"]
+[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="9_0josq"]
+[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="10_viqxj"]
+[ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="11_xvv3s"]
+[ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="12_c8rof"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="12_f0e0k"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="13_ucou6"]
+
+[sub_resource type="Resource" id="Resource_7ql7p"]
+script = ExtResource("12_c8rof")
+maxHp = 25
+metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
+
+[node name="EnemyShip2M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
+collision_layer = 2
+collision_mask = 0
+angular_damp = 1.0
+script = ExtResource("1_pkp61")
+_maxHp = 15
+SizeLevel = 1
+_configRigid = ExtResource("2_c8rof")
+_damageEffect = ExtResource("3_7ql7p")
+_damageEffectAnchor = NodePath("DamageAnchor")
+VisualNode = NodePath("Visuals")
+_trail = NodePath("ShipTrail")
+_offscreenIndicator = NodePath("OffscreenIndicator")
+_hitbox = NodePath("Hitbox")
+_shield = NodePath("Shield")
+GeneralExp = 35
+HealHp = 5
+CorePrefabs = Array[PackedScene]([ExtResource("4_lm7mj")])
+DecalPrefab = ExtResource("5_6gdcl")
+IsWeaponSource = true
+
+[node name="RigidBodyPolygon" type="CollisionPolygon2D" parent="."]
+position = Vector2(12, 1)
+rotation = 1.5708
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-17.9725, 19.0968, -20.1643, 14.9678, -0.438402, -14.9677, 19.7261, 14.9677, 15.7809, 19.0967, -0.438291, 21.1613)
+
+[node name="Visuals" type="Node2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="Main" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -24)
+scale = Vector2(2, 2)
+texture = ExtResource("6_pkp61")
+
+[node name="TurrenGunx3" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_pkp61")]
+position = Vector2(8.68798e-05, 24)
+_shootTarget = NodePath("../ShootMarker")
+_enemyShip = NodePath("../..")
+
+[node name="Decal" type="Sprite2D" parent="Visuals"]
+modulate = Color(0.833986, 0.000714068, 0.862334, 0.564706)
+position = Vector2(88, 36)
+scale = Vector2(0.404437, 0.287938)
+texture = ExtResource("8_8uf67")
+
+[node name="ShootMarker" type="Node2D" parent="Visuals"]
+position = Vector2(-0.000762939, -212)
+rotation = -1.5708
+scale = Vector2(4, 4)
+
+[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+visible = false
+position = Vector2(0, 4.5)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("9_0josq")
+centered = false
+offset = Vector2(-310, -110)
+
+[node name="ShipTrail" parent="." instance=ExtResource("10_viqxj")]
+position = Vector2(-23, 0)
+rotation = 1.5708
+
+[node name="Shield" parent="." instance=ExtResource("11_xvv3s")]
+_config = SubResource("Resource_7ql7p")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("12_f0e0k")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+
+[node name="HitboxPolygon" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(0.499998, -12)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-17.7534, 19.0968, -19.9452, 14.9678, -0.219242, -14.9677, 19.5069, 15.4838, 16.8768, 19.0967, -0.219131, 21.1613)
+
+[node name="DamageAnchor" type="Node2D" parent="."]
+position = Vector2(-7, -20)
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_ucou6")
+max_distance = 1000.0
+bus = &"sfx"

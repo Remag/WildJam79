@@ -14,11 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="12_yrrw3"]
 [ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="13_4yixe"]
 
-[sub_resource type="Resource" id="Resource_phaa5"]
+[sub_resource type="Resource" id="Resource_4yixe"]
 script = ExtResource("13_4yixe")
-maxHp = 5
+maxHp = 10
+metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
-[node name="EnemyShip" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip1M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 collision_mask = 0
 can_sleep = false
@@ -55,6 +56,9 @@ texture = ExtResource("7_0rmbg")
 
 [node name="TurretBlasterRed" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("5_0rmbg")]
 position = Vector2(-0.000376479, -104)
+_aiAttackShootDuration = 1.8
+_angularVelocity = 5.0
+_activationDistance = 1250.0
 _shootTarget = NodePath("../ShootMarker")
 _enemyShip = NodePath("../..")
 
@@ -80,6 +84,9 @@ offset = Vector2(-310, -110)
 position = Vector2(-24, 0)
 rotation = 1.5708
 
+[node name="Shield" parent="." instance=ExtResource("12_yrrw3")]
+_config = SubResource("Resource_4yixe")
+
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
 rotation = 1.5708
 collision_layer = 2
@@ -101,6 +108,3 @@ position = Vector2(1, 9)
 stream = ExtResource("10_4t031")
 max_distance = 1000.0
 bus = &"sfx"
-
-[node name="Shield" parent="." instance=ExtResource("12_yrrw3")]
-_config = SubResource("Resource_phaa5")
