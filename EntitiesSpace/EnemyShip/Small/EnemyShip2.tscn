@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bkurvmjdon55s" path="res://Assets/SpaceShip/ShipBody/SmallPurple.webp" id="5_i2eit"]
 [ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_x7nr2"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="6_flhrm"]
-[ext_resource type="Texture2D" uid="uid://clgsvsq57rtlw" path="res://TempAssets/Indicator.png" id="6_txwvw"]
 [ext_resource type="PackedScene" uid="uid://dt07exnbb24vc" path="res://ETurrets/TurretGun.tscn" id="7_h0e7l"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="7_nlicg"]
+[ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="9_nnv4o"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="13_iejuy"]
 [ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="14_7n8mk"]
 [ext_resource type="AudioStream" uid="uid://d1y8e1rqsjra7" path="res://Sounds/EnemyHit1.wav" id="14_pvsqp"]
@@ -60,13 +60,8 @@ position = Vector2(88, 36)
 scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("6_flhrm")
 
-[node name="OffscreenIndicator" type="Sprite2D" parent="." groups=["ClearOnRestart"]]
+[node name="OffscreenIndicator" parent="." groups=["ClearOnLevelClear", "ClearOnRestart"] instance=ExtResource("9_nnv4o")]
 visible = false
-position = Vector2(0, 4.5)
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("6_txwvw")
-centered = false
-offset = Vector2(-310, -110)
 
 [node name="ShipTrail" parent="." instance=ExtResource("7_nlicg")]
 position = Vector2(-23, 0)
