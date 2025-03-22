@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=21 format=3 uid="uid://dn7lrbtk7khla"]
+
+[ext_resource type="PackedScene" uid="uid://du2c5try3ydx5" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip3.tscn" id="1_ipd7g"]
+[ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_s3m5a"]
+[ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="3_p7co1"]
+[ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="4_5yuwp"]
+[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip2.tscn" id="5_tbsxv"]
+[ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="6_8l4mm"]
+
+[sub_resource type="Resource" id="Resource_qjlqr"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("4_5yuwp")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_ipd7g"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("5_tbsxv")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_s3m5a"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("1_ipd7g")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_2n8qo"]
+script = ExtResource("3_p7co1")
+EnemiesInfo = Array[Object]([SubResource("Resource_qjlqr"), SubResource("Resource_ipd7g"), SubResource("Resource_s3m5a")])
+SpawnTimePoint = 0.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_ynmxk"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("4_5yuwp")
+Count = 3
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_5yuwp"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("5_tbsxv")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_2jyi6"]
+script = ExtResource("3_p7co1")
+EnemiesInfo = Array[Object]([SubResource("Resource_ynmxk"), SubResource("Resource_5yuwp")])
+SpawnTimePoint = 15.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_s3ncq"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("4_5yuwp")
+Count = 2
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_isoa5"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("5_tbsxv")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_tbsxv"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("1_ipd7g")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_nquao"]
+script = ExtResource("3_p7co1")
+EnemiesInfo = Array[Object]([SubResource("Resource_s3ncq"), SubResource("Resource_isoa5"), SubResource("Resource_tbsxv")])
+SpawnTimePoint = 35.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[sub_resource type="Resource" id="Resource_8l4mm"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("4_5yuwp")
+Count = 4
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_1fki3"]
+script = ExtResource("2_s3m5a")
+Prefab = ExtResource("5_tbsxv")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_p7co1"]
+script = ExtResource("3_p7co1")
+EnemiesInfo = Array[Object]([SubResource("Resource_8l4mm"), SubResource("Resource_1fki3")])
+SpawnTimePoint = 55.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[resource]
+script = ExtResource("6_8l4mm")
+WavesInfo = Array[Object]([SubResource("Resource_2n8qo"), SubResource("Resource_2jyi6"), SubResource("Resource_nquao"), SubResource("Resource_p7co1")])
+MinShipsAliveForNextWave = 0
+metadata/_custom_type_script = "uid://3et64xg5xbi4"
