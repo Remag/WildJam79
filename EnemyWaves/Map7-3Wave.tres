@@ -18,7 +18,7 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="Resource" id="Resource_nuc6u"]
 script = ExtResource("2_lkonk")
-Prefab = ExtResource("3_e14g8")
+Prefab = ExtResource("8_llygs")
 Count = 2
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
