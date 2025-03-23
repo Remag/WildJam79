@@ -42,7 +42,7 @@ _shootSoundPlayer = NodePath("ShootSoundPlayer")
 [node name="Level1" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_2aqgo")
-_attackDelaySec = 3.0
+_attackDelaySec = 2.0
 _bulletSpawner = SubResource("Resource_i685c")
 
 [node name="Wings" type="Sprite2D" parent="Level1"]
@@ -53,7 +53,7 @@ texture = ExtResource("5_xuh3f")
 [node name="Level2" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_2aqgo")
-_attackDelaySec = 4.0
+_attackDelaySec = 2.5
 _bulletSpawner = SubResource("Resource_q2r8k")
 
 [node name="Wings" type="Sprite2D" parent="Level2"]
@@ -70,7 +70,7 @@ texture = ExtResource("5_xuh3f")
 [node name="Level3" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_2aqgo")
-_attackDelaySec = 5.0
+_attackDelaySec = 2.5
 _bulletSpawner = SubResource("Resource_2aqgo")
 
 [node name="Wings" type="Sprite2D" parent="Level3"]
