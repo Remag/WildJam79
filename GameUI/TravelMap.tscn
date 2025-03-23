@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cek8px8d5iiw8"]
+[gd_scene load_steps=44 format=3 uid="uid://cek8px8d5iiw8"]
 
 [ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
 [ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cd423uj511yvd" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip1B.tscn" id="16_yw4l6"]
 [ext_resource type="PackedScene" uid="uid://b1y4l6y4tgo3x" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip2B.tscn" id="17_lhbwo"]
 [ext_resource type="Resource" uid="uid://bq1atcu446iai" path="res://EnemyWaves/Map9.tres" id="17_qpfd0"]
+[ext_resource type="PackedScene" uid="uid://b8p2vqn1kn1s8" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip2BMiniBoss.tscn" id="18_5gcty"]
 [ext_resource type="Resource" uid="uid://cw83narv1spr5" path="res://EnemyWaves/Map6-1Wave.tres" id="22_74msd"]
 [ext_resource type="Resource" uid="uid://dkh1b5du12dll" path="res://EnemyWaves/Map6-2Wave.tres" id="23_rh1lp"]
 [ext_resource type="Resource" uid="uid://m3oeau77enhh" path="res://EnemyWaves/Map6-3Wave.tres" id="24_q2yjy"]
@@ -79,7 +80,7 @@ _normalStar = ExtResource("6_g1d0w")
 _activeStar = ExtResource("7_t8u7x")
 _completedStar = ExtResource("8_t8u7x")
 _finalStar = ExtResource("9_bh7x0")
-_hintOrder = Array[PackedScene]([ExtResource("10_e8a67"), ExtResource("11_yw4l6"), ExtResource("12_5gcty"), ExtResource("16_e8a67"), ExtResource("14_gwatr"), ExtResource("15_0akcc"), ExtResource("16_yw4l6"), ExtResource("17_lhbwo")])
+_hintOrder = Array[PackedScene]([ExtResource("10_e8a67"), ExtResource("11_yw4l6"), ExtResource("12_5gcty"), ExtResource("16_e8a67"), ExtResource("14_gwatr"), ExtResource("15_0akcc"), ExtResource("16_yw4l6"), ExtResource("17_lhbwo"), ExtResource("18_5gcty")])
 
 [node name="Panel" type="TextureRect" parent="."]
 layout_mode = 0
