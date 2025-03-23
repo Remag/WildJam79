@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g8t2"]
 size = Vector2(2.7907, 14.2636)
 
-[node name="Tentacle" type="Node2D" node_paths=PackedStringArray("_tentacleLine", "_catchSoundPlayer")]
+[node name="Tentacle" type="Node2D" node_paths=PackedStringArray("_tentacleLine")]
 z_index = -1
 script = ExtResource("1_st2yl")
 _mouseGravity = 25.0
@@ -18,8 +18,8 @@ TentacleMaxTime = 1.5
 _tentacleExtendSpeed = 800.0
 _tentacleShrinkSpeed = 1800.0
 _tentacleAttachDelay = 0.4
+_pullForce = 5000.0
 _tentacleLine = NodePath("Scaler/TentacleMid")
-_catchSoundPlayer = NodePath("")
 
 [node name="Scaler" type="Node2D" parent="."]
 scale = Vector2(0.8, 0.8)

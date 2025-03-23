@@ -13,6 +13,8 @@ public partial class Tentacle : Node2D {
     private double _tentacleAttachDelay = 0;
     [Export]
     private double _lineSavePeriod;
+    [Export]
+    private float _pullForce = 500;
 
     protected enum TentacleMode {
         Extend,
@@ -111,7 +113,7 @@ public partial class Tentacle : Node2D {
             SetShrink();
             if( !AttachedEntity.TryTentaclePull( this ) ) {
                 var endDir = getTentacleEndDir();
-                AttachedEntity.ApplyCentralImpulse( -endDir.Normalized() * 500 );
+                AttachedEntity.ApplyCentralImpulse( -endDir.Normalized() * _pullForce );
                 AttachedEntity = null;
             }
         }
