@@ -10,8 +10,9 @@ config_version=5
 
 [application]
 
-config/name="WildJam78"
-run/main_scene="uid://xhv0kaj7ymrv"
+config/name="Assimilation"
+config/version="1.0"
+run/main_scene="uid://dfh1jxxgde0rm"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -90,3 +91,7 @@ Pause={
 [physics]
 
 2d/default_gravity=0.0
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
