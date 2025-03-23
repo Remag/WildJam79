@@ -46,7 +46,7 @@ public partial class GameField : Node {
     [Export]
     private FinalCutscene _finalCutscene;
 
-    private EnemyNodeInfo _currentNodeInfo;
+    public EnemyNodeInfo CurrentNodeInfo;
     private float _currentLevelTimer = 0;
     private bool _isSpawningEnemies = false;
     private int _nextWaveIndex = 0;
@@ -69,8 +69,8 @@ public partial class GameField : Node {
     {
         if( Game.Player != null && _isSpawningEnemies ) {
             _currentLevelTimer += (float)delta;
-            if( _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count ) {
-                var waveInfo = _currentNodeInfo.WavesInfo[_nextWaveIndex];
+            if( CurrentNodeInfo != null && _nextWaveIndex < CurrentNodeInfo.WavesInfo.Count ) {
+                var waveInfo = CurrentNodeInfo.WavesInfo[_nextWaveIndex];
                 if( _currentLevelTimer >= waveInfo.SpawnTimePoint ) {
                     SpawnWave( waveInfo );
                     _nextWaveIndex++;
@@ -182,7 +182,7 @@ public partial class GameField : Node {
             _finalCutscene.Play();
             return;
         }
-        _currentNodeInfo = nodeInfo;
+        CurrentNodeInfo = nodeInfo;
         _isTestWaveActive = false;
         _idleUiControl.Visible = nodeInfo.WavesInfo.Count == 0;
         if( locationBg == null ) {
@@ -209,7 +209,7 @@ public partial class GameField : Node {
         if( Game.Player != null ) {
             _savedPlayerState = Game.Player.SaveState();
         }
-        _currentNodeInfo = _testWaveNodeInfo;
+        CurrentNodeInfo = _testWaveNodeInfo;
         _isTestWaveActive = true;
 
         _idleUiControl.Visible = false;
@@ -248,8 +248,8 @@ public partial class GameField : Node {
 
         var existingShips = GetTree().GetNodesInGroup( "Enemy" );
         var aliveCount = getAliveCount( existingShips );
-        var hasNewWaves = _currentNodeInfo != null && _nextWaveIndex < _currentNodeInfo.WavesInfo.Count;
-        if( _currentNodeInfo != null && aliveCount == _currentNodeInfo.MinShipsAliveForNextWave ) {
+        var hasNewWaves = CurrentNodeInfo != null && _nextWaveIndex < CurrentNodeInfo.WavesInfo.Count;
+        if( CurrentNodeInfo != null && aliveCount == CurrentNodeInfo.MinShipsAliveForNextWave ) {
             SpawnNextWave();
         }
 
@@ -324,7 +324,7 @@ public partial class GameField : Node {
     {
         _nextWaveIndex = 0;
         if( _isTestWaveActive ) {
-            _currentNodeInfo = null;
+            CurrentNodeInfo = null;
         }
 
         Game.Field.WorldAudioManager.ButtonClickPlay();
@@ -354,8 +354,8 @@ public partial class GameField : Node {
 
     private void SpawnNextWave()
     {
-        if( _nextWaveIndex < _currentNodeInfo.WavesInfo.Count ) {
-            var waveInfo = _currentNodeInfo.WavesInfo[_nextWaveIndex];
+        if( _nextWaveIndex < CurrentNodeInfo.WavesInfo.Count ) {
+            var waveInfo = CurrentNodeInfo.WavesInfo[_nextWaveIndex];
             SpawnWave( waveInfo );
             _nextWaveIndex++;
         }

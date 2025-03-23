@@ -40,5 +40,7 @@ metadata/_custom_type_script = "uid://djvcagko6b25v"
 script = ExtResource("4_62jat")
 WavesInfo = Array[Object]([SubResource("Resource_qpfd0"), SubResource("Resource_liq8u")])
 MinShipsAliveForNextWave = 0
+HeroGrowthOnClear = 0
+WeaponLevelsOnClear = null
 IsFinalNode = false
 metadata/_custom_type_script = "uid://3et64xg5xbi4"

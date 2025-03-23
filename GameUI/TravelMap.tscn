@@ -51,6 +51,8 @@ events = [SubResource("InputEventKey_k420c")]
 script = ExtResource("39_yw4l6")
 WavesInfo = Array[Object]([])
 MinShipsAliveForNextWave = 1
+HeroGrowthOnClear = 0
+WeaponLevelsOnClear = null
 IsFinalNode = true
 metadata/_custom_type_script = "uid://3et64xg5xbi4"
 

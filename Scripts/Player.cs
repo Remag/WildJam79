@@ -27,7 +27,7 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<PackedScene> _autoTentaclesBySize;
     [Export]
     private Godot.Collections.Array<int> _tentacleDamageByLevel;
-    
+
     [Export]
     private ParentArea2D _autoTentacleArea;
 
@@ -163,7 +163,7 @@ public partial class Player : RigidBody2D {
 
     private async void delayEatAllEnemies()
     {
-        await ToSignal( GetTree().CreateTimer( 0.75, processAlways:false, processInPhysics:true ), "timeout" );
+        await ToSignal( GetTree().CreateTimer( 0.75, processAlways: false, processInPhysics: true ), "timeout" );
         var enemies = GetTree().GetNodesInGroup( "Enemy" );
         foreach( var enemy in enemies ) {
             if( IsInstanceValid( enemy ) ) {
@@ -181,7 +181,7 @@ public partial class Player : RigidBody2D {
         ModulateEyesColor();
 
         DestroyTentacle( src );
-        
+
         assimilateGeneral( food );
         if( food.IsWeaponSource ) {
             AssimilateWeapon( food );
@@ -210,10 +210,10 @@ public partial class Player : RigidBody2D {
 
     public bool TryGrow( bool isInstant = false )
     {
-        if( CurrentGrowthLevel >= GrowthXpByLvl.Count ) {
+        var targetXp = getTargetLevelXp();
+        if( targetXp < 0 ) {
             return false;
         }
-        var targetXp = GrowthXpByLvl[CurrentGrowthLevel];
         if( _currentGrowthXp < targetXp ) {
             return false;
         }
@@ -233,6 +233,14 @@ public partial class Player : RigidBody2D {
         _animations.Play( animName, customSpeed: isInstant ? 100 : 1 );
         _autoTentacleArea.SetDeferred( Area2D.PropertyName.Monitoring, CurrentGrowthLevel >= 2 );
         return true;
+    }
+
+    public int getTargetLevelXp()
+    {
+        if( CurrentGrowthLevel >= GrowthXpByLvl.Count ) {
+            return -1;
+        }
+        return GrowthXpByLvl[CurrentGrowthLevel];
     }
 
     public void TryRegrowWeapons()
@@ -509,8 +517,32 @@ public partial class Player : RigidBody2D {
     private void updateVictoryEating()
     {
         if( _autoTentacles.Count == 0 ) {
+            gainSafetyLevels();
             endVictoryAnimation();
         }
+    }
+
+    private void gainSafetyLevels()
+    {
+        var target = Game.Field.CurrentNodeInfo;
+        if( CurrentGrowthLevel < target.HeroGrowthOnClear ) {
+            var targetXp = getTargetLevelXp();
+            if( targetXp > 0 ) {
+                    GD.Print( "Safety level" );
+                _currentGrowthXp = targetXp;
+            }
+        }
+
+        foreach( var data in target.WeaponLevelsOnClear ) {
+            var existingWeapon = _activeWeapons.Find( ( target ) => target.SrcCore == data.Key );
+            if( existingWeapon != null ) {
+                if( existingWeapon.CurrentLevel < data.Value ) {
+                    GD.Print( "Safety weapon" );
+                    existingWeapon.GainExp( existingWeapon.GetRequiredExp() );
+                }
+            }
+        }
+
     }
 
     private void endVictoryAnimation()
@@ -563,15 +595,14 @@ public partial class Player : RigidBody2D {
 
     public void OnAutoTentacleAreaEntered( Node node )
     {
-        switch (node)
-        {
+        switch( node ) {
             case EnemyShip enemyShip: {
-                if( enemyShip.SizeLevel == 0 ) {
-                    CallDeferred( MethodName.EatTarget, enemyShip );
-                }
+                    if( enemyShip.SizeLevel == 0 ) {
+                        CallDeferred( MethodName.EatTarget, enemyShip );
+                    }
 
-                break;
-            }
+                    break;
+                }
             case FoodSource foodSource:
                 CallDeferred( MethodName.EatTarget, foodSource );
                 break;

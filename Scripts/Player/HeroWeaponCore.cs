@@ -13,7 +13,7 @@ public partial class HeroWeaponCore : Node2D {
     public PackedScene SrcCore { get; private set; }
 
     public int _currentExp = 0;
-    public int _currentLevel = 0;
+    public int CurrentLevel = 0;
 
     public void Initialize( PackedScene src )
     {
@@ -26,16 +26,25 @@ public partial class HeroWeaponCore : Node2D {
             node.Visible = false;
         }
 
-        _levelNodes[_currentLevel].Visible = true;
+        _levelNodes[CurrentLevel].Visible = true;
+    }
+
+    public int GetRequiredExp()
+    {
+        if( CurrentLevel >= _levelReqs.Count ) {
+            return -1;
+        }
+        var currentReq = _levelReqs[CurrentLevel];
+        return currentReq - _currentExp;
     }
 
     public void GainExp( int exp )
     {
-        if( _currentLevel >= _levelReqs.Count ) {
+        if( CurrentLevel >= _levelReqs.Count ) {
             return;
         }
 
-        var currentReq = _levelReqs[_currentLevel];
+        var currentReq = _levelReqs[CurrentLevel];
         _currentExp += exp;
         if( _currentExp >= currentReq ) {
             _currentExp -= currentReq;
@@ -48,14 +57,14 @@ public partial class HeroWeaponCore : Node2D {
 
     private void advanceLevel()
     {
-        _levelNodes[_currentLevel].Visible = false;
-        _currentLevel++;
-        _levelNodes[_currentLevel].Visible = true;
+        _levelNodes[CurrentLevel].Visible = false;
+        CurrentLevel++;
+        _levelNodes[CurrentLevel].Visible = true;
     }
 
     public void UpdateShooting( double delta )
     {
-        var shooted = _levelNodes[_currentLevel].UpdateShooting( delta );
+        var shooted = _levelNodes[CurrentLevel].UpdateShooting( delta );
         if( shooted )
             _shootSoundPlayer.Play();
     }
@@ -64,16 +73,16 @@ public partial class HeroWeaponCore : Node2D {
     {
         var state = new SavedState();
         state._currentExp = _currentExp;
-        state._currentLevel = _currentLevel;
+        state._currentLevel = CurrentLevel;
         return state;
     }
 
     public void RestoreState( SavedState state )
     {
-        _levelNodes[_currentLevel].Visible = false;
+        _levelNodes[CurrentLevel].Visible = false;
         _currentExp = state._currentExp;
-        _currentLevel = state._currentLevel;
-        _levelNodes[_currentLevel].Visible = true;
+        CurrentLevel = state._currentLevel;
+        _levelNodes[CurrentLevel].Visible = true;
     }
 
     public class SavedState {
