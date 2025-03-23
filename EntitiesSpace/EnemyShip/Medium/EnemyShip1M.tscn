@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="6_t1ruc"]
 [ext_resource type="PackedScene" uid="uid://c5bkr0g03g5m0" path="res://ETurrets/TurretBlasterRedMedium.tscn" id="7_3kpue"]
 [ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="8_e42u5"]
-[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_d4na3"]
+[ext_resource type="PackedScene" uid="uid://d1jseys4hjwc2" path="res://EntitiesSpace/ShipTrailBlue.tscn" id="10_o0bpd"]
 [ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="10_x0ej3"]
 [ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="11_borw0"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="12_jxgvp"]
@@ -34,7 +34,7 @@ _configRigid = ExtResource("2_xcfu4")
 _damageEffect = ExtResource("3_e42u5")
 _damageEffectAnchor = NodePath("DamageAnchor")
 VisualNode = NodePath("Visuals")
-_trail = NodePath("ShipTrail")
+_trail = NodePath("ShipTrail2")
 _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
@@ -80,9 +80,9 @@ _enemyShip = NodePath("../..")
 [node name="OffscreenIndicator" parent="." instance=ExtResource("8_e42u5")]
 visible = false
 
-[node name="ShipTrail" parent="." instance=ExtResource("9_d4na3")]
+[node name="ShipTrail2" parent="." instance=ExtResource("10_o0bpd")]
 position = Vector2(-84, 0)
-rotation = 1.5708
+rotation = 1.57079
 scale = Vector2(2, 2)
 
 [node name="Shield" parent="." node_paths=PackedStringArray("EnemyShip") instance=ExtResource("10_x0ej3")]

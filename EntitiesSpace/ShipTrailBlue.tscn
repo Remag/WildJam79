@@ -1,0 +1,207 @@
+[gd_scene load_steps=22 format=3 uid="uid://d1jseys4hjwc2"]
+
+[ext_resource type="Script" uid="uid://bwkdsa8qgkx1b" path="res://Scripts/ShipTrail.cs" id="1_72l4k"]
+[ext_resource type="Texture2D" uid="uid://bslfrtd25ikba" path="res://Assets/Vfx/VfxGradient.png" id="2_rkhe0"]
+[ext_resource type="Texture2D" uid="uid://bibhjneliqa6w" path="res://Assets/Vfx/VfxJet.png" id="3_oc3kk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jqvad"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_3bkxl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.46, 1), 0.0, 0.0, 0, 0, Vector2(0.92, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_icd0j"]
+curve = SubResource("Curve_3bkxl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1r0v6"]
+particle_flag_disable_z = true
+angle_min = -35.4
+angle_max = 118.0
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 32.79
+initial_velocity_max = 112.64
+angular_velocity_min = 408.01
+angular_velocity_max = 408.01
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.1
+scale_max = 0.15
+alpha_curve = SubResource("CurveTexture_icd0j")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_84yjt"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_f2mgd"]
+resource_name = "Appear"
+length = 0.2667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Jet:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Jet:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3ui6c"]
+resource_name = "Oscillate"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Jet:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.85098), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Jet:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.97), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x5d20"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Jet:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Jet:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Jet:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57qjt"]
+_data = {
+&"Appear": SubResource("Animation_f2mgd"),
+&"Oscillate": SubResource("Animation_3ui6c"),
+&"RESET": SubResource("Animation_x5d20")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_doljh"]
+animation = &"Appear"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5d42c"]
+animation = &"Appear"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ly06"]
+animation = &"Oscillate"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tmwf2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ipihc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7ni1i"]
+switch_mode = 2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g388c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uoedw"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_higs2"]
+states/Appear/node = SubResource("AnimationNodeAnimation_doljh")
+states/Appear/position = Vector2(351, 52)
+states/Disappear/node = SubResource("AnimationNodeAnimation_5d42c")
+states/Disappear/position = Vector2(375, 152)
+states/Oscillate/node = SubResource("AnimationNodeAnimation_7ly06")
+states/Oscillate/position = Vector2(536, 101)
+transitions = ["Start", "Appear", SubResource("AnimationNodeStateMachineTransition_tmwf2"), "Appear", "Oscillate", SubResource("AnimationNodeStateMachineTransition_ipihc"), "Oscillate", "End", SubResource("AnimationNodeStateMachineTransition_7ni1i"), "Oscillate", "Disappear", SubResource("AnimationNodeStateMachineTransition_g388c"), "Disappear", "Appear", SubResource("AnimationNodeStateMachineTransition_uoedw")]
+
+[node name="ShipTrail" type="Node2D" node_paths=PackedStringArray("_particles", "_animations")]
+script = ExtResource("1_72l4k")
+_particles = NodePath("Stream")
+_animations = NodePath("AnimationTree")
+
+[node name="Stream" type="GPUParticles2D" parent="."]
+modulate = Color(0.298616, 0.831526, 0.611255, 1)
+material = SubResource("CanvasItemMaterial_jqvad")
+position = Vector2(0, 9)
+rotation = 3.14159
+amount = 24
+texture = ExtResource("2_rkhe0")
+process_material = SubResource("ParticleProcessMaterial_1r0v6")
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(0, 0.908594, 0.871, 1)
+
+[node name="Jet" type="Sprite2D" parent="Node2D"]
+material = SubResource("CanvasItemMaterial_84yjt")
+position = Vector2(0, -1)
+rotation = -3.14159
+texture = ExtResource("3_oc3kk")
+offset = Vector2(0.148918, -34.331)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_57qjt")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_higs2")
+anim_player = NodePath("../AnimationPlayer")
