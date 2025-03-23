@@ -8,6 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_wk1nn"]
 script = ExtResource("3_skhjr")
+AlphaTweenTime = 0.5
 metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
@@ -22,7 +23,7 @@ _moveLogic = ExtResource("2_ygdoa")
 _lifespanLogic = SubResource("Resource_wk1nn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(4.42803e-06, 0.776993, 0.72994, 1)
+modulate = Color(0, 0.811765, 0.145098, 1)
 position = Vector2(0, -1)
 rotation = 1.5708
 texture = ExtResource("4_1fycg")
@@ -35,6 +36,7 @@ RealParent = NodePath("..")
 metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a1jof")
 

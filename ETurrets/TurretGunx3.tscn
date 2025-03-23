@@ -32,6 +32,7 @@ _spawnPoint = NodePath("TurretBase/SpawnPoint")
 
 [node name="TurretBase" type="Node2D" parent="."]
 position = Vector2(-1, 10)
+scale = Vector2(1.5, 1.5)
 
 [node name="GuntPart1" type="Sprite2D" parent="TurretBase"]
 position = Vector2(33, -104)

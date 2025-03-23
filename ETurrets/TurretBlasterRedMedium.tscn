@@ -16,33 +16,31 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 [node name="TurretBlasterRedMedium" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_spawnPoint")]
 script = ExtResource("1_vixyw")
 _aiAttackShootDuration = 1.6
-_aiAttackShootPauseMin = 1.5
-_aiAttackShootPauseMax = 2.0
+_aiAttackShootPauseMin = 2.0
+_aiAttackShootPauseMax = 2.5
 _bulletSpawner = SubResource("Resource_guvrn")
 _angularVelocity = 5.0
 _activationDistance = 10000.0
 _shootSoundPlayer2D = NodePath("Shoot2D")
 _shootTarget = NodePath("ShootMarker")
-_turretBase = NodePath("Scale/TurretBase")
-_spawnPoint = NodePath("Scale/TurretBase/SpawnPoint")
+_turretBase = NodePath("TurretBase")
+_spawnPoint = NodePath("TurretBase/SpawnPoint")
 
-[node name="Scale" type="Node2D" parent="."]
+[node name="TurretBase" type="Node2D" parent="."]
+position = Vector2(-3.05176e-05, 8)
 scale = Vector2(2, 2)
 
-[node name="TurretBase" type="Node2D" parent="Scale"]
-position = Vector2(-1.52588e-05, 4)
-
-[node name="Turret" type="Sprite2D" parent="Scale/TurretBase"]
+[node name="Turret" type="Sprite2D" parent="TurretBase"]
 position = Vector2(-24.0001, -31.9999)
 texture = ExtResource("4_la8lt")
 centered = false
 
-[node name="Turret" type="Sprite2D" parent="Scale/TurretBase/Turret"]
+[node name="Turret" type="Sprite2D" parent="TurretBase/Turret"]
 position = Vector2(-4.00023, -64)
 texture = ExtResource("5_1kqid")
 centered = false
 
-[node name="SpawnPoint" type="Node2D" parent="Scale/TurretBase"]
+[node name="SpawnPoint" type="Node2D" parent="TurretBase"]
 position = Vector2(-1.99998, -93)
 
 [node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]

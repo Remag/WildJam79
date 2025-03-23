@@ -12,7 +12,7 @@ AlphaTweenTime = 0.5
 metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h7k3a"]
-radius = 15.0
+radius = 19.0263
 
 [node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
 light_mask = 4
@@ -24,8 +24,9 @@ _bulletDamage = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.74902, 0, 1)
+position = Vector2(1, 1)
 rotation = -1.5708
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_eb84w")
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
@@ -37,7 +38,6 @@ RealParent = NodePath("..")
 metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2(-5, 14)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_h7k3a")

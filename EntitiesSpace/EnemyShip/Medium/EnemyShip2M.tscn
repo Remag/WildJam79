@@ -19,7 +19,7 @@
 
 [sub_resource type="Resource" id="Resource_7ql7p"]
 script = ExtResource("12_c8rof")
-maxHp = 25
+maxHp = 30
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
 [node name="EnemyShip2M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
@@ -27,7 +27,7 @@ collision_layer = 2
 mass = 10.0
 angular_damp = 1.0
 script = ExtResource("1_pkp61")
-_maxHp = 15
+_maxHp = 25
 SizeLevel = 1
 _configRigid = ExtResource("2_c8rof")
 _damageEffect = ExtResource("3_7ql7p")
@@ -38,7 +38,6 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 _hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
-GeneralExp = 35
 HealHp = 12
 CorePrefabs = Array[PackedScene]([ExtResource("4_lm7mj")])
 DecalPrefab = ExtResource("5_6gdcl")
