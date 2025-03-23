@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cek8px8d5iiw8"]
+[gd_scene load_steps=43 format=3 uid="uid://cek8px8d5iiw8"]
 
 [ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
 [ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
@@ -38,6 +38,7 @@
 [ext_resource type="Resource" uid="uid://dyeq35bq3j7hj" path="res://EnemyWaves/Map7-1Wave.tres" id="25_os0sj"]
 [ext_resource type="Resource" uid="uid://ceu7vnai70a3q" path="res://EnemyWaves/Map7-2Wave.tres" id="26_jdl5w"]
 [ext_resource type="Resource" uid="uid://bi0dmctou1b4b" path="res://EnemyWaves/Map7-3Wave.tres" id="27_tux2v"]
+[ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="39_yw4l6"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_k420c"]
 pressed = true
@@ -45,6 +46,13 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_qk8cv"]
 events = [SubResource("InputEventKey_k420c")]
+
+[sub_resource type="Resource" id="Resource_5gcty"]
+script = ExtResource("39_yw4l6")
+WavesInfo = Array[Object]([])
+MinShipsAliveForNextWave = 1
+IsFinalNode = true
+metadata/_custom_type_script = "uid://3et64xg5xbi4"
 
 [node name="TravelMap" type="Control" node_paths=PackedStringArray("_startNode", "_finalNode", "_hintMarginContainer", "_hintContainer", "NodeContainer")]
 layout_mode = 3
@@ -286,7 +294,7 @@ offset_left = 537.0
 offset_top = 142.0
 offset_right = 554.0
 offset_bottom = 158.0
-_nodeInfo = ExtResource("17_qpfd0")
+_nodeInfo = SubResource("Resource_5gcty")
 
 [node name="Margin" type="MarginContainer" parent="."]
 visible = false
