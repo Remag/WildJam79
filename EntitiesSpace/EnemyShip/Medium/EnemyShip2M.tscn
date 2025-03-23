@@ -19,7 +19,7 @@
 
 [sub_resource type="Resource" id="Resource_7ql7p"]
 script = ExtResource("12_c8rof")
-maxHp = 100
+maxHp = 75
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
 [node name="EnemyShip2M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]

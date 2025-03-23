@@ -19,7 +19,7 @@
 
 [sub_resource type="Resource" id="Resource_4yixe"]
 script = ExtResource("11_borw0")
-maxHp = 35
+maxHp = 50
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
 [node name="EnemyShip1M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
@@ -28,7 +28,7 @@ mass = 10.0
 can_sleep = false
 angular_damp = 1.0
 script = ExtResource("1_bopgb")
-_maxHp = 25
+_maxHp = 35
 SizeLevel = 1
 _configRigid = ExtResource("2_xcfu4")
 _damageEffect = ExtResource("3_e42u5")
