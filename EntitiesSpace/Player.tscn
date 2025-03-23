@@ -603,34 +603,40 @@ scale = Vector2(0.5, 0.5)
 [node name="BodySmall" type="Sprite2D" parent="Visual/Small"]
 texture = ExtResource("3_hpvjx")
 
+[node name="Blob4" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-76, -62)
+rotation = -1.30901
+scale = Vector2(0.81, 0.81)
+
+[node name="Blob5" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(-56, 84)
+rotation = -2.3562
+scale = Vector2(0.81, 0.81)
+
+[node name="Blob6" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+visible = false
+position = Vector2(104, -9.53674e-07)
+rotation = 1.57079
+scale = Vector2(0.81, 0.81)
+
 [node name="Blob1" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+visible = false
 position = Vector2(44, -98)
 rotation = 0.261799
 scale = Vector2(0.81, 0.81)
 
 [node name="Blob2" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+visible = false
 position = Vector2(60, 82)
 rotation = 2.35619
 scale = Vector2(0.81, 0.81)
 
 [node name="Blob3" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+visible = false
 position = Vector2(-100, 12)
 rotation = 4.71238
-scale = Vector2(0.81, 0.81)
-
-[node name="Blob4" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
-position = Vector2(-76, -62)
-rotation = 4.97418
-scale = Vector2(0.81, 0.81)
-
-[node name="Blob5" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
-position = Vector2(-56, 84)
-rotation = 3.92699
-scale = Vector2(0.81, 0.81)
-
-[node name="Blob6" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
-position = Vector2(104, -9.53674e-07)
-rotation = 1.57079
 scale = Vector2(0.81, 0.81)
 
 [node name="Eye" type="Sprite2D" parent="Visual/Small"]
