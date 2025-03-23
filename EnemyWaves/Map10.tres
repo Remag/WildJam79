@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=22 format=3 uid="uid://bnij20bv6uuny"]
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=23 format=3 uid="uid://bnij20bv6uuny"]
 
 [ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip1M.tscn" id="1_svcbc"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_nmnfp"]
@@ -40,9 +40,15 @@ Prefab = ExtResource("6_3vrk2")
 Count = 2
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
+[sub_resource type="Resource" id="Resource_nmnfp"]
+script = ExtResource("2_nmnfp")
+Prefab = ExtResource("7_nmnfp")
+Count = 10
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
 [sub_resource type="Resource" id="Resource_0kh7w"]
 script = ExtResource("4_4mb2k")
-EnemiesInfo = Array[Object]([SubResource("Resource_0wifn"), SubResource("Resource_s6b4y")])
+EnemiesInfo = Array[Object]([SubResource("Resource_0wifn"), SubResource("Resource_s6b4y"), SubResource("Resource_nmnfp")])
 SpawnTimePoint = 15.0
 metadata/_custom_type_script = "uid://djvcagko6b25v"
 

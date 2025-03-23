@@ -1,9 +1,29 @@
-[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=7 format=3 uid="uid://cmesubj825tfj"]
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=12 format=3 uid="uid://cmesubj825tfj"]
 
 [ext_resource type="PackedScene" uid="uid://b8p2vqn1kn1s8" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip2BMiniBoss.tscn" id="1_bwsg6"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_osd1q"]
+[ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip2.tscn" id="3_hug86"]
 [ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="4_iydnn"]
 [ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="5_4vfbt"]
+[ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip1M.tscn" id="5_hug86"]
+
+[sub_resource type="Resource" id="Resource_7mjdx"]
+script = ExtResource("2_osd1q")
+Prefab = ExtResource("5_hug86")
+Count = 3
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_g5p42"]
+script = ExtResource("2_osd1q")
+Prefab = ExtResource("3_hug86")
+Count = 6
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_c6a11"]
+script = ExtResource("4_iydnn")
+EnemiesInfo = Array[Object]([SubResource("Resource_7mjdx"), SubResource("Resource_g5p42")])
+SpawnTimePoint = 0.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
 
 [sub_resource type="Resource" id="Resource_rt00r"]
 script = ExtResource("2_osd1q")
@@ -14,13 +34,13 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 [sub_resource type="Resource" id="Resource_ysdgj"]
 script = ExtResource("4_iydnn")
 EnemiesInfo = Array[Object]([SubResource("Resource_rt00r")])
-SpawnTimePoint = 0.0
+SpawnTimePoint = 1000.0
 metadata/_custom_type_script = "uid://djvcagko6b25v"
 
 [resource]
 script = ExtResource("5_4vfbt")
-WavesInfo = Array[Object]([SubResource("Resource_ysdgj")])
-MinShipsAliveForNextWave = 1
+WavesInfo = Array[Object]([SubResource("Resource_c6a11"), SubResource("Resource_ysdgj")])
+MinShipsAliveForNextWave = 0
 HeroGrowthOnClear = 0
 WeaponLevelsOnClear = null
 IsFinalNode = false
