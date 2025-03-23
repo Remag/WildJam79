@@ -306,10 +306,11 @@ public partial class Player : RigidBody2D {
     {
         var targetXp = CurrentGrowthLevel < GrowthXpByLvl.Count ? GrowthXpByLvl[CurrentGrowthLevel] : 1000;
         var chunkXp = targetXp * 1.0f / _currentBlobs.Count;
-        var blobIndex = (int)Math.Floor( _currentGrowthXp / chunkXp );
+        var blobIndex = (int)Math.Floor( _currentGrowthXp / chunkXp ) + 3;
         if( blobIndex >= _currentBlobs.Count ) {
             return;
         }
+        GD.Print( chunkXp, " ",targetXp, " ", blobIndex, " ", _currentGrowthXp );
         var targetBlob = _currentBlobs[blobIndex];
         if( !targetBlob.Visible ) {
             attachBlob( decal );
