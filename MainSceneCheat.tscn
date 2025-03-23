@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=38 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_rvy8n"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="5_2lnc8"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_huaye"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="6_alxon"]
+[ext_resource type="Script" uid="uid://xyj0kgbs56k5" path="res://Scripts/UI/HideOnPressed.cs" id="6_kj77h"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="7_t7ilo"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="8_hq7hl"]
 [ext_resource type="PackedScene" uid="uid://cq5hjo8vkc5v5" path="res://GameUI/WarpButton.tscn" id="8_viwfu"]
@@ -31,6 +32,13 @@
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
 [ext_resource type="Resource" uid="uid://bi0dmctou1b4b" path="res://EnemyWaves/Map7-3Wave.tres" id="26_2lnc8"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_k420c"]
+pressed = true
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_2lnc8"]
+events = [SubResource("InputEventKey_k420c")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtmsi"]
 shader = ExtResource("6_alxon")
@@ -56,11 +64,28 @@ _hud = NodePath("HUD")
 [node name="Cutscene" parent="HUD" instance=ExtResource("3_1go3i")]
 
 [node name="TravelMap" parent="HUD" instance=ExtResource("7_t7ilo")]
-visible = false
 offset_left = 278.0
 offset_top = 194.0
 offset_right = -270.0
 offset_bottom = -158.0
+
+[node name="DebugActive" type="Button" parent="HUD/TravelMap"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = -37.0
+offset_right = 251.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_2lnc8")
+shortcut = SubResource("Shortcut_2lnc8")
+text = "Set All Nodes Active"
+script = ExtResource("6_kj77h")
 
 [node name="Label" type="Label" parent="HUD"]
 offset_right = 319.0
@@ -373,6 +398,7 @@ stretch_mode = 1
 visible = false
 texture = ExtResource("19_67llk")
 
+[connection signal="pressed" from="HUD/TravelMap/DebugActive" to="HUD/TravelMap" method="SetAllNodesActive"]
 [connection signal="pressed" from="HUD/RestartNode/RestartButton" to="GameField" method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/WarpButton" to="GameField" method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="GameField" method="SpawnTestWave"]
