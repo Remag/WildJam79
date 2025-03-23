@@ -584,7 +584,7 @@ _playerHitboxes = [NodePath("CollisionShape2D"), NodePath("Hitbox/CollisionShape
 GrowthXpByLvl = Array[int]([100, 200])
 _cameraZoomByLvl = Array[float]([1.0, 0.7, 0.33])
 _heroHitboxScaleByLvl = Array[float]([1.0, 2.0, 3.0])
-_smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3")]
+_smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3"), NodePath("Visual/Small/BodySmall/Blob4"), NodePath("Visual/Small/BodySmall/Blob5"), NodePath("Visual/Small/BodySmall/Blob6")]
 _mediumBlobs = [NodePath("Visual/Medium/BodyMid/PlayerBlob5"), NodePath("Visual/Medium/BodyMid/PlayerBlob7"), NodePath("Visual/Medium/BodyMid/PlayerBlob9"), NodePath("Visual/Medium/BodyMid/PlayerBlob11"), NodePath("Visual/Medium/BodyMid/PlayerBlob6"), NodePath("Visual/Medium/BodyMid/PlayerBlob8"), NodePath("Visual/Medium/BodyMid/PlayerBlob10"), NodePath("Visual/Medium/BodyMid/PlayerBlob12")]
 _largeBlobs = [NodePath("Visual/Large/BodyLarge/PlayerBlob5"), NodePath("Visual/Large/BodyLarge/PlayerBlob6"), NodePath("Visual/Large/BodyLarge/PlayerBlob8"), NodePath("Visual/Large/BodyLarge/PlayerBlob7"), NodePath("Visual/Large/BodyLarge/PlayerBlob10"), NodePath("Visual/Large/BodyLarge/PlayerBlob9")]
 _shootSoundPlayer = NodePath("Shoot")
@@ -605,21 +605,33 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_hpvjx")
 
 [node name="Blob1" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
-visible = false
 position = Vector2(44, -98)
 rotation = 0.261799
 scale = Vector2(0.81, 0.81)
 
 [node name="Blob2" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
-visible = false
 position = Vector2(60, 82)
 rotation = 2.35619
 scale = Vector2(0.81, 0.81)
 
 [node name="Blob3" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
-visible = false
 position = Vector2(-100, 12)
 rotation = 4.71238
+scale = Vector2(0.81, 0.81)
+
+[node name="Blob4" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+position = Vector2(-76, -62)
+rotation = 4.97418
+scale = Vector2(0.81, 0.81)
+
+[node name="Blob5" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+position = Vector2(-56, 84)
+rotation = 3.92699
+scale = Vector2(0.81, 0.81)
+
+[node name="Blob6" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
+position = Vector2(104, -9.53674e-07)
+rotation = 1.57079
 scale = Vector2(0.81, 0.81)
 
 [node name="Eye" type="Sprite2D" parent="Visual/Small"]

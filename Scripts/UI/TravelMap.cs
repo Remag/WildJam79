@@ -49,6 +49,13 @@ public partial class TravelMap : Control {
             }
         }
 
+        if( _currentNode != null ) {
+            foreach( var prevNext in _currentNode.Next ) {
+                prevNext.SetStyle( _normalStyle );
+                prevNext.SetActivity( _normalStar, false );
+            }
+        }
+
         _currentNode = node;
         _availableNodes = node.Next;
         _currentNode.SetStyle( _completedStyle );

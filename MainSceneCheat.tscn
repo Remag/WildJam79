@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=35 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_rvy8n"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgxc83pyb44kj" path="res://GameUI/SettingsMenu.tscn" id="2_s02ea"]
 [ext_resource type="PackedScene" uid="uid://byp137cmd6s81" path="res://GameUI/FinalCutscene.tscn" id="3_1go3i"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_u4e62"]
+[ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="5_2lnc8"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_huaye"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="6_alxon"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="7_t7ilo"]
@@ -70,14 +71,107 @@ Hold Left Click to Shoot
 Hold Right Click to Tentacle
 "
 
-[node name="RestartButton" type="Button" parent="HUD"]
+[node name="RestartNode" type="Control" parent="HUD"]
 visible = false
-offset_left = 347.0
-offset_top = 249.0
-offset_right = 762.0
-offset_bottom = 346.0
+layout_mode = 3
+anchors_preset = 0
+offset_top = -37.0
+offset_right = 1133.0
+offset_bottom = 687.0
+
+[node name="RestartButton" type="Button" parent="HUD/RestartNode"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.5
+offset_top = -48.5
+offset_right = 207.5
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 54
 text = "Restart"
+
+[node name="Hint1" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -115.0
+offset_right = 20.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_2lnc8")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Consume ships with your tentacle  to regain health"
+
+[node name="Hint2" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.5
+offset_top = -150.5
+offset_right = 307.5
+offset_bottom = -59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_2lnc8")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Hold and drag the right mouse button 
+for precise tentacle control"
+horizontal_alignment = 1
+
+[node name="Hint3" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.5
+offset_top = -150.5
+offset_right = 307.5
+offset_bottom = -59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_2lnc8")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Consume ships of the same type 
+to upgrade weapons"
+horizontal_alignment = 1
+
+[node name="Hint4" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.5
+offset_top = -150.5
+offset_right = 307.5
+offset_bottom = -59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_2lnc8")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Assimilating active ships 
+gives no extra bonus"
+horizontal_alignment = 1
 
 [node name="IdleUi" type="Control" parent="HUD"]
 layout_mode = 3
@@ -213,7 +307,7 @@ volume_db = 4.0
 stream = ExtResource("21_1ital")
 volume_db = 4.0
 
-[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_finalCutscene")]
+[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartControl", "_hints", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_finalCutscene")]
 process_mode = 1
 script = ExtResource("1_g0egd")
 _camera = NodePath("Camera2D")
@@ -222,7 +316,8 @@ _starRect = NodePath("ParallaxBackground/StarLayer/TextureRect")
 _nebulaRect = NodePath("ParallaxBackground/NebulaLayer/TextureRect")
 _playerPrefab = ExtResource("2_8onvp")
 _warpEffect = ExtResource("3_u4e62")
-_restartButton = NodePath("../HUD/RestartButton")
+_restartControl = NodePath("../HUD/RestartNode")
+_hints = [NodePath("../HUD/RestartNode/Hint1"), NodePath("../HUD/RestartNode/Hint2"), NodePath("../HUD/RestartNode/Hint3"), NodePath("../HUD/RestartNode/Hint4")]
 _testWaveNodeInfo = ExtResource("23_1eypv")
 _idleUiControl = NodePath("../HUD/IdleUi")
 _warpControl = NodePath("../HUD/IdleUi/WarpButton")
@@ -278,7 +373,7 @@ stretch_mode = 1
 visible = false
 texture = ExtResource("19_67llk")
 
-[connection signal="pressed" from="HUD/RestartButton" to="GameField" method="RestartGame"]
+[connection signal="pressed" from="HUD/RestartNode/RestartButton" to="GameField" method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/WarpButton" to="GameField" method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="GameField" method="SpawnTestWave"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Eat" to="HUD/IdleUi/CheatMenu" method="EatAllTrash"]

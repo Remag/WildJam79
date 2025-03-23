@@ -22,6 +22,16 @@ public partial class WarpEffect : Node2D {
             Game.Field.SetWarpEffectCircle( _warpEffectRadius );
         }
     }
+     [Export]
+    public float WarpEffectPower {
+        get {
+            return _warpEffectPower;
+        }
+        set {
+            _warpEffectPower = value;
+            Game.Field.SetWarpEffectPower( _warpEffectPower );
+        }
+    }
 
     [Export]
     private AudioStreamPlayer _warpInSoundPlayer;
@@ -29,6 +39,7 @@ public partial class WarpEffect : Node2D {
     private AudioStreamPlayer _warpOutSoundPlayer;
 
     private float _warpEffectRadius = 0;
+    private float _warpEffectPower = 0;
 
     private Player _player;
 

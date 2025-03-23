@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=62 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_lppff"]
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bnspkihh2hsu1" path="res://EntitiesSpace/DecalParts/GlassDebris.tscn" id="6_h86nx"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="7_3hf6u"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
+[ext_resource type="PackedScene" uid="uid://l0dggnke8m16" path="res://GameUI/RestartButton.tscn" id="7_i1thg"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="7_xtmsi"]
 [ext_resource type="Texture2D" uid="uid://bw5ra6bnm82i8" path="res://Assets/Background/Stars2.png" id="8_p5x2j"]
 [ext_resource type="Script" uid="uid://cyw0dgeaxh5po" path="res://Scripts/WorldAudioManager.cs" id="8_torvr"]
@@ -88,11 +89,11 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HUD/MainMenu:modulate")
+tracks/3/path = NodePath("../HUD/MainMenu/Title:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 9.06667, 10.8667),
+"times": PackedFloat32Array(0, 9.9, 11.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -100,11 +101,35 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HUD/MainMenu:visible")
+tracks/4/path = NodePath("../HUD/MainMenu/Title:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 9.06667),
+"times": PackedFloat32Array(0, 9.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../HUD/MainMenu/VBoxContainer:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 10.9, 12.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../HUD/MainMenu/VBoxContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 10.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -143,30 +168,6 @@ tracks/2/path = NodePath("../HUD/FadeRect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../HUD/MainMenu:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../HUD/MainMenu:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1088,13 +1089,13 @@ text = "Hold Left Button To Shoot"
 horizontal_alignment = 1
 
 [node name="MainMenu" type="Control" parent="HUD"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="Title" type="Label" parent="HUD/MainMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1110,6 +1111,7 @@ text = "Assimilation
 "
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/MainMenu"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1142,14 +1144,104 @@ offset_top = 194.0
 offset_right = -270.0
 offset_bottom = -158.0
 
-[node name="RestartButton" type="Button" parent="HUD"]
+[node name="RestartNode" type="Control" parent="HUD"]
 visible = false
-offset_left = 347.0
-offset_top = 249.0
-offset_right = 762.0
-offset_bottom = 346.0
-theme_override_font_sizes/font_size = 54
-text = "Restart"
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="RestartButton2" parent="HUD/RestartNode" instance=ExtResource("7_i1thg")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -49.5
+offset_right = 162.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hint1" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -115.0
+offset_right = 20.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Consume ships with your tentacle  to regain health"
+
+[node name="Hint2" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.5
+offset_top = -150.5
+offset_right = 307.5
+offset_bottom = -59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Hold and drag the right mouse button 
+for precise tentacle control"
+horizontal_alignment = 1
+
+[node name="Hint3" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.5
+offset_top = -150.5
+offset_right = 307.5
+offset_bottom = -59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Consume ships of the same type 
+to upgrade weapons"
+horizontal_alignment = 1
+
+[node name="Hint4" type="Label" parent="HUD/RestartNode"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.5
+offset_top = -150.5
+offset_right = 307.5
+offset_bottom = -59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
+theme_override_font_sizes/font_size = 30
+text = "Hint: Assimilating active ships 
+gives no extra bonus"
+horizontal_alignment = 1
 
 [node name="IdleUi" type="Control" parent="HUD"]
 visible = false
@@ -1288,7 +1380,7 @@ volume_db = 4.0
 stream = ExtResource("22_kvyqs")
 volume_db = 4.0
 
-[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation", "_finalCutscene")]
+[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartControl", "_hints", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation", "_finalCutscene")]
 process_mode = 1
 script = ExtResource("1_torvr")
 _camera = NodePath("Camera2D")
@@ -1297,7 +1389,8 @@ _starRect = NodePath("ParallaxBackground/StarLayer/TextureRect")
 _nebulaRect = NodePath("ParallaxBackground/NebulaLayer/TextureRect")
 _playerPrefab = ExtResource("3_rpqi1")
 _warpEffect = ExtResource("3_x0cd2")
-_restartButton = NodePath("../HUD/RestartButton")
+_restartControl = NodePath("../HUD/RestartNode")
+_hints = [NodePath("../HUD/RestartNode/Hint1"), NodePath("../HUD/RestartNode/Hint2"), NodePath("../HUD/RestartNode/Hint3"), NodePath("../HUD/RestartNode/Hint4")]
 _testWaveNodeInfo = ExtResource("4_3slyh")
 _idleUiControl = NodePath("../HUD/IdleUi")
 _warpControl = NodePath("../HUD/IdleUi/WarpButton")
@@ -1434,7 +1527,7 @@ _spriteScale = 0.5
 
 [connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Start" to="GameField" method="StartGame"]
 [connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Settings" to="." method="ShowSettings"]
-[connection signal="pressed" from="HUD/RestartButton" to="GameField" method="RestartGame"]
+[connection signal="pressed" from="HUD/RestartNode/RestartButton2" to="GameField" method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/WarpButton" to="GameField" method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="GameField" method="SpawnTestWave"]
 [connection signal="pressed" from="HUD/IdleUi/CheatMenu/Eat" to="HUD/IdleUi/CheatMenu" method="EatAllTrash"]

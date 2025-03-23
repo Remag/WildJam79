@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using WildJam78.Scripts.UI;
 
@@ -18,7 +19,10 @@ public partial class GameField : Node {
     [Export]
     private PackedScene _warpEffect;
     [Export]
-    private Button _restartButton;
+    private Control _restartControl;
+    private int _currentHintIndex = -1;
+    [Export]
+    private Godot.Collections.Array<Control> _hints;
     [Export]
     private EnemyNodeInfo _testWaveNodeInfo;
     [Export]
@@ -126,6 +130,18 @@ public partial class GameField : Node {
         WorldAudioManager.EchoSoundPlay();
     }
 
+    public void SetWarpEffectPower( float power )
+    {
+        if( power <= 0 || power > 1 ) {
+            _warpEffectRect.Visible = false;
+            return;
+        }
+        _warpEffectRect.Visible = true;
+        var material = (ShaderMaterial)_warpEffectRect.Material;
+        material.SetShaderParameter( "effectPower", power );
+        WorldAudioManager.EchoSoundPlay();
+    }
+
     public void OpenMap()
     {
         Game.Player.SetControl( false );
@@ -206,6 +222,9 @@ public partial class GameField : Node {
 
     public EnemyShip SpawnEnemy( PackedScene shipPrefab, double moveDelay = 0 )
     {
+        if( Game.Player == null ) {
+            return null;
+        }
         var ship = shipPrefab.Instantiate<EnemyShip>();
         ship.MoveDelay = moveDelay;
         AddChild( ship );
@@ -274,7 +293,17 @@ public partial class GameField : Node {
 
     public void EndGame()
     {
-        _restartButton.Visible = true;
+        _restartControl.Visible = true;
+        var nextHintIndex = _currentHintIndex + 1;
+        if( nextHintIndex >= _hints.Count ) {
+            nextHintIndex = 0;
+        }
+
+        if( _currentHintIndex >= 0 ) {
+            _hints[_currentHintIndex].Visible = false;
+        }
+        _currentHintIndex = nextHintIndex;
+        _hints[_currentHintIndex].Visible = true;
     }
 
     public void RestartGame()
@@ -286,7 +315,7 @@ public partial class GameField : Node {
 
         Game.Field.WorldAudioManager.ButtonClickPlay();
 
-        _restartButton.Visible = false;
+        _restartControl.Visible = false;
         _idleUiControl.Visible = false;
         var player = _playerPrefab.Instantiate<Player>();
         player.Camera = _camera;
