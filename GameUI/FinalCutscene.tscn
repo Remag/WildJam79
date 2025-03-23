@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://byp137cmd6s81"]
+[gd_scene load_steps=12 format=3 uid="uid://byp137cmd6s81"]
 
 [ext_resource type="Script" uid="uid://2lv5ghkaktv7" path="res://Scripts/UI/FinalCutscene.cs" id="1_ect2w"]
 [ext_resource type="Texture2D" uid="uid://cbrlp5s557bmu" path="res://Assets/Slides/Slide1.webp" id="2_gcgps"]
 [ext_resource type="Texture2D" uid="uid://cs6113e57uwa3" path="res://Assets/Slides/Slide3.webp" id="3_eidul"]
+[ext_resource type="Texture2D" uid="uid://bj4pu4qiki2ba" path="res://Assets/Slides/Slide2.webp" id="3_gcgps"]
 [ext_resource type="Texture2D" uid="uid://bsjwj66vl8r3a" path="res://Assets/Slides/Slide4.webp" id="5_y21vu"]
 [ext_resource type="Texture2D" uid="uid://m47xarrciv8a" path="res://Assets/Slides/Slide5.webp" id="6_pe7rv"]
 [ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="7_gcgps"]
@@ -240,7 +241,7 @@ offset_left = 8.26446
 offset_top = 147.89
 offset_right = 886.264
 offset_bottom = 446.89
-texture = ExtResource("3_eidul")
+texture = ExtResource("3_gcgps")
 
 [node name="Slide3" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
