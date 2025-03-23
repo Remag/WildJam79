@@ -24,6 +24,8 @@ public partial class WorldAudioManager : Node {
     private AudioStreamPlayer _echoSoundPlayer;
     [Export]
     private AudioStreamPlayer _finalCutsceneSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _catchSoundPlayer;
 
     string _stageName;
 
@@ -129,5 +131,11 @@ public partial class WorldAudioManager : Node {
     {
         if( _echoSoundPlayer.Playing == false )
             _echoSoundPlayer.Play();
+    }
+
+    internal void CatchSoundPlay()
+    {
+        if( _catchSoundPlayer.Playing == false || _catchSoundPlayer.GetPlaybackPosition() > 0.2 )
+            _catchSoundPlayer.Play();
     }
 }
