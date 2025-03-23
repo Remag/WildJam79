@@ -31,7 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://078oxrm0lgkq" path="res://Sounds/FinalExtend2.mp3" id="22_2lnc8"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
-[ext_resource type="Resource" uid="uid://cmesubj825tfj" path="res://EnemyWaves/Map8.tres" id="27_kj77h"]
+[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/Map10.tres" id="27_kj77h"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_k420c"]
 pressed = true

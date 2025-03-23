@@ -19,8 +19,8 @@
 
 [sub_resource type="Resource" id="Resource_rrk83"]
 script = ExtResource("2_hevw4")
-minRadius = 400.0
-maxRadius = 800.0
+minRadius = 1200.0
+maxRadius = 2000.0
 rngAngle = 0.0
 newTargetChooseTime = 5.0
 targetReachRadius = 150.0

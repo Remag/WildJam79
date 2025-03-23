@@ -525,6 +525,9 @@ public partial class Player : RigidBody2D {
     private void gainSafetyLevels()
     {
         var target = Game.Field.CurrentNodeInfo;
+        if( target == null ) {
+            return;
+        }
         if( CurrentGrowthLevel < target.HeroGrowthOnClear ) {
             var targetXp = getTargetLevelXp();
             if( targetXp > 0 ) {
