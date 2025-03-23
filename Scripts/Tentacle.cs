@@ -30,6 +30,8 @@ public partial class Tentacle : Node2D {
     private double _currentKeepTime = 0;
     private double _currentExtendTime = 0;
     private double _currentLineSaveTime;
+    
+    protected bool _ignoreShrinkSpeedReduction = false;
 
     public Node2D GetEndAnchor()
     {
@@ -124,7 +126,8 @@ public partial class Tentacle : Node2D {
 
     private void updateShrink( float delta )
     {
-        var shrinkDistance = _tentacleShrinkSpeed * delta / (AttachedEntity?.ShrinkSpeedReduction ?? 1f);
+        var shrinkSpeedReduction = _ignoreShrinkSpeedReduction ? 1f : AttachedEntity?.ShrinkSpeedReduction ?? 1f;
+        var shrinkDistance = _tentacleShrinkSpeed * delta / shrinkSpeedReduction;
         var points = _tentacleLine.Points;
         Debug.Assert( points.Length >= 2 );
 

@@ -21,6 +21,7 @@ public partial class TentacleAuto : Tentacle {
     public void Initialize( FoodSource target )
     {
         _target = target;
+        _ignoreShrinkSpeedReduction = true;
 
         _tentacleLine.EndAnchor.GlobalPosition = Game.Player.GlobalPosition;
         _currentVelocity = Vector2.FromAngle( Rng.RandomRange( 0, Mathf.Pi * 2 ) );

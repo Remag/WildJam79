@@ -10,8 +10,8 @@
 script = ExtResource("2_46dfu")
 startMinVelocity = 600.0
 startMaxVelocity = 800.0
-maxVelocity = 3000.0
-acceleration = 1500.0
+maxVelocity = 2500.0
+acceleration = 1000.0
 metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"
 
 [sub_resource type="Resource" id="Resource_qq402"]

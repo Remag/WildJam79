@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://bvixcm5fb4rto"
 
 [sub_resource type="Resource" id="Resource_hhkoq"]
 script = ExtResource("11_cg2sf")
-maxHp = 300
+maxHp = 400
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
 [node name="EnemyShip1B" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "EatOnWin", "Enemy"]]
@@ -54,7 +54,7 @@ _shield = NodePath("Shield")
 _hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
 GeneralExp = 100
 WeaponXp = 10
-HealHp = 30
+HealHp = 200
 ShrinkSpeedReduction = 10.0
 CorePrefabs = Array[PackedScene]([])
 DecalPrefab = ExtResource("4_nkvvx")
