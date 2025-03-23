@@ -63,8 +63,10 @@ public partial class CheatMenu : Node {
     {
         var weapon = _weaponsToEat[index];
         var obj = weapon.Instantiate<EnemyShip>();
+        Game.ResetXpAfterAssimilate = true;
         obj.WeaponXp = 999;
         Game.Player.AssimilateWeapon( obj );
+        Game.ResetXpAfterAssimilate = false;
         obj.QueueFree();
         Game.Field.WorldAudioManager.ButtonClickPlay();
     }
