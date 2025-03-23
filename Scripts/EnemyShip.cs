@@ -47,6 +47,7 @@ public partial class EnemyShip : FoodSource {
 		Debug.Assert( _damageEffect != null, "Damage effect not set in the enemy ship prefab." );
 		Debug.Assert( _damageEffectAnchor != null, "Damage effect anchor not set in the enemy ship prefab." );
 
+		AddToGroup( "ClearOnRestart" );
 		_moveHandlerRigid = new EnemyMoveHandlerRigid( config: _configRigid, enemyShip: this );
 
 		_currentHp = _maxHp;
