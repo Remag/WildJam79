@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=62 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_lppff"]
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
@@ -13,7 +13,6 @@
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
 [ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="5_r1x6n"]
 [ext_resource type="PackedScene" uid="uid://bnspkihh2hsu1" path="res://EntitiesSpace/DecalParts/GlassDebris.tscn" id="6_h86nx"]
-[ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="7_3hf6u"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
 [ext_resource type="PackedScene" uid="uid://l0dggnke8m16" path="res://GameUI/RestartButton.tscn" id="7_i1thg"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="7_xtmsi"]
@@ -1258,50 +1257,6 @@ offset_top = -145.0
 offset_right = 745.0
 offset_bottom = -72.0
 
-[node name="TestWave" type="Button" parent="HUD/IdleUi"]
-layout_mode = 0
-offset_left = 854.0
-offset_top = 31.0
-offset_right = 1141.0
-offset_bottom = 122.0
-theme_override_font_sizes/font_size = 54
-text = "Test wave"
-
-[node name="CheatMenu" type="VBoxContainer" parent="HUD/IdleUi"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = -79.0
-offset_right = 136.0
-offset_bottom = -13.0
-grow_vertical = 0
-script = ExtResource("7_3hf6u")
-_weaponsToEat = Array[PackedScene]([ExtResource("9_3slyh")])
-_trashPrefab = ExtResource("10_8s4c3")
-
-[node name="Eat" type="Button" parent="HUD/IdleUi/CheatMenu"]
-layout_mode = 2
-text = "Eat Trash"
-
-[node name="Trash" type="Button" parent="HUD/IdleUi/CheatMenu"]
-layout_mode = 2
-text = "Spawn Trash"
-
-[node name="ResetGrowth" type="Button" parent="HUD/IdleUi/CheatMenu"]
-layout_mode = 2
-text = "Reset Growth"
-
-[node name="Grow" type="Button" parent="HUD/IdleUi/CheatMenu"]
-layout_mode = 2
-text = "Grow
-"
-
-[node name="Weapons" type="Button" parent="HUD/IdleUi/CheatMenu"]
-layout_mode = 2
-text = "Weapon Preset"
-
 [node name="FadeRect" type="ColorRect" parent="HUD"]
 visible = false
 offset_left = -72.0
@@ -1537,10 +1492,4 @@ _spriteScale = 0.5
 [connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Settings" to="." method="ShowSettings"]
 [connection signal="pressed" from="HUD/RestartNode/RestartButton2" to="GameField" method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/WarpButton" to="GameField" method="OpenMap"]
-[connection signal="pressed" from="HUD/IdleUi/TestWave" to="GameField" method="SpawnTestWave"]
-[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Eat" to="HUD/IdleUi/CheatMenu" method="EatAllTrash"]
-[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Trash" to="HUD/IdleUi/CheatMenu" method="SpawnTrash"]
-[connection signal="pressed" from="HUD/IdleUi/CheatMenu/ResetGrowth" to="HUD/IdleUi/CheatMenu" method="ResetGrowth"]
-[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Grow" to="HUD/IdleUi/CheatMenu" method="Grow"]
-[connection signal="pressed" from="HUD/IdleUi/CheatMenu/Weapons" to="HUD/IdleUi/CheatMenu" method="EatWeapons"]
 [connection signal="area_exited" from="GameField/Camera2D/GameZone" to="GameField/Camera2D" method="OnAreaLeave"]
