@@ -113,5 +113,5 @@ scale = Vector2(2, 2)
 
 [node name="ShootSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_7d47m")
-volume_db = 10.0
+volume_db = -1.0
 bus = &"sfx"
