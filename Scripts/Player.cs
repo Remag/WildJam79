@@ -601,7 +601,7 @@ public partial class Player : RigidBody2D {
     {
         switch( node ) {
             case EnemyShip enemyShip: {
-                    if( enemyShip.SizeLevel == 0 ) {
+                    if( enemyShip.SizeLevel == 0 || (enemyShip.SizeLevel == 1 && enemyShip.IsDead) ) {
                         CallDeferred( MethodName.EatTarget, enemyShip );
                     }
 

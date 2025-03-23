@@ -70,6 +70,7 @@ texture = ExtResource("8_8uf67")
 
 [node name="OffscreenIndicator" parent="." instance=ExtResource("9_oo7p6")]
 visible = false
+modulate = Color(0.6, 0.721569, 1, 1)
 
 [node name="ShipTrail2" parent="." instance=ExtResource("10_oo7p6")]
 position = Vector2(-60, 1)

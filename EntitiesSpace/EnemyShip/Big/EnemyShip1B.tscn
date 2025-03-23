@@ -131,6 +131,7 @@ _enemyShip = NodePath("../..")
 
 [node name="OffscreenIndicator" parent="." instance=ExtResource("8_lviff")]
 visible = false
+modulate = Color(1, 0.59, 0.59, 1)
 
 [node name="ShipTrail" parent="." instance=ExtResource("9_bxghi")]
 position = Vector2(-282, 1)
