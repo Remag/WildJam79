@@ -331,6 +331,7 @@ volume_db = 4.0
 [node name="FinalCutsceneSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("22_2lnc8")
 volume_db = 4.0
+bus = &"sfx"
 
 [node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartControl", "_hints", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_finalCutscene")]
 process_mode = 1

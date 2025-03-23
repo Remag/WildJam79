@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://byp137cmd6s81"]
+[gd_scene load_steps=11 format=3 uid="uid://byp137cmd6s81"]
 
 [ext_resource type="Script" uid="uid://2lv5ghkaktv7" path="res://Scripts/UI/FinalCutscene.cs" id="1_ect2w"]
-[ext_resource type="Texture2D" uid="uid://ox4t2kh6xgr7" path="res://Assets/Slides/Slide1.png" id="1_wkbtx"]
-[ext_resource type="Texture2D" uid="uid://xa3bxhl4w1nt" path="res://Assets/Slides/Slide2.png" id="2_15b7h"]
-[ext_resource type="Texture2D" uid="uid://dcaq01qij6d44" path="res://Assets/Slides/Slide3.png" id="3_abyra"]
-[ext_resource type="Texture2D" uid="uid://dj5jcjfue4qo3" path="res://Assets/Slides/Slide4.png" id="4_eovn7"]
-[ext_resource type="Texture2D" uid="uid://csyr0y02g5ygx" path="res://Assets/Slides/Slide5.png" id="5_5jtl3"]
+[ext_resource type="Texture2D" uid="uid://cbrlp5s557bmu" path="res://Assets/Slides/Slide1.webp" id="2_gcgps"]
+[ext_resource type="Texture2D" uid="uid://cs6113e57uwa3" path="res://Assets/Slides/Slide3.webp" id="3_eidul"]
+[ext_resource type="Texture2D" uid="uid://bsjwj66vl8r3a" path="res://Assets/Slides/Slide4.webp" id="5_y21vu"]
+[ext_resource type="Texture2D" uid="uid://m47xarrciv8a" path="res://Assets/Slides/Slide5.webp" id="6_pe7rv"]
 [ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="7_gcgps"]
 [ext_resource type="FontFile" uid="uid://ctqyftihdspco" path="res://Assets/Nosifer-Regular.ttf" id="8_eidul"]
 
@@ -147,6 +146,54 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene/Control/Slide2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cutscene/Control/Slide3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cutscene/Control/Slide4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cutscene/Control/Slide5:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a28bb"]
 _data = {
@@ -180,46 +227,47 @@ scale = Vector2(0.6, 0.6)
 [node name="Slide1" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_top = 6.61157
-offset_right = 1905.0
-offset_bottom = 149.612
-texture = ExtResource("1_wkbtx")
+offset_left = -5.0
+offset_top = -1.72176
+offset_right = 1915.0
+offset_bottom = 145.278
+texture = ExtResource("2_gcgps")
 
 [node name="Slide2" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 8.26446
-offset_top = 156.223
-offset_right = 873.264
-offset_bottom = 444.223
-texture = ExtResource("2_15b7h")
+offset_top = 147.89
+offset_right = 886.264
+offset_bottom = 446.89
+texture = ExtResource("3_eidul")
 
 [node name="Slide3" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 1031.74
-offset_top = 156.223
-offset_right = 1896.74
-offset_bottom = 444.223
-texture = ExtResource("3_abyra")
+offset_left = 1023.41
+offset_top = 147.89
+offset_right = 1901.41
+offset_bottom = 446.89
+texture = ExtResource("3_eidul")
 
 [node name="Slide4" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 4.28571
-offset_top = 450.834
-offset_right = 1901.29
-offset_bottom = 584.834
-texture = ExtResource("4_eovn7")
+offset_left = -4.04762
+offset_top = 442.501
+offset_right = 1915.95
+offset_bottom = 593.501
+texture = ExtResource("5_y21vu")
 
 [node name="Slide5" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 1.42857
-offset_top = 591.446
-offset_right = 1901.43
-offset_bottom = 1059.45
-texture = ExtResource("5_5jtl3")
+offset_left = -1.90476
+offset_top = 586.446
+offset_right = 1918.1
+offset_bottom = 1071.45
+texture = ExtResource("6_pe7rv")
 
 [node name="Final" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
