@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=9 format=3 uid="uid://bq1atcu446iai"]
 
-[ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip1M.tscn" id="1_2lc6x"]
+[ext_resource type="PackedScene" uid="uid://cd423uj511yvd" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip1B.tscn" id="1_dan8g"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_uegwf"]
 [ext_resource type="PackedScene" uid="uid://ckknr6hu8ksgm" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip3M.tscn" id="3_dan8g"]
 [ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="4_wil7u"]
@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_rt00r"]
 script = ExtResource("2_uegwf")
-Prefab = ExtResource("1_2lc6x")
+Prefab = ExtResource("1_dan8g")
 Count = 1
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 

@@ -105,4 +105,9 @@ public partial class MapNode : Control {
             Game.StageName = null;
         }
     }
+
+    public void SetDebugActive()
+    {
+        _isActive = true;
+    }
 }
