@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=39 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_rvy8n"]
@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://078oxrm0lgkq" path="res://Sounds/FinalExtend2.mp3" id="22_2lnc8"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
+[ext_resource type="AudioStream" uid="uid://3lwqvahw3p87" path="res://Sounds/Catch_ZapSplat.mp3" id="24_y4uyi"]
 [ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/Map10.tres" id="27_kj77h"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_k420c"]
@@ -269,7 +270,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_echoSoundPlayer", "_finalCutsceneSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_echoSoundPlayer", "_finalCutsceneSoundPlayer", "_catchSoundPlayer")]
 script = ExtResource("14_b0bgo")
 _stageBgmPlayer = NodePath("StageBgmPlayer")
 _titleBgmPlayer = NodePath("TitleBgmPlayer")
@@ -280,6 +281,7 @@ _tentacleSoundPlayer = NodePath("Tentacle")
 _explosionSoundPlayer = NodePath("ExplosionSoundPlayer")
 _echoSoundPlayer = NodePath("EchoSoundPlayer")
 _finalCutsceneSoundPlayer = NodePath("FinalCutsceneSoundPlayer")
+_catchSoundPlayer = NodePath("CatchSoundPlayer")
 
 [node name="StageBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("15_5nv7p")
@@ -322,6 +324,11 @@ volume_db = 4.0
 [node name="FinalCutsceneSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("22_2lnc8")
 volume_db = 4.0
+bus = &"sfx"
+
+[node name="CatchSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("24_y4uyi")
+volume_db = -3.91
 bus = &"sfx"
 
 [node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartControl", "_hints", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_finalCutscene")]
