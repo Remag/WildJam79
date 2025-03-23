@@ -14,4 +14,6 @@ public static class Game
     public static TravelMap TravelMap;
     public static string StageName = "Title";
     public static Node2D TestSprite;
+    
+    public static bool ResetXpAfterAssimilate = false;
 }

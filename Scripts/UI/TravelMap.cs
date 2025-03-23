@@ -29,6 +29,8 @@ public partial class TravelMap : Control {
     private Texture2D _completedStar;
     [Export]
     private Texture2D _finalStar;
+    [Export]
+    private Godot.Collections.Array<PackedScene> _hintOrder;
 
     private MapNode _currentNode;
 
@@ -72,10 +74,13 @@ public partial class TravelMap : Control {
 
     public void SetEnemyHint( Godot.Collections.Dictionary<PackedScene, int> enemiesMap )
     {
-        foreach( var enemyKey in enemiesMap ) {
-            var hintControl = _hintPrefab.Instantiate<ShipInfoHint>();
-            hintControl.SetHintInfo( enemyKey.Value, enemyKey.Key );
-            _hintContainer.AddChild( hintControl );
+        foreach (var enemyPrefab in _hintOrder) {
+            var count = enemiesMap.GetValueOrDefault( enemyPrefab, 0 );
+            if( count > 0 ) {
+                var hintControl = _hintPrefab.Instantiate<ShipInfoHint>();
+                hintControl.SetHintInfo(count, enemyPrefab );
+                _hintContainer.AddChild( hintControl );
+            }
         }
         _hintContainer.Visible = true;
         _hintMarginContainer.Visible = true;
@@ -105,5 +110,22 @@ public partial class TravelMap : Control {
     public void CloseMap()
     {
         Game.Field.CloseMap();
+    }
+
+    public void SetAllNodesActive()
+    {
+        SetAllNodesActiveRecursive( this );
+    }
+
+    private void SetAllNodesActiveRecursive( Node node )
+    {
+        if( node is MapNode mapNode ) {
+            mapNode.SetDebugActive();
+        }
+
+        foreach (var child in node.GetChildren())
+        {
+            SetAllNodesActiveRecursive(child);
+        }
     }
 }

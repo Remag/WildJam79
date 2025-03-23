@@ -25,7 +25,6 @@ _lifespanLogic = SubResource("Resource_ygvck")
 modulate = Color(0.968627, 0, 0.968627, 1)
 position = Vector2(0, -1)
 rotation = 1.5708
-scale = Vector2(2, 2)
 texture = ExtResource("4_a5tts")
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]

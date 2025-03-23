@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="Resource" id="Resource_8m4er"]
 script = ExtResource("5_nhfgg")
-Count = 15
+Count = 18
 BulletPrefab = ExtResource("4_3sd22")
 metadata/_custom_type_script = "uid://6x0jwm35cobd"
 

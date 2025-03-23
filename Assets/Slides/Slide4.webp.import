@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsjwj66vl8r3a"
-valid=false
+path="res://.godot/imported/Slide4.webp-8c0ba0cc4454918e7baa22050fc73ea8.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Assets/Slides/Slide4.webp"
+dest_files=["res://.godot/imported/Slide4.webp-8c0ba0cc4454918e7baa22050fc73ea8.ctex"]
 
 [params]
 

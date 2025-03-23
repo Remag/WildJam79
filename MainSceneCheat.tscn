@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=38 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_rvy8n"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="5_2lnc8"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_huaye"]
 [ext_resource type="Shader" uid="uid://cc71gkqou3k0a" path="res://Assets/Vfx/DistortionShader.gdshader" id="6_alxon"]
+[ext_resource type="Script" uid="uid://xyj0kgbs56k5" path="res://Scripts/UI/HideOnPressed.cs" id="6_kj77h"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="7_t7ilo"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="8_hq7hl"]
 [ext_resource type="PackedScene" uid="uid://cq5hjo8vkc5v5" path="res://GameUI/WarpButton.tscn" id="8_viwfu"]
@@ -27,10 +28,17 @@
 [ext_resource type="AudioStream" uid="uid://tm5k4wb6kum" path="res://Sounds/EchoCut_ZapSplat.mp3" id="18_s02ea"]
 [ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="19_67llk"]
 [ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="19_u21sk"]
-[ext_resource type="AudioStream" uid="uid://cjpotc8b38uxj" path="res://Sounds/FinalExtend.mp3" id="21_1ital"]
+[ext_resource type="AudioStream" uid="uid://078oxrm0lgkq" path="res://Sounds/FinalExtend2.mp3" id="22_2lnc8"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
-[ext_resource type="Resource" uid="uid://j0b4uoesaqh0" path="res://EnemyWaves/Map5Wave.tres" id="23_1eypv"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
+[ext_resource type="Resource" uid="uid://bi0dmctou1b4b" path="res://EnemyWaves/Map7-3Wave.tres" id="26_2lnc8"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_k420c"]
+pressed = true
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_2lnc8"]
+events = [SubResource("InputEventKey_k420c")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtmsi"]
 shader = ExtResource("6_alxon")
@@ -56,11 +64,28 @@ _hud = NodePath("HUD")
 [node name="Cutscene" parent="HUD" instance=ExtResource("3_1go3i")]
 
 [node name="TravelMap" parent="HUD" instance=ExtResource("7_t7ilo")]
-visible = false
 offset_left = 278.0
 offset_top = 194.0
 offset_right = -270.0
 offset_bottom = -158.0
+
+[node name="DebugActive" type="Button" parent="HUD/TravelMap"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = -37.0
+offset_right = 251.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_2lnc8")
+shortcut = SubResource("Shortcut_2lnc8")
+text = "Set All Nodes Active"
+script = ExtResource("6_kj77h")
 
 [node name="Label" type="Label" parent="HUD"]
 offset_right = 319.0
@@ -253,7 +278,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_echoSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_echoSoundPlayer", "_finalCutsceneSoundPlayer")]
 script = ExtResource("14_b0bgo")
 _stageBgmPlayer = NodePath("StageBgmPlayer")
 _titleBgmPlayer = NodePath("TitleBgmPlayer")
@@ -263,6 +288,7 @@ _shieldReflectNoDamageSoundPlayer = NodePath("ShieldReflectSoundPlayer")
 _tentacleSoundPlayer = NodePath("Tentacle")
 _explosionSoundPlayer = NodePath("ExplosionSoundPlayer")
 _echoSoundPlayer = NodePath("EchoSoundPlayer")
+_finalCutsceneSoundPlayer = NodePath("FinalCutsceneSoundPlayer")
 
 [node name="StageBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("15_5nv7p")
@@ -303,10 +329,10 @@ stream = ExtResource("18_s02ea")
 volume_db = 4.0
 
 [node name="FinalCutsceneSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = ExtResource("21_1ital")
+stream = ExtResource("22_2lnc8")
 volume_db = 4.0
 
-[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect")]
+[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartControl", "_hints", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_finalCutscene")]
 process_mode = 1
 script = ExtResource("1_g0egd")
 _camera = NodePath("Camera2D")
@@ -315,12 +341,15 @@ _starRect = NodePath("ParallaxBackground/StarLayer/TextureRect")
 _nebulaRect = NodePath("ParallaxBackground/NebulaLayer/TextureRect")
 _playerPrefab = ExtResource("2_8onvp")
 _warpEffect = ExtResource("3_u4e62")
-_testWaveNodeInfo = ExtResource("23_1eypv")
+_restartControl = NodePath("../HUD/RestartNode")
+_hints = [NodePath("../HUD/RestartNode/Hint1"), NodePath("../HUD/RestartNode/Hint2"), NodePath("../HUD/RestartNode/Hint3"), NodePath("../HUD/RestartNode/Hint4")]
+_testWaveNodeInfo = ExtResource("26_2lnc8")
 _idleUiControl = NodePath("../HUD/IdleUi")
 _warpControl = NodePath("../HUD/IdleUi/WarpButton")
 _bgSelection = ExtResource("5_huaye")
 WorldAudioManager = NodePath("../WorldAudioManager")
 _warpEffectRect = NodePath("../Effect/ColorRect")
+_finalCutscene = NodePath("../HUD/Cutscene")
 
 [node name="Player" parent="GameField" node_paths=PackedStringArray("Camera") instance=ExtResource("2_8onvp")]
 position = Vector2(556, 400)
@@ -369,6 +398,7 @@ stretch_mode = 1
 visible = false
 texture = ExtResource("19_67llk")
 
+[connection signal="pressed" from="HUD/TravelMap/DebugActive" to="HUD/TravelMap" method="SetAllNodesActive"]
 [connection signal="pressed" from="HUD/RestartNode/RestartButton" to="GameField" method="RestartGame"]
 [connection signal="pressed" from="HUD/IdleUi/WarpButton" to="GameField" method="OpenMap"]
 [connection signal="pressed" from="HUD/IdleUi/TestWave" to="GameField" method="SpawnTestWave"]

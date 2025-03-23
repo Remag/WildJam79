@@ -39,6 +39,9 @@ public partial class HeroWeaponCore : Node2D {
         _currentExp += exp;
         if( _currentExp >= currentReq ) {
             _currentExp -= currentReq;
+            if( Game.ResetXpAfterAssimilate ) {
+                _currentExp = 0;
+            }
             advanceLevel();
         }
     }

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_akuxw"]
 [ext_resource type="Resource" uid="uid://ccytxlb0salrb" path="res://EntitiesSpace/Res/Bullets/Rocketv2_TargMoveLogic.tres" id="2_akuxw"]
 [ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_t5veo"]
-[ext_resource type="PackedScene" uid="uid://bxkwdiaflrcet" path="res://Bullets/EBullets/SplinterBullet.tscn" id="4_p82j7"]
+[ext_resource type="PackedScene" uid="uid://w3l61pbt536h" path="res://Bullets/EBullets/SplinterBulletv2.tscn" id="4_akuxw"]
 [ext_resource type="Script" uid="uid://6x0jwm35cobd" path="res://Scripts/Bullets/BulletDeathLogic.cs" id="5_nr6wr"]
 [ext_resource type="Texture2D" uid="uid://cskkeicya56ek" path="res://Assets/SpaceShip/Bullets/Rocket.webp" id="6_xoukt"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="7_b05rc"]
@@ -16,8 +16,8 @@ metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="Resource" id="Resource_8m4er"]
 script = ExtResource("5_nr6wr")
-Count = 15
-BulletPrefab = ExtResource("4_p82j7")
+Count = 18
+BulletPrefab = ExtResource("4_akuxw")
 metadata/_custom_type_script = "uid://6x0jwm35cobd"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]

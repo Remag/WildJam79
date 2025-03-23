@@ -167,13 +167,12 @@ public partial class BasicBullet : Node2D {
 			Node2D targetNode = null;
 
 			foreach( var node in GetTree().GetNodesInGroup( "Enemy" ) ) {
-				if( node is not Node2D ) continue;
-
-				var node2D = (Node2D)node;
-				var distanceSquared = ( node2D.GlobalPosition - currentPosition ).LengthSquared();
+				if( node is not EnemyShip enemyShip || enemyShip.IsDead ) continue;
+				
+				var distanceSquared = ( enemyShip.GlobalPosition - currentPosition ).LengthSquared();
 
 				if( targetNode == null || currentDistanceSquared > distanceSquared ) {
-					targetNode = node2D;
+					targetNode = enemyShip;
 					currentDistanceSquared = distanceSquared;
 				}
 			}

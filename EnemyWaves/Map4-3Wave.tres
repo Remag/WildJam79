@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_ipd7g"]
 script = ExtResource("2_0a41r")
-Prefab = ExtResource("1_lvwqp")
+Prefab = ExtResource("4_fcaea")
 Count = 1
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
@@ -82,7 +82,7 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 [sub_resource type="Resource" id="Resource_t5gri"]
 script = ExtResource("2_0a41r")
 Prefab = ExtResource("5_6lyrg")
-Count = 1
+Count = 2
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="Resource" id="Resource_p7co1"]
@@ -99,7 +99,7 @@ metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 
 [sub_resource type="Resource" id="Resource_1bsv8"]
 script = ExtResource("2_0a41r")
-Prefab = ExtResource("5_6lyrg")
+Prefab = ExtResource("1_lvwqp")
 Count = 3
 metadata/_custom_type_script = "uid://i8f3bi4mcsst"
 

@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes", "_shootSoundPlayer")]
 script = ExtResource("1_k6m0d")
-_levelReqs = Array[int]([22, 999])
+_levelReqs = Array[int]([20, 21])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
 _shootSoundPlayer = NodePath("ShootSoundPlayer")
 
