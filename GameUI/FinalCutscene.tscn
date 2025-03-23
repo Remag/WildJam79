@@ -180,9 +180,8 @@ scale = Vector2(0.6, 0.6)
 [node name="Slide1" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = -1.66667
 offset_top = 6.61157
-offset_right = 1903.33
+offset_right = 1905.0
 offset_bottom = 149.612
 texture = ExtResource("1_wkbtx")
 
