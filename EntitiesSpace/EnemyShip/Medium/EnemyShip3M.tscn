@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_5ahos"]
 [ext_resource type="Resource" uid="uid://diyy7bd0qqgf4" path="res://EntitiesSpace/Res/Ships/EnemyShip3M_MoveConfig.tres" id="2_8wetx"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_6fiwf"]
-[ext_resource type="PackedScene" uid="uid://tdcj5t5ppshr" path="res://EntitiesSpace/BlobBasicCore2.tscn" id="4_m3p6l"]
+[ext_resource type="PackedScene" uid="uid://tdcj5t5ppshr" path="res://EntitiesSpace/CoreRocket.tscn" id="4_m3p6l"]
 [ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_eaasj"]
 [ext_resource type="Texture2D" uid="uid://be7k26htxowgh" path="res://Assets/SpaceShip/ShipBody/MiddleGreen.webp" id="6_5ahos"]
 [ext_resource type="PackedScene" uid="uid://btho1h3m05iyd" path="res://ETurrets/TurretRocketv2.tscn" id="7_8wetx"]

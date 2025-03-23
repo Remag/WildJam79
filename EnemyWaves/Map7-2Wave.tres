@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=38 format=3 uid="uid://ceu7vnai70a3q"]
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=41 format=3 uid="uid://ceu7vnai70a3q"]
 
 [ext_resource type="PackedScene" uid="uid://nh1c0ycvlv14" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip1.tscn" id="1_lbidw"]
 [ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="1_nqcqp"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip2.tscn" id="6_hvwj1"]
 [ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip1M.tscn" id="7_c5ag2"]
 [ext_resource type="PackedScene" uid="uid://ckknr6hu8ksgm" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip3M.tscn" id="8_hcdju"]
+[ext_resource type="PackedScene" uid="uid://dy5tg0dsiv0p8" path="res://EntitiesSpace/CoreBlaster.tscn" id="9_283rl"]
+[ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/CoreGun.tscn" id="10_1lanb"]
+[ext_resource type="PackedScene" uid="uid://tdcj5t5ppshr" path="res://EntitiesSpace/CoreRocket.tscn" id="11_qrvnx"]
 
 [sub_resource type="Resource" id="Resource_hcdju"]
 script = ExtResource("2_j82es")
@@ -182,5 +185,11 @@ metadata/_custom_type_script = "uid://djvcagko6b25v"
 script = ExtResource("1_nqcqp")
 WavesInfo = Array[Object]([SubResource("Resource_qrvnx"), SubResource("Resource_2hysj"), SubResource("Resource_2s24s"), SubResource("Resource_4snkx"), SubResource("Resource_mdffr"), SubResource("Resource_mnxf8"), SubResource("Resource_rbq5x")])
 MinShipsAliveForNextWave = 0
+HeroGrowthOnClear = 2
+WeaponLevelsOnClear = Dictionary[PackedScene, int]({
+ExtResource("9_283rl"): 2,
+ExtResource("10_1lanb"): 2,
+ExtResource("11_qrvnx"): 2
+})
 IsFinalNode = false
 metadata/_custom_type_script = "uid://3et64xg5xbi4"
