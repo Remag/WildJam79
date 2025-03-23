@@ -146,6 +146,54 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene/Control/Slide2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cutscene/Control/Slide3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cutscene/Control/Slide4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cutscene/Control/Slide5:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a28bb"]
 _data = {
@@ -186,6 +234,7 @@ offset_bottom = 145.278
 texture = ExtResource("2_gcgps")
 
 [node name="Slide2" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 8.26446
 offset_top = 147.89
@@ -194,6 +243,7 @@ offset_bottom = 446.89
 texture = ExtResource("3_eidul")
 
 [node name="Slide3" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 1023.41
 offset_top = 147.89
@@ -202,6 +252,7 @@ offset_bottom = 446.89
 texture = ExtResource("3_eidul")
 
 [node name="Slide4" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = -4.04762
 offset_top = 442.501
@@ -210,6 +261,7 @@ offset_bottom = 593.501
 texture = ExtResource("5_y21vu")
 
 [node name="Slide5" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = -1.90476
 offset_top = 586.446
