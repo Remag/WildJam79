@@ -125,11 +125,9 @@ _aiAttackShootDuration = 1.8
 _activationDistance = 5000.0
 _enemyShip = NodePath("../../..")
 
-[node name="TurretBlasterRedBig" parent="." node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_f4vbq")]
-position = Vector2(-12, 11)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-_enemyShip = NodePath("..")
+[node name="TurretBlasterRedBig" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_f4vbq")]
+position = Vector2(44.0002, 47.9998)
+_enemyShip = NodePath("../..")
 
 [node name="OffscreenIndicator" parent="." instance=ExtResource("8_lviff")]
 visible = false
