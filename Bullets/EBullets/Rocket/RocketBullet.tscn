@@ -24,13 +24,15 @@ metadata/_custom_type_script = "uid://6x0jwm35cobd"
 radius = 7.0
 height = 75.7182
 
-[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
+[node name="BasicBullet" type="Node2D" node_paths=PackedStringArray("_collisionArea", "_trail") groups=["ClearOnLevelClear", "ClearOnRestart"]]
 light_mask = 4
 script = ExtResource("1_ehwys")
 _collisionArea = NodePath("Area2D")
 _moveLogic = ExtResource("2_umbhw")
 _lifespanLogic = SubResource("Resource_dddoj")
 _deathLogic = SubResource("Resource_8m4er")
+_trail = NodePath("ShipTrail")
+_driftAngularSpeed = 0.2
 _bulletDamage = 4
 
 [node name="Node2D" type="Node2D" parent="."]
