@@ -516,7 +516,8 @@ public partial class Player : RigidBody2D {
 
     private void updateVictoryEating()
     {
-        if( _autoTentacles.Count == 0 ) {
+        var enemies = GetTree().GetNodesInGroup( "Enemy" );
+        if( enemies.Count == 0 ) {
             gainSafetyLevels();
             endVictoryAnimation();
         }
@@ -531,7 +532,7 @@ public partial class Player : RigidBody2D {
         if( CurrentGrowthLevel < target.HeroGrowthOnClear ) {
             var targetXp = getTargetLevelXp();
             if( targetXp > 0 ) {
-                    GD.Print( "Safety level" );
+                GD.Print( "Safety level" );
                 _currentGrowthXp = targetXp;
             }
         }
