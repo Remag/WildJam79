@@ -1,23 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2syxoponwx7g"]
+[gd_scene load_steps=7 format=3 uid="uid://btho1h3m05iyd"]
 
-[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_462sr"]
-[ext_resource type="PackedScene" uid="uid://d16rl6xqrhsqr" path="res://Bullets/EBullets/Rocket/RocketBullet.tscn" id="2_462sr"]
-[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="3_wh43a"]
-[ext_resource type="Texture2D" uid="uid://civxbol4ydkjk" path="res://Assets/SpaceShip/Guns/RocketGun.webp" id="4_462sr"]
-[ext_resource type="AudioStream" uid="uid://bestfkcejbubt" path="res://Sounds/RocketLaunchCut_ZapSplat.mp3" id="5_462sr"]
+[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_0m8ct"]
+[ext_resource type="PackedScene" uid="uid://2lavvnqpk8ma" path="res://Bullets/EBullets/Rocket/RocketBulletv2.tscn" id="2_0m8ct"]
+[ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="3_0uocd"]
+[ext_resource type="Texture2D" uid="uid://civxbol4ydkjk" path="res://Assets/SpaceShip/Guns/RocketGun.webp" id="4_pmuiu"]
+[ext_resource type="AudioStream" uid="uid://bestfkcejbubt" path="res://Sounds/RocketLaunchCut_ZapSplat.mp3" id="5_h2gt8"]
 
 [sub_resource type="Resource" id="Resource_guvrn"]
-script = ExtResource("3_wh43a")
-_bulletPrefab = ExtResource("2_462sr")
+script = ExtResource("3_0uocd")
+_bulletPrefab = ExtResource("2_0m8ct")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="TurrenRocket" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_spawnPoint")]
-script = ExtResource("1_462sr")
+script = ExtResource("1_0m8ct")
 _aiAttackShootDelayMin = 1.0
 _aiAttackShootDuration = 1.0
-_aiAttackShootPauseMin = 3.0
-_aiAttackShootPauseMax = 4.0
+_aiAttackShootPauseMin = 2.5
+_aiAttackShootPauseMax = 3.5
 _bulletSpawner = SubResource("Resource_guvrn")
 _angularVelocity = 3.0
 _activationDistance = 10000.0
@@ -28,17 +28,18 @@ _spawnPoint = NodePath("TurretBase/SpawnPoint")
 
 [node name="TurretBase" type="Node2D" parent="."]
 position = Vector2(-1, 10)
+scale = Vector2(1.5, 1.5)
 
 [node name="Turret" type="Sprite2D" parent="TurretBase"]
 position = Vector2(-24, -61)
-texture = ExtResource("4_462sr")
+texture = ExtResource("4_pmuiu")
 centered = false
 
 [node name="SpawnPoint" type="Node2D" parent="TurretBase"]
 position = Vector2(1, -55)
 
 [node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_462sr")
+stream = ExtResource("5_h2gt8")
 max_distance = 1000.0
 bus = &"sfx"
 

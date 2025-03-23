@@ -28,7 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="19_u21sk"]
 [ext_resource type="AudioStream" uid="uid://cjpotc8b38uxj" path="res://Sounds/FinalExtend.mp3" id="21_1ital"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
-[ext_resource type="Resource" uid="uid://bq1atcu446iai" path="res://EnemyWaves/BigWave3.tres" id="23_1eypv"]
+[ext_resource type="Resource" uid="uid://j0b4uoesaqh0" path="res://EnemyWaves/Map5Wave.tres" id="23_1eypv"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtmsi"]

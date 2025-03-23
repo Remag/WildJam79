@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0rri7xjcdjyd"]
+[gd_scene load_steps=10 format=3 uid="uid://d0rri7xjcdjyd"]
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_k6m0d"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_jy6jm"]
 [ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="2_pgvwl"]
 [ext_resource type="PackedScene" uid="uid://u52mt6ngtjbk" path="res://Bullets/PlayerBullets/Basic/BasicBulletPlayer.tscn" id="3_jy6jm"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_7d47m"]
+[ext_resource type="PackedScene" uid="uid://bi8litw7f5d8w" path="res://Bullets/PlayerBullets/Basic/BasicBulletPlayerv2.tscn" id="6_jy6jm"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_7d47m")
@@ -14,13 +15,13 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_ipayf"]
 script = ExtResource("4_7d47m")
-_bulletPrefab = ExtResource("3_jy6jm")
+_bulletPrefab = ExtResource("6_jy6jm")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [sub_resource type="Resource" id="Resource_jy6jm"]
 script = ExtResource("4_7d47m")
-_bulletPrefab = ExtResource("3_jy6jm")
+_bulletPrefab = ExtResource("6_jy6jm")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 

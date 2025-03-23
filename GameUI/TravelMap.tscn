@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cek8px8d5iiw8"]
+[gd_scene load_steps=21 format=3 uid="uid://cek8px8d5iiw8"]
 
 [ext_resource type="PackedScene" uid="uid://b1mx01o44ckm7" path="res://GameUI/MapNode.tscn" id="1_2emn1"]
 [ext_resource type="Script" uid="uid://b0uwdmp67k2p5" path="res://Scripts/UI/TravelMap.cs" id="1_k420c"]
@@ -12,7 +12,11 @@
 [ext_resource type="Resource" uid="uid://1m1q4bq7laex" path="res://EnemyWaves/Map3-2Wave.tres" id="10_35f8b"]
 [ext_resource type="Resource" uid="uid://bq54ts3q3xwdf" path="res://EnemyWaves/Map4-1Wave.tres" id="11_sv05a"]
 [ext_resource type="Resource" uid="uid://b27tc2em52vgx" path="res://EnemyWaves/Map4-2Wave.tres" id="12_03qm0"]
+[ext_resource type="Resource" uid="uid://blnr6tg62p6yf" path="res://EnemyWaves/Map4-3Wave.tres" id="13_5st36"]
 [ext_resource type="Resource" uid="uid://j0b4uoesaqh0" path="res://EnemyWaves/Map5Wave.tres" id="13_hxb48"]
+[ext_resource type="Resource" uid="uid://cfq5yrofpnafg" path="res://EnemyWaves/BigWave1.tres" id="15_s18lq"]
+[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="16_xmqkv"]
+[ext_resource type="Resource" uid="uid://bq1atcu446iai" path="res://EnemyWaves/BigWave3.tres" id="17_qpfd0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k420c"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 0.886275)
@@ -133,15 +137,97 @@ offset_left = 180.0
 offset_top = 200.0
 offset_right = 197.0
 offset_bottom = 216.0
+_nodeInfo = ExtResource("13_5st36")
 _next = [NodePath("../Map5")]
 
-[node name="Map5" parent="Control" instance=ExtResource("1_2emn1")]
+[node name="Map5" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
 layout_mode = 0
 offset_left = 240.0
 offset_top = 140.0
 offset_right = 257.0
 offset_bottom = 156.0
 _nodeInfo = ExtResource("13_hxb48")
+_next = [NodePath("../Map6-1"), NodePath("../Map6-2"), NodePath("../Map6-3")]
+
+[node name="Map6-1" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 65.0
+offset_right = 317.0
+offset_bottom = 81.0
+_nodeInfo = ExtResource("13_hxb48")
+_next = [NodePath("../Map7-1")]
+
+[node name="Map6-2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 140.0
+offset_right = 317.0
+offset_bottom = 156.0
+_nodeInfo = ExtResource("13_hxb48")
+_next = [NodePath("../Map7-2")]
+
+[node name="Map6-3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 215.0
+offset_right = 317.0
+offset_bottom = 231.0
+_nodeInfo = ExtResource("13_hxb48")
+_next = [NodePath("../Map7-3")]
+
+[node name="Map7-1" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 50.0
+offset_right = 407.0
+offset_bottom = 66.0
+_nodeInfo = ExtResource("13_hxb48")
+_next = [NodePath("../Map8")]
+
+[node name="Map7-2" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 140.0
+offset_right = 387.0
+offset_bottom = 156.0
+_nodeInfo = ExtResource("13_hxb48")
+_next = [NodePath("../Map8")]
+
+[node name="Map7-3" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 230.0
+offset_right = 407.0
+offset_bottom = 246.0
+_nodeInfo = ExtResource("13_hxb48")
+_next = [NodePath("../Map8")]
+
+[node name="Map8" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 142.0
+offset_right = 447.0
+offset_bottom = 158.0
+_nodeInfo = ExtResource("15_s18lq")
+_next = [NodePath("../Map9")]
+
+[node name="Map9" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 142.0
+offset_right = 477.0
+offset_bottom = 158.0
+_nodeInfo = ExtResource("16_xmqkv")
+_next = [NodePath("../Map10")]
+
+[node name="Map10" parent="Control" instance=ExtResource("1_2emn1")]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 142.0
+offset_right = 507.0
+offset_bottom = 158.0
+_nodeInfo = ExtResource("17_qpfd0")
 
 [node name="Margin" type="MarginContainer" parent="."]
 visible = false

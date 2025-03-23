@@ -1,13 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxpa3iv1slwgb"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_2g6o0"]
-[ext_resource type="Resource" uid="uid://bwov42g2mn8wi" path="res://EntitiesSpace/Res/Bullets/PlasmaBulletPlayer_MoveLogic.tres" id="2_wsck1"]
+[ext_resource type="Resource" uid="uid://cfwe5ro8opy0l" path="res://EntitiesSpace/Res/Bullets/PlasmaBulletv2_MoveLogic.tres" id="2_2hd24"]
 [ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_d4wgs"]
 [ext_resource type="Texture2D" uid="uid://dyx5maco2tka2" path="res://Assets/SpaceShip/Bullets/Bullet.webp" id="4_km4fs"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="5_w263k"]
 
 [sub_resource type="Resource" id="Resource_ygvck"]
 script = ExtResource("3_d4wgs")
+AlphaTweenTime = 0.5
 metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1jof"]
@@ -17,12 +18,12 @@ radius = 9.0
 light_mask = 4
 script = ExtResource("1_2g6o0")
 _collisionArea = NodePath("Area2D")
-_moveLogic = ExtResource("2_wsck1")
+_moveLogic = ExtResource("2_2hd24")
 _lifespanLogic = SubResource("Resource_ygvck")
-_bulletDamage = 5
+_bulletDamage = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.226332, 0.64136, 0.500835, 1)
+modulate = Color(0.150673, 0.748627, 1, 1)
 position = Vector2(0, -1)
 rotation = 1.5708
 scale = Vector2(2, 2)
@@ -36,6 +37,7 @@ RealParent = NodePath("..")
 metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a1jof")
 

@@ -1,12 +1,12 @@
 [gd_scene load_steps=18 format=3 uid="uid://ckknr6hu8ksgm"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_5ahos"]
-[ext_resource type="Resource" uid="uid://ryutrche23yv" path="res://EntitiesSpace/Res/Ships/EnemyShip3MoveConfig.tres" id="2_hb6lp"]
+[ext_resource type="Resource" uid="uid://diyy7bd0qqgf4" path="res://EntitiesSpace/Res/Ships/EnemyShip3M_MoveConfig.tres" id="2_8wetx"]
 [ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_6fiwf"]
 [ext_resource type="PackedScene" uid="uid://tdcj5t5ppshr" path="res://EntitiesSpace/BlobBasicCore2.tscn" id="4_m3p6l"]
 [ext_resource type="PackedScene" uid="uid://cgwpoywa4iyc1" path="res://EntitiesSpace/DecalCores/GreenDecalCoreS.tscn" id="5_eaasj"]
 [ext_resource type="Texture2D" uid="uid://be7k26htxowgh" path="res://Assets/SpaceShip/ShipBody/MiddleGreen.webp" id="6_5ahos"]
-[ext_resource type="PackedScene" uid="uid://b2syxoponwx7g" path="res://ETurrets/TurretRocket.tscn" id="7_p6bko"]
+[ext_resource type="PackedScene" uid="uid://btho1h3m05iyd" path="res://ETurrets/TurretRocketv2.tscn" id="7_8wetx"]
 [ext_resource type="PackedScene" uid="uid://b6wjqqecppp68" path="res://ETurrets/TurretShotgun.tscn" id="8_5ahos"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="8_kmkcs"]
 [ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="10_8wetx"]
@@ -19,7 +19,7 @@
 
 [sub_resource type="Resource" id="Resource_m3p6l"]
 script = ExtResource("13_6fiwf")
-maxHp = 10
+maxHp = 30
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
 [node name="EnemyShip3M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
@@ -29,7 +29,7 @@ angular_damp = 1.0
 script = ExtResource("1_5ahos")
 _maxHp = 15
 SizeLevel = 1
-_configRigid = ExtResource("2_hb6lp")
+_configRigid = ExtResource("2_8wetx")
 _damageEffect = ExtResource("3_6fiwf")
 _damageEffectAnchor = NodePath("DamageAnchor")
 VisualNode = NodePath("Visuals")
@@ -38,7 +38,6 @@ _offscreenIndicator = NodePath("OffscreenIndicator")
 _hitbox = NodePath("Hitbox")
 _shield = NodePath("Shield")
 _hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
-GeneralExp = 60
 HealHp = 12
 CorePrefabs = Array[PackedScene]([ExtResource("4_m3p6l")])
 DecalPrefab = ExtResource("5_eaasj")
@@ -59,19 +58,16 @@ position = Vector2(0, -24)
 scale = Vector2(2, 2)
 texture = ExtResource("6_5ahos")
 
-[node name="TurrenRocket" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_p6bko")]
-position = Vector2(-55.9999, 40.0002)
-_shootTarget = NodePath("../ShootMarker")
+[node name="TurrenRocket" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_8wetx")]
+position = Vector2(-56, 40)
 _enemyShip = NodePath("../..")
 
-[node name="TurrenRocket2" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("7_p6bko")]
-position = Vector2(56.0002, 39.9998)
-_shootTarget = NodePath("../ShootMarker")
+[node name="TurrenRocket2" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_8wetx")]
+position = Vector2(56, 40)
 _enemyShip = NodePath("../..")
 
-[node name="TurrenShotgun" parent="Visuals" node_paths=PackedStringArray("_shootTarget", "_enemyShip") instance=ExtResource("8_5ahos")]
+[node name="TurrenShotgun" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("8_5ahos")]
 position = Vector2(-0.00015928, -44)
-_shootTarget = NodePath("../ShootMarker")
 _enemyShip = NodePath("../..")
 
 [node name="Decal" type="Sprite2D" parent="Visuals"]
@@ -80,11 +76,6 @@ position = Vector2(-39.9999, 16.0001)
 rotation = 0.431096
 scale = Vector2(0.404437, 0.287938)
 texture = ExtResource("8_kmkcs")
-
-[node name="ShootMarker" type="Node2D" parent="Visuals"]
-position = Vector2(-0.000762939, -212)
-rotation = -1.5708
-scale = Vector2(4, 4)
 
 [node name="OffscreenIndicator" parent="." instance=ExtResource("10_8wetx")]
 visible = false

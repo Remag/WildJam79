@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://d16rl6xqrhsqr"]
 
 [ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_ehwys"]
-[ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Bullet3_TargMoveLogic.tres" id="2_umbhw"]
+[ext_resource type="Resource" uid="uid://cctx5lynt2f0r" path="res://EntitiesSpace/Res/Bullets/Rocket_TargMoveLogic.tres" id="2_umbhw"]
 [ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_oxh10"]
 [ext_resource type="PackedScene" uid="uid://bxkwdiaflrcet" path="res://Bullets/EBullets/SplinterBullet.tscn" id="4_3sd22"]
 [ext_resource type="Script" uid="uid://6x0jwm35cobd" path="res://Scripts/Bullets/BulletDeathLogic.cs" id="5_nhfgg"]
