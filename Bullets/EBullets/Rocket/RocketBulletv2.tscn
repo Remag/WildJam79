@@ -31,7 +31,7 @@ _collisionArea = NodePath("Area2D")
 _moveLogic = ExtResource("2_akuxw")
 _lifespanLogic = SubResource("Resource_dddoj")
 _deathLogic = SubResource("Resource_8m4er")
-_bulletDamage = 10
+_bulletDamage = 8
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(0, 3.63798e-12)

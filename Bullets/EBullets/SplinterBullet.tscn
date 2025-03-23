@@ -19,7 +19,6 @@ script = ExtResource("1_wllqh")
 _collisionArea = NodePath("Rotator/Area2D")
 _moveLogic = ExtResource("2_wllqh")
 _lifespanLogic = SubResource("Resource_qq402")
-_bulletDamage = 2
 
 [node name="Rotator" type="Node2D" parent="."]
 script = ExtResource("4_ssmih")
