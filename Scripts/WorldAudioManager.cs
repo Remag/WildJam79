@@ -86,7 +86,8 @@ public partial class WorldAudioManager : Node {
 
     public void ButtonClickPlay()
     {
-        _buttonClickPlayer.Play();
+        if( _buttonClickPlayer.Playing == false || _buttonClickPlayer.GetPlaybackPosition() > 0.2 )
+            _buttonClickPlayer.Play();
     }
 
     public void DeathSoundPlay()

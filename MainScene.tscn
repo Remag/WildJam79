@@ -35,8 +35,8 @@
 [ext_resource type="Texture2D" uid="uid://cm07dmfvr3jit" path="res://Assets/MainHero/Drop.webp" id="21_7jkkr"]
 [ext_resource type="PackedScene" uid="uid://c3hh1ov2kjtox" path="res://EntitiesSpace/DecalParts/TutorialDebris2.tscn" id="22_amtbh"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="22_cxdnd"]
-[ext_resource type="AudioStream" uid="uid://cjpotc8b38uxj" path="res://Sounds/FinalExtend.mp3" id="22_kvyqs"]
 [ext_resource type="AudioStream" uid="uid://cnf2rh3j4jnkr" path="res://Sounds/BottlePop.wav" id="23_cxdnd"]
+[ext_resource type="AudioStream" uid="uid://078oxrm0lgkq" path="res://Sounds/FinalExtend2.mp3" id="23_i1thg"]
 [ext_resource type="PackedScene" uid="uid://bnqvmbhwphipr" path="res://EntitiesSpace/DecalParts/TutorialDebris3.tscn" id="23_obg7t"]
 [ext_resource type="AudioStream" uid="uid://cnkamk2nla40g" path="res://Sounds/BottleShake.mp3" id="27_6dw4c"]
 
@@ -1377,7 +1377,7 @@ stream = ExtResource("18_5i0cj")
 volume_db = 4.0
 
 [node name="FinalCutsceneSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = ExtResource("22_kvyqs")
+stream = ExtResource("23_i1thg")
 volume_db = 4.0
 
 [node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartControl", "_hints", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation", "_finalCutscene")]

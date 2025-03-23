@@ -77,6 +77,7 @@ public partial class SettingsMenu : Control {
     {
         var busIndex = AudioServer.GetBusIndex( "sfx" );
         AudioServer.SetBusVolumeLinear( busIndex, value / 100 );
+        Game.Field.WorldAudioManager.ButtonClickPlay();
     }
 
     public float GetSfxVolume()
@@ -87,6 +88,7 @@ public partial class SettingsMenu : Control {
 
     public void CloseSettings()
     {
+        Game.Field.WorldAudioManager.ButtonClickPlay();
         Game.MainScene.CloseSettings();
     }
 }

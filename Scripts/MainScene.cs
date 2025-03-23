@@ -34,12 +34,14 @@ public partial class MainScene : Node {
     public void ShowSettings()
     {
         PauseGame( true );
+        Game.Field.WorldAudioManager.ButtonClickPlay();
         _settings = _settingsPrefab.Instantiate();
         _hud.AddChild( _settings );
     }
 
     public void CloseSettings()
     {
+        Game.Field.WorldAudioManager.ButtonClickPlay();
         _settings.QueueFree();
         _settings = null;
         PauseGame( false );

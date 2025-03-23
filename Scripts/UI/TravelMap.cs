@@ -92,6 +92,7 @@ public partial class TravelMap : Control {
 
     public bool IsAvailable( MapNode target )
     {
+        return true;
         foreach( var node in _availableNodes ) {
             if( node == target ) {
                 return true;
