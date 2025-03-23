@@ -519,7 +519,7 @@ public partial class Player : RigidBody2D {
         Game.Player.FullHeal();
         if( !Game.Player.TryGrow() ) {
             LinearDamp = 1;
-            Game.Field.EnableIdleUi();
+            Game.Field.OnEndVictoryAnimation();
         }
         _isEatingEnemies = false;
     }
@@ -532,7 +532,7 @@ public partial class Player : RigidBody2D {
             hitbox.Scale = new Vector2( hitboxScale, hitboxScale );
         }
         LinearDamp = 1;
-        Game.Field.EnableIdleUi();
+        Game.Field.OnPlayerGrowFinish();
     }
 
     public override void _IntegrateForces( PhysicsDirectBodyState2D state )

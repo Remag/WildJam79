@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://bw88mhh4bohqv"]
+
+[ext_resource type="Script" uid="uid://dnipta6ycx00x" path="res://Scripts/EnemyTurretAi/EnemyTurret.cs" id="1_it6gr"]
+[ext_resource type="PackedScene" uid="uid://b43mdr4th66dd" path="res://Bullets/EBullets/Basic/BasicBulletBig.tscn" id="2_it6gr"]
+[ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="3_qgfm2"]
+[ext_resource type="Texture2D" uid="uid://g2lrl3wni4l5" path="res://Assets/SpaceShip/Guns/TankGun.webp" id="4_5vewh"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="5_d3s5d"]
+
+[sub_resource type="Resource" id="Resource_kajh8"]
+script = ExtResource("3_qgfm2")
+_bulletPrefab = ExtResource("2_it6gr")
+_counter = 8
+_fromAngleDeg = 0.0
+_toAngleDeg = 360.0
+_isFullCircle = true
+metadata/_custom_type_script = "uid://bo1juf5brst7i"
+
+[node name="TurretBlasterRedCicle" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_spawnPoint")]
+script = ExtResource("1_it6gr")
+_aiAttackShootDelayMin = 0.8
+_aiAttackShootDuration = 1.0
+_aiAttackShootPauseMin = 1.5
+_aiAttackShootPauseMax = 2.0
+_bulletSpawner = SubResource("Resource_kajh8")
+_angularVelocity = 0.0
+_activationDistance = 10000.0
+_shootSoundPlayer2D = NodePath("Shoot2D")
+_shootTarget = NodePath("ShootMarker")
+_turretBase = NodePath("TurretBase")
+_spawnPoint = NodePath("SpawnPoint")
+
+[node name="TurretBase" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="TurretBase2" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+rotation = 0.785398
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase2"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="TurretBase3" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+rotation = 1.5708
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase3"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="TurretBase4" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+rotation = 2.35619
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase4"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="TurretBase5" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+rotation = 3.14159
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase5"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="TurretBase6" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+rotation = 3.92699
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase6"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="TurretBase7" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+rotation = 4.71239
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase7"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="TurretBase8" type="Node2D" parent="."]
+position = Vector2(-1.52588e-05, 4)
+rotation = 5.49779
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase8"]
+position = Vector2(0, -30)
+texture = ExtResource("4_5vewh")
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_d3s5d")
+max_distance = 1000.0
+bus = &"sfx"
+
+[node name="ShootMarker" type="Node2D" parent="."]
+position = Vector2(-20, -1044)
+rotation = -1.5708
+scale = Vector2(4, 4)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(0.999998, 0.99994)
+scale = Vector2(5, 5)

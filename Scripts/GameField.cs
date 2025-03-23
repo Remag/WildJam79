@@ -281,6 +281,20 @@ public partial class GameField : Node {
     {
         Game.Player.EatAllEnemies();
     }
+    
+    public void OnEndVictoryAnimation()
+    {
+        EnableIdleUi();
+    }
+
+    public void OnPlayerGrowFinish()
+    {
+        var existingShips = GetTree().GetNodesInGroup( "Enemy" );
+        var aliveCount = getAliveCount( existingShips );
+        if( aliveCount == 0 ) {
+            EnableIdleUi();
+        }
+    }
 
     public void EnableIdleUi()
     {

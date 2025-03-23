@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://b43mdr4th66dd"]
+
+[ext_resource type="Script" uid="uid://bwkvs2pt0b3cb" path="res://Scripts/BasicBullet.cs" id="1_e2p6g"]
+[ext_resource type="Script" uid="uid://c1m4v0ibdsq2e" path="res://Scripts/Bullets/MoveLogic/LinearBulletMoveLogic.cs" id="2_e2p6g"]
+[ext_resource type="Script" uid="uid://bmfbc0dq5u8au" path="res://Scripts/Bullets/LifespanLogic/InfiniteBulletLifespanLogic.cs" id="3_7av0r"]
+[ext_resource type="Texture2D" uid="uid://bx3a5xv0gbr3i" path="res://Assets/SpaceShip/Bullets/Bullet2.webp" id="4_s3go2"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="5_2av6y"]
+
+[sub_resource type="Resource" id="Resource_vbv6f"]
+script = ExtResource("2_e2p6g")
+startMinVelocity = 800.0
+startMaxVelocity = 800.0
+maxVelocity = 800.0
+acceleration = 0.0
+metadata/_custom_type_script = "uid://c1m4v0ibdsq2e"
+
+[sub_resource type="Resource" id="Resource_6i060"]
+script = ExtResource("3_7av0r")
+AlphaTweenTime = 0.5
+metadata/_custom_type_script = "uid://bmfbc0dq5u8au"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h7k3a"]
+radius = 15.0
+
+[node name="BasicBulletBig" type="Node2D" node_paths=PackedStringArray("_collisionArea") groups=["ClearOnLevelClear", "ClearOnRestart"]]
+light_mask = 4
+scale = Vector2(3, 3)
+script = ExtResource("1_e2p6g")
+_collisionArea = NodePath("Area2D")
+_moveLogic = SubResource("Resource_vbv6f")
+_lifespanLogic = SubResource("Resource_6i060")
+_bulletDamage = 25
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.74902, 0, 1)
+position = Vector2(1, 1)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("4_s3go2")
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
+position = Vector2(5, -14)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_2av6y")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5, 14)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_h7k3a")
+
+[connection signal="AreaCollision" from="Area2D" to="." method="OnAreaCollision"]

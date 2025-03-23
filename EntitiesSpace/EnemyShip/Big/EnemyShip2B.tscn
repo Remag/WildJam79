@@ -1,0 +1,147 @@
+[gd_scene load_steps=19 format=3 uid="uid://b1y4l6y4tgo3x"]
+
+[ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_trwef"]
+[ext_resource type="Script" uid="uid://bvixcm5fb4rto" path="res://Scripts/EnemyMove/EnemyMoveConfigRigid.cs" id="2_hevw4"]
+[ext_resource type="PackedScene" uid="uid://bs5unqyo88o3o" path="res://EntitiesSpace/ShipFire.tscn" id="3_6yo6e"]
+[ext_resource type="PackedScene" uid="uid://b7qv5wbwkqu6q" path="res://EntitiesSpace/DecalCores/PurpleDecalCoreM.tscn" id="4_nkvvx"]
+[ext_resource type="Texture2D" uid="uid://chlv1snw6rbh" path="res://Assets/SpaceShip/ShipBody/BigPurple.webp" id="5_gt4n1"]
+[ext_resource type="PackedScene" uid="uid://dt07exnbb24vc" path="res://ETurrets/TurretGun.tscn" id="7_hevw4"]
+[ext_resource type="PackedScene" uid="uid://bw88mhh4bohqv" path="res://ETurrets/TurretGunCircle.tscn" id="7_keofb"]
+[ext_resource type="PackedScene" uid="uid://bjcshqoy6jo72" path="res://ETurrets/TurretGunx3.tscn" id="8_6yo6e"]
+[ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="8_a6bb8"]
+[ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_fkmnx"]
+[ext_resource type="PackedScene" uid="uid://ca6y1ysxxw1yv" path="res://EntitiesSpace/ShieldBig.tscn" id="10_wkk64"]
+[ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="11_cg2sf"]
+[ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="12_s6y27"]
+[ext_resource type="AudioStream" uid="uid://bawmg4taknjp5" path="res://Sounds/Shoot.mp3" id="13_vdqxu"]
+[ext_resource type="AudioStream" uid="uid://d1y8e1rqsjra7" path="res://Sounds/EnemyHit1.wav" id="14_si5oy"]
+[ext_resource type="Script" uid="uid://dh0o5pady331u" path="res://Scripts/Audio/RandomPitchSoundPlayer.cs" id="15_obasg"]
+
+[sub_resource type="Resource" id="Resource_rrk83"]
+script = ExtResource("2_hevw4")
+minRadius = 400.0
+maxRadius = 800.0
+rngAngle = 0.0
+newTargetChooseTime = 5.0
+targetReachRadius = 150.0
+targetReachDelay = 3.0
+maxVelocity = 100.0
+maxAngularVelocity = 0.4
+acceleration = 50.0
+metadata/_custom_type_script = "uid://bvixcm5fb4rto"
+
+[sub_resource type="Resource" id="Resource_hhkoq"]
+script = ExtResource("11_cg2sf")
+maxHp = 300
+metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
+
+[node name="EnemyShip1B" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "EatOnWin", "Enemy"]]
+collision_layer = 2
+mass = 100.0
+can_sleep = false
+angular_damp = 1.0
+script = ExtResource("1_trwef")
+_maxHp = 350
+SizeLevel = 2
+_configRigid = SubResource("Resource_rrk83")
+_damageEffect = ExtResource("3_6yo6e")
+_damageEffectAnchor = NodePath("DamageAnchor")
+VisualNode = NodePath("Visuals")
+_trail = NodePath("ShipTrail")
+_offscreenIndicator = NodePath("OffscreenIndicator")
+_hitbox = NodePath("Hitbox")
+_shield = NodePath("Shield")
+_hullHitSoundPlayer = NodePath("HullDamageSoundPlayer")
+GeneralExp = 100
+WeaponXp = 10
+HealHp = 30
+ShrinkSpeedReduction = 10.0
+CorePrefabs = Array[PackedScene]([])
+DecalPrefab = ExtResource("4_nkvvx")
+IsWeaponSource = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(68.5, 9.53674e-07)
+rotation = 1.5708
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-138.52, 87.4845, -63.1233, -19.8707, -35.5071, -78.7095, -0.000405857, -131.871, 45.5888, -67.8712, 65.7534, -18.3229, 147.288, 89.0316, 130.63, 115.354, 47.3428, 116.903, 1.31551, 143.742, -46.4654, 118.452, -126.685, 116.388)
+
+[node name="Visuals" type="Node2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="Main" type="Sprite2D" parent="Visuals"]
+position = Vector2(-0.000801086, -224)
+scale = Vector2(12, 12)
+texture = ExtResource("5_gt4n1")
+
+[node name="TurretGunCircle" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_keofb")]
+position = Vector2(4.00046, 120)
+_enemyShip = NodePath("../..")
+
+[node name="TurrenGun" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_hevw4")]
+position = Vector2(-1028, 672.004)
+_enemyShip = NodePath("../..")
+
+[node name="TurrenGun2" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_hevw4")]
+position = Vector2(-671.998, 672.002)
+_enemyShip = NodePath("../..")
+
+[node name="TurrenGun3" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_hevw4")]
+position = Vector2(696.002, 671.997)
+_enemyShip = NodePath("../..")
+
+[node name="TurrenGun4" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_hevw4")]
+position = Vector2(1044, 671.996)
+_enemyShip = NodePath("../..")
+
+[node name="TurrenGunx3_5" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("8_6yo6e")]
+position = Vector2(-60.004, -1104)
+_enemyShip = NodePath("../..")
+
+[node name="TurrenGunx3_6" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("8_6yo6e")]
+position = Vector2(67.996, -1108)
+_enemyShip = NodePath("../..")
+
+[node name="OffscreenIndicator" parent="." instance=ExtResource("8_a6bb8")]
+visible = false
+
+[node name="ShipTrail" parent="." instance=ExtResource("9_fkmnx")]
+position = Vector2(-188, 1)
+rotation = 1.5708
+scale = Vector2(6, 6)
+
+[node name="Shield" parent="." node_paths=PackedStringArray("EnemyShip") instance=ExtResource("10_wkk64")]
+scale = Vector2(1.5, 1.5)
+_config = SubResource("Resource_hhkoq")
+EnemyShip = NodePath("..")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("RealParent")]
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("12_s6y27")
+RealParent = NodePath("..")
+metadata/_custom_type_script = "uid://bawks0hu1dmi1"
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(-0.239931, -67.1129)
+scale = Vector2(2.28125, 1.9375)
+polygon = PackedVector2Array(-138.52, 87.4845, -63.1233, -19.8707, -35.5071, -78.7095, -0.000405857, -131.871, 45.5888, -67.8712, 65.7534, -18.3229, 147.288, 89.0316, 130.63, 115.354, 47.3428, 116.903, 1.31551, 143.742, -46.4654, 118.452, -126.685, 116.388)
+
+[node name="DamageAnchor" type="Node2D" parent="."]
+position = Vector2(1, 9)
+
+[node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_vdqxu")
+max_distance = 1000.0
+bus = &"sfx"
+
+[node name="HullDamageSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_si5oy")
+volume_db = -20.0
+bus = &"sfx"
+script = ExtResource("15_obasg")
+metadata/_custom_type_script = "uid://dh0o5pady331u"

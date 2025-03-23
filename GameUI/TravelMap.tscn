@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip1M.tscn" id="16_e8a67"]
 [ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="16_xmqkv"]
 [ext_resource type="PackedScene" uid="uid://cd423uj511yvd" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip1B.tscn" id="16_yw4l6"]
-[ext_resource type="PackedScene" uid="uid://b1y4l6y4tgo3x" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip1Bv2.tscn" id="17_lhbwo"]
+[ext_resource type="PackedScene" uid="uid://b1y4l6y4tgo3x" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip2B.tscn" id="17_lhbwo"]
 [ext_resource type="Resource" uid="uid://bq1atcu446iai" path="res://EnemyWaves/BigWave3.tres" id="17_qpfd0"]
 [ext_resource type="Resource" uid="uid://cw83narv1spr5" path="res://EnemyWaves/Map6-1Wave.tres" id="22_74msd"]
 [ext_resource type="Resource" uid="uid://dkh1b5du12dll" path="res://EnemyWaves/Map6-2Wave.tres" id="23_rh1lp"]
