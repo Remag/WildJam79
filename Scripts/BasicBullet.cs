@@ -13,7 +13,11 @@ public partial class BasicBullet : Node2D {
 	private BulletLifespanLogic _lifespanLogic;
 	[Export]
 	private BulletDeathLogic _deathLogic;
-
+	
+	[Export]
+	private ShipTrail _trail;
+	[Export]
+	private float _driftAngularSpeed = 0.1f;
 	[Export]
 	private bool _isEnemyBullet = false;
 	public bool IsEnemyBullet { get { return _isEnemyBullet; } }
@@ -136,6 +140,8 @@ public partial class BasicBullet : Node2D {
 		if( _currentLifetime > targetedBulletMoveLogic.activeTime ) {
 			_velocity = Math.Max( 0, _velocity - targetedBulletMoveLogic.inactiveFriction * delta );
 			var dir = new Vector2( _velocity, 0 ).Rotated( Rotation );
+			_trail?.HideTrail();
+			Rotation += _driftAngularSpeed * delta;
 			Position += delta * dir;
 		} else {
 			_velocity = Math.Min( targetedBulletMoveLogic.maxVelocity, _velocity + targetedBulletMoveLogic.acceleration * delta );

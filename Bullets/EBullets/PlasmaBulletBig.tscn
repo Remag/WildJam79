@@ -30,7 +30,7 @@ script = ExtResource("1_46dfu")
 _collisionArea = NodePath("Transform/Area2D")
 _moveLogic = SubResource("Resource_24scg")
 _lifespanLogic = SubResource("Resource_qq402")
-_bulletDamage = 20
+_bulletDamage = 15
 
 [node name="Transform" type="Node2D" parent="."]
 scale = Vector2(9, 9)

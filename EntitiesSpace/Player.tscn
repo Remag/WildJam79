@@ -578,13 +578,13 @@ _maxVelocityPxSec = 350.0
 _maxHpByLvl = Array[int]([15, 50, 200])
 _tentaclesByLevel = Array[PackedScene]([ExtResource("3_wi0c6"), ExtResource("3_o1tba"), ExtResource("4_bjqqk")])
 _autoTentaclesBySize = Array[PackedScene]([ExtResource("5_bjqqk")])
-_tentacleDamageByLevel = Array[int]([5, 10, 50])
+_tentacleDamageByLevel = Array[int]([5, 20, 50])
 _autoTentacleArea = NodePath("AutoTentacleArea")
 _playerHitboxes = [NodePath("CollisionShape2D"), NodePath("Hitbox/CollisionShape2D")]
 GrowthXpByLvl = Array[int]([55, 92])
 _cameraZoomByLvl = Array[float]([1.0, 0.5, 0.33])
 _heroHitboxScaleByLvl = Array[float]([1.0, 2.0, 3.0])
-_smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3"), NodePath("Visual/Small/BodySmall/Blob4"), NodePath("Visual/Small/BodySmall/Blob5"), NodePath("Visual/Small/BodySmall/Blob6")]
+_smallBlobs = [NodePath("Visual/Small/BodySmall/Blob4"), NodePath("Visual/Small/BodySmall/Blob6"), NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3"), NodePath("Visual/Small/BodySmall/Blob5")]
 _mediumBlobs = [NodePath("Visual/Medium/BodyMid/PlayerBlob5"), NodePath("Visual/Medium/BodyMid/PlayerBlob7"), NodePath("Visual/Medium/BodyMid/PlayerBlob9"), NodePath("Visual/Medium/BodyMid/PlayerBlob11"), NodePath("Visual/Medium/BodyMid/PlayerBlob6"), NodePath("Visual/Medium/BodyMid/PlayerBlob8"), NodePath("Visual/Medium/BodyMid/PlayerBlob10"), NodePath("Visual/Medium/BodyMid/PlayerBlob12")]
 _largeBlobs = [NodePath("Visual/Large/BodyLarge/PlayerBlob5"), NodePath("Visual/Large/BodyLarge/PlayerBlob6"), NodePath("Visual/Large/BodyLarge/PlayerBlob8"), NodePath("Visual/Large/BodyLarge/PlayerBlob7"), NodePath("Visual/Large/BodyLarge/PlayerBlob10"), NodePath("Visual/Large/BodyLarge/PlayerBlob9")]
 _chompSoundPlayer = NodePath("Chomp")
@@ -636,7 +636,7 @@ scale = Vector2(0.81, 0.81)
 [node name="Blob3" parent="Visual/Small/BodySmall" instance=ExtResource("7_oudfo")]
 visible = false
 position = Vector2(-100, 12)
-rotation = 4.71238
+rotation = -1.57081
 scale = Vector2(0.81, 0.81)
 
 [node name="Eye" type="Sprite2D" parent="Visual/Small"]
