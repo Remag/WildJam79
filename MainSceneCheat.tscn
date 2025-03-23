@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://xhv0kaj7ymrv"]
+[gd_scene load_steps=38 format=3 uid="uid://xhv0kaj7ymrv"]
 
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_g0egd"]
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_rvy8n"]
@@ -26,7 +26,6 @@
 [ext_resource type="AudioStream" uid="uid://cq7blko855kh1" path="res://Sounds/GameOver_ZapSplat.mp3" id="17_5dfft"]
 [ext_resource type="AudioStream" uid="uid://d1o5u51rj1enm" path="res://Music/TitleBGM.mp3" id="18_3gegi"]
 [ext_resource type="AudioStream" uid="uid://tm5k4wb6kum" path="res://Sounds/EchoCut_ZapSplat.mp3" id="18_s02ea"]
-[ext_resource type="Texture2D" uid="uid://cr481svp01omr" path="res://TempAssets/Bullet.png" id="19_67llk"]
 [ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="19_u21sk"]
 [ext_resource type="AudioStream" uid="uid://078oxrm0lgkq" path="res://Sounds/FinalExtend2.mp3" id="22_2lnc8"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
@@ -392,10 +391,6 @@ offset_right = 2048.0
 offset_bottom = 2048.0
 texture = ExtResource("13_aa5ys")
 stretch_mode = 1
-
-[node name="TestSprite" type="Sprite2D" parent="GameField"]
-visible = false
-texture = ExtResource("19_67llk")
 
 [connection signal="pressed" from="HUD/TravelMap/DebugActive" to="HUD/TravelMap" method="SetAllNodesActive"]
 [connection signal="pressed" from="HUD/RestartNode/RestartButton" to="GameField" method="RestartGame"]

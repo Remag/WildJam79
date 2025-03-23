@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3oq77ju6me4s"
-path="res://.godot/imported/TentacleSection.png-09aa67d9dd230e9d034347ddf7d82999.ctex"
+uid="uid://brdms4yh13312"
+path="res://.godot/imported/TentacleEnd.png-3fa6b5b5e01b5e002939f4f73dc514c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TempAssets/Hero/TentacleSection.png"
-dest_files=["res://.godot/imported/TentacleSection.png-09aa67d9dd230e9d034347ddf7d82999.ctex"]
+source_file="res://Assets/MainHero/TentacleEnd.png"
+dest_files=["res://.godot/imported/TentacleEnd.png-3fa6b5b5e01b5e002939f4f73dc514c7.ctex"]
 
 [params]
 

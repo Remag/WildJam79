@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr481svp01omr"
-path="res://.godot/imported/Bullet.png-581051e3252d709878eb06022673eaea.ctex"
+uid="uid://d3oq77ju6me4s"
+path="res://.godot/imported/TentacleSection.png-43fd5a4aae8941db8ce75f1eeeffdbd5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TempAssets/Bullet.png"
-dest_files=["res://.godot/imported/Bullet.png-581051e3252d709878eb06022673eaea.ctex"]
+source_file="res://Assets/MainHero/TentacleSection.png"
+dest_files=["res://.godot/imported/TentacleSection.png-43fd5a4aae8941db8ce75f1eeeffdbd5.ctex"]
 
 [params]
 

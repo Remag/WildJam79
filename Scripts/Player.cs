@@ -599,6 +599,9 @@ public partial class Player : RigidBody2D {
 
     public void OnAutoTentacleAreaEntered( Node node )
     {
+        if( !_isPlayerControlled ) {
+            return;
+        }
         switch( node ) {
             case EnemyShip enemyShip: {
                     if( enemyShip.SizeLevel == 0 || (enemyShip.SizeLevel == 1 && enemyShip.IsDead) ) {
