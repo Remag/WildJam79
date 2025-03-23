@@ -226,7 +226,12 @@ public partial class EnemyShip : FoodSource {
 			IsDead = true;
 			Game.Field.RemoveExistingShip();
 		}
-		QueueFree();
+
+		var removeAction = () => { QueueFree(); };
+		var tween = CreateTween();
+		tween.SetParallel();
+		tween.TweenProperty( VisualNode, "scale", new Vector2( 0, 0 ), 0.2 );
+		tween.TweenCallback( Callable.From( removeAction ) ).SetDelay( 0.2 );
 		if( IsInstanceValid( _offscreenIndicator ) ) {
 			_offscreenIndicator.QueueFree();
 		}
