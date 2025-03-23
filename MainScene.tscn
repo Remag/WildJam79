@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_x0cd2"]
-[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="4_3slyh"]
+[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/Map10.tres" id="4_3slyh"]
 [ext_resource type="FontFile" uid="uid://ctqyftihdspco" path="res://Assets/Nosifer-Regular.ttf" id="4_nlw8m"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]

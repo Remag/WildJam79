@@ -23,12 +23,10 @@
 [ext_resource type="Resource" uid="uid://j0b4uoesaqh0" path="res://EnemyWaves/Map5Wave.tres" id="13_hxb48"]
 [ext_resource type="PackedScene" uid="uid://cwsgy7h1g2lu" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip2M.tscn" id="14_gwatr"]
 [ext_resource type="PackedScene" uid="uid://ckknr6hu8ksgm" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip3M.tscn" id="15_0akcc"]
-[ext_resource type="Resource" uid="uid://cfq5yrofpnafg" path="res://EnemyWaves/BigWave1.tres" id="15_s18lq"]
 [ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip1M.tscn" id="16_e8a67"]
-[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="16_xmqkv"]
 [ext_resource type="PackedScene" uid="uid://cd423uj511yvd" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip1B.tscn" id="16_yw4l6"]
 [ext_resource type="PackedScene" uid="uid://b1y4l6y4tgo3x" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip2B.tscn" id="17_lhbwo"]
-[ext_resource type="Resource" uid="uid://bq1atcu446iai" path="res://EnemyWaves/BigWave3.tres" id="17_qpfd0"]
+[ext_resource type="Resource" uid="uid://bq1atcu446iai" path="res://EnemyWaves/Map9.tres" id="17_qpfd0"]
 [ext_resource type="Resource" uid="uid://cw83narv1spr5" path="res://EnemyWaves/Map6-1Wave.tres" id="22_74msd"]
 [ext_resource type="Resource" uid="uid://dkh1b5du12dll" path="res://EnemyWaves/Map6-2Wave.tres" id="23_rh1lp"]
 [ext_resource type="Resource" uid="uid://m3oeau77enhh" path="res://EnemyWaves/Map6-3Wave.tres" id="24_q2yjy"]
@@ -38,6 +36,8 @@
 [ext_resource type="Resource" uid="uid://bi0dmctou1b4b" path="res://EnemyWaves/Map7-3Wave.tres" id="27_tux2v"]
 [ext_resource type="Resource" uid="uid://drif2y0f1tt6y" path="res://EnemyWaves/Map4-2Wave2.tres" id="27_yw4l6"]
 [ext_resource type="Resource" uid="uid://4ogs36wri7dy" path="res://EnemyWaves/Map4-3Wave2.tres" id="28_yw4l6"]
+[ext_resource type="Resource" uid="uid://cmesubj825tfj" path="res://EnemyWaves/Map8.tres" id="36_yw4l6"]
+[ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/Map10.tres" id="38_yw4l6"]
 [ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="39_yw4l6"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_k420c"]
@@ -269,7 +269,7 @@ offset_left = 420.0
 offset_top = 142.0
 offset_right = 437.0
 offset_bottom = 158.0
-_nodeInfo = ExtResource("15_s18lq")
+_nodeInfo = ExtResource("36_yw4l6")
 _next = [NodePath("../Map9")]
 
 [node name="Map9" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
@@ -278,7 +278,7 @@ offset_left = 450.0
 offset_top = 142.0
 offset_right = 467.0
 offset_bottom = 158.0
-_nodeInfo = ExtResource("16_xmqkv")
+_nodeInfo = ExtResource("17_qpfd0")
 _next = [NodePath("../Map10")]
 
 [node name="Map10" parent="Control" node_paths=PackedStringArray("_next") instance=ExtResource("1_2emn1")]
@@ -287,7 +287,7 @@ offset_left = 480.0
 offset_top = 142.0
 offset_right = 497.0
 offset_bottom = 158.0
-_nodeInfo = ExtResource("17_qpfd0")
+_nodeInfo = ExtResource("38_yw4l6")
 _next = [NodePath("../FinalNode")]
 
 [node name="FinalNode" parent="Control" instance=ExtResource("1_2emn1")]

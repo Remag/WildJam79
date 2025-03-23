@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=7 format=3 uid="uid://cmesubj825tfj"]
+
+[ext_resource type="PackedScene" uid="uid://b8p2vqn1kn1s8" path="res://EntitiesSpace/EnemyShip/Big/EnemyShip2BMiniBoss.tscn" id="1_bwsg6"]
+[ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_osd1q"]
+[ext_resource type="Script" uid="uid://djvcagko6b25v" path="res://Scripts/UI/EnemyWaveInfo.cs" id="4_iydnn"]
+[ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="5_4vfbt"]
+
+[sub_resource type="Resource" id="Resource_rt00r"]
+script = ExtResource("2_osd1q")
+Prefab = ExtResource("1_bwsg6")
+Count = 1
+metadata/_custom_type_script = "uid://i8f3bi4mcsst"
+
+[sub_resource type="Resource" id="Resource_ysdgj"]
+script = ExtResource("4_iydnn")
+EnemiesInfo = Array[Object]([SubResource("Resource_rt00r")])
+SpawnTimePoint = 0.0
+metadata/_custom_type_script = "uid://djvcagko6b25v"
+
+[resource]
+script = ExtResource("5_4vfbt")
+WavesInfo = Array[Object]([SubResource("Resource_ysdgj")])
+MinShipsAliveForNextWave = 1
+HeroGrowthOnClear = 0
+WeaponLevelsOnClear = null
+IsFinalNode = false
+metadata/_custom_type_script = "uid://3et64xg5xbi4"
