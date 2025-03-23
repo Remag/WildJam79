@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://cd1ud1qhf1o0h" path="res://EntitiesSpace/Res/Bullets/SplinterBullet_MoveLogic.tres" id="2_xwhgu"]
 [ext_resource type="Script" uid="uid://b66fo1ud8763f" path="res://Scripts/Bullets/LifespanLogic/TimedBulletLifespanLogic.cs" id="3_vyk4s"]
 [ext_resource type="Script" uid="uid://ru7mqypk5uda" path="res://Bullets/Rotator.cs" id="4_jrtl0"]
-[ext_resource type="Texture2D" uid="uid://dhl7t18rin6fo" path="res://Assets/SpaceShip/Bullets/RocketPeace2.webp" id="5_8y8a2"]
+[ext_resource type="Texture2D" uid="uid://dfhhja80nxurh" path="res://Assets/SpaceShip/Bullets/RocketPeace2_v2.webp" id="5_fwijc"]
 [ext_resource type="Script" uid="uid://bawks0hu1dmi1" path="res://Scripts/ParentArea2D.cs" id="6_ytthf"]
 
 [sub_resource type="Resource" id="Resource_qq402"]
@@ -27,7 +27,7 @@ script = ExtResource("4_jrtl0")
 position = Vector2(-1, 0)
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_8y8a2")
+texture = ExtResource("5_fwijc")
 
 [node name="Area2D" type="Area2D" parent="Rotator" node_paths=PackedStringArray("RealParent")]
 collision_layer = 4
@@ -37,6 +37,7 @@ RealParent = NodePath("../..")
 metadata/_custom_type_script = "uid://bawks0hu1dmi1"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rotator/Area2D"]
+visible = false
 polygon = PackedVector2Array(3, -4, 6, 3, -1, 3, -8, -4)
 
 [connection signal="AreaCollision" from="Rotator/Area2D" to="." method="OnAreaCollision"]
