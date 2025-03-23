@@ -10,11 +10,16 @@ public partial class MapNode : Control {
     private EnemyNodeInfo _nodeInfo;
     [Export]
     private Godot.Collections.Array<MapNode> _next;
-
     public Godot.Collections.Array<MapNode> Next { get { return _next; } }
 
+    private Godot.Collections.Array<Line2D> _nextLines = new();
+
+    [Export]
+    private TextureRect _starRect;
     [Export]
     private PackedScene _linePrefab;
+
+    private bool _isActive = false;
 
     public override void _Ready()
     {
@@ -33,6 +38,24 @@ public partial class MapNode : Control {
     private void addLine( Line2D line )
     {
         Game.TravelMap.NodeContainer.AddChild( line );
+        _nextLines.Add( line );
+    }
+
+    public void HighlightLine( Color color, Node target )
+    {
+        for( var i = 0; i < _nextLines.Count; i++ ) {
+            if( _next[i] == target ) {
+                _nextLines[i].Modulate = color;
+                return;
+            }
+        }
+    }
+
+    public void SetLineColor( Color color )
+    {
+        foreach( var line in _nextLines ) {
+            line.Modulate = color;
+        }
     }
 
     public void SetStyle( StyleBox newStyle )
@@ -40,8 +63,18 @@ public partial class MapNode : Control {
         AddThemeStyleboxOverride( "panel", newStyle );
     }
 
+    public void SetActivity( Texture2D starIcon, bool isActive )
+    {
+        _starRect.Texture = starIcon;
+        _isActive = isActive;
+    }
+
     public void OnNodeEntered()
     {
+        if( !_isActive ) {
+            return;
+        }
+
         var prefabToMap = new Dictionary<PackedScene, int>();
         if( _nodeInfo != null ) {
             foreach( var enemyWaveInfo in _nodeInfo.WavesInfo ) {

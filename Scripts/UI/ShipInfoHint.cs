@@ -6,11 +6,14 @@ public partial class ShipInfoHint : Node {
     private Label _label;
     [Export]
     private Node2D _shipAnchor;
+    [Export]
+    private Godot.Collections.Array<float> _scaleByShipClass;
 
     public void SetHintInfo( int shipCount, PackedScene prefab )
     {
         var shipHint = prefab.Instantiate<EnemyShip>();
-        _shipAnchor.Scale = new Vector2( 0.5F, 0.5F );
+        var scale = _scaleByShipClass[shipHint.SizeLevel];
+        _shipAnchor.Scale = new Vector2( scale, scale );
 
         var visual = shipHint.VisualNode;
         visual.GetParent().RemoveChild( visual );

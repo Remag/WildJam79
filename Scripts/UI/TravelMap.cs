@@ -6,6 +6,8 @@ public partial class TravelMap : Control {
     [Export]
     private MapNode _startNode;
     [Export]
+    private MapNode _finalNode;
+    [Export]
     private Control _hintMarginContainer;
     [Export]
     private Control _hintContainer;
@@ -19,6 +21,14 @@ public partial class TravelMap : Control {
     private StyleBox _activeStyle;
     [Export]
     private StyleBox _completedStyle;
+    [Export]
+    private Texture2D _normalStar;
+    [Export]
+    private Texture2D _activeStar;
+    [Export]
+    private Texture2D _completedStar;
+    [Export]
+    private Texture2D _finalStar;
 
     private MapNode _currentNode;
 
@@ -28,6 +38,7 @@ public partial class TravelMap : Control {
     {
         Game.TravelMap = this;
         SetCurrentNode( _startNode );
+        _finalNode.SetActivity( _finalStar, false );
     }
 
     public void SetCurrentNode( MapNode node )
@@ -41,8 +52,12 @@ public partial class TravelMap : Control {
         _currentNode = node;
         _availableNodes = node.Next;
         _currentNode.SetStyle( _completedStyle );
+        _currentNode.SetActivity( _completedStar, false );
         foreach( var nextNode in _availableNodes ) {
             nextNode.SetStyle( _activeStyle );
+            if( nextNode != _finalNode ) {
+                nextNode.SetActivity( _activeStar, true );
+            }
         }
         if( Game.Field != null )
             Game.Field.WorldAudioManager.ButtonClickPlay();
@@ -61,7 +76,7 @@ public partial class TravelMap : Control {
 
     public void ClearAllHints()
     {
-        foreach( var child in _hintContainer.GetChildren() ){
+        foreach( var child in _hintContainer.GetChildren() ) {
             child.QueueFree();
         }
         _hintContainer.Visible = false;

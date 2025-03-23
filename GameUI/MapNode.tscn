@@ -1,36 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1mx01o44ckm7"]
+[gd_scene load_steps=7 format=3 uid="uid://b1mx01o44ckm7"]
 
 [ext_resource type="Script" uid="uid://d17x76h6yms0s" path="res://Scripts/UI/MapNode.cs" id="1_1nc5i"]
 [ext_resource type="StyleBox" uid="uid://bdryog8pu65rf" path="res://GameUI/MapNodeNormalStyle.tres" id="1_jnycp"]
 [ext_resource type="PackedScene" uid="uid://bci4xrgkmsk37" path="res://GameUI/MapLine.tscn" id="3_dn05m"]
+[ext_resource type="Texture2D" uid="uid://bj2llprsnq85p" path="res://Assets/UI/Map/StarBasic.webp" id="4_jnycp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r064c"]
 draw_center = false
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0.962373, 0.32181, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bne5p"]
 
-[node name="MapNode" type="Panel" node_paths=PackedStringArray("_next")]
+[node name="MapNode" type="Panel" node_paths=PackedStringArray("_next", "_starRect")]
 z_index = 1
-offset_left = 37.0
+offset_left = 36.0
 offset_top = 126.0
 offset_right = 54.0
-offset_bottom = 142.0
+offset_bottom = 143.0
 theme_override_styles/panel = ExtResource("1_jnycp")
 script = ExtResource("1_1nc5i")
 _next = []
+_starRect = NodePath("TextureRect")
 _linePrefab = ExtResource("3_dn05m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 37.0
+offset_bottom = 35.0
+texture = ExtResource("4_jnycp")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = -6.0
+offset_left = -7.0
 offset_top = -7.0
-offset_right = 23.0
-offset_bottom = 23.0
+offset_right = 24.0
+offset_bottom = 24.0
 theme_override_styles/hover = SubResource("StyleBoxFlat_r064c")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_bne5p")
 

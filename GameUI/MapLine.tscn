@@ -7,5 +7,6 @@ texture_filter = 1
 texture_repeat = 2
 points = PackedVector2Array(4, 0, 56, 0)
 width = 2.0
+default_color = Color(0.745098, 0.745098, 0.745098, 1)
 texture = ExtResource("1_1tj6g")
 texture_mode = 1
