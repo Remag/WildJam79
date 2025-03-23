@@ -173,7 +173,7 @@ metadata/_custom_type_script = "uid://djvcagko6b25v"
 script = ExtResource("9_phwhl")
 WavesInfo = Array[Object]([SubResource("Resource_fylo3"), SubResource("Resource_fohhe"), SubResource("Resource_ivljl"), SubResource("Resource_tnptg"), SubResource("Resource_rlu82"), SubResource("Resource_3wobe"), SubResource("Resource_d6u8k")])
 MinShipsAliveForNextWave = 0
-HeroGrowthOnClear = 2
+HeroGrowthOnClear = 0
 WeaponLevelsOnClear = Dictionary[PackedScene, int]({
 ExtResource("9_fohhe"): 2,
 ExtResource("10_ht565"): 2,
