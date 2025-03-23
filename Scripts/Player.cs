@@ -48,8 +48,6 @@ public partial class Player : RigidBody2D {
     private Godot.Collections.Array<PlayerBlob> _prevBlobs;
     private Godot.Collections.Array<PlayerBlob> _currentBlobs;
     [Export]
-    private AudioStreamPlayer _shootSoundPlayer;
-    [Export]
     private AudioStreamPlayer _chompSoundPlayer;
 
     public int CurrentGrowthLevel { get; private set; }
@@ -553,11 +551,6 @@ public partial class Player : RigidBody2D {
         foreach( var weapon in _activeWeapons ) {
             weapon.UpdateShooting( delta );
         }
-    }
-
-    internal void ShootSoundPlay()
-    {
-        _shootSoundPlayer.Play();
     }
 
     private void ModulateEyesColor()

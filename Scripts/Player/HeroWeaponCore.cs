@@ -7,6 +7,9 @@ public partial class HeroWeaponCore : Node2D {
     [Export]
     private Godot.Collections.Array<PlayerWeapon> _levelNodes;
 
+    [Export]
+    private AudioStreamPlayer _shootSoundPlayer;
+
     public PackedScene SrcCore { get; private set; }
 
     public int _currentExp = 0;
@@ -49,7 +52,9 @@ public partial class HeroWeaponCore : Node2D {
 
     public void UpdateShooting( double delta )
     {
-        _levelNodes[_currentLevel].UpdateShooting( delta );
+        var shooted = _levelNodes[_currentLevel].UpdateShooting( delta );
+        if( shooted )
+            _shootSoundPlayer.Play();
     }
 
     public SavedState SaveState()

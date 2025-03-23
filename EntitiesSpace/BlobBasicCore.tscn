@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0rri7xjcdjyd"]
+[gd_scene load_steps=11 format=3 uid="uid://d0rri7xjcdjyd"]
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_k6m0d"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_jy6jm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://u52mt6ngtjbk" path="res://Bullets/PlayerBullets/Basic/BasicBulletPlayer.tscn" id="3_jy6jm"]
 [ext_resource type="Script" uid="uid://de10ab1n1g1s" path="res://Scripts/Attacks/TargetBulletSpawner.cs" id="4_7d47m"]
 [ext_resource type="PackedScene" uid="uid://bi8litw7f5d8w" path="res://Bullets/PlayerBullets/Basic/BasicBulletPlayerv2.tscn" id="6_jy6jm"]
+[ext_resource type="AudioStream" uid="uid://bp4bk6d05h8fd" path="res://Sounds/BigBullet.mp3" id="7_7d47m"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_7d47m")
@@ -25,10 +26,11 @@ _bulletPrefab = ExtResource("6_jy6jm")
 _rngAngleDeg = 0.0
 metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
-[node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
+[node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes", "_shootSoundPlayer")]
 script = ExtResource("1_k6m0d")
 _levelReqs = Array[int]([22, 999])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
+_shootSoundPlayer = NodePath("ShootSoundPlayer")
 
 [node name="Level1" type="Node2D" parent="." node_paths=PackedStringArray("_spawnPoint")]
 scale = Vector2(0.5, 0.5)
@@ -108,3 +110,8 @@ texture = ExtResource("2_pgvwl")
 [node name="SpawnPoint" type="Node2D" parent="Level3"]
 position = Vector2(0, -190)
 scale = Vector2(2, 2)
+
+[node name="ShootSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7d47m")
+volume_db = 10.0
+bus = &"sfx"

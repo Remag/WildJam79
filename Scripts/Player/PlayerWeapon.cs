@@ -17,7 +17,7 @@ public partial class PlayerWeapon : Node2D {
         GlobalRotation = (mousePos - GlobalPosition).Angle() + float.Pi / 2;
     }
 
-    public void UpdateShooting( double delta )
+    public bool UpdateShooting( double delta )
     {
         _currentDelay -= delta;
         
@@ -26,7 +26,8 @@ public partial class PlayerWeapon : Node2D {
             
             var mousePos = Game.Camera.GetCanvasTransform().AffineInverse() * GetViewport().GetMousePosition();
             _bulletSpawner.SpawnBullets( this, _spawnPoint ?? this, mousePos, isEnemyBullet:false );
-            Game.Player.ShootSoundPlay();
+            return true;
         }
+        return false;
     }
 }

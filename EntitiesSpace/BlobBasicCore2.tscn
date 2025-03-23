@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tdcj5t5ppshr"]
+[gd_scene load_steps=12 format=3 uid="uid://tdcj5t5ppshr"]
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_xuh3f"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_2aqgo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://civxbol4ydkjk" path="res://Assets/SpaceShip/Guns/RocketGun.webp" id="5_xuh3f"]
 [ext_resource type="PackedScene" uid="uid://dtf34kphthimd" path="res://Bullets/PlayerBullets/Rocket/RocketBulletPlayerv2.tscn" id="6_1qo7x"]
 [ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="6_cy44l"]
+[ext_resource type="AudioStream" uid="uid://bestfkcejbubt" path="res://Sounds/RocketLaunchCut_ZapSplat.mp3" id="8_cy44l"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_cy44l")
@@ -32,10 +33,11 @@ _toAngleDeg = 360.0
 _isFullCircle = true
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
-[node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
+[node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes", "_shootSoundPlayer")]
 script = ExtResource("1_xuh3f")
 _levelReqs = Array[int]([13, 999])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
+_shootSoundPlayer = NodePath("ShootSoundPlayer")
 
 [node name="Level1" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -93,3 +95,7 @@ position = Vector2(72, 0)
 rotation = 1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("5_xuh3f")
+
+[node name="ShootSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_cy44l")
+bus = &"sfx"

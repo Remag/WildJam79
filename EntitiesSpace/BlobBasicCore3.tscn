@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy5tg0dsiv0p8"]
+[gd_scene load_steps=12 format=3 uid="uid://dy5tg0dsiv0p8"]
 
 [ext_resource type="Script" uid="uid://r6u0i16jecaf" path="res://Scripts/Player/HeroWeaponCore.cs" id="1_jeb3w"]
 [ext_resource type="Script" uid="uid://6skyvkisypno" path="res://Scripts/Player/PlayerWeapon.cs" id="2_tc5lk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dqxox5l07to0i" path="res://Assets/SpaceShip/Guns/GunParts/BlasterRedPart.webp" id="5_tc5lk"]
 [ext_resource type="PackedScene" uid="uid://cvo8jllx1uc0e" path="res://Bullets/PlayerBullets/Plasma/PlasmaBulletPlayerv2.tscn" id="6_f3e6y"]
 [ext_resource type="Script" uid="uid://bo1juf5brst7i" path="res://Scripts/Attacks/FanBulletSpawner.cs" id="6_tc5lk"]
+[ext_resource type="AudioStream" uid="uid://cd16hwdbfhec0" path="res://Sounds/Blaster1_ZapSplat.mp3" id="8_ovmsc"]
 
 [sub_resource type="Resource" id="Resource_i685c"]
 script = ExtResource("4_ovmsc")
@@ -32,10 +33,11 @@ _toAngleDeg = 30.0
 _isFullCircle = false
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
-[node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes")]
+[node name="BlobBasicCore" type="Node2D" node_paths=PackedStringArray("_levelNodes", "_shootSoundPlayer")]
 script = ExtResource("1_jeb3w")
 _levelReqs = Array[int]([32, 999])
 _levelNodes = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3")]
+_shootSoundPlayer = NodePath("ShootSoundPlayer")
 
 [node name="Level1" type="Node2D" parent="." node_paths=PackedStringArray("_spawnPoint")]
 scale = Vector2(0.5, 0.5)
@@ -119,3 +121,8 @@ texture = ExtResource("5_tc5lk")
 [node name="SpawnPoint" type="Node2D" parent="Level3"]
 position = Vector2(2, -154)
 scale = Vector2(2, 2)
+
+[node name="ShootSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ovmsc")
+volume_db = 5.0
+bus = &"sfx"

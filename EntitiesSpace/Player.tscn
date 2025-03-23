@@ -564,7 +564,7 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_il04a"]
 radius = 500.0
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeballs", "_animations", "_autoTentacleArea", "_playerHitboxes", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_shootSoundPlayer", "_chompSoundPlayer")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("_mainNode", "_eyeballs", "_animations", "_autoTentacleArea", "_playerHitboxes", "_smallBlobs", "_mediumBlobs", "_largeBlobs", "_chompSoundPlayer")]
 collision_mask = 11
 center_of_mass_mode = 1
 lock_rotation = true
@@ -587,7 +587,6 @@ _heroHitboxScaleByLvl = Array[float]([1.0, 2.0, 3.0])
 _smallBlobs = [NodePath("Visual/Small/BodySmall/Blob1"), NodePath("Visual/Small/BodySmall/Blob2"), NodePath("Visual/Small/BodySmall/Blob3"), NodePath("Visual/Small/BodySmall/Blob4"), NodePath("Visual/Small/BodySmall/Blob5"), NodePath("Visual/Small/BodySmall/Blob6")]
 _mediumBlobs = [NodePath("Visual/Medium/BodyMid/PlayerBlob5"), NodePath("Visual/Medium/BodyMid/PlayerBlob7"), NodePath("Visual/Medium/BodyMid/PlayerBlob9"), NodePath("Visual/Medium/BodyMid/PlayerBlob11"), NodePath("Visual/Medium/BodyMid/PlayerBlob6"), NodePath("Visual/Medium/BodyMid/PlayerBlob8"), NodePath("Visual/Medium/BodyMid/PlayerBlob10"), NodePath("Visual/Medium/BodyMid/PlayerBlob12")]
 _largeBlobs = [NodePath("Visual/Large/BodyLarge/PlayerBlob5"), NodePath("Visual/Large/BodyLarge/PlayerBlob6"), NodePath("Visual/Large/BodyLarge/PlayerBlob8"), NodePath("Visual/Large/BodyLarge/PlayerBlob7"), NodePath("Visual/Large/BodyLarge/PlayerBlob10"), NodePath("Visual/Large/BodyLarge/PlayerBlob9")]
-_shootSoundPlayer = NodePath("Shoot")
 _chompSoundPlayer = NodePath("Chomp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
