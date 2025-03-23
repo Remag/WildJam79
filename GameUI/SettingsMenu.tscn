@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgxc83pyb44kj"]
+[gd_scene load_steps=3 format=3 uid="uid://dgxc83pyb44kj"]
 
 [ext_resource type="Script" uid="uid://cafgvajih3bib" path="res://Scripts/UI/SettingsMenu.cs" id="1_mfrfd"]
+[ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="2_73hdh"]
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("_muteSoundButton", "_muteMusicButton", "_masterSlider", "_musicSlider", "_soundSlider")]
 layout_mode = 3
@@ -43,6 +44,7 @@ offset_left = -46.5
 offset_right = 46.5
 offset_bottom = 34.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_73hdh")
 theme_override_font_sizes/font_size = 24
 text = "Settings"
 
@@ -69,6 +71,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="Panel/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_73hdh")
 text = "Master Volume"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer"]
@@ -87,6 +90,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="Panel/VBoxContainer/MarginContainer2/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_73hdh")
 text = "SFX Volume"
 
 [node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer"]
@@ -105,6 +109,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="Panel/VBoxContainer/MarginContainer3/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_73hdh")
 text = "Music Volume"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer"]
@@ -115,6 +120,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_73hdh")
 text = "Mute All"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Panel/VBoxContainer"]
@@ -125,6 +131,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_73hdh")
 text = "Mute Music"
 
 [node name="Cancel" type="Button" parent="Panel"]
@@ -140,6 +147,7 @@ offset_right = 37.5
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_73hdh")
 text = "Ok"
 
 [connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/HBoxContainer/HSlider" to="." method="SetMasterVolume"]

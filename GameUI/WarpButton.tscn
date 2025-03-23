@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cq5hjo8vkc5v5"]
+[gd_scene load_steps=18 format=3 uid="uid://cq5hjo8vkc5v5"]
 
 [ext_resource type="Texture2D" uid="uid://bt041ksi2y6jk" path="res://Assets/UI/ButtonPatch.webp" id="1_g03da"]
 [ext_resource type="Texture2D" uid="uid://cufr20qvocdms" path="res://Assets/UI/SlimeDecal3.webp" id="1_gpwoy"]
 [ext_resource type="Script" uid="uid://dp12rc3vjp1fs" path="res://Scripts/UI/WarpButton.cs" id="1_puonl"]
 [ext_resource type="Texture2D" uid="uid://gp50a26rbarp" path="res://Assets/UI/SlimeDecal1.webp" id="2_puonl"]
 [ext_resource type="Texture2D" uid="uid://capuj6bv5qro5" path="res://Assets/UI/SlimeDecal2.webp" id="4_vxvva"]
+[ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="6_vxvva"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbge7"]
 
@@ -155,6 +156,7 @@ offset_right = 54.0
 offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_vxvva")
 theme_override_font_sizes/font_size = 42
 text = "Warp"
 

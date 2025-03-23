@@ -22,6 +22,8 @@ public partial class WorldAudioManager : Node {
     private AudioStreamPlayer _bottlePopSoundPlayer;
     [Export]
     private AudioStreamPlayer _echoSoundPlayer;
+    [Export]
+    private AudioStreamPlayer _finalCutsceneSoundPlayer;
 
     string _stageName;
 
@@ -115,6 +117,11 @@ public partial class WorldAudioManager : Node {
     internal void BottlePopSoundPlay()
     {
         _bottlePopSoundPlayer.Play();
+    }
+
+    internal void FinalCutsceneSoundPlay()
+    {
+        _finalCutsceneSoundPlayer.Play();
     }
 
     internal void EchoSoundPlay()

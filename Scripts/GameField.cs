@@ -40,7 +40,7 @@ public partial class GameField : Node {
     [Export]
     private AnimationPlayer _startAnimation;
     [Export]
-    private AnimationPlayer _finalAnimation;
+    private FinalCutscene _finalCutscene;
 
     private EnemyNodeInfo _currentNodeInfo;
     private float _currentLevelTimer = 0;
@@ -162,9 +162,10 @@ public partial class GameField : Node {
     public void SwitchLocation( Texture2D locationBg, EnemyNodeInfo nodeInfo, WarpEffect effect )
     {
         if( nodeInfo.IsFinalNode ) {
-            _finalAnimation.Play( "Cutscene" );
+            WorldAudioManager.FinalCutsceneSoundPlay();
+            _finalCutscene.Play();
             return;
-        } 
+        }
         _currentNodeInfo = nodeInfo;
         _isTestWaveActive = false;
         _idleUiControl.Visible = nodeInfo.WavesInfo.Count == 0;

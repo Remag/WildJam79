@@ -1,0 +1,267 @@
+[gd_scene load_steps=12 format=3 uid="uid://byp137cmd6s81"]
+
+[ext_resource type="Script" uid="uid://2lv5ghkaktv7" path="res://Scripts/UI/FinalCutscene.cs" id="1_ect2w"]
+[ext_resource type="Texture2D" uid="uid://ox4t2kh6xgr7" path="res://Assets/Slides/Slide1.png" id="1_wkbtx"]
+[ext_resource type="Texture2D" uid="uid://xa3bxhl4w1nt" path="res://Assets/Slides/Slide2.png" id="2_15b7h"]
+[ext_resource type="Texture2D" uid="uid://dcaq01qij6d44" path="res://Assets/Slides/Slide3.png" id="3_abyra"]
+[ext_resource type="Texture2D" uid="uid://dj5jcjfue4qo3" path="res://Assets/Slides/Slide4.png" id="4_eovn7"]
+[ext_resource type="Texture2D" uid="uid://csyr0y02g5ygx" path="res://Assets/Slides/Slide5.png" id="5_5jtl3"]
+[ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="7_gcgps"]
+[ext_resource type="FontFile" uid="uid://ctqyftihdspco" path="res://Assets/Nosifer-Regular.ttf" id="8_eidul"]
+
+[sub_resource type="Animation" id="Animation_kvyqs"]
+resource_name = "Cutscene"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene/Control/Slide1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.266667, 2.3, 38.4001, 39.2001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene/Control/Slide2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.1, 10.4667, 38.4, 39.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscene/Control/Slide3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(14.6333, 17, 38.4, 39.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene/Control/Slide4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(22.1667, 24.6, 38.4, 39.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cutscene/Control/Slide5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(29.4, 31.5667, 38.4, 39.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cutscene/Final:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 40.2667, 41.0333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cutscene/DestinationLabel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(31.6667, 32.6, 38.3667, 39.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Cutscene/DinnerLabel:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(33.9, 34.8333, 38.3667, 39.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i1thg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene/Control/Slide1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene/Final:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscene/DestinationLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a28bb"]
+_data = {
+&"Cutscene": SubResource("Animation_kvyqs"),
+&"RESET": SubResource("Animation_i1thg")
+}
+
+[node name="Cutscene" type="Control" node_paths=PackedStringArray("_animations")]
+custom_minimum_size = Vector2(0.845, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_ect2w")
+_animations = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_a28bb")
+}
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 1906.0
+offset_bottom = 1074.0
+scale = Vector2(0.6, 0.6)
+
+[node name="Slide1" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -1.66667
+offset_top = 6.61157
+offset_right = 1903.33
+offset_bottom = 149.612
+texture = ExtResource("1_wkbtx")
+
+[node name="Slide2" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 8.26446
+offset_top = 156.223
+offset_right = 873.264
+offset_bottom = 444.223
+texture = ExtResource("2_15b7h")
+
+[node name="Slide3" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1031.74
+offset_top = 156.223
+offset_right = 1896.74
+offset_bottom = 444.223
+texture = ExtResource("3_abyra")
+
+[node name="Slide4" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 4.28571
+offset_top = 450.834
+offset_right = 1901.29
+offset_bottom = 584.834
+texture = ExtResource("4_eovn7")
+
+[node name="Slide5" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1.42857
+offset_top = 591.446
+offset_right = 1901.43
+offset_bottom = 1059.45
+texture = ExtResource("5_5jtl3")
+
+[node name="Final" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.5
+offset_top = -112.5
+offset_right = 267.5
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_gcgps")
+theme_override_font_sizes/font_size = 50
+text = "Thank you for playing!
+
+Godot Wild Jam 79."
+horizontal_alignment = 1
+
+[node name="DestinationLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 668.0
+offset_top = 578.0
+offset_right = 921.0
+offset_bottom = 653.0
+theme_override_fonts/font = ExtResource("7_gcgps")
+theme_override_font_sizes/font_size = 42
+text = "Destination: "
+
+[node name="DinnerLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 921.0
+offset_top = 578.0
+offset_right = 1141.0
+offset_bottom = 653.0
+theme_override_colors/font_color = Color(0.996078, 0.0156863, 0.486275, 1)
+theme_override_fonts/font = ExtResource("8_eidul")
+theme_override_font_sizes/font_size = 42
+text = "Dinner"

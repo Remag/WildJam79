@@ -1,14 +1,17 @@
-[gd_scene load_steps=57 format=3 uid="uid://dfh1jxxgde0rm"]
+[gd_scene load_steps=61 format=3 uid="uid://dfh1jxxgde0rm"]
 
 [ext_resource type="Script" uid="uid://bb84h18f6qy55" path="res://Scripts/MainScene.cs" id="1_lppff"]
 [ext_resource type="Script" uid="uid://4wjx062uow8c" path="res://Scripts/GameField.cs" id="1_torvr"]
 [ext_resource type="PackedScene" uid="uid://dgxc83pyb44kj" path="res://GameUI/SettingsMenu.tscn" id="2_5o6vq"]
+[ext_resource type="PackedScene" uid="uid://byp137cmd6s81" path="res://GameUI/FinalCutscene.tscn" id="3_f3pw5"]
 [ext_resource type="PackedScene" uid="uid://cek8px8d5iiw8" path="res://GameUI/TravelMap.tscn" id="3_rf2cd"]
 [ext_resource type="PackedScene" uid="uid://dcxydx2svymhn" path="res://EntitiesSpace/Player.tscn" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://hv2uraddyoum" path="res://EntitiesSpace/WarpToEffect.tscn" id="3_x0cd2"]
 [ext_resource type="Resource" uid="uid://bnij20bv6uuny" path="res://EnemyWaves/BigWave2.tres" id="4_3slyh"]
+[ext_resource type="FontFile" uid="uid://ctqyftihdspco" path="res://Assets/Nosifer-Regular.ttf" id="4_nlw8m"]
 [ext_resource type="Script" uid="uid://b1eoy2cr4buui" path="res://Scripts/CustomCamera2D.cs" id="4_rf2cd"]
 [ext_resource type="Resource" uid="uid://vty01vyd4p7g" path="res://Assets/Background/DefaultSelection.tres" id="5_p5x2j"]
+[ext_resource type="FontFile" uid="uid://242muiuopwxa" path="res://Assets/Quantico-Regular.ttf" id="5_r1x6n"]
 [ext_resource type="PackedScene" uid="uid://bnspkihh2hsu1" path="res://EntitiesSpace/DecalParts/GlassDebris.tscn" id="6_h86nx"]
 [ext_resource type="Script" uid="uid://gwgoixh3d8b4" path="res://Scripts/UI/CheatMenu.cs" id="7_3hf6u"]
 [ext_resource type="Texture2D" uid="uid://dpnif43ifkfsg" path="res://Assets/Background/NebulaSimple1.png" id="7_8xkvn"]
@@ -31,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://cm07dmfvr3jit" path="res://Assets/MainHero/Drop.webp" id="21_7jkkr"]
 [ext_resource type="PackedScene" uid="uid://c3hh1ov2kjtox" path="res://EntitiesSpace/DecalParts/TutorialDebris2.tscn" id="22_amtbh"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="22_cxdnd"]
+[ext_resource type="AudioStream" uid="uid://cjpotc8b38uxj" path="res://Sounds/FinalExtend.mp3" id="22_kvyqs"]
 [ext_resource type="AudioStream" uid="uid://cnf2rh3j4jnkr" path="res://Sounds/BottlePop.wav" id="23_cxdnd"]
 [ext_resource type="PackedScene" uid="uid://bnqvmbhwphipr" path="res://EntitiesSpace/DecalParts/TutorialDebris3.tscn" id="23_obg7t"]
 [ext_resource type="AudioStream" uid="uid://cnkamk2nla40g" path="res://Sounds/BottleShake.mp3" id="27_6dw4c"]
@@ -923,6 +927,8 @@ _hud = NodePath("HUD")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="Cutscene" parent="HUD" instance=ExtResource("3_f3pw5")]
+
 [node name="TutorialLabels" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 0
@@ -944,6 +950,7 @@ offset_right = 71.0
 offset_bottom = -67.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "Consume Material
 "
@@ -962,6 +969,7 @@ offset_right = 217.5
 offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "Hold Right Mouse Button"
 
@@ -979,6 +987,7 @@ offset_right = 231.0
 offset_bottom = -92.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "Locate and Consume More"
 
@@ -996,6 +1005,7 @@ offset_right = 115.0
 offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "WASD or Arrow Keys to Move"
 
@@ -1014,6 +1024,7 @@ offset_right = 220.0
 offset_bottom = -92.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "Hostile Material Detected"
 
@@ -1033,6 +1044,7 @@ offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.696328, 0.057629, 0.180659, 1)
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "Destroy"
 horizontal_alignment = 1
@@ -1051,6 +1063,7 @@ offset_right = 229.0
 offset_bottom = -92.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "Ship Internals Assimilated"
 horizontal_alignment = 1
@@ -1069,6 +1082,7 @@ offset_right = 224.0
 offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 36
 text = "Hold Left Button To Shoot"
 horizontal_alignment = 1
@@ -1085,11 +1099,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -284.0
-offset_top = 25.0
-offset_right = 285.0
-offset_bottom = 292.0
+offset_left = -457.0
+offset_top = 1.705
+offset_right = 458.0
+offset_bottom = 340.705
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_nlw8m")
 theme_override_font_sizes/font_size = 96
 text = "Assimilation
 "
@@ -1102,19 +1117,21 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -124.0
-offset_top = -127.0
+offset_top = -167.65
 offset_right = 125.0
-offset_bottom = -77.0
+offset_bottom = -59.65
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Start" type="Button" parent="HUD/MainMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 30
 text = "Start"
 
 [node name="Settings" type="Button" parent="HUD/MainMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_r1x6n")
 theme_override_font_sizes/font_size = 30
 text = "Settings"
 
@@ -1212,7 +1229,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_bottlePopSoundPlayer", "_echoSoundPlayer")]
+[node name="WorldAudioManager" type="Node" parent="." node_paths=PackedStringArray("_stageBgmPlayer", "_titleBgmPlayer", "_buttonClickPlayer", "_deathSoundPlayer", "_shieldReflectNoDamageSoundPlayer", "_tentacleSoundPlayer", "_explosionSoundPlayer", "_bottlePopSoundPlayer", "_echoSoundPlayer", "_finalCutsceneSoundPlayer")]
 script = ExtResource("8_torvr")
 _stageBgmPlayer = NodePath("StageBgmPlayer")
 _titleBgmPlayer = NodePath("TitleBgmPlayer")
@@ -1223,6 +1240,7 @@ _tentacleSoundPlayer = NodePath("Tentacle")
 _explosionSoundPlayer = NodePath("ExplosionSoundPlayer")
 _bottlePopSoundPlayer = NodePath("BottlePopSoundPlayer")
 _echoSoundPlayer = NodePath("EchoSoundPlayer")
+_finalCutsceneSoundPlayer = NodePath("FinalCutsceneSoundPlayer")
 
 [node name="StageBgmPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
 stream = ExtResource("13_nm5af")
@@ -1266,7 +1284,11 @@ bus = &"sfx"
 stream = ExtResource("18_5i0cj")
 volume_db = 4.0
 
-[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation")]
+[node name="FinalCutsceneSoundPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("22_kvyqs")
+volume_db = 4.0
+
+[node name="GameField" type="Node" parent="." node_paths=PackedStringArray("_camera", "_mapControl", "_starRect", "_nebulaRect", "_restartButton", "_idleUiControl", "_warpControl", "WorldAudioManager", "_warpEffectRect", "_glassSprite", "_tutorial", "_startAnimation", "_finalCutscene")]
 process_mode = 1
 script = ExtResource("1_torvr")
 _camera = NodePath("Camera2D")
@@ -1286,6 +1308,7 @@ _glassSprite = NodePath("Intro/GlassRotation/Glass")
 _glassDebris = ExtResource("6_h86nx")
 _tutorial = NodePath("Intro")
 _startAnimation = NodePath("Intro/GlassRotation/AnimationPlayer")
+_finalCutscene = NodePath("../HUD/Cutscene")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameField"]
 callback_mode_process = 0
@@ -1392,7 +1415,7 @@ _spriteScale = 0.5
 _driftAngularSpeed = -10.0
 
 [node name="SpaceDebris3" parent="GameField/Intro" groups=["NearDebris"] instance=ExtResource("23_obg7t")]
-position = Vector2(749, 569)
+position = Vector2(731, 569)
 _spriteScale = 0.6
 _driftAngularSpeed = 5.0
 
@@ -1406,7 +1429,7 @@ position = Vector2(453, 818)
 _spriteScale = 0.5
 
 [node name="SpaceDebris5" parent="GameField/Intro" groups=["NearDebris"] instance=ExtResource("22_amtbh")]
-position = Vector2(751, 299)
+position = Vector2(789, 353)
 _spriteScale = 0.5
 
 [connection signal="pressed" from="HUD/MainMenu/VBoxContainer/Start" to="GameField" method="StartGame"]
