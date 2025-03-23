@@ -23,8 +23,7 @@ public partial class Tentacle : Node2D {
 
     [Export]
     protected TentacleLine _tentacleLine;
-    [Export]
-    private AudioStreamPlayer _catchSoundPlayer;
+    
     public FoodSource AttachedEntity { get; private set; }
 
     private double _currentKeepTime = 0;
@@ -55,7 +54,7 @@ public partial class Tentacle : Node2D {
     {
         AttachedEntity = entity;
         _currentMode = TentacleMode.Keep;
-        _catchSoundPlayer.Play();
+        Game.Field.WorldAudioManager.CatchSoundPlay();
     }
 
     public override void _Ready()

@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-public partial class ShipTrail : Node
-{
+public partial class ShipTrail : Node {
     [Export]
     private GpuParticles2D _particles;
     [Export]
@@ -12,7 +11,7 @@ public partial class ShipTrail : Node
     public override void _Ready()
     {
         base._Ready();
-	    _stateMachine = _animations.Get( "parameters/playback").As<AnimationNodeStateMachinePlayback>();
+        _stateMachine = _animations.Get( "parameters/playback" ).As<AnimationNodeStateMachinePlayback>();
     }
 
     public void ShowTrail()
@@ -23,7 +22,9 @@ public partial class ShipTrail : Node
 
     public void HideTrail()
     {
-        _particles.Emitting = false;
-        _stateMachine.Travel( "Disappear" );
+        if( _particles.Emitting ) {
+            _particles.Emitting = false;
+            _stateMachine.Travel( "Disappear" );
+        }
     }
 }
