@@ -20,7 +20,7 @@ script = ExtResource("1_d5mkc")
 _collisionArea = NodePath("Area2D")
 _moveLogic = ExtResource("2_d5mkc")
 _lifespanLogic = SubResource("Resource_6i060")
-_bulletDamage = 8
+_bulletDamage = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.74902, 0, 1)

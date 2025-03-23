@@ -15,6 +15,7 @@ metadata/_custom_type_script = "uid://de10ab1n1g1s"
 
 [node name="TurretBlasterRedMedium" type="Node2D" node_paths=PackedStringArray("_shootSoundPlayer2D", "_shootTarget", "_turretBase", "_spawnPoint")]
 script = ExtResource("1_vixyw")
+_aiAttackShootDelayMin = 0.15
 _aiAttackShootDuration = 1.6
 _aiAttackShootPauseMin = 2.0
 _aiAttackShootPauseMax = 2.5

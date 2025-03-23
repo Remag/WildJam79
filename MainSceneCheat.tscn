@@ -29,8 +29,8 @@
 [ext_resource type="AudioStream" uid="uid://duoym3pnpg7no" path="res://Sounds/ShieldReflectNoDamage.mp3" id="19_u21sk"]
 [ext_resource type="AudioStream" uid="uid://078oxrm0lgkq" path="res://Sounds/FinalExtend2.mp3" id="22_2lnc8"]
 [ext_resource type="AudioStream" uid="uid://50oy7aol77qd" path="res://Sounds/Tentacle02.mp3" id="22_fwbxm"]
-[ext_resource type="Resource" uid="uid://j0b4uoesaqh0" path="res://EnemyWaves/Map5Wave.tres" id="23_1eypv"]
 [ext_resource type="AudioStream" uid="uid://bf8w6ebhjx0hf" path="res://Sounds/Explosion_ZapSplat.mp3" id="23_juiou"]
+[ext_resource type="Resource" uid="uid://dyeq35bq3j7hj" path="res://EnemyWaves/Map7-1Wave.tres" id="26_2lnc8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtmsi"]
 shader = ExtResource("6_alxon")
@@ -318,7 +318,7 @@ _playerPrefab = ExtResource("2_8onvp")
 _warpEffect = ExtResource("3_u4e62")
 _restartControl = NodePath("../HUD/RestartNode")
 _hints = [NodePath("../HUD/RestartNode/Hint1"), NodePath("../HUD/RestartNode/Hint2"), NodePath("../HUD/RestartNode/Hint3"), NodePath("../HUD/RestartNode/Hint4")]
-_testWaveNodeInfo = ExtResource("23_1eypv")
+_testWaveNodeInfo = ExtResource("26_2lnc8")
 _idleUiControl = NodePath("../HUD/IdleUi")
 _warpControl = NodePath("../HUD/IdleUi/WarpButton")
 _bgSelection = ExtResource("5_huaye")

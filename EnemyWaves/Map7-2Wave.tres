@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=2 format=3 uid="uid://ceu7vnai70a3q"]
+
+[ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="1_nqcqp"]
+
+[resource]
+script = ExtResource("1_nqcqp")
+WavesInfo = Array[Object]([])
+MinShipsAliveForNextWave = 0
+IsFinalNode = false
+metadata/_custom_type_script = "uid://3et64xg5xbi4"
