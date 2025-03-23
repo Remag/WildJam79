@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1y4l6y4tgo3x"]
+[gd_scene load_steps=18 format=3 uid="uid://b1y4l6y4tgo3x"]
 
 [ext_resource type="Script" uid="uid://bvd7li63nh6il" path="res://Scripts/EnemyShip.cs" id="1_trwef"]
 [ext_resource type="Script" uid="uid://bvixcm5fb4rto" path="res://Scripts/EnemyMove/EnemyMoveConfigRigid.cs" id="2_hevw4"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://chlv1snw6rbh" path="res://Assets/SpaceShip/ShipBody/BigPurple.webp" id="5_gt4n1"]
 [ext_resource type="PackedScene" uid="uid://dt07exnbb24vc" path="res://ETurrets/TurretGun.tscn" id="7_hevw4"]
 [ext_resource type="PackedScene" uid="uid://bw88mhh4bohqv" path="res://ETurrets/TurretGunCircle.tscn" id="7_keofb"]
-[ext_resource type="PackedScene" uid="uid://bjcshqoy6jo72" path="res://ETurrets/TurretGunx3.tscn" id="8_6yo6e"]
 [ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="8_a6bb8"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_fkmnx"]
 [ext_resource type="PackedScene" uid="uid://ca6y1ysxxw1yv" path="res://EntitiesSpace/ShieldBig.tscn" id="10_wkk64"]
@@ -93,14 +92,6 @@ _enemyShip = NodePath("../..")
 
 [node name="TurrenGun4" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("7_hevw4")]
 position = Vector2(1044, 671.996)
-_enemyShip = NodePath("../..")
-
-[node name="TurrenGunx3_5" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("8_6yo6e")]
-position = Vector2(-60.004, -1104)
-_enemyShip = NodePath("../..")
-
-[node name="TurrenGunx3_6" parent="Visuals" node_paths=PackedStringArray("_enemyShip") instance=ExtResource("8_6yo6e")]
-position = Vector2(67.996, -1108)
 _enemyShip = NodePath("../..")
 
 [node name="OffscreenIndicator" parent="." instance=ExtResource("8_a6bb8")]
