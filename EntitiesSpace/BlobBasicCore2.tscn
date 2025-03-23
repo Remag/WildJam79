@@ -98,4 +98,5 @@ texture = ExtResource("5_xuh3f")
 
 [node name="ShootSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_cy44l")
+volume_db = -10.0
 bus = &"sfx"
