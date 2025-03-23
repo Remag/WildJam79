@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bnbfs0cm0kvgo" path="res://Assets/SpaceShip/ShipBody/BigRed.webp" id="5_s8e3q"]
 [ext_resource type="PackedScene" uid="uid://dps5dq1i2v16i" path="res://ETurrets/TurretBlasterRed.tscn" id="6_6n2o6"]
 [ext_resource type="PackedScene" uid="uid://hhltxustj3jw" path="res://ETurrets/TurretBlasterRedBig.tscn" id="7_f4vbq"]
-[ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="8_lviff"]
+[ext_resource type="PackedScene" uid="uid://ba5eu2djntbxw" path="res://EntitiesSpace/EnemyShip/OffscreenIndicatorRed.tscn" id="8_rily0"]
 [ext_resource type="PackedScene" uid="uid://ongko3det8xd" path="res://EntitiesSpace/ShipTrail.tscn" id="9_bxghi"]
 [ext_resource type="PackedScene" uid="uid://ca6y1ysxxw1yv" path="res://EntitiesSpace/ShieldBig.tscn" id="10_s8e3q"]
 [ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="11_l2afv"]
@@ -129,9 +129,8 @@ _enemyShip = NodePath("../../..")
 position = Vector2(44.0002, 47.9998)
 _enemyShip = NodePath("../..")
 
-[node name="OffscreenIndicator" parent="." instance=ExtResource("8_lviff")]
+[node name="OffscreenIndicator" parent="." instance=ExtResource("8_rily0")]
 visible = false
-modulate = Color(1, 0.59, 0.59, 1)
 
 [node name="ShipTrail" parent="." instance=ExtResource("9_bxghi")]
 position = Vector2(-282, 1)

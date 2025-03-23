@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b2miw8wp8ppfk" path="res://Assets/SpaceShip/ShipBody/MiddlePurple.webp" id="6_pkp61"]
 [ext_resource type="PackedScene" uid="uid://bjcshqoy6jo72" path="res://ETurrets/TurretGunx3.tscn" id="7_pkp61"]
 [ext_resource type="Texture2D" uid="uid://tjp1x1dyhnrw" path="res://Assets/SpaceShip/ShipBody/Corrosion.webp" id="8_8uf67"]
-[ext_resource type="PackedScene" uid="uid://cy4ff36kjn688" path="res://EntitiesSpace/EnemyShip/OffscreenIndicator.tscn" id="9_oo7p6"]
+[ext_resource type="PackedScene" uid="uid://dh5ajooe8h0t" path="res://EntitiesSpace/EnemyShip/OffscreenIndicatorPurple.tscn" id="9_oo7p6"]
 [ext_resource type="PackedScene" uid="uid://d1jseys4hjwc2" path="res://EntitiesSpace/ShipTrailBlue.tscn" id="10_oo7p6"]
 [ext_resource type="PackedScene" uid="uid://6ptlvbb75vsy" path="res://EntitiesSpace/Shield.tscn" id="11_xvv3s"]
 [ext_resource type="Script" uid="uid://dn4lqxpjsg1n" path="res://Scripts/Shield/ShieldConfig.cs" id="12_c8rof"]
@@ -70,7 +70,6 @@ texture = ExtResource("8_8uf67")
 
 [node name="OffscreenIndicator" parent="." instance=ExtResource("9_oo7p6")]
 visible = false
-modulate = Color(0.6, 0.721569, 1, 1)
 
 [node name="ShipTrail2" parent="." instance=ExtResource("10_oo7p6")]
 position = Vector2(-60, 1)
