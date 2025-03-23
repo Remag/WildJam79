@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://d1y8e1rqsjra7" path="res://Sounds/EnemyHit1.wav" id="11_ffw8n"]
 [ext_resource type="Script" uid="uid://dh0o5pady331u" path="res://Scripts/Audio/RandomPitchSoundPlayer.cs" id="12_kdlwq"]
 
-[node name="EnemyShip1" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip1" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "_allDamageAnchors", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 can_sleep = false
 angular_damp = 1.0
@@ -22,6 +22,7 @@ _maxHp = 6
 _configRigid = ExtResource("2_ffw8n")
 _damageEffect = ExtResource("3_kdlwq")
 _damageEffectAnchor = NodePath("DamageAnchor")
+_allDamageAnchors = [NodePath("DamageAnchor")]
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail")
 _offscreenIndicator = NodePath("OffscreenIndicator")

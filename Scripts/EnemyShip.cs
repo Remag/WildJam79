@@ -24,6 +24,8 @@ public partial class EnemyShip : FoodSource {
 	private Godot.Collections.Array<PackedScene> _partDecals = new();
 	[Export]
 	private Node2D _damageEffectAnchor;
+	[Export]
+	private Godot.Collections.Array<Node2D> _allDamageAnchors = new();
 
 	[Export]
 	public Node2D VisualNode { get; set; }
@@ -187,11 +189,15 @@ public partial class EnemyShip : FoodSource {
 	{
 		spawnParts( dmgPositionSource );
 		if( _damageEffect != null ) {
-			var dmgEffect = _damageEffect.Instantiate<Node2D>();
-			_damageEffectAnchor.AddChild( dmgEffect );
-			if( dmgPositionSource != null ) {
-				dmgEffect.GlobalPosition = dmgPositionSource.GlobalPosition;
+			foreach (var damageAnchor in _allDamageAnchors)
+			{
+				var dmgEffect = _damageEffect.Instantiate<Node2D>();
+				damageAnchor.AddChild( dmgEffect );
+				if( dmgPositionSource != null ) {
+					dmgEffect.GlobalPosition = dmgPositionSource.GlobalPosition;
+				}				
 			}
+			
 		}
 	}
 

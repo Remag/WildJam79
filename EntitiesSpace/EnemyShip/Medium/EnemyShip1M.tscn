@@ -22,7 +22,7 @@ script = ExtResource("11_borw0")
 maxHp = 50
 metadata/_custom_type_script = "uid://dn4lqxpjsg1n"
 
-[node name="EnemyShip1M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
+[node name="EnemyShip1M" type="RigidBody2D" node_paths=PackedStringArray("_damageEffectAnchor", "_allDamageAnchors", "VisualNode", "_trail", "_offscreenIndicator", "_hitbox", "_shield", "_hullHitSoundPlayer") groups=["ClearOnRestart", "Enemy"]]
 collision_layer = 2
 mass = 10.0
 can_sleep = false
@@ -33,6 +33,7 @@ SizeLevel = 1
 _configRigid = ExtResource("2_xcfu4")
 _damageEffect = ExtResource("3_e42u5")
 _damageEffectAnchor = NodePath("DamageAnchor")
+_allDamageAnchors = [NodePath("DamageAnchor"), NodePath("DamageAnchor2"), NodePath("DamageAnchor3")]
 VisualNode = NodePath("Visuals")
 _trail = NodePath("ShipTrail2")
 _offscreenIndicator = NodePath("OffscreenIndicator")
@@ -106,6 +107,12 @@ polygon = PackedVector2Array(-34.8493, 10.8389, -0.219325, -41.8064, 35.726, 11.
 
 [node name="DamageAnchor" type="Node2D" parent="."]
 position = Vector2(1, 9)
+
+[node name="DamageAnchor2" type="Node2D" parent="."]
+position = Vector2(-54, -1)
+
+[node name="DamageAnchor3" type="Node2D" parent="."]
+position = Vector2(55, -1)
 
 [node name="Shoot2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_xtrvg")
