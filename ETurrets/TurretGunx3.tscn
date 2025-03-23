@@ -11,8 +11,8 @@
 script = ExtResource("2_bqo0w")
 _bulletPrefab = ExtResource("2_b8qpl")
 _counter = 3
-_fromAngleDeg = -30.0
-_toAngleDeg = 30.0
+_fromAngleDeg = -45.0
+_toAngleDeg = 45.0
 _isFullCircle = false
 metadata/_custom_type_script = "uid://bo1juf5brst7i"
 
