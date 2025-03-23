@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=28 format=3 uid="uid://drif2y0f1tt6y"]
+[gd_resource type="Resource" script_class="EnemyNodeInfo" load_steps=29 format=3 uid="uid://drif2y0f1tt6y"]
 
 [ext_resource type="PackedScene" uid="uid://0ikuy4wnc65u" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip2.tscn" id="1_o4id8"]
 [ext_resource type="Script" uid="uid://i8f3bi4mcsst" path="res://Scripts/UI/EnemyInfo.cs" id="2_c5fx3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://du2c5try3ydx5" path="res://EntitiesSpace/EnemyShip/Small/EnemyShip3.tscn" id="5_7y683"]
 [ext_resource type="PackedScene" uid="uid://c3pjhvmrasht6" path="res://EntitiesSpace/EnemyShip/Medium/EnemyShip1M.tscn" id="6_c5fx3"]
 [ext_resource type="Script" uid="uid://3et64xg5xbi4" path="res://Scripts/UI/EnemyNodeInfo.cs" id="6_vr7bh"]
+[ext_resource type="PackedScene" uid="uid://d0rri7xjcdjyd" path="res://EntitiesSpace/CoreGun.tscn" id="7_obkyx"]
 
 [sub_resource type="Resource" id="Resource_ipd7g"]
 script = ExtResource("2_c5fx3")
@@ -132,5 +133,9 @@ metadata/_custom_type_script = "uid://djvcagko6b25v"
 script = ExtResource("6_vr7bh")
 WavesInfo = Array[Object]([SubResource("Resource_2n8qo"), SubResource("Resource_2jyi6"), SubResource("Resource_nquao"), SubResource("Resource_p7co1"), SubResource("Resource_cvvk3"), SubResource("Resource_dm4a0"), SubResource("Resource_sr8wj")])
 MinShipsAliveForNextWave = 0
+HeroGrowthOnClear = 1
+WeaponLevelsOnClear = Dictionary[PackedScene, int]({
+ExtResource("7_obkyx"): 1
+})
 IsFinalNode = false
 metadata/_custom_type_script = "uid://3et64xg5xbi4"
